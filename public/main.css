@@ -223,7 +223,7 @@ input
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.1);
     z-index: 99999;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
@@ -242,10 +242,10 @@ input
 {
     width: 400px;
     position: relative;
-    margin: 10% auto;
+    margin: 15% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.1);
 }
 
 .close
