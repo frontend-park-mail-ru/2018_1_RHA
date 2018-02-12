@@ -200,6 +200,7 @@ input
 
 #logo
 {
+    background-image: url("images/logo.png");
     width: 20%;
     position: absolute;
     left: 40%;
