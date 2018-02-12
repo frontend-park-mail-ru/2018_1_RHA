@@ -28,7 +28,7 @@
 
         <div id="openModal" class="modalDialog">
             <div>
-                <a href="#close" title="Закрыть" class="close">X</a>
+                <a  id="close" href="#close" title="Закрыть" class="close">X</a>
                 <form id="login_form" action="#">
                     <h1>Sign In</h1>
                     <input type="text" placeholder="Nickname">
@@ -40,7 +40,7 @@
         </div>
 
         <div class="btn-wrapper">
-            <button onclick="window.location.href='#openModal'"  class="btn-main btn-up">Play</button>
+            <button id="play" onclick="window.location.href='#openModal'"  class="btn-main btn-up">Play</button>
         </div>
 
     </div>
@@ -52,8 +52,8 @@
 
 <script src="js/script.js"></script>
 <!-- убрать после отладки -->
-<!--<script language=JavaScript>-->
-    <!--document.oncontextmenu=new Function("return false;")-->
-<!--</script>-->
+<script language=JavaScript>
+    document.oncontextmenu=new Function("return false;")
+</script>
 
 </html>
