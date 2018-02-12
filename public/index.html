@@ -22,14 +22,27 @@
         </video>
     </div>
 
+    <a href="#openModal"></a>
+    
 	<div class="wrapper">
-        <form id="login_form" action="#">
-            <h1>Sign In</h1>
-            <input type="text" placeholder="Nickname">
-            <br>
-            <input type="password" placeholder="Password">
-            <button  class="btn-main btn-in" type="submit">Log In</button>
-        </form>
+
+        <div id="openModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Закрыть" class="close">X</a>
+                <form id="login_form" action="#">
+                    <h1>Sign In</h1>
+                    <input type="text" placeholder="Nickname">
+                    <br>
+                    <input type="password" placeholder="Password">
+                    <button class="btn-main btn-in" type="submit">Log In</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="btn-wrapper">
+            <button onclick="window.location.href='#openModal'"  class="btn-main btn-up">Play</button>
+        </div>
+
     </div>
 
     <img id="logo" src="images/logo.png">
