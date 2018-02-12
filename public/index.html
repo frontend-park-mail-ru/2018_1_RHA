@@ -10,6 +10,7 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
 	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="kostyan.css">
+    <link rel="stylesheet" href="supreme.css">
 
 </head>
 <body onload="show();" id="body">
@@ -22,13 +23,13 @@
         </video>
     </div>
 
-    <a href="#openModal"></a>
+    <a></a>
     
 	<div class="wrapper">
 
-        <div id="openModal" class="modalDialog">
-            <div>
-                <a  id="close" href="#close" title="Закрыть" class="close">X</a>
+        <div id="openModal" class="modalDialog" style="opacity: 0">
+            <div id="fade_in">
+                <a  id="close" title="Закрыть" class="close">X</a>
                 <form id="login_form" action="#">
                     <h1>Sign In</h1>
                     <input type="text" placeholder="Nickname">
@@ -40,7 +41,7 @@
         </div>
 
         <div class="btn-wrapper">
-            <button id="play" onclick="window.location.href='#openModal'"  class="btn-main btn-up">Play</button>
+            <button id="play"   class="btn-main btn-up">Play</button>
         </div>
 
     </div>
