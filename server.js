@@ -1,7 +1,7 @@
 'use strict';
 
-const fs= require('fs');
-const http=require('http');
+const fs = require('fs');
+const http = require('http');
 const debug = require('debug');
 const logger = debug('mylogger');
 
@@ -12,7 +12,7 @@ const server = http.createServer((req,res) => {
 	console.log(req.url);
 	const filename = req.url === '/' ? 'index.html' : req.url;
  
-	fs.readFile(__dirname+'/public' + filename, (err,data) => {
+	fs.readFile(__dirname + '/public/' + filename, (err,data) => {
 	
 		if (err) {
 			res.writeHead(404);
@@ -21,11 +21,11 @@ const server = http.createServer((req,res) => {
 			return;
 		}
 
-		console.log(data)
-		res.writeHead(200,'OK')
+		console.log(data);
+		res.writeHead(200,'OK');
 		res.write(data);
 		res.end();
 	});
 });
 
-server.listen(process.env.PORT || 3000);
+server.listen( 3000);
