@@ -12,7 +12,7 @@ const server = http.createServer((req,res) => {
 	console.log(req.url);
 	const filename = req.url === '/' ? 'index.html' : req.url;
  
-	fs.readFile(__dirname+'/public' + filename, (err,data) => {
+	fs.readFile(__dirname+'/public/' + filename, (err,data) => {
 	
 		if (err) {
 			res.writeHead(404);
