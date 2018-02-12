@@ -193,3 +193,16 @@ input
     font-size: x-large;
     text-align: inherit;
 }
+
+/* ------------------- logo -------------------*/
+
+#logo
+{
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    top: 1%;
+    align-content: center;
+    font-size: x-large;
+    height: auto;
+}
