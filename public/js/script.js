@@ -11,12 +11,6 @@ document.getElementById("play").addEventListener('click', play);
 //--------------------------
 
 
-document.getElementById("play").onclick( () => {
-	document.getElementById("play").style.opacity = "0";
-	window.location.href='#openModal';
-    document.getElementById("openModal").style.opacity = "1";
-});
-
 // event handler for close
 const close = () => {
     document.getElementById("play").style.opacity = 1;
