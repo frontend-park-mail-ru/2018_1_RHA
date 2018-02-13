@@ -29,7 +29,7 @@
 
         <div id="openModal" class="modalDialog" style="opacity: 0">
             <div id="fade_in">
-                <a  id="close" title="Закрыть" class="close">X</a>
+                <a  id="close" title="Закрыть" onclick="close()" class="close">X</a>
                 <form id="login_form" action="#">
                     <h1>Sign In</h1>
                     <input type="text" placeholder="Nickname">
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="btn-wrapper">
+        <div class="btn-wrapper" onclick="play()">
             <button id="play"   class="btn-main btn-up">Play</button>
         </div>
 
