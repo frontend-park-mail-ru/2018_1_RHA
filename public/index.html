@@ -6,13 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="kostyan.css">
 
 </head>
-<body onload="show();" id="body">
+<body id="body">
 
     <div class="fullscreen-bg">
         <div class="overlay"></div>
@@ -21,8 +19,6 @@
         </video>
     </div>
 
-    <!--<a href="#openModal"></a>-->
-
     <div class="wrapper">
 
         <div id="mute">Sound ON</div>
@@ -30,33 +26,39 @@
         <div id="openModal" class="modalDialog">
             <div>
                 <a  id="close" href="#close" title="Закрыть" class="close">X</a>
+
+                <button style="display: block" onclick="switch_log();">SignIn</button>
+                <button style="display: block" onclick="switch_reg();">SignUp</button>
+
                 <form id="login_form" action="#">
-                    <h1>Sign In</h1>
                     <input type="text" placeholder="Nickname">
                     <br>
                     <input type="password" placeholder="Password">
                     <button class="btn-main btn-in" type="submit">Log In</button>
                 </form>
+
+                <form id="reg_form" action="#">
+                    <input type="email" placeholder="Email">
+                    <br>
+                    <input type="text" placeholder="Nickname">
+                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Confirm Password"></input>
+                    <button class="btn-main btn-in" type="submit">Register</button>
+                </form>
+
             </div>
         </div>
 
         <div class="btn-wrapper">
             <button id="play"  class="btn-main btn-up">Play</button>
         </div>
-
     </div>
 
     <img id="logo" src="images/logo.png">
 
-
     <footer>
         <div>RHA team. All rights reserved. 2018 &copy</div>
     </footer>
-
-    <div id="foot">
-        <p> RHA team. All rights reserved. 2018 &copy</p>
-    </div>
-
 
 </body>
 

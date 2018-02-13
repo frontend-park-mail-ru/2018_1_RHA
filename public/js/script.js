@@ -8,7 +8,7 @@ const play = () => {
 // event listener for play
 document.getElementById("play").addEventListener('click', play);
 
-
+//--------------------------
 
 // event handler for close
 const close = () => {
@@ -20,6 +20,7 @@ const close = () => {
 // event listener for close
 document.getElementById("close").addEventListener('click', close);
 
+//--------------------------
 
 const mute = () => {
     let video = document.getElementsByTagName('video')[0];
@@ -36,3 +37,15 @@ const mute = () => {
 
 document.getElementById("mute").addEventListener('click', mute);
 
+//--------------------------
+
+
+const switch_log = () => {
+    document.getElementById('login_form').style.display = 'block';
+    document.getElementById('reg_form').style.display = 'none';
+};
+
+const switch_reg = () => {
+    document.getElementById('login_form').style.display = 'none';
+    document.getElementById('reg_form').style.display = 'block';
+};
