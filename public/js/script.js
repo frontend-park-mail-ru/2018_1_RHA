@@ -1,27 +1,14 @@
-// event handler for play
-const play = () => {
-    document.getElementById("play").style.opacity = 0;
-    document.getElementById("openModal").style.opacity = 1;
-    window.location.href = '#openModal';
+// event handler for switch
+const relay = () => {
+    document.getElementById("openModal").classList.toggle('hidden');
+    document.getElementById("play").classList.toggle('hidden');
 };
 
-// event listener for play
-document.getElementById("play").addEventListener('click', play);
+document.getElementById("close").addEventListener('click', relay);
+document.getElementById("play").addEventListener('click', relay);
 
 //--------------------------
 
-
-// event handler for close
-const close = () => {
-    document.getElementById("play").style.opacity = 1;
-    document.getElementById("openModal").style.opacity = 0;
-    window.location.href = '#';
-};
-
-// event listener for close
-document.getElementById("close").addEventListener('click', close);
-
-//--------------------------
 
 const mute = () => {
     let video = document.getElementsByTagName('video')[0];
