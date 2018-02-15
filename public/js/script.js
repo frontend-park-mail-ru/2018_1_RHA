@@ -1,40 +1,45 @@
-// event handler for switch
+const open_modal = document.getElementById('openModal');
+const close_modal = document.getElementById('close');
+const play = document.getElementById('play');
+
+const login_form = document.getElementById('login_form');
+const reg_form = document.getElementById('reg_form');
+
+const video = document.getElementsByTagName('video')[0];
+const mute_obj = document.getElementById('mute');
+
+//-----------------------------
+
 const relay = () => {
-    document.getElementById("openModal").classList.toggle('hidden');
-    document.getElementById("play").classList.toggle('hidden');
+    open_modal.classList.toggle('hidden');
+    play.classList.toggle('hidden');
 };
 
-document.getElementById("close").addEventListener('click', relay);
-document.getElementById("play").addEventListener('click', relay);
-
-//--------------------------
+close_modal.addEventListener('click', relay);
+play.addEventListener('click', relay);
 
 
 const mute = () => {
-    let video = document.getElementsByTagName('video')[0];
     if( video.muted === true ){
+        mute_obj.innerHTML = 'Sound ON';
         video.muted = '';
-        document.getElementById('mute').innerHTML = 'Sound OFF';
     }
     else {
+       mute_obj.innerHTML = 'Sound OFF';
        video.muted = 'muted';
-       document.getElementById('mute').innerHTML = 'Sound ON';
     }
-
 };
 
 document.getElementById("mute").addEventListener('click', mute);
 
-//--------------------------
-
 
 const switch_log = () => {
-    document.getElementById('login_form').style.display = 'block';
-    document.getElementById('reg_form').style.display = 'none';
+    login_form.style.display = 'block';
+    reg_form.style.display = 'none';
 };
 
 const switch_reg = () => {
-    document.getElementById('login_form').style.display = 'none';
-    document.getElementById('reg_form').style.display = 'block';
+    login_form.style.display = 'none';
+    reg_form.style.display = 'block';
 };
 
