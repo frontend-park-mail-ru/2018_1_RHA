@@ -30,7 +30,7 @@ const mute = () => {
     }
 };
 
-document.getElementById("mute").addEventListener('click', mute);
+mute_obj.addEventListener('click', mute);
 
 
 const switch_log = () => {
