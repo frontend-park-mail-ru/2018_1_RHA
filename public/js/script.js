@@ -1,53 +1,45 @@
-// event handler for play
-const play = () => {
-    document.getElementById("play").style.opacity = 0;
-    document.getElementById("openModal").style.opacity = 1;
-    window.location.href = '#openModal';
+const open_modal = document.getElementById('openModal');
+const close_modal = document.getElementById('close');
+const play = document.getElementById('play');
+
+const login_form = document.getElementById('login_form');
+const reg_form = document.getElementById('reg_form');
+
+const video = document.getElementsByTagName('video')[0];
+const mute_obj = document.getElementById('mute');
+
+//-----------------------------
+
+const relay = () => {
+    open_modal.classList.toggle('hidden');
+    play.classList.toggle('hidden');
 };
 
-// event listener for play
-document.getElementById("play").addEventListener('click', play);
+close_modal.addEventListener('click', relay);
+play.addEventListener('click', relay);
 
-//--------------------------
-
-
-// event handler for close
-const close = () => {
-    document.getElementById("play").style.opacity = 1;
-    document.getElementById("openModal").style.opacity = 0;
-    window.location.href = '#';
-};
-
-// event listener for close
-document.getElementById("close").addEventListener('click', close);
-
-//--------------------------
 
 const mute = () => {
-    let video = document.getElementsByTagName('video')[0];
     if( video.muted === true ){
+        mute_obj.innerHTML = 'Sound ON';
         video.muted = '';
-        document.getElementById('mute').innerHTML = 'Sound OFF';
     }
     else {
+       mute_obj.innerHTML = 'Sound OFF';
        video.muted = 'muted';
-       document.getElementById('mute').innerHTML = 'Sound ON';
     }
-
 };
 
-document.getElementById("mute").addEventListener('click', mute);
-
-//--------------------------
+mute_obj.addEventListener('click', mute);
 
 
 const switch_log = () => {
-    document.getElementById('login_form').style.display = 'block';
-    document.getElementById('reg_form').style.display = 'none';
+    login_form.style.display = 'block';
+    reg_form.style.display = 'none';
 };
 
 const switch_reg = () => {
-    document.getElementById('login_form').style.display = 'none';
-    document.getElementById('reg_form').style.display = 'block';
+    login_form.style.display = 'none';
+    reg_form.style.display = 'block';
 };
 
