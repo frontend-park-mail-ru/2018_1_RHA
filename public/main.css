@@ -235,10 +235,10 @@ input
 
 .fadeIn-Out.hidden
 {
-    opacity: 0;
-    visibility: hidden;
     transition: opacity 0.5s, visibility 0s 0.5s;
     pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .fadeIn-Out
