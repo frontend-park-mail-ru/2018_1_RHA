@@ -42,4 +42,3 @@ const switch_reg = () => {
     login_form.style.display = 'none';
     reg_form.style.display = 'block';
 };
-
