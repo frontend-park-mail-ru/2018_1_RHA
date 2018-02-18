@@ -156,7 +156,7 @@ button
 form
 {
     display: inline-block;
-    width: 40%;
+    width: 90%;
     padding: 0;
     text-align: center;
 
@@ -198,6 +198,15 @@ input
     font-size: x-large;
     text-align: inherit;
 }
+
+#log_butt {
+    display: none;
+}
+
+#reg_butt {
+    display: block;
+}
+
 /* --------------------------------------------*/
 
 
@@ -249,7 +258,7 @@ input
 
 .modalDialog > div
 {
-    width: 40%;
+    width: 20%;
     position: relative;
     margin: 15% auto;
     padding: 5px 20px 13px 20px;

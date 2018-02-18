@@ -28,14 +28,12 @@
             <div>
                 <a  id="close" title="Закрыть" class="close">X</a>
 
-                <button style="display: block" onclick="switch_log();">SignIn</button>
-                <button style="display: block" onclick="switch_reg();">SignUp</button>
-
-                <form id="login_form" action="#">
-                    <input type="text" placeholder="Nickname">
+                <form id="login_form">
+                    <input type="text" placeholder="Nickname" name="username">
                     <br>
-                    <input type="password" placeholder="Password">
-                    <button class="btn-main btn-in" type="submit">Log In</button>
+                    <!--<input type="password" placeholder="Password">-->
+                    <input type="email" placeholder="Email" name="email">
+                    <button class="btn-main btn-in" type="submit">Sign In</button>
                 </form>
 
                 <form id="reg_form" action="/register">
@@ -44,8 +42,13 @@
                     <input type="text" placeholder="Nickname">
                     <input type="password" placeholder="Password">
                     <input type="password" placeholder="Confirm Password"></input>
-                    <button class="btn-main btn-in" type="submit">Register</button>
+                    <button class="btn-main btn-up" type="submit">Sign Up</button>
                 </form>
+
+                <hr>
+
+                <button id="log_butt" class="btn-main btn-in">Sign In</button>
+                <button id="reg_butt" class="btn-main btn-up">Sign Up</button>
 
             </div>
         </div>
