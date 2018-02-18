@@ -6,9 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-	<link rel="stylesheet" href="main.css">
-	<link rel="stylesheet" href="kostyan.css">
-    <link rel="stylesheet" href="supreme.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/kostyan.css">
+    <link rel="stylesheet" href="css/supreme.css">
+
+    <script src="js/auth.js"></script>
 </head>
 <body id="body">
 
@@ -24,6 +26,15 @@
 
         <div id="mute">Sound ON</div>
 
+        <div id="menu" class="fadeIn-Out">
+            <button class="btn-main btn-in">Singleplayer</button>
+            <button class="btn-main btn-in">Multiplayer</button>
+            <button id="log_butt" class="btn-main btn-in">Sign In</button>
+            <button id="reg_butt" class="btn-main btn-in">Sign Up</button>
+            <button id="profile" class="btn-main btn-in">My Profile</button>
+            <button class="btn-main btn-up">Leaderboard</button>
+        </div>
+
         <div id="openModal" class="modalDialog fadeIn-Out hidden">
             <div class="">
                 <a  id="close" title="Закрыть" class="close">X</a>
@@ -36,7 +47,7 @@
                     <button class="btn-main btn-in" type="submit">Sign In</button>
                 </form>
 
-                <form id="reg_form" action="/register">
+                <form id="reg_form">
                     <input type="email" placeholder="Email">
                     <br>
                     <input type="text" placeholder="Nickname">
@@ -44,18 +55,12 @@
                     <input type="password" placeholder="Confirm Password"></input>
                     <button class="btn-main btn-up" type="submit">Sign Up</button>
                 </form>
-
-                <hr>
-
-                <button id="log_butt" class="btn-main btn-in">Sign In</button>
-                <button id="reg_butt" class="btn-main btn-up">Sign Up</button>
-
             </div>
         </div>
 
-        <div class="btn-wrapper" id="play_wrap">
-            <button id="play"  class="btn-main btn-up fadeIn-Out">Play</button>
-        </div>
+        <!--<div class="btn-wrapper" id="play_wrap">-->
+            <!--<button id="play"  class="btn-main btn-up fadeIn-Out">Play</button>-->
+        <!--</div>-->
     </div>
 
     <img id="logo" src="images/logo.png">
@@ -66,7 +71,8 @@
 
 </body>
 
-<script src="js/script.js"></script>
+<script src="js/video.js"></script>
+<script src="js/menu.js"></script>
 <!-- убрать после отладки -->
 <!-- <script language=JavaScript>
     document.oncontextmenu=new Function("return false;")
