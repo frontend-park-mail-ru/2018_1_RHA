@@ -4,7 +4,7 @@ const registerButton = document.getElementById('reg_butt');
 const open_modal = document.getElementById('openModal');
 const close_modal = document.getElementById('close');
 const login_form = document.getElementById('login_form');
-const reg_form = document.getElementById('reg_form');
+var reg_form = document.getElementById('reg_form');
 
 let toHideOnClose = null;
 
