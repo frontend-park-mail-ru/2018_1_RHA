@@ -60,6 +60,8 @@
 
 const errmsg = "<h1 style='color: red'>Wrong Confirm</h1>";
 
+
+
 reg_form.addEventListener('submit', (event) => {
     event.preventDefault();
     const lines = event.target.getElementsByTagName('input');
@@ -70,6 +72,7 @@ reg_form.addEventListener('submit', (event) => {
         setTimeout(() => {
             event.target.getElementsByTagName('h1')[0].remove();
         }, 3000);
+        reg_form.reset();
         return;
     }
     const username = lines[0]['value'];
@@ -84,4 +87,25 @@ login_form.addEventListener('submit', (event) => {
    const email = lines[1]['value'];
 
    const user = {username: username, email: email};
+
+   let result = sender('POST', user, '/login');
 });
+
+// sender должен вернуть статус запроса, если возникла ошибка, её надо вывести на экран
+// например, сервер недоступен, ошибка доступа и тд
+const sender = (method, obj, path) => {
+    xhr = new XMLHttpRequest();
+    xhr.open(method, path, true);
+
+    xhr.withCredentials = true;
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.send(JSON.stringify(obj));
+
+    xhr.onreadystatechange = (e) => {
+        if (this.readyState === 4 && this.status < 300) {
+            console.log(this.responseText);
+        }
+        else
+            return;
+    };
+};

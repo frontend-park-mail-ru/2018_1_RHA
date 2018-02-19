@@ -1,11 +1,7 @@
 const video = document.getElementsByTagName('video')[0];
 const mute_obj = document.getElementById('mute');
-//-----------------------------
 
-
-
-close_modal.addEventListener('click', relay);
-play.addEventListener('click', relay);
+// play.addEventListener('click', relay);
 
 
 mute_obj.addEventListener('click', (event) => {
