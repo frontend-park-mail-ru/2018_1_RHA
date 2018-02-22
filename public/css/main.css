@@ -2,7 +2,7 @@
 
 html
 {
-    cursor: url('cur116.cur'), pointer;
+    cursor: url('../cur116.cur'), pointer;
     margin: -1px;
 }
 
@@ -61,32 +61,61 @@ div.wrapper
 
 /* --------------------------------------------*/
 
+/* ------------------- menu -------------------*/
+
+#menu
+{
+    position: absolute;
+    z-index: 2;
+    width: 20%;
+    top: 35%;
+    left: 39%;
+    cursor: inherit;
+    /*border: solid 1px red;*/
+    border-radius: 10%;
+    background-color: rgba(40,0,0, 0.1) ;
+    padding: 1em;
+    display: block;
+
+}
+
+/* --------------------------------------------*/
+
+
+/* ------------------- buttons ----------------*/
+
+
 button.btn-main
 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: x-large;
     font-weight: bold;
     border: 2px white;
+    cursor: inherit;
+    margin-bottom: 5%;
 }
 
+.btn-up:hover
+{
+    box-shadow: 1px 1px 10px 1px orange;
+}
 
-/* ------------------- buttons ----------------*/
-
-
-
-
+.btn-in:hover
+{
+    box-shadow: 1px 1px 10px 1px green;
+}
 button.btn-in
 {
     background-color: rgba(52,255,71, 0.5);
     color: white;
-    cursor: url('cur220.cur'), pointer;
+    cursor: url('../cur220.cur'), pointer;
 }
 
 button.btn-up
 {
     background-color: rgba(255, 127, 19, 0.5);
     color: white;
-    cursor: url('cur222.cur'), pointer;
+    cursor: url('../cur222.cur'), pointer;
 }
 
 button
@@ -106,7 +135,7 @@ button
 form
 {
     display: inline-block;
-    width: 40%;
+    width: 90%;
     padding: 0;
     text-align: center;
 }
@@ -116,6 +145,7 @@ form
     margin-left: 3%;
     margin-top: 3%;
     margin-bottom: 3%;
+    display: none;
 }
 
 #reg_form
@@ -143,6 +173,15 @@ input
     font-size: x-large;
     text-align: inherit;
 }
+
+#log_butt {
+    display: block;
+}
+
+#reg_butt {
+    display: block;
+}
+
 /* --------------------------------------------*/
 
 
@@ -150,7 +189,7 @@ input
 
 #logo
 {
-    background-image: url("images/logo.png");
+    background-image: url("../images/logo.png");
     width: 20%;
     position: absolute;
     left: 40%;
@@ -194,9 +233,9 @@ input
 
 .modalDialog > div
 {
-    width: 40%;
+    width: 20%;
     position: relative;
-    margin: 15% auto;
+    margin: 20% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background: rgba(40,0,0,0.1);
@@ -247,7 +286,7 @@ input
 
 @media (max-width: 767px) {
     .fullscreen-bg {
-        background: url('images/mushroom.jpg') center center / cover no-repeat;
+        background: url('../images/mushroom.jpg') center center / cover no-repeat;
     }
 
     .fullscreen-bg__video {
