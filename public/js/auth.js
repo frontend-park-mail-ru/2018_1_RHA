@@ -2,7 +2,7 @@ const errmsg = "<h1 style='color: red'>Wrong Confirm</h1>";
 
 
 
-reg_form.addEventListener('submit', (event) => {
+reg_part.addEventListener('submit', (event) => {
     event.preventDefault();
     const lines = event.target.getElementsByTagName('input');
     const password = lines[2]['value'];
@@ -23,7 +23,7 @@ reg_form.addEventListener('submit', (event) => {
     const newUser = {username: username, email: email, password: password};
 });
 
-login_form.addEventListener('submit', (event) => {
+login_part.addEventListener('submit', (event) => {
    const lines = event.target.getElementsByTagName('input');
    const username = lines[0]['value'];
    const email = lines[1]['value'];
