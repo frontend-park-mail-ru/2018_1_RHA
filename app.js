@@ -2,14 +2,9 @@
 const express = require("express"); // express
 const cookie = require('cookie-parser');
 const bodyparser = require('body-parser');
-// const path = require('path');
-// const morgan = require('morgan');
-// const debug = require('debug');
-// const uuid = require('uuid/v4');
 
 const app = express(); // объект приложения
 
-// app.use( (req, res, next) => { console.log(req,res); next(); } );
 app.use(express.static(__dirname + "/public")); // middleware
 app.use(bodyparser.json());
 

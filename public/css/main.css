@@ -6,20 +6,14 @@ html
     margin: -1px;
 }
 
-body
+.body
 {
     margin: 0;
     overflow: hidden;
-}
-
-div.wrapper
-{
     height: 100vh;
-    /*background-image: url("images/mushroom.jpg");*/
     background-size: cover;
     background: no-repeat center;
 }
-
 /* --------------------------------------------*/
 
 /* ------------------ video -------------------*/
@@ -63,7 +57,7 @@ div.wrapper
 
 /* ------------------- menu -------------------*/
 
-#menu
+.menu
 {
     position: absolute;
     z-index: 2;
@@ -71,7 +65,6 @@ div.wrapper
     top: 35%;
     left: 39%;
     cursor: inherit;
-    border: solid 1px red;
     border-radius: 10%;
     padding: 1em;
     display: block;
@@ -84,7 +77,7 @@ div.wrapper
 /* ------------------- buttons ----------------*/
 
 
-button.btn-main
+button.menu__button
 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: x-large;
@@ -103,6 +96,7 @@ button.btn-main
 {
     box-shadow: 1px 1px 10px 1px green;
 }
+
 button.btn-in
 {
     background-color: rgba(52,255,71, 0.5);
@@ -266,7 +260,7 @@ input
 
 /* ------------------- mute -------------------*/
 
-#mute
+.mute
 {
     position: absolute;
     right: 2%;
@@ -275,7 +269,7 @@ input
     z-index: 999999;
 }
 
-#mute:hover
+.mute:hover
 {
     color: red;
 }
@@ -302,7 +296,7 @@ input
         position: absolute;
     }
 
-    button.btn-main
+    button.menu__button
     {
         width: 100%;
         height: auto;
@@ -321,7 +315,7 @@ div.btn-wrapper
     position: absolute;
 }
 
-button.btn-main
+button.menu__button
 {
     width: 100%;
     height: 100%;
