@@ -41,6 +41,7 @@ mainModPart.addEventListener('click', (evt) => {
     const section = target.getAttribute('data-section');
     console.log(section);
     openSection(section);
+    activeButton(section);
 });
 
 const openSection = name => {
@@ -55,4 +56,16 @@ const openSection = name => {
   })
 };
 
+
+//active button illumination
+const activeButton = section => {
+    if (section === 'signin') {
+        signin_li.classList.add('active');
+        signup_li.classList.remove('active');
+    }
+    if (section === 'signup') {
+        signup_li.classList.add('active');
+        signin_li.classList.remove('active');
+    }
+};
 
