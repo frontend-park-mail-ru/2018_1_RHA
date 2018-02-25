@@ -2,3 +2,60 @@
 :focus::-moz-placeholder          {color: transparent}
 :focus:-moz-placeholder           {color: transparent}
 :focus:-ms-input-placeholder      {color: transparent}
+
+
+.tab-group {
+    list-style: none;
+    padding: 0;
+}
+.tab-group:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.tab-group li a {
+    display: block;
+    text-decoration: none;
+    background: rgba(160,179,176,0.25);
+    color: #a0b3b0;
+    font-size: 20px;
+    float: left;
+    width: 45%;
+    padding: 5px 0 5px 0;
+    text-align: center;
+    cursor: url('../cur220.cur'), pointer;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
+}
+.tab-group li a:hover {
+    background: #179b77;
+    color: #FFFFFF;
+}
+/*.tab-group .active a {*/
+    /*background: #1ab188;*/
+    /*color: #ffffff;*/
+/*}*/
+
+.button {
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    font-size: x-large;
+    font-weight: 400;
+    letter-spacing: .1em;
+    background: #1ab188;
+    color: #FFFFFF;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s; ease;
+    -webkit-appearance: none;
+}
+.btn-in:hover, .btn-in:focus {
+    background: #179b77;
+}
+.btn-up:hover, .button:focus {
+    background: #ff9742;
+}
+.button-block {
+    display: block;
+    width: 100%;
+}
