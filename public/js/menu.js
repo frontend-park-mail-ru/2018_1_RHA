@@ -1,42 +1,58 @@
 const playButton=document.getElementById('play');
-const registerButton = document.getElementById('reg_butt');
-const login_form = document.getElementById('login_form');
-const loginButton = document.getElementById('log_butt');
 const open_modal = document.getElementById('openModal');
 const close_modal = document.getElementById('close');
-// let reg_form = document.getElemen('click', () => {
-//     menu.style.display = 'none';
-//     open_modal.classList.toggle('hidden');
-//     login_form.style.display = 'block';
-//     toHideOnClose = login_form;
-// });tById('reg_form');
-const menu = document.querySelector('.menu');
+const signupSection = document.getElementById('signup');
+const signinSection = document.getElementById('signin');
+const signup_li = document.getElementById('signup-li');
+const signin_li = document.getElementById('signin-li');
+const mainModPart = document.getElementById('mainModPart');
+const signupForm = document.getElementsByClassName('js-signup-form');
+const signinForm = document.getElementsByClassName('js-signin-form');
+signupSection.hidden = true;
 
-let toHideOnClose = null;
+const sections = {
+  signup: signupSection,
+  signin: signinSection,
+};
+
+
+
 
 playButton.addEventListener('click', () => {
     playButton.classList.toggle('hidden');
     open_modal.classList.toggle('hidden');
-    // toHideOnClose = open_modal;
+    signinSection.hidden = false;
 });
 
-
-// loginButton.addEventListener('click', () => {
-//     menu.style.display = 'none';
-//     open_modal.classList.toggle('hidden');
-//     login_form.style.display = 'block';
-//     toHideOnClose = login_form;
-// });
-//
-// registerButton.addEventListener('click', () => {
-//     menu.style.display = 'none';
-//     open_modal.classList.toggle('hidden');
-//     reg_form.style.display = 'block';
-//     toHideOnClose = reg_form;
-// });
 
 close_modal.addEventListener('click', () => {
     playButton.classList.toggle('hidden');
     open_modal.classList.toggle('hidden');
-    // toHideOnClose.style.display = 'none';
 });
+
+mainModPart.addEventListener('click', (evt) => {
+    //debugger;
+
+    const target = evt.target;
+    if (target.tagName.toLowerCase() !== 'a') {
+        return;
+    }
+    evt.preventDefault();
+    const section = target.getAttribute('data-section');
+    console.log(section);
+    openSection(section);
+});
+
+const openSection = name => {
+  Object.keys(sections).forEach((key) => {
+      if (key === name) {
+          sections[key].hidden = false;
+      }
+      else {
+          sections[key].hidden = true;
+
+      }
+  })
+};
+
+

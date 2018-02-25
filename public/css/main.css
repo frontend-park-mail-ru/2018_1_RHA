@@ -133,6 +133,7 @@ form
     text-align: center;
 }
 
+<<<<<<< HEAD:public/css/main.css
 #login_form
 {
     margin-left: 3%;
@@ -148,6 +149,8 @@ form
     margin-bottom: 3%;
     display: none;
 }
+=======
+>>>>>>> landing/chuvashov:public/css/main.css
 
 h1
 {
@@ -162,11 +165,12 @@ input
     margin-bottom: 1em;
     width: 100%;
     height: 35px;
-    border-radius: 10px;
+    border-radius: 4px;
     font-size: x-large;
     text-align: inherit;
 }
 
+<<<<<<< HEAD:public/css/main.css
 #log_butt {
     display: block;
 }
@@ -174,6 +178,8 @@ input
 #reg_butt {
     display: block;
 }
+=======
+>>>>>>> landing/chuvashov:public/css/main.css
 
 /* --------------------------------------------*/
 
@@ -241,8 +247,13 @@ input
 {
     width: 30%;
     position: relative;
+<<<<<<< HEAD:public/css/main.css
     margin: 20% auto;
     padding: 5px 20px 13px 20px;
+=======
+    margin: 15% auto;
+    padding: 5px 20px 13px 5%;
+>>>>>>> landing/chuvashov:public/css/main.css
     border-radius: 10px;
     background: rgba(40,0,0,0.1);
 }
@@ -290,6 +301,24 @@ input
 /* --------------------------------------------*/
 
 
+div.btn-wrapper
+{
+    width: 25%;
+    height: calc(40%/8);
+    top: 70%;
+    left: 37.5%;
+    position: absolute;
+}
+
+button.menu__button
+{
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+}
+
 @media (max-width: 767px) {
     .fullscreen-bg {
         background: url('../images/mushroom.jpg') center center / cover no-repeat;
@@ -316,8 +345,9 @@ input
         margin-left: auto;
         margin-right: auto;
         margin-top: 5%;
-        border-radius: 20px;
+        border-radius: 4px;
     }
+<<<<<<< HEAD:public/css/main.css
 }
 div.btn-wrapper
 {
@@ -335,4 +365,6 @@ button.menu__button
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+=======
+>>>>>>> landing/chuvashov:public/css/main.css
 }
