@@ -134,7 +134,6 @@ form
 }
 
 
-
 h1
 {
     color: white;
@@ -152,8 +151,6 @@ input
     font-size: x-large;
     text-align: inherit;
 }
-
-
 
 
 /* --------------------------------------------*/
@@ -317,5 +314,4 @@ button.menu__button
         margin-top: 5%;
         border-radius: 4px;
     }
-
 }

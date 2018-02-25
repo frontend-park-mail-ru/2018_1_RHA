@@ -3,7 +3,6 @@
 :focus:-moz-placeholder           {color: transparent}
 :focus:-ms-input-placeholder      {color: transparent}
 
-
 .tab-group {
     list-style: none;
     padding: 0;
@@ -31,10 +30,10 @@
     background: #179b77;
     color: #FFFFFF;
 }
-/*.tab-group .active a {*/
-    /*background: #1ab188;*/
-    /*color: #ffffff;*/
-/*}*/
+.tab-group .active a {
+    background: #1ab188;
+    color: #ffffff;
+}
 
 .button {
     border: 0;

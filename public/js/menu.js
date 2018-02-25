@@ -17,17 +17,17 @@ const sections = {
 
 
 
-
 playButton.addEventListener('click', () => {
     playButton.classList.toggle('hidden');
     open_modal.classList.toggle('hidden');
     signinSection.hidden = false;
+    // toHideOnClose = open_modal;
 });
-
 
 close_modal.addEventListener('click', () => {
     playButton.classList.toggle('hidden');
     open_modal.classList.toggle('hidden');
+    // toHideOnClose.style.display = 'none';
 });
 
 mainModPart.addEventListener('click', (evt) => {
@@ -41,6 +41,7 @@ mainModPart.addEventListener('click', (evt) => {
     const section = target.getAttribute('data-section');
     console.log(section);
     openSection(section);
+    activeButton(section);
 });
 
 const openSection = name => {
@@ -55,4 +56,16 @@ const openSection = name => {
   })
 };
 
+
+//active button illumination
+const activeButton = section => {
+    if (section === 'signin') {
+        signin_li.classList.add('active');
+        signup_li.classList.remove('active');
+    }
+    if (section === 'signup') {
+        signup_li.classList.add('active');
+        signin_li.classList.remove('active');
+    }
+};
 
