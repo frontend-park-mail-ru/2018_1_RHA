@@ -1,5 +1,5 @@
 const video = document.getElementsByTagName('video')[0];
-const mute_obj = document.getElementById('mute');
+const mute_obj = document.querySelector('.mute');
 
 mute_obj.addEventListener('click', (event) => {
     if( video.muted === true ){

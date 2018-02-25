@@ -12,54 +12,29 @@
 
 
 </head>
-<body id="body">
+<body class="body">
 
     <div class="fullscreen-bg">
         <div class="overlay"></div>
-        <video loop muted="muted" autoplay class="fullscreen-bg__video" id = "video">
+        <video loop muted="muted" autoplay class="fullscreen-bg__video">
             <source src="video.mp4" type="video/mp4">
         </video>
     </div>
 
 
-    <div class="wrapper">
+    <div class="mute">Sound ON</div>
 
-        <div id="mute">Sound ON</div>
+    <div class="menu fadeIn-Out hidden" >
+        <button class="menu__button btn-in">Singleplayer</button>
+        <button class="menu__button btn-in">Multiplayer</button>
+        <button class="menu__button btn-in" id="profile" >My Profile</button>
+        <button class="menu__button btn-up">Leaderboard</button>
+    </div>
 
-        <div id="menu" class="fadeIn-Out">
-            <button class="btn-main btn-in">Singleplayer</button>
-            <button class="btn-main btn-in">Multiplayer</button>
-            <button id="log_butt" class="btn-main btn-in">Sign In</button>
-            <button id="reg_butt" class="btn-main btn-in">Sign Up</button>
-            <button id="profile" class="btn-main btn-in">My Profile</button>
-            <button class="btn-main btn-up">Leaderboard</button>
-        </div>
 
-        <div id="openModal" class="modalDialog fadeIn-Out hidden">
-            <div class="">
-                <a  id="close" title="Закрыть" class="close">X</a>
 
-                <form id="login_form">
-                    <input type="text" placeholder="Nickname" name="username">
-                    <br>
-                    <input type="password" placeholder="Password">
-                    <!--<input type="email" placeholder="Email" name="email">-->
-                    <button class="btn-main btn-in" type="submit">Sign In</button>
-                </form>
-
-                <form id="reg_form">
-                    <input type="text" placeholder="Nickname">
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="password" placeholder="Confirm Password"></input>
-                    <button class="btn-main btn-in" type="submit">Sign Up</button>
-                </form>
-            </div>
-        </div>
-
-        <!--<div class="btn-wrapper" id="play_wrap">-->
-            <!--<button id="play"  class="btn-main btn-up fadeIn-Out">Play</button>-->
-        <!--</div>-->
+    <div class="btn-wrapper" id="play_wrap">
+        <button id="play"  class="menu__button btn-up fadeIn-Out">Play</button>
     </div>
 
     <img id="logo" src="images/logo.png">
@@ -69,10 +44,10 @@
     </footer>
 
 </body>
-
+<script src="js/generation_html.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/video.js"></script>
-<script src="js/auth.js"></script>
+<!--<script src="js/auth.js"></script>-->
 <!-- убрать после отладки -->
 <!-- <script language=JavaScript>
     document.oncontextmenu=new Function("return false;")
