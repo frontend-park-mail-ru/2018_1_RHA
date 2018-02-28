@@ -14,7 +14,7 @@ function sendForm() {
     console.log(json);
     const xhr = new XMLHttpRequest();
     //xhr.open("POST", form.action, true);
-    xhr.open("POST", "http://localhost:5000/users/create", true);
+    xhr.open("POST", "https://rha-backend.herokuapp.com/users/create", true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     xhr.withCredentials = true;
     xhr.send(json);
