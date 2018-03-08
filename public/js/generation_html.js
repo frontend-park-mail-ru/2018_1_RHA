@@ -20,11 +20,11 @@ const modalWidnowTemplate = '<div class="mainModPart" id="mainModPart">\n' +
     '            \n' +
     '            <section id="signup">\n' +
     '                <h1>Sign up</h1>\n' +
-    '                <form class="js-signup-group">\n' +
+    '                <form class="js-signup-group" action="#">\n' +
     '                    <input required type ="text" name="nickname-up" id="nickname-up" placeholder="nickname">\n' +
     '                    <input required type ="email" name="email-up" id="email-up" placeholder="email">\n' +
     '                    <input required type ="password" name="password-up" id="password-up" placeholder="password">\n' +
-    '                    <input required type ="password" name="password-up-repeat" id="password-up-repeat" placeholder="Confirm password">\n' +
+    '                    <input required type ="password" name="password-up-repeat" id="password-up-repeat" placeholder="confirm password">\n' +
     '                    <button type="submit" class="button button-block btn-up">Sign up</button>\n' +
     '                </form>\n' +
     '            </section>\n' +
