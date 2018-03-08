@@ -27,6 +27,8 @@ playButton.addEventListener('click', () => {
 close_modal.addEventListener('click', () => {
     playButton.classList.toggle('hidden');
     open_modal.classList.toggle('hidden');
+    signin_li.classList.add('active');
+    signup_li.classList.remove('active');
     // toHideOnClose.style.display = 'none';
 });
 
