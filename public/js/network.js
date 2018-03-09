@@ -52,7 +52,7 @@ loadAllUsers( function (err, users) {
 
 function auth(nickname, password, callback) {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/login', true);
+    xhr.open('POST', 'https://rha-backend.herokuapp.com/users/auth', true);
     xhr.withCredentials = true;
     const user = {nickname, password};
     const body = JSON.stringify(user);
@@ -65,11 +65,12 @@ function auth(nickname, password, callback) {
         }
         const response = JSON.parse(xhr.responseText);
         callback(null, response);
+        const cookie = document.cookie;
+        console.log(cookie['user']);
     };
 
     xhr.send(body);
 }
-
 
 
 
