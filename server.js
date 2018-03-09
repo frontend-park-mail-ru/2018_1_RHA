@@ -2,6 +2,7 @@
 const express = require("express"); // express
 const cookie = require('cookie-parser');
 const bodyparser = require('body-parser');
+const uuid = require("uuid/v4");
 
 const app = express(); // объект приложения
 
@@ -51,10 +52,20 @@ app.post('/signup', function (req, res) {
 
 
 app.post('/login', function (req, res) {
-    console.log(req.body.username);
-    console.log(req.body.email);
-    // res.cookie('frontend', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
-    res.status(201).json({msg: "Hura, Wir leben noch!"});
+    console.log(req.body.nickname);
+    console.log(req.body.password);
+    const password = req.body.password;
+    const nickname = req.body.nickname;
+    if (!password || !nickname) {
+        return res.status(400).json({error: 'Не указан email или пароль'});
+    }
+    if (!users[nickname] || !users[nickname].password !== password) {
+        return res.status(400).json({error: 'Неверный email или пароль'});
+    }
+    const id = uuid();
+    ids[id] = nickname;
+    res.cookie('frontend_ne_kaka', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
+    res.status(201).json({id});
 });
 
 

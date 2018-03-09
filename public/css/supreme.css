@@ -48,11 +48,24 @@
     transition: all 0.5s; ease;
     -webkit-appearance: none;
 }
+
+.btn-in {
+    background-color: rgba(52,255,71, 0.5);
+    color: white;
+    cursor: url('../cur220.cur'), pointer;
+}
+.btn-up {
+    background-color: rgba(255, 127, 19, 0.5);
+    color: white;
+    cursor: url('../cur222.cur'), pointer;
+}
 .btn-in:hover, .btn-in:focus {
     background: #179b77;
+    box-shadow: 1px 1px 10px 1px green;
 }
 .btn-up:hover, .button:focus {
     background: #ff9742;
+    box-shadow: 1px 1px 10px 1px orange;
 }
 .button-block {
     display: block;

@@ -8,6 +8,7 @@ const signin_li = document.getElementById('signin-li');
 const mainModPart = document.getElementById('mainModPart');
 const signupForm = document.getElementsByClassName('js-signup-form');
 const signinForm = document.getElementsByClassName('js-signin-form');
+const lForm = document.getElementById('login-btn');
 signupSection.hidden = true;
 
 const sections = {
@@ -71,3 +72,16 @@ const activeButton = section => {
     }
 };
 
+lForm.addEventListener('click',  (event) => {
+    console.log('aha');
+
+    event.preventDefault();
+    console.log(lForm.elements);
+    const nickname = document.getElementById('nickname-in').value;
+    const password = document.getElementById('password-in').value;
+
+    auth(nickname, password, function (err, resp) {
+        console.log(err,resp);
+    })
+
+});

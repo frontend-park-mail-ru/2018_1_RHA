@@ -1,5 +1,6 @@
 "use strict";
 
+
 function sendForm() {
    // const formData = new FormData(form);
     let object = {
@@ -19,4 +20,56 @@ function sendForm() {
     xhr.withCredentials = true;
     xhr.send(json);
 }
+
+function loadAllUsers(callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/users", true);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState !== 4) {
+
+            return;
+        }
+        if (xhr.status === 200) {
+            const responseText = xhr.responseText;
+            const response = JSON.parse(responseText);
+            callback(null, response);
+        }
+        else {
+            callback(xhr);
+        }
+    };
+    xhr.send();
+}
+
+
+loadAllUsers( function (err, users) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.dir(users);
+});
+
+function auth(nickname, password, callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/login', true);
+    xhr.withCredentials = true;
+    const user = {nickname, password};
+    const body = JSON.stringify(user);
+
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        if (+xhr.status !== 200) {
+            return callback(xhr, null);
+        }
+        const response = JSON.parse(xhr.responseText);
+        callback(null, response);
+    };
+
+    xhr.send(body);
+}
+
+
+
 
