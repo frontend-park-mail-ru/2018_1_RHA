@@ -6,9 +6,11 @@ const signinSection = document.getElementById('signin');
 const signup_li = document.getElementById('signup-li');
 const signin_li = document.getElementById('signin-li');
 const mainModPart = document.getElementById('mainModPart');
-const signupForm = document.getElementsByClassName('js-signup-form');
-const signinForm = document.getElementsByClassName('js-signin-form');
+const signupForm = document.getElementsByClassName('js-signup-group')[0];
+const signinForm = document.getElementsByClassName('js-signin-group')[0];
+const menu = document.getElementsByClassName('menu')[0];
 const lForm = document.getElementById('login-btn');
+const logoutBtn = document.getElementById('logout');
 signupSection.hidden = true;
 
 const sections = {
@@ -85,3 +87,33 @@ lForm.addEventListener('click',  (event) => {
     })
 
 });
+
+
+signupForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log(document.cookie);
+    sendForm();
+    console.log(document.cookie);
+});
+
+
+logoutBtn.addEventListener('click', (event) => {
+    console.log('in logbtn');
+    event.preventDefault();
+    logout();
+});
+
+console.log(document.cookie);
+if (getCookie('users') !== undefined) {
+    console.log(getCookie('users'));
+    signinSection.hidden = true;
+    signupSection.hidden = true;
+    menu.classList.remove('hidden');
+}
+else {
+    console.log('kaka');
+    signinSection.hidden = false;
+    signupSection.hidden = false;
+    menu.classList.add('hidden');
+}
+

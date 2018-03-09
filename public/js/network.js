@@ -1,5 +1,11 @@
 "use strict";
 
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 
 function sendForm() {
    // const formData = new FormData(form);
@@ -14,10 +20,10 @@ function sendForm() {
     const json = JSON.stringify(object);
     console.log(json);
     const xhr = new XMLHttpRequest();
-    //xhr.open("POST", form.action, true);
-    xhr.open("POST", "https://rha-backend.herokuapp.com/users/create", true);
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     xhr.withCredentials = true;
+    //xhr.open("POST", form.action, true);
+    xhr.open("POST", "http://rha-backend.herokuapp.com/users/create", true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     xhr.send(json);
 }
 
@@ -52,8 +58,8 @@ loadAllUsers( function (err, users) {
 
 function auth(nickname, password, callback) {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://rha-backend.herokuapp.com/users/auth', true);
     xhr.withCredentials = true;
+    xhr.open('POST', 'http://rha-backend.herokuapp.com/users/auth', true);
     const user = {nickname, password};
     const body = JSON.stringify(user);
 
@@ -65,12 +71,25 @@ function auth(nickname, password, callback) {
         }
         const response = JSON.parse(xhr.responseText);
         callback(null, response);
-        const cookie = document.cookie;
-        console.log(cookie['user']);
     };
 
     xhr.send(body);
 }
 
+function logout(callback) {
+    console.log('in logout func');
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.open('POST', 'http://rha-backend.herokuapp.com/users/logout', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        if (+xhr.status !== 200) {
+            return callback(xhr, null);
+        }
+        const response = JSON.parse(xhr.responseText);
+        callback(null, response);
+    };
+    xhr.send();
+}
 
 
