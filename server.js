@@ -46,7 +46,20 @@ const ids = {};
 
 app.post('/signup', function (req, res) {
     console.log(req.body.Body);
-    // res.cookie('frontend', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
+    const password = req.body.password;
+    const email = req.body.email;
+    if ( !password || !email ) {
+        return res.status(400).json({error: "Не валидные данные"});
+    }
+    if (users[email]) {
+        return res.status(400).json({error: "Already exists user"});
+    }
+    const id = uuid();
+    const user = {password, email};
+    ids[id] = email;
+    users[email] = user;
+
+    res.cookie('frontend_ne_kaka', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
     res.status(201).json({id});
 });
 
@@ -64,7 +77,15 @@ app.post('/login', function (req, res) {
     }
     const id = uuid();
     ids[id] = nickname;
+
     res.cookie('frontend_ne_kaka', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});
+    res.status(201).json({id});
+});
+app.post('/logout', function (req, res) {
+    let cookie_name  = 'frontend_ne_kaka';
+    const cookie_date = new Date ( );  // Текущая дата и время
+    cookie_date.setTime ( cookie_date.getTime() - 1 );
+    document.cookie = cookie_name += "=; expires=" + cookie_date.toGMTString();
     res.status(201).json({id});
 });
 

@@ -9,7 +9,6 @@ const mainModPart = document.getElementById('mainModPart');
 const signupForm = document.getElementsByClassName('js-signup-group')[0];
 const signinForm = document.getElementsByClassName('js-signin-group')[0];
 const menu = document.getElementsByClassName('menu')[0];
-const lForm = document.getElementById('login-btn');
 const logoutBtn = document.getElementById('logout');
 signupSection.hidden = true;
 
@@ -74,13 +73,13 @@ const activeButton = section => {
     }
 };
 
-lForm.addEventListener('click',  (event) => {
+signinForm.addEventListener('submit',  (event) => {
     console.log('aha');
 
     event.preventDefault();
-    console.log(lForm.elements);
-    const nickname = document.getElementById('nickname-in').value;
-    const password = document.getElementById('password-in').value;
+    console.log(signinForm.elements);
+    const nickname = signinForm.elements['nickname-in'].value;
+    const password = signinForm.elements['password-in'].value;
 
     auth(nickname, password, function (err, resp) {
         console.log(err,resp);
@@ -91,29 +90,37 @@ lForm.addEventListener('click',  (event) => {
 
 signupForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log(document.cookie);
-    sendForm();
-    console.log(document.cookie);
+    console.log(signupForm.elements);
+    const nickname = signupForm.elements['nickname-up'].value;
+    const email = signupForm.elements['email-up'].value;
+    const password = signupForm.elements['password-up'].value;
+    signUp(nickname, email, password, function (err, resp) {
+        console.log(err,resp);
+    })
 });
 
 
 logoutBtn.addEventListener('click', (event) => {
     console.log('in logbtn');
     event.preventDefault();
-    logout();
+    logout((err, resp) => {
+        console.log(err,resp);
+    });
 });
 
+
+
 console.log(document.cookie);
-if (getCookie('users') !== undefined) {
-    console.log(getCookie('users'));
-    signinSection.hidden = true;
-    signupSection.hidden = true;
-    menu.classList.remove('hidden');
-}
-else {
-    console.log('kaka');
-    signinSection.hidden = false;
-    signupSection.hidden = false;
-    menu.classList.add('hidden');
-}
+// if (getCookie('frontend_ne_kaka') !== undefined) {
+//     console.log(getCookie('frontend_ne_kaka'));
+//     signinSection.hidden = true;
+//     signupSection.hidden = true;
+//     menu.classList.remove('hidden');
+// }
+// else {
+//     console.log('kaka');
+//     signinSection.hidden = false;
+//     signupSection.hidden = false;
+//     menu.classList.add('hidden');
+// }
 

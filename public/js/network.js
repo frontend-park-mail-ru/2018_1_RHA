@@ -7,24 +7,25 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-function sendForm() {
-   // const formData = new FormData(form);
-    let object = {
-        name: document.getElementById('nickname-up').value,
-        email: document.getElementById('email-up').value,
-        password: document.getElementById('password-up').value
-    };
-    // formData.forEach((value, key) => {
-    //     object[key] = value;
-    // });
-    const json = JSON.stringify(object);
-    console.log(json);
+function signUp(name, email, password, callback) {
+    const user = {name, email, password};
+    const body = JSON.stringify(user);
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-    //xhr.open("POST", form.action, true);
-    xhr.open("POST", "http://rha-backend.herokuapp.com/users/create", true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        if (+xhr.status !== 200) {
+            return callback(xhr, null);
+        }
+        const response = JSON.parse(xhr.responseText);
+        callback(null, response);
+    };
+    //xhr.open("POST", "http://rha-backend.herokuapp.com/users/create", true);
+    xhr.open("POST", "http://localhost:5000/users/create", true);
+    //xhr.open("POST", "/signup", true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    xhr.send(json);
+    xhr.send(body);
 }
 
 function loadAllUsers(callback) {
@@ -56,11 +57,13 @@ loadAllUsers( function (err, users) {
     console.dir(users);
 });
 
-function auth(nickname, password, callback) {
+function auth(name, password, callback) {
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-    xhr.open('POST', 'http://rha-backend.herokuapp.com/users/auth', true);
-    const user = {nickname, password};
+    //xhr.open('POST', 'http://rha-backend.herokuapp.com/users/auth', true);
+    xhr.open('POST', 'http://localhost:5000/users/auth', true);
+    //xhr.open('POST', '/login', true);
+    const user = {name, password};
     const body = JSON.stringify(user);
 
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8');
@@ -80,7 +83,9 @@ function logout(callback) {
     console.log('in logout func');
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-    xhr.open('POST', 'http://rha-backend.herokuapp.com/users/logout', true);
+    //xhr.open('POST', 'http://rha-backend.herokuapp.com/users/logout', true);
+    xhr.open('POST', 'http://localhost:5000/users/logout', true);
+    //xhr.open('POST', '/logout', true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState !== 4) return;
         if (+xhr.status !== 200) {
