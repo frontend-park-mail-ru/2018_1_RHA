@@ -1,6 +1,7 @@
 import LoginForm from "./loginForm";
+import RegistForm from "./registForm";
 
-class Modal {
+export default class Modal {
     constructor(childElement) {
 
 
