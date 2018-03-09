@@ -7,14 +7,11 @@ import InputForm from "./input";
 export default class RegistForm extends Form {
     constructor() {
         super();
-    }
-
-    render() {
         this.Name = new InputForm("text", "nickname");
         this.Email = new InputForm("email", "email");
         this.Password = new InputForm("password", "password");
         this.Confirm = new InputForm("password", "confirm password");
-        this.ButtonSubmit = new Button("submit", "Sign Up");
+        this.InputSubmit = new InputForm("submit", "Sign Up");
 
         // this.Email.onInputChange(); //дописать
         // this.Username.onInputChange();
@@ -25,8 +22,10 @@ export default class RegistForm extends Form {
         this.formElement.appendChild(this.Email.render());
         this.formElement.appendChild(this.Password.render());
         this.formElement.appendChild(this.Confirm.render());
-        this.formElement.appendChild(this.ButtonSubmit.render());
+        this.formElement.appendChild(this.InputSubmit.render());
+    }
 
+    render() {
         return this.formElement;
     }
 

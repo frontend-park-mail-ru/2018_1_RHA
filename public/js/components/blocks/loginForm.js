@@ -19,14 +19,14 @@ export default class LoginForm extends Form {
     render() {
         this.Name = new InputForm("text", "nickname");
         this.Password = new InputForm("password", "password");
-        this.ButtonSubmit = new Button("submit", "Log In");
+        this.InputSubmit = new InputForm("submit", "Sign In");
 
         // this.Name.onInputChange(); //дописать
         // this.Password.onInputChange();
 
         this.formElement.appendChild(this.Name.render());
         this.formElement.appendChild(this.Password.render());
-        this.formElement.appendChild(this.ButtonSubmit.render());
+        this.formElement.appendChild(this.InputSubmit.render());
 
         return this.formElement;
     }

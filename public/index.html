@@ -10,45 +10,51 @@
 	<link rel="stylesheet" href="css/kostyan.css">
     <link rel="stylesheet" href="css/supreme.css">
 
+    <script src="js/components/blocks/modal.js"></script>
 
 </head>
-<body class="body">
+<body class="body" id="root">
 
-    <div class="fullscreen-bg">
-        <div class="overlay"></div>
-        <video loop muted="muted" autoplay class="fullscreen-bg__video">
-            <source src="video.mp4" type="video/mp4">
-        </video>
-    </div>
-
-
-    <div class="mute">Sound ON</div>
-
-    <div class="menu fadeIn-Out hidden" >
-        <button class="menu__button btn-in">Singleplayer</button>
-        <button class="menu__button btn-in">Multiplayer</button>
-        <button class="menu__button btn-in" id="profile" >My Profile</button>
-        <button class="menu__button btn-up">Leaderboard</button>
-    </div>
+    <!--<div class="fullscreen-bg">-->
+        <!--<div class="overlay"></div>-->
+        <!--<video loop muted="muted" autoplay class="fullscreen-bg__video">-->
+            <!--<source src="video.mp4" type="video/mp4">-->
+        <!--</video>-->
+    <!--</div>-->
 
 
+    <!--<div class="mute">Sound ON</div>-->
+
+    <!--<div class="menu fadeIn-Out hidden" >-->
+        <!--<button class="menu__button btn-in">Singleplayer</button>-->
+        <!--<button class="menu__button btn-in">Multiplayer</button>-->
+        <!--<button class="menu__button btn-in" id="profile" >My Profile</button>-->
+        <!--<button class="menu__button btn-up">Leaderboard</button>-->
+    <!--</div>-->
 
 
-    <div class="btn-wrapper" id="play_wrap">
-        <button id="play"  class="menu__button btn-up fadeIn-Out">Play</button>
-    </div>
+
+
+    <!--<div class="btn-wrapper" id="play_wrap">-->
+        <!--<button id="play"  class="menu__button btn-up fadeIn-Out">Play</button>-->
+    <!--</div>-->
 
     <img id="logo" src="images/logo.png">
+
+    <script>
+        const root = document.getElementById('root');
+        root.appendChild(new Modal().render());
+    </script>
 
     <footer>
         <div>RHA team. All rights reserved. 2018 &copy</div>
     </footer>
 
 </body>
-<script src="js/generation_html.js"></script>
-<script src="js/menu.js"></script>
-<script src="js/video.js"></script>
-<script src="js/auth.js"></script>
+<!--<script src="js/generation_html.js"></script>-->
+<!--<script src="js/menu.js"></script>-->
+<!--<script src="js/video.js"></script>-->
+<!--<script src="js/auth.js"></script>-->
 <!-- убрать после отладки -->
 <!-- <script language=JavaScript>
     document.oncontextmenu=new Function("return false;")

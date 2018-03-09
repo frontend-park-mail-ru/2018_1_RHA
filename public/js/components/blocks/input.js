@@ -5,14 +5,20 @@ export default class InputForm extends Block {
         super();
         this.inputDomElement = document.createElement("input");
         this.inputDomElement.type = type;
-        this.inputDomElement.placeholder = text;
+
+        if (type === "submit") {
+            this.inputDomElement.value = text;
+        } else {
+            this.inputDomElement.placeholder = text;
+        }
+
+        this.errorElement = document.createElement("div");
 
         this.divInputElement = document.createElement("div");
         this.divInputElement.appendChild(this.inputDomElement);
+        this.divInputElement.appendChild(this.errorElement);
 
         this.state = true;
-        this.errorElement = document.createElement("div");
-        this.divInputElement.appendChild(this.errorElement);
     }
 
     render() {
