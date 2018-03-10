@@ -10,6 +10,8 @@ const signupForm = document.getElementsByClassName('js-signup-group')[0];
 const signinForm = document.getElementsByClassName('js-signin-group')[0];
 const menu = document.getElementsByClassName('menu')[0];
 const logoutBtn = document.getElementById('logout');
+
+
 signupSection.hidden = true;
 
 const sections = {
