@@ -83,8 +83,8 @@ function logout(callback) {
     console.log('in logout func');
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-    //xhr.open('POST', 'http://rha-backend.herokuapp.com/users/logout', true);
-    xhr.open('POST', 'http://localhost:5000/users/logout', true);
+    xhr.open('POST', 'http://rha-backend.herokuapp.com/users/logout', true);
+    //xhr.open('POST', 'http://localhost:5000/users/logout', true);
     //xhr.open('POST', '/logout', true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState !== 4) return;
