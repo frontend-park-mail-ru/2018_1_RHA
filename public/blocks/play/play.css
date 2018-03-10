@@ -1,0 +1,9 @@
+.btn-wrapper {
+    width: 90%;
+    height: 5%;
+    top: 60%;
+    left: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+}
