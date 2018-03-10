@@ -1,9 +1,9 @@
-@import "blocks/footer/footer.css";
-@import "blocks/forms/form.css";
-@import "blocks/menu/menu.css";
-@import "blocks/modal/modal.css";
-@import "blocks/video/video.css";
-@import "blocks/play/play.css";
+@import "modules/blocks/footer/footer.css";
+@import "modules/blocks/forms/form.css";
+@import "modules/blocks/menu/menu.css";
+@import "modules/blocks/modal/modal.css";
+@import "modules/blocks/video/video.css";
+@import "modules/blocks/play/play.css";
 
 .body {
     margin: 0;

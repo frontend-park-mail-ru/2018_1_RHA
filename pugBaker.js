@@ -1,7 +1,7 @@
 const fs = require("fs");
 const pug = require("pug");
 const path = require("path");
-const DATA = path.resolve("./public/");
+const DATA = path.resolve("./public/modules/");
 
 console.log("Baking...");
 

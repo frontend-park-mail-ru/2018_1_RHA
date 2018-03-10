@@ -10,6 +10,7 @@ const signupForm = document.getElementsByClassName('js-signup-group')[0];
 const signinForm = document.getElementsByClassName('js-signin-group')[0];
 const menu = document.getElementsByClassName('menu')[0];
 const logoutBtn = document.getElementById('logout');
+const scoreBoard = document.getElementById('leaderboard');
 
 
 signupSection.hidden = true;
@@ -20,6 +21,21 @@ const sections = {
 };
 
 
+const checkAuth = () => {
+    if (getCookie('user') !== undefined) {
+        menu.classList.remove('hidden');
+        open_modal.classList.add('hidden');
+        playButton.classList.add('hidden');
+    }
+    else {
+        menu.classList.add('hidden');
+        open_modal.hidden = false;
+        playButton.classList.remove('hidden');
+        signupSection.hidden = true;
+        signin_li.classList.add('active');
+        signup_li.classList.remove('active');
+    }
+};
 
 playButton.addEventListener('click', () => {
     playButton.classList.toggle('hidden');
@@ -82,10 +98,12 @@ signinForm.addEventListener('submit',  (event) => {
     console.log(signinForm.elements);
     const nickname = signinForm.elements['nickname-in'].value;
     const password = signinForm.elements['password-in'].value;
-
     auth(nickname, password, function (err, resp) {
         console.log(err,resp);
-    })
+        checkAuth();
+    });
+
+
 
 });
 
@@ -98,7 +116,9 @@ signupForm.addEventListener('submit', (event) => {
     const password = signupForm.elements['password-up'].value;
     signUp(nickname, email, password, function (err, resp) {
         console.log(err,resp);
-    })
+        checkAuth();
+    });
+
 });
 
 
@@ -107,22 +127,27 @@ logoutBtn.addEventListener('click', (event) => {
     event.preventDefault();
     logout((err, resp) => {
         console.log(err,resp);
+        checkAuth();
+    });
+
+});
+
+scoreBoard.addEventListener('click', (event) => {
+    event.preventDefault();
+    loadAllUsers((err, users) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.dir(users.data);
     });
 });
 
 
 
 console.log(document.cookie);
-// if (getCookie('frontend_ne_kaka') !== undefined) {
-//     console.log(getCookie('frontend_ne_kaka'));
-//     signinSection.hidden = true;
-//     signupSection.hidden = true;
-//     menu.classList.remove('hidden');
-// }
-// else {
-//     console.log('kaka');
-//     signinSection.hidden = false;
-//     signupSection.hidden = false;
-//     menu.classList.add('hidden');
-// }
+
+checkAuth();
+
+
 
