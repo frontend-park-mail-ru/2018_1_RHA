@@ -50,7 +50,7 @@ app.post('/signup', function (req, res) {
 });
 
 
-app.post('/login', function (req, res) {
+app.post('/forms', function (req, res) {
     console.log(req.body.username);
     console.log(req.body.email);
     // res.cookie('frontend', id, {expires: new Date(Date.now() + 1000 * 60 * 10)});

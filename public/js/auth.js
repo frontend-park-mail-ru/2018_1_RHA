@@ -30,7 +30,7 @@ const errmsg = "<h1 style='color: red'>Wrong Confirm</h1>";
 //
 //    const user = {username: username, email: email};
 //
-//    let result = sender('POST', user, '/login');
+//    let result = sender('POST', user, '/forms');
 // });
 
 // sender должен вернуть статус запроса, если возникла ошибка, её надо вывести на экран

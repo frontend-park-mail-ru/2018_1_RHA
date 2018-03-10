@@ -11,20 +11,20 @@ const modalWidnowTemplate = '<div class="mainModPart" id="mainModPart">\n' +
     '            <a  id="close" title="Закрыть" class="close">X</a>\n' +
     '            <section id="signin">\n' +
     '                <h1>Sign in</h1>\n' +
-    '                <form class="js-signin-group">\n' +
-    '                    <input required type ="text" name="nickname-in" id="nickname-in" placeholder="nickname">\n' +
-    '                    <input required type ="password" name="password-in" id="password-in" placeholder="password">\n' +
+    '                <form class="form js-signin-group">\n' +
+    '                    <input class="input" required type ="text" name="nickname-in" id="nickname-in" placeholder="nickname">\n' +
+    '                    <input class="input" required type ="password" name="password-in" id="password-in" placeholder="password">\n' +
     '                    <button type="submit" class="button button-block btn-in">Sign in</button>\n' +
     '                </form>\n' +
     '            </section>\n' +
     '            \n' +
     '            <section id="signup">\n' +
     '                <h1>Sign up</h1>\n' +
-    '                <form class="js-signup-group" action="#">\n' +
-    '                    <input required type ="text" name="nickname-up" id="nickname-up" placeholder="nickname">\n' +
-    '                    <input required type ="email" name="email-up" id="email-up" placeholder="email">\n' +
-    '                    <input required type ="password" name="password-up" id="password-up" placeholder="password">\n' +
-    '                    <input required type ="password" name="password-up-repeat" id="password-up-repeat" placeholder="confirm password">\n' +
+    '                <form class="form js-signup-group" action="#">\n' +
+    '                    <input class="input" required type ="text" name="nickname-up" id="nickname-up" placeholder="nickname">\n' +
+    '                    <input class="input" required type ="email" name="email-up" id="email-up" placeholder="email">\n' +
+    '                    <input class="input" required type ="password" name="password-up" id="password-up" placeholder="password">\n' +
+    '                    <input class="input" required type ="password" name="password-up-repeat" id="password-up-repeat" placeholder="confirm password">\n' +
     '                    <button type="submit" class="button button-block btn-up">Sign up</button>\n' +
     '                </form>\n' +
     '            </section>\n' +
