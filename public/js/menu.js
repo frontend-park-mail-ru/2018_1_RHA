@@ -8,6 +8,7 @@ const signin_li = document.getElementById('signin-li');
 const mainModPart = document.getElementById('mainModPart');
 const signupForm = document.getElementsByClassName('js-signup-form');
 const signinForm = document.getElementsByClassName('js-signin-form');
+
 signupSection.hidden = true;
 
 const sections = {
@@ -55,6 +56,7 @@ const openSection = name => {
       }
   })
 };
+
 
 
 //active button illumination

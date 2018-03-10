@@ -6,6 +6,12 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible" content="ie=edge")
         title PHub
         link(rel="stylesheet" href="main.css")
-    body.body
-        script(src="./blocks/footer/footerTemplate.js")
 
+    body.body#root
+        script(src="./blocks/footer/footerTemplate.js")
+        script(src="./blocks/menu/menuTemplate.js")
+        script(src="./blocks/play/playTemplate.js")
+        script(src="./blocks/modal/modalTemplate.js")
+
+        script(src="./blocks/footer/renderFooter.js")
+        script(src="./controllers/mainController.js")
