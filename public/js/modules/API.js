@@ -29,6 +29,6 @@ export default class API {
 
     static logout() {
         const path = this.backendServer.concat("/users/logout");
-        return HTTP.send(userData, path, "POST", this.callback);
+        return HTTP.send(null, path, "POST", this.callback);
     }
 }
