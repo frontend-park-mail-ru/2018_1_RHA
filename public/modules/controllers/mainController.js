@@ -9,7 +9,10 @@ const mainModPart = document.getElementById('mainModPart');
 const signupForm = document.getElementsByClassName('js-signup-group')[0];
 const signinForm = document.getElementsByClassName('js-signin-group')[0];
 const menu = document.getElementsByClassName('menu')[0];
+const settings = document.getElementById('settings')
 const logoutBtn = document.getElementById('logout');
+const settingsBtn = document.getElementById('settingsBtn');
+const setToMenu = document.getElementById('setToMenu');
 const menuButtonScoreBoard = document.getElementById('leaderboard');
 const scoreboard = document.getElementsByClassName('js-scoreboard-table')[0];
 
@@ -63,6 +66,7 @@ mainModPart.addEventListener('click', (evt) => {
     const section = target.getAttribute('data-section');
     console.log(section);
     openSection(section);
+
     activeButton(section);
 });
 
@@ -157,7 +161,22 @@ menuButtonScoreBoard.addEventListener('click', (event) => {
 });
 
 
+settingsBtn.addEventListener('click',(event)=> {
 
+    // const name=response.
+    console.log('into the settings');
+    event.preventDefault();
+    getInfo((err,resp)=>{
+        if(err)
+    });
+    settings.classList.remove('hidden');
+    menu.classList.add('hidden');
+});
+
+setToMenu.addEventListener('click',(event)=>{
+    settings.classList.add('hidden');
+    menu.classList.remove('hidden');
+});
 console.log(document.cookie);
 
 checkAuth();

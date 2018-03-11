@@ -7,6 +7,25 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+function getInfo(callback) {
+    const xhr=new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.open("GET", "http://localhost:5000/users/info", true);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState !== 4) {
+            return;
+        }
+        if (+xhr.status !== 200) {
+            return callback(xhr, null);
+
+        }
+        const response = JSON.parse(xhr.responseText);
+        callback(null, response);
+
+    };
+    xhr.send();
+}
+
 function signUp(name, email, password, callback) {
     const user = {name, email, password};
     const body = JSON.stringify(user);

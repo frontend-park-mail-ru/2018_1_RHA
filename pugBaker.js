@@ -18,6 +18,7 @@ bake("/blocks/play/", "play.pug", "generatePlay", "playTemplate.js");
 bake("/blocks/video/", "video.pug", "generateVideo", "videoTemplate.js");
 bake("/blocks/modal/", "modal.pug", "generateModal", "modalTemplate.js");
 bake("/blocks/leaderboard/", "leaderboard.pug", "generateBoard", "boardTemplate.js");
+bake("/blocks/settings/", "settings.pug", "generateSetting", "settingsTemplate.js");
 
 
 console.log("Baked!");
