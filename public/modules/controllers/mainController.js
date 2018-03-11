@@ -3,6 +3,7 @@ const open_modal = document.getElementById('openModal');
 const close_modal = document.getElementById('close');
 const signupSection = document.getElementById('signup');
 const signinSection = document.getElementById('signin');
+const scoreboardSection = document.getElementById('scoreboard');
 const signup_li = document.getElementById('signup-li');
 const signin_li = document.getElementById('signin-li');
 const mainModPart = document.getElementById('mainModPart');
@@ -12,6 +13,7 @@ const menu = document.getElementsByClassName('menu')[0];
 const logoutBtn = document.getElementById('logout');
 const menuButtonScoreBoard = document.getElementById('leaderboard');
 const scoreboard = document.getElementsByClassName('js-scoreboard-table')[0];
+const backToMenu = document.getElementsByClassName('backToMenu')[0];
 
 signupSection.hidden = true;
 
@@ -85,16 +87,21 @@ const openBoard = () => {
             console.error(err);
             return;
         }
-        console.dir(users.data);
+        console.dir(Object.keys(users.data[0]));
         const table = document.createElement("table");
         const tbody = document.createElement("tbody");
         table.appendChild(tbody);
         users.data.forEach((user) => {
             const trow = document.createElement("tr");
             const tdname = document.createElement("td");
-            tdname.textContent = user.value;
+            tdname.textContent = Object.keys(user)[0];
+            const tdrating = document.createElement("td");
+            tdrating.textContent = user[Object.keys(user)[0]];
+            trow.appendChild(tdname);
+            trow.appendChild(tdrating);
+            tbody.appendChild(trow);
         });
-
+        scoreboard.appendChild(table);
     });
 };
 
@@ -153,7 +160,15 @@ logoutBtn.addEventListener('click', (event) => {
 
 menuButtonScoreBoard.addEventListener('click', (event) => {
     event.preventDefault();
+    menu.classList.add("hidden");
+    scoreboardSection.hidden = false;
+    openBoard();
+});
 
+backToMenu.addEventListener('click', (event) => {
+    event.preventDefault();
+    scoreboardSection.hidden = true;
+    menu.classList.remove("hidden");
 });
 
 
