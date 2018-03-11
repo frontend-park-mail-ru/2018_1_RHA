@@ -31,7 +31,7 @@ const checkAuth = () => {
     }
     else {
         menu.classList.add('hidden');
-        open_modal.hidden = true;
+        open_modal.hidden = false;
         playButton.classList.remove('hidden');
         signupSection.hidden = true;
         signin_li.classList.add('active');
