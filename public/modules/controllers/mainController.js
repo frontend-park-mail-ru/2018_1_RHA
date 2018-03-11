@@ -118,14 +118,25 @@ const activeButton = section => {
 };
 
 signinForm.addEventListener('submit',  (event) => {
-    console.log('aha');
+    console.log('ahaahhah');
     event.preventDefault();
     console.log(signinForm.elements);
     const nickname = signinForm.elements['nickname-in'].value;
     const password = signinForm.elements['password-in'].value;
     auth(nickname, password, function (err, resp) {
         console.log(err,resp);
-        checkAuth();
+        const result_message = resp['message'];
+        if(result_message === "SUCCESSFULLY_AUTHED") {
+            menu.classList.remove('hidden');
+            open_modal.classList.add('hidden');
+            playButton.classList.add('hidden');
+        }
+        else if (result_message === "WRONG_CREDENTIALS") {
+            alert(result_message);
+        }
+        else if (result_message === "ALREADY_AUTHENTICATED") {
+            alert("You're f*kin cheater!!!");
+        }
     });
 });
 
