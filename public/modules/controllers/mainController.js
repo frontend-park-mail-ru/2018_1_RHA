@@ -124,6 +124,10 @@ signinForm.addEventListener('submit',  (event) => {
     const nickname = signinForm.elements['nickname-in'].value;
     const password = signinForm.elements['password-in'].value;
     auth(nickname, password, function (err, resp) {
+        if (err) {
+            console.error(err);
+            return;
+        }
         console.log(err,resp);
         const result_message = resp['message'];
         if(result_message === "SUCCESSFULLY_AUTHED") {
@@ -147,7 +151,22 @@ signupForm.addEventListener('submit', (event) => {
     const nickname = signupForm.elements['nickname-up'].value;
     const email = signupForm.elements['email-up'].value;
     const password = signupForm.elements['password-up'].value;
+    const password_repeat = signupForm.elements['password-up-repeat'].value;
+    if (Validator.checkEmail(email) === false) {
+        console.log("email govno");
+    }
+    if (Validator.checkLengthPass(password) === false) {
+        console.log('Меньше 8');
+    }
+    else if (Validator.checkPassword(password, password_repeat) === false) {
+        console.log('Не совпадают');
+    }
+
     signUp(nickname, email, password, function (err, resp) {
+        if (err) {
+            console.error(err);
+            return;
+        }
         console.log(err,resp);
         checkAuth();
     });
@@ -159,6 +178,10 @@ logoutBtn.addEventListener('click', (event) => {
     console.log('in logbtn');
     event.preventDefault();
     logout((err, resp) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
         console.log(err,resp);
         checkAuth();
     });

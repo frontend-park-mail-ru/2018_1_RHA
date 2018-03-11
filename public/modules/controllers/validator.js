@@ -6,10 +6,17 @@ class Validator {
     }
 
     static checkEmail(email) {
-        return email !== undefined;
+        const pattern = /([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)/;
+        if (pattern.test(email) === false) {
+            return false;
+        }
+    }
+
+    static checkLengthPass(pass) {
+        return pass.length >=8;
     }
 
     static checkPassword(pass, confpass) {
-        return (pass.length >= 8 && pass === confpass);
+        return (pass === confpass);
     }
 }
