@@ -1,80 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/kostyan.css">
-    <link rel="stylesheet" href="css/supreme.css">
-
-
+    <title>PHub</title>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body class="body">
-
-    <div class="fullscreen-bg">
-        <div class="overlay"></div>
-        <video loop muted="muted" autoplay class="fullscreen-bg__video">
-            <source src="video.mp4" type="video/mp4">
-        </video>
-    </div>
-
-
-    <div class="mute">Sound ON</div>
-
-    <div class="menu fadeIn-Out hidden" >
-        <button class="menu__button btn-in">Singleplayer</button>
-        <button class="menu__button btn-in">Multiplayer</button>
-        <!--<button class="menu__button btn-in" id="log_butt">Sign In</button>-->
-        <!--<button class="menu__button btn-in" id="reg_butt" >Sign Up</button>-->
-        <button class="menu__button btn-in" id="profile" >My Profile</button>
-        <button class="menu__button btn-up">Leaderboard</button>
-    </div>
-
-    <div id="openModal" class="modalDialog fadeIn-Out hidden">
-        <div class="mainModPart">
-                <a  id="close" title="Закрыть" class="close">X</a>
-
-                <form id="login_part" class="divInModal">
-                    <input type="text" placeholder="Nickname" name="username">
-                    <br>
-                    <!--<input type="password" placeholder="Password">-->
-                    <input type="email" placeholder="Email" name="email">
-                    <button class="menu__button btn-in" type="submit">Sign In</button>
-
-                </form>
-                <hr style="height: 200px;/*высота*/ position: absolute; margin-left: 5px; width: 1px;/*толщина*/display: inline-block">
-                <form id="reg_part" class="divInModal">
-                    <input type="text" placeholder="Nickname">
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="password" placeholder="Confirm Password"></input>
-                    <button class="menu__button btn-up" type="submit">Sign Up</button>
-                </form>
-        </div>
-    </div>
-
-
-        <div class="btn-wrapper" id="play_wrap">
-            <button id="play"  class="menu__button btn-up fadeIn-Out">Play</button>
-        </div>
-
-    <img id="logo" src="images/logo.png">
-
-    <footer>
-        <div>RHA team. All rights reserved. 2018 &copy</div>
-    </footer>
-
+<body class="body" id="root"><h1 style="position: absolute; top: 10%; left: 46.2%; color:black; ">LOGO</h1>
+<script src="modules/blocks/footer/footerTemplate.js"></script>
+<script src="modules/blocks/menu/menuTemplate.js"></script>
+<script src="modules/blocks/play/playTemplate.js"></script>
+<script src="modules/blocks/modal/modalTemplate.js"></script>
+<script src="modules/blocks/leaderboard/boardTemplate.js"></script>
+<!--script(src="modules/blocks/video/videoTemplate.js")-->
+<script src="modules/blocks/footer/renderFooter.js"></script>
+<script src="modules/controllers/network.js"></script>
+<script src="modules/controllers/mainController.js"></script>
 </body>
-
-<script src="js/menu.js"></script>
-<script src="js/video.js"></script>
-<script src="js/auth.js"></script>
-<!-- убрать после отладки -->
-<!-- <script language=JavaScript>
-    document.oncontextmenu=new Function("return false;")
-</script> -->
-
 </html>

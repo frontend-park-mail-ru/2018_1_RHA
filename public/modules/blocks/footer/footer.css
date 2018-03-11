@@ -1,7 +1,4 @@
-/* ------------------- footer -----------------*/
-
-footer
-{
+footer {
     text-align: center;
     width: 100%;
     height: 6%;
@@ -15,12 +12,10 @@ footer
     font-size: larger;
     text-decoration-color: white;
     font-family: "sans-serif";
-
     display: table;
 }
 
-footer div
-{
+footer div {
     display: table-cell;
     vertical-align: middle;
 }
