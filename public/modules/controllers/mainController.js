@@ -31,7 +31,7 @@ const checkAuth = () => {
     }
     else {
         menu.classList.add('hidden');
-        open_modal.hidden = false;
+        open_modal.hidden = true;
         playButton.classList.remove('hidden');
         signupSection.hidden = true;
         signin_li.classList.add('active');
@@ -119,7 +119,6 @@ const activeButton = section => {
 
 signinForm.addEventListener('submit',  (event) => {
     console.log('aha');
-
     event.preventDefault();
     console.log(signinForm.elements);
     const nickname = signinForm.elements['nickname-in'].value;
@@ -128,9 +127,6 @@ signinForm.addEventListener('submit',  (event) => {
         console.log(err,resp);
         checkAuth();
     });
-
-
-
 });
 
 

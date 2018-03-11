@@ -10,6 +10,6 @@ pug_html = pug_html + " Leaderboard\u003C\u002Fh1\u003E";
 ;pug_debug_line = 3;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDesktop\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fleaderboard\u002Fleaderboard.pug";
 pug_html = pug_html + "\u003Cdiv class=\"js-scoreboard-table\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDesktop\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fleaderboard\u002Fleaderboard.pug";
-pug_html = pug_html + "\u003Cbutton class=\"backToMenu\"\u003E";
+pug_html = pug_html + "\u003Cbutton class=\"backToMenu menu__button btn-up\"\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDesktop\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fleaderboard\u002Fleaderboard.pug";
 pug_html = pug_html + "Menu\u003C\u002Fbutton\u003E\u003C\u002Fsection\u003E";} catch (err) {pug_rethrow(err, pug_debug_filename, pug_debug_line);};return pug_html;}
