@@ -8,4 +8,4 @@ pug_html = pug_html + "\u003Cdiv class=\"overlay\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 3;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDesktop\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fvideo\u002Fvideo.pug";
 pug_html = pug_html + "\u003Cvideo" + (" class=\"fullscreen-bg__video\""+pug_attr("loop", true, true, false)+pug_attr("autoplay", true, true, false)+" muted=\"muted\"") + "\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDesktop\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fvideo\u002Fvideo.pug";
-pug_html = pug_html + "\u003Csource src=\"public\u002Fblocks\u002Fvideo\u002Fvideo.mp4\" type=\"video\u002Fmp4\"\u002F\u003E\u003C\u002Fvideo\u003E\u003C\u002Fdiv\u003E";} catch (err) {pug_rethrow(err, pug_debug_filename, pug_debug_line);};return pug_html;}
+pug_html = pug_html + "\u003Csource src=\"video.mp4\" type=\"video\u002Fmp4\"\u002F\u003E\u003C\u002Fvideo\u003E\u003C\u002Fdiv\u003E";} catch (err) {pug_rethrow(err, pug_debug_filename, pug_debug_line);};return pug_html;}

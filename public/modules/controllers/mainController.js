@@ -10,8 +10,8 @@ const signupForm = document.getElementsByClassName('js-signup-group')[0];
 const signinForm = document.getElementsByClassName('js-signin-group')[0];
 const menu = document.getElementsByClassName('menu')[0];
 const logoutBtn = document.getElementById('logout');
-const scoreBoard = document.getElementById('leaderboard');
-
+const menuButtonScoreBoard = document.getElementById('leaderboard');
+const scoreboard = document.getElementsByClassName('js-scoreboard-table')[0];
 
 signupSection.hidden = true;
 
@@ -78,6 +78,25 @@ const openSection = name => {
     })
 };
 
+const openBoard = () => {
+    scoreboard.innerHTML = "";
+    loadAllUsers((err, users) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.dir(users.data);
+        const table = document.createElement("table");
+        const tbody = document.createElement("tbody");
+        table.appendChild(tbody);
+        users.data.forEach((user) => {
+            const trow = document.createElement("tr");
+            const tdname = document.createElement("td");
+            tdname.textContent = user.value;
+        });
+
+    });
+};
 
 //active button illumination
 const activeButton = section => {
@@ -132,15 +151,9 @@ logoutBtn.addEventListener('click', (event) => {
 
 });
 
-scoreBoard.addEventListener('click', (event) => {
+menuButtonScoreBoard.addEventListener('click', (event) => {
     event.preventDefault();
-    loadAllUsers((err, users) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        console.dir(users.data);
-    });
+
 });
 
 
