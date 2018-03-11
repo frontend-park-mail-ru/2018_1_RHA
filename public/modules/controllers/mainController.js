@@ -9,12 +9,16 @@ const mainModPart = document.getElementById('mainModPart');
 const signupForm = document.getElementsByClassName('js-signup-group')[0];
 const signinForm = document.getElementsByClassName('js-signin-group')[0];
 const menu = document.getElementsByClassName('menu')[0];
-const settings = document.getElementById('settings')
+const settings = document.getElementById('settings');
 const logoutBtn = document.getElementById('logout');
 const settingsBtn = document.getElementById('settingsBtn');
 const setToMenu = document.getElementById('setToMenu');
 const menuButtonScoreBoard = document.getElementById('leaderboard');
 const scoreboard = document.getElementsByClassName('js-scoreboard-table')[0];
+const setNick=document.getElementById('setting_name');
+const setMail=document.getElementById('setting_email');
+
+
 
 signupSection.hidden = true;
 
@@ -115,19 +119,30 @@ const activeButton = section => {
 };
 
 signinForm.addEventListener('submit',  (event) => {
-    console.log('aha');
-
+    console.log('ahaahhah');
     event.preventDefault();
     console.log(signinForm.elements);
     const nickname = signinForm.elements['nickname-in'].value;
     const password = signinForm.elements['password-in'].value;
     auth(nickname, password, function (err, resp) {
+        if (err) {
+            console.error(err);
+            return;
+        }
         console.log(err,resp);
-        checkAuth();
+        const result_message = resp['message'];
+        if(result_message === "SUCCESSFULLY_AUTHED") {
+            menu.classList.remove('hidden');
+            open_modal.classList.add('hidden');
+            playButton.classList.add('hidden');
+        }
+        else if (result_message === "WRONG_CREDENTIALS") {
+            alert(result_message);
+        }
+        else if (result_message === "ALREADY_AUTHENTICATED") {
+            alert("You're f*kin cheater!!!");
+        }
     });
-
-
-
 });
 
 
@@ -167,7 +182,13 @@ settingsBtn.addEventListener('click',(event)=> {
     console.log('into the settings');
     event.preventDefault();
     getInfo((err,resp)=>{
-        if(err)
+        if(err){
+            console.error(err);
+            return;
+        }
+        setNick.placeholder=resp.data['username'];
+        setMail.placeholder=resp.data['email'];
+        resp.valueOf()
     });
     settings.classList.remove('hidden');
     menu.classList.add('hidden');
