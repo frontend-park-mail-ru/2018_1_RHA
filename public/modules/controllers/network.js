@@ -47,6 +47,27 @@ function signUp(name, email, password, callback) {
     xhr.send(body);
 }
 
+function change(name,email,password,callback){
+    const user = {name,email,password}
+    const body = JSON.stringify(user);
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) return;
+        if (+xhr.status !== 200) {
+            return callback(xhr, null);
+        }
+        const response = JSON.parse(xhr.responseText);
+        callback(null, response);
+    };
+    //xhr.open("POST", "http://rha-backend.herokuapp.com/users/create", true);
+    xhr.open("POST", "http://localhost:5000/users/change", true);
+    //xhr.open("POST", "/signup", true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    xhr.send(body);
+}
+
 function loadAllUsers(callback) {
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;

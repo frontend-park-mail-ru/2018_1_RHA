@@ -17,14 +17,15 @@ const menuButtonScoreBoard = document.getElementById('leaderboard');
 const scoreboard = document.getElementsByClassName('js-scoreboard-table')[0];
 const setNick=document.getElementById('setting_name');
 const setMail=document.getElementById('setting_email');
-
+const setPassword=document.getElementById('setting_password');
+const ApplySets=document.getElementById('ApplyChange');
 
 
 signupSection.hidden = true;
 
 const sections = {
     signup: signupSection,
-    signin: signinSection,
+    signin: signinSection
 };
 
 
@@ -186,7 +187,7 @@ settingsBtn.addEventListener('click',(event)=> {
             console.error(err);
             return;
         }
-        setNick.placeholder=resp.data['username'];
+        // setNick.placeholder=resp.data['username'];
         setMail.placeholder=resp.data['email'];
         resp.valueOf()
     });
@@ -195,9 +196,28 @@ settingsBtn.addEventListener('click',(event)=> {
 });
 
 setToMenu.addEventListener('click',(event)=>{
+    event.preventDefault();
     settings.classList.add('hidden');
     menu.classList.remove('hidden');
 });
+
+ApplySets.addEventListener('click',(event)=> {
+    event.preventDefault();
+    const name=getCookie('user');
+    const pass=setPassword.value;
+    const mail=setMail.value;
+    change(name,mail,pass,(err,resp)=>{
+        if(err){
+            console.error(err);
+            return;
+        };
+        console.log(resp);
+    });
+
+}
+);
+
+
 console.log(document.cookie);
 
 checkAuth();

@@ -1,11 +1,12 @@
 div.menu.fadeIn-Out.hidden#settings
     h1 Your personal settings
     form.insSets
-        label(for="setting_name") Name:
-        input#setting_name(type="text" placeholder= {name})
         label(for="setting_email") Email:
         input#setting_email(type="email" placeholder= {email})
+        label(for="setting_password") Password:
+        input#setting_password(type="password" )
         label(for="setting_avatar") Avatar:
         img#avatar_image(src="/home/chapay/Загрузки/Napoleon.jpg")
         input#setting_avatar(type="image", src="/home/chapay/Загрузки/Napoleon.jpg")
+        button#ApplyChange.menu__button Apply
         button#setToMenu.menu__button Menu
