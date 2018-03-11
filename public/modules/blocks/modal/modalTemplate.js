@@ -47,15 +47,9 @@ pug_html = pug_html + "Sign Up\u003C\u002Fh1\u003E";
 pug_html = pug_html + "\u003Cform class=\"form js-signup-group\"\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "\u002Fhome\u002Fchapay\u002FTechPark\u002Fsem2\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fforms\u002Fregister\u002Fregister.pug";
 pug_html = pug_html + "\u003Cinput" + (" class=\"input\""+pug_attr("required", true, true, false)+" type=\"text\" name=\"nickname-up\" id=\"nickname-up\" placeholder=\"nickname\"") + "\u002F\u003E";
-<<<<<<< HEAD
 ;pug_debug_line = 5;pug_debug_filename = "\u002Fhome\u002Fchapay\u002FTechPark\u002Fsem2\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fforms\u002Fregister\u002Fregister.pug";
-pug_html = pug_html + "\u003Cinput" + (" class=\"input\""+pug_attr("required", true, true, false)+" type=\"email\" name=\"email-up\" id=\"email-up\" placeholder=\"email\"") + "\u002F\u003E";
-;pug_debug_line = 6;pug_debug_filename = "\u002Fhome\u002Fchapay\u002FTechPark\u002Fsem2\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fforms\u002Fregister\u002Fregister.pug";
-=======
-;pug_debug_line = 5;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDesktop\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fforms\u002Fregister\u002Fregister.pug";
 pug_html = pug_html + "\u003Cinput" + (" class=\"input\""+pug_attr("required", true, true, false)+" type=\"text\" name=\"email-up\" id=\"email-up\" placeholder=\"email\"") + "\u002F\u003E";
-;pug_debug_line = 6;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDesktop\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fforms\u002Fregister\u002Fregister.pug";
->>>>>>> origin/landing/petros
+;pug_debug_line = 6;pug_debug_filename = "\u002Fhome\u002Fchapay\u002FTechPark\u002Fsem2\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fforms\u002Fregister\u002Fregister.pug";
 pug_html = pug_html + "\u003Cinput" + (" class=\"input\""+pug_attr("required", true, true, false)+" type=\"password\" name=\"password-up\" id=\"password-up\" placeholder=\"password\"") + "\u002F\u003E";
 ;pug_debug_line = 7;pug_debug_filename = "\u002Fhome\u002Fchapay\u002FTechPark\u002Fsem2\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fmodules\u002Fblocks\u002Fforms\u002Fregister\u002Fregister.pug";
 pug_html = pug_html + "\u003Cinput" + (" class=\"input\""+pug_attr("required", true, true, false)+" type=\"password\" name=\"password-up-repeat\" id=\"password-up-repeat\" placeholder=\"confirm password\"") + "\u002F\u003E";
