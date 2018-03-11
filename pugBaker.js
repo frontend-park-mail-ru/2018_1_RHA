@@ -1,10 +1,10 @@
 const fs = require("fs");
 const pug = require("pug");
 const path = require("path");
-const DATA = path.resolve("./public/modules/");
+const DATA = path.resolve("public/modules/");
 
 console.log("Baking...");
-
+console.log(DATA);
 function bake(path, fileName, functionName, jsName)
 {
     let fullPath = DATA + path;
