@@ -2,7 +2,8 @@
 
 class Validator {
     static checkName(name) {
-        return name !== undefined;
+        const pattern = /^[a-z0-9_-]{3,16}$/;
+        return pattern.test(name);
     }
 
     static checkEmail(email) {

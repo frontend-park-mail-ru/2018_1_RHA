@@ -152,14 +152,18 @@ signupForm.addEventListener('submit', (event) => {
     const email = signupForm.elements['email-up'].value;
     const password = signupForm.elements['password-up'].value;
     const password_repeat = signupForm.elements['password-up-repeat'].value;
-    if (Validator.checkEmail(email) === false) {
+    if (Validator.checkName(nickname) === false) {
+        console.log("sheety name");
+        alert("invalid name");
+    } else if (Validator.checkEmail(email) === false) {
         console.log("email govno");
-    }
-    if (Validator.checkLengthPass(password) === false) {
+        alert("invalid email");
+    } else if (Validator.checkLengthPass(password) === false) {
         console.log('Меньше 8');
-    }
-    else if (Validator.checkPassword(password, password_repeat) === false) {
+        alert("Too short password")
+    } else if (Validator.checkPassword(password, password_repeat) === false) {
         console.log('Не совпадают');
+        alert("Wrong confirm");
     }
 
     signUp(nickname, email, password, function (err, resp) {
