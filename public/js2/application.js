@@ -24,3 +24,5 @@ const Sections = {
     'registerSection': registerSection,
     'menuSection': menuSection,
 };
+
+export default Sections;

@@ -1,4 +1,4 @@
-import Block from "./block";
+import Block from "./block.js";
 
 class Input extends Block {
     constructor(data) {
