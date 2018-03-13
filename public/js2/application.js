@@ -5,16 +5,15 @@ import RegisterSection from './components/pages/registerSection.js';
 import MenuSection from './components/pages/menuSection.js';
 import ModalSection from './components/pages/modalSection/modalSection.js';
 import renderDOM from './components/render/render.js';
+import PlaySection from './components/pages/playSection.js'
 
 
 const loginSection = new LoginSection();
 const registerSection = new RegisterSection();
 const menuSection = new MenuSection();
 const modalSection = new ModalSection(loginSection, registerSection);
-const playSection = new PlaySection(application);
+const playSection = new PlaySection();
 
-
-renderDOM(playSection.render(), document.getElementById('root'));
 
 
 const Sections = {
@@ -23,3 +22,5 @@ const Sections = {
     'registerSection': registerSection,
     'menuSection': menuSection,
 };
+
+renderDOM(playSection.render(), document.getElementById('root'));

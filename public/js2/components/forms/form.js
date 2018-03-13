@@ -1,4 +1,4 @@
-import Block from '../blocks/block';
+import Block from '../blocks/block.js';
 
 class Form extends Block {
     constructor() {
