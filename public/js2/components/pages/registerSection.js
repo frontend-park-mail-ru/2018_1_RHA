@@ -10,6 +10,7 @@ class RegisterSection extends Section {
 
     render() {
         this.register = document.createElement('div');
+        this.register.id = 'registerSection';
         this.registerForm = new RegisterForm();
 
         this.register.appendChild(this.registerForm.render());
@@ -24,3 +25,5 @@ class RegisterSection extends Section {
         return this.register;
     }
 }
+
+export default RegisterSection;

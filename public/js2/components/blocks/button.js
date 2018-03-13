@@ -1,7 +1,7 @@
 import Block from "./block";
 
 class Button extends Block {
-    constructor(type, value) {
+    constructor(type, value, parent) {
         super();
         this.buttonWrapper = document.createElement('div');
 
@@ -9,8 +9,13 @@ class Button extends Block {
         this.buttonElement.innerHTML = value;
         this.buttonElement.type = value;
 
+        if (parent) {
+            parent.appendChild(this.buttonWrapper);
+        }
+
         this.buttonWrapper.appendChild(this.buttonElement);
     }
+
 
     render() {
         return this.buttonWrapper;

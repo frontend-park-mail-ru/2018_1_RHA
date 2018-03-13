@@ -3,6 +3,7 @@ import LoginForm from '../forms/loginForm.js';
 import  UserController from '../../modules/UserController.js';
 import SectionSwitcher from '../../modules/SectionSwitcher.js';
 
+
 class LoginSection extends Section {
     constructor() {
         super();
@@ -15,6 +16,7 @@ class LoginSection extends Section {
         this.loginForm = new LoginForm();
 
         this.login = document.createElement('div');
+        this.login.id = 'loginSection';
         this.login.appendChild(this.formHeader);
         this.login.appendChild(this.loginForm);
         this.login.setOnSubmit(() => {
@@ -27,3 +29,5 @@ class LoginSection extends Section {
         return this.login;
     }
 }
+
+export default LoginSection;
