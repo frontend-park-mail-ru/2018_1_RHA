@@ -1,4 +1,4 @@
-import {Sections} from '../application.js';
+import Sections from '../application.js';
 import renderDom from '../components/render/render.js';
 
 class SectionSwitcher {

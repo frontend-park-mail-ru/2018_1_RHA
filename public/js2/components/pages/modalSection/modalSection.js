@@ -2,7 +2,7 @@ import Section from '../section.js';
 import LoginSection from '../loginSection.js';
 import RegisterSection from '../registerSection.js';
 import Button from "../../blocks/button.js";
-import SectionSwitcher from '../../../modules/sectionSwitcher.js';
+import SectionSwitcher from '/public/js2/modules/sectionSwitcher.js';
 
 class ModalSection extends Section {
     constructor(lSection, rSection) {

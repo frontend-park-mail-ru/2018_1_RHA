@@ -1,7 +1,7 @@
-import Section from './section.js';
+import Section from '/public/js2/components/pages/section.js';
 import LoginForm from '../forms/loginForm.js';
 import UserController from '../../modules/userController.js';
-import SectionSwitcher from '../../modules/SectionSwitcher.js';
+import SectionSwitcher from '/public/js2/modules/userController.js';
 
 
 class LoginSection extends Section {
