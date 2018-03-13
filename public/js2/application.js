@@ -10,14 +10,13 @@ import PlaySection from './components/pages/playSection.js';
 import renderDOM from './components/render/render.js';
 
 
+
 const loginSection = new LoginSection();
 const registerSection = new RegisterSection();
 const menuSection = new MenuSection();
 const modalSection = new ModalSection(loginSection, registerSection);
-const playSection = new PlaySection(application);
+const playSection = new PlaySection();
 
-
-renderDOM(playSection.render(), document.getElementById('root'));
 
 
 const Sections = {
@@ -27,4 +26,6 @@ const Sections = {
     'menuSection': menuSection,
 };
 
+renderDOM(playSection.render(), document.getElementById('root'));
 export default Sections;
+
