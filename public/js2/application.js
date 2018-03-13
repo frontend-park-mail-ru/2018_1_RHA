@@ -6,7 +6,7 @@ import MenuSection from './components/pages/menuSection.js';
 import ModalSection from './components/pages/modalSection/modalSection.js';
 import PlaySection from './components/pages/playSection.js';
 import renderDOM from './components/render/render.js';
-import PlaySection from './components/pages/playSection.js'
+
 
 
 const loginSection = new LoginSection();
