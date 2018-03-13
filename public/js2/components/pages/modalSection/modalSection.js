@@ -2,7 +2,7 @@ import Section from '../section.js';
 import LoginSection from '../loginSection.js';
 import RegisterSection from '../registerSection.js';
 import Button from "../../blocks/button.js";
-import SectionSwitcher from '../../../modules/SectionSwitcher.js';
+import SectionSwitcher from '../../../modules/sectionSwitcher.js';
 
 class ModalSection extends Section {
     constructor(lSection, rSection) {
@@ -27,7 +27,7 @@ class ModalSection extends Section {
         });
         this.switchToRegisterButton = new Button('button', 'Sign Up', listItems[1]);
         this.switchToRegisterButton.setOnClick(() => {
-            SectionSwotcher.changeSection('registerSection', this.innerWrapper);
+            SectionSwitcher.changeSection('registerSection', this.innerWrapper);
         });
         listItems[0].appendChild(this.switchToLoginButton.render());
         listItems[1].appendChild(this.switchToRegisterButton.render());
