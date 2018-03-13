@@ -1,5 +1,7 @@
 "use strict";
 
+debugger;
+
 import LoginSection from './components/pages/loginSection.js';
 import RegisterSection from './components/pages/registerSection.js';
 import MenuSection from './components/pages/menuSection.js';
