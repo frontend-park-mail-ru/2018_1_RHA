@@ -25,3 +25,5 @@ const Sections = {
 };
 
 renderDOM(playSection.render(), document.getElementById('root'));
+export default Sections;
+
