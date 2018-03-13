@@ -68,6 +68,7 @@ class LoginForm extends Form {
         const formState = Validator.checkPassword((this.Password));
         this.Password.setError(formState.errorMessage);
     }
+
 }
 
 export default LoginForm;
