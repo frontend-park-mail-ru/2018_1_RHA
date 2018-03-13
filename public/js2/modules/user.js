@@ -2,16 +2,17 @@ class User {
     constructor(object) {
         this.id = object.id;
         this.email = object.email;
-        this.username = object.username;
+        this.name = object.name;
         this.rating = object.rating;
     }
 
     getProfileData() {
         return {
             'email': this.email,
-            'username': this.username,
-            'rating': this.rating;
+            'name': this.name,
+            'rating': this.rating
         }
     }
 }
+
 export default User;

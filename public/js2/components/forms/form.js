@@ -14,8 +14,11 @@ class Form extends Block {
         this.formElement.reset();
     }
 
-    setOnSubmit() {
-
+    setOnSubmit(callbackfn) {
+        this.formElement.addEventListener('submit', (e) => {
+            e.preventDefault();
+            callbackfn();
+        });
     }
 }
 
