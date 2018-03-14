@@ -35,10 +35,10 @@ export default class RegisterForm extends Form {
         });
 
 
-        this.Email.setOnInputChange();
-        this.Name.setOnInputChange();
-        this.Password.setOnInputChange();
-        this.ConfirmPassword.setOnInputChange();
+        this.Email.setOnInputChange(() => {});  //заглушки
+        this.Name.setOnInputChange(() => {});
+        this.Password.setOnInputChange(() => {});
+        this.ConfirmPassword.setOnInputChange(() => {});
 
         this.formElement.appendChild(this.Email.render());
         this.formElement.appendChild(this.Name.render());
@@ -60,6 +60,8 @@ export default class RegisterForm extends Form {
 
     setOnSubmit(callback) {
         // пока хз, че делать
+
+
     }
 
     checkState() {

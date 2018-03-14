@@ -3,6 +3,7 @@ import RegisterForm from '../forms/registerForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../modules/sectionSwitcher.js';
 
+
 export default class RegisterSection extends Section {
     constructor() {
         super();
