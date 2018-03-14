@@ -30,8 +30,8 @@ export default class RegisterForm extends Form {
         });
 
         this.InputSubmit = new Input({
-            type: "submit",
-            value: "Sign Up"
+            type: 'submit',
+            value: 'Sign Up'
         });
 
 
@@ -44,6 +44,7 @@ export default class RegisterForm extends Form {
         this.formElement.appendChild(this.Name.render());
         this.formElement.appendChild(this.Password.render());
         this.formElement.appendChild(this.ConfirmPassword.render());
+        this.formElement.appendChild(this.InputSubmit.render());
 
         this.formElement.addEventListener('submit', (e) => e.preventDefault());
         return this.formElement;
