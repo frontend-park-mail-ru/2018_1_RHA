@@ -1,6 +1,6 @@
 import Button from '../blocks/button.js';
 import Section from './section.js';
-// import SectionSwitcher from '../../modules/sectionSwitcher.js';
+
 import sectionSwitcher from '../../application.js';
 
 export default class PlaySection extends Section {
@@ -10,7 +10,7 @@ export default class PlaySection extends Section {
     }
 
     render() {
-        this.playButton = new Button();
+        this.playButton = new Button('button', 'Play', );
         this.playButton.render().classList.add('menu__button');
         this.playButton.render().classList.add('btn-up');
         this.playButton.setOnClick(() => {

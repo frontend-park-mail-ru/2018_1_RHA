@@ -1,6 +1,6 @@
 import Button from '../blocks/button.js';
 import Section from './section.js';
-import SectionSwitcher from '../../modules/sectionSwitcher.js';
+import sectionSwitcher from '../../modules/sectionSwitcher.js';
 
 export default class MenuSection extends Section {
     constructor(){
@@ -13,17 +13,17 @@ export default class MenuSection extends Section {
 
         this.profileButton = new Button('button', 'Profile');
         this.profileButton.setOnClick(() => {
-            SectionSwitcher.changeSection('profileSection', 'root1'); // исправить
+            sectionSwitcher.changeSection('profileSection', 'root1'); // исправить
         });
 
         this.leaderboardButton = new Button('button', 'Leaderboard');
         this.leaderboardButton.setOnClick(() => {
-            SectionSwitcher.changeSection('leaderboardSection', 'root1');
+            sectionSwitcher.changeSection('leaderboardSection', 'root1');
         });
 
         this.logoutButton = new Button('button', 'Log Out');
         this.logoutButton.setOnClick(() => {
-            SectionSwitcher.changeSection('playSection', 'root1'); // обернуть кнопку секцией
+            sectionSwitcher.changeSection('playSection', 'root1'); // обернуть кнопку секцией
         });
 
         this.menu = document.createElement('div');

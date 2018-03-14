@@ -1,7 +1,7 @@
 import Section from './section.js';
 import LoginForm from '../forms/loginForm.js';
 import UserController from '../../modules/userController.js';
-import SectionSwitcher from '../../modules/SectionSwitcher.js';
+import sectionSwitcher from '../../application.js';
 
 
 export default class LoginSection extends Section {
@@ -21,7 +21,7 @@ export default class LoginSection extends Section {
         this.loginForm.setOnSubmit(() => {
             const userData = this.loginForm.checkState();
             if (UserController.login(userData)) {
-                SectionSwitcher.changeSection('menuSection', 'root1');
+                sectionSwitcher.changeSection('menuSection', 'root1');
             }
         });
 
