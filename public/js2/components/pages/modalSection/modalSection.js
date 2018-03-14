@@ -24,6 +24,7 @@ export default class ModalSection extends Section {
         this.modalElement.children[0].children[0].appendChild(this.innerWrapper);
 
         // переключатели секций
+        sectionSwitcher.changeSection('loginSection', this.innerWrapper);
         const listItems = this.modalElement.getElementsByTagName('li');
         this.switchToLoginButton = new Button('button', 'Sign In', listItems[0]);
         this.switchToLoginButton.setOnClick(() => {
