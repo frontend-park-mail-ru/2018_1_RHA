@@ -4,7 +4,7 @@ import UserController from '../../modules/userController.js';
 import SectionSwitcher from '../../modules/SectionSwitcher.js';
 
 
-class LoginSection extends Section {
+export default class LoginSection extends Section {
     constructor() {
         super();
     }
@@ -16,10 +16,9 @@ class LoginSection extends Section {
         this.loginForm = new LoginForm();
 
         this.login = document.createElement('div');
-        this.login.id = 'loginSection';
         this.login.appendChild(this.formHeader);
-        this.login.appendChild(this.loginForm);
-        this.login.setOnSubmit(() => {
+        this.login.appendChild(this.loginForm.render());
+        this.loginForm.setOnSubmit(() => {
             const userData = this.loginForm.checkState();
             if (UserController.login(userData)) {
                 SectionSwitcher.changeSection('menuSection', 'root1');
@@ -29,5 +28,3 @@ class LoginSection extends Section {
         return this.login;
     }
 }
-
-export default LoginSection;

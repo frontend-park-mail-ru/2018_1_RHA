@@ -1,6 +1,4 @@
-"use strict";
-
-debugger;
+'use strict';
 
 import LoginSection from './components/pages/loginSection.js';
 import RegisterSection from './components/pages/registerSection.js';
@@ -23,9 +21,12 @@ const Sections = {
     'modalSection': modalSection,
     'loginSection': loginSection,
     'registerSection': registerSection,
-    'menuSection': menuSection,
+    'menuSection': menuSection
 };
 
 sectionSwitcher.setSections(Sections);
 
 renderDOM(playSection.render(), document.getElementById('root'));
+
+
+export default sectionSwitcher;

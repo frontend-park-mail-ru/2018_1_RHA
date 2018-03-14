@@ -1,4 +1,4 @@
-import renderDom from '../components/render/render.js';
+import renderDOM from '../components/render/render.js';
 
 class SectionSwitcher {
     constructor() {}
@@ -7,11 +7,12 @@ class SectionSwitcher {
         this.sections = sections;
     }
 
-    static changeSection(newSection, rootForElement) {
+    changeSection(newSection, rootForElement) {
         if (this.sections[newSection]) {
-            renderDom(this.sections[newSection].render(), rootForElement);
+            renderDOM(this.sections[newSection].render(), rootForElement);
         }
     }
+
 }
 
 const sectionSwitcher = new SectionSwitcher();

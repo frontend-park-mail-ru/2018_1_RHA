@@ -1,6 +1,6 @@
 import Block from '../blocks/block.js';
 
-class Form extends Block {
+export default class Form extends Block {
     constructor() {
         super();
         this.formElement = document.createElement('form');
@@ -21,5 +21,3 @@ class Form extends Block {
         });
     }
 }
-
-export default Form

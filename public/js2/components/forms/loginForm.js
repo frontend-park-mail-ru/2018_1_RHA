@@ -5,7 +5,7 @@ import Button from '../blocks/button.js';
 а еще проимпортить валидатор, и какие-то две переменные
  */
 
-class LoginForm extends Form {
+export default class LoginForm extends Form {
     constructor() {
         super();
     }
@@ -70,5 +70,3 @@ class LoginForm extends Form {
     }
 
 }
-
-export default LoginForm;

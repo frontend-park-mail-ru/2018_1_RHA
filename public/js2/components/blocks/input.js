@@ -1,6 +1,6 @@
 import Block from "./block.js";
 
-class Input extends Block {
+export default class Input extends Block {
     constructor(data) {
         super();
 
@@ -50,5 +50,3 @@ class Input extends Block {
         });
     }
 }
-
-export default Input;

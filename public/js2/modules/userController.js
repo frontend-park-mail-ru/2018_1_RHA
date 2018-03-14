@@ -8,3 +8,5 @@ class UserController {
         this.user = this.load();
     }
 }
+
+export default UserController;

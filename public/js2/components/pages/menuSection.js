@@ -2,7 +2,7 @@ import Button from '../blocks/button.js';
 import Section from './section.js';
 import SectionSwitcher from '../../modules/sectionSwitcher.js';
 
-class MenuSection extends Section {
+export default class MenuSection extends Section {
     constructor(){
         super();
     }
@@ -37,5 +37,3 @@ class MenuSection extends Section {
         return this.menu;
     }
 }
-
-export default MenuSection;

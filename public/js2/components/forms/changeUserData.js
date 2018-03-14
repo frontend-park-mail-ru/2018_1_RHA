@@ -4,7 +4,7 @@ import Input from '../blocks/input.js';
 import Button from '../blocks/button.js';
 // despicable teens
 
-class ChangeUserData extends Form {
+export default class ChangeUserData extends Form {
     constructor(type) {
         super();
         this.type = type;

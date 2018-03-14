@@ -13,4 +13,4 @@ export const route = {
     debug: true
 };
 
-export default {serverUrl, APIMethods};
+export default {serverUrl, userAPIMethods};

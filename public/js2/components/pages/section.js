@@ -1,4 +1,4 @@
-class Section {
+export default class Section {
     constructor() {
     }
 
@@ -8,5 +8,3 @@ class Section {
     open() {
     }
 }
-
-export default Section;
