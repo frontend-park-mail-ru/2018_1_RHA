@@ -1,5 +1,3 @@
-class Block {
+export default class Block {
     render() {}
 }
-
-export default Block;

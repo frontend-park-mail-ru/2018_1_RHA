@@ -1,6 +1,6 @@
 import Block from "./block.js";
 
-class Button extends Block {
+export default class Button extends Block {
     constructor(type, value, parent) {
         super();
         this.buttonWrapper = document.createElement('div');
@@ -28,5 +28,3 @@ class Button extends Block {
         });
     }
 }
-
-export default Block;

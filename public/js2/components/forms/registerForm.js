@@ -3,7 +3,7 @@ import Input from '../blocks/input.js';
 // validator
 // и какие-то глобальные переменные
 
-class RegisterForm extends Form {
+export default class RegisterForm extends Form {
     constructor() {
         super();
     }
@@ -94,5 +94,3 @@ class RegisterForm extends Form {
         this.ConfirmPassword.setError(formSate.errorMesage);
     }
 }
-
-export default RegisterForm;

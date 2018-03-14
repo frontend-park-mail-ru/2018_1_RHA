@@ -1,19 +1,20 @@
 import Button from '../blocks/button.js';
 import Section from './section.js';
-import SectionSwitcher from '../../modules/sectionSwitcher.js';
 
-class PlaySection extends Section {
+import sectionSwitcher from '../../application.js';
+
+export default class PlaySection extends Section {
     constructor(parent) {
         super();
         this.parent = parent;
     }
 
     render() {
-        this.playButton = new Button();
-        this.playButton.classList.add('menu__button');
-        this.playButton.classList.add('btn-up');
+        this.playButton = new Button('button', 'Play', );
+        this.playButton.render().classList.add('menu__button');
+        this.playButton.render().classList.add('btn-up');
         this.playButton.setOnClick(() => {
-            SectionSwitcher.changeSection('modalSection', root);
+            sectionSwitcher.changeSection('modalSection', root);
         });
 
         this.playElement = document.createElement('div');
@@ -23,5 +24,3 @@ class PlaySection extends Section {
         return this.playElement;
     }
 }
-
-export default PlaySection;
