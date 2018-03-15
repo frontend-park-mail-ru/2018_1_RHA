@@ -10,9 +10,9 @@ export default class ChangeUserData extends Form {
         this.type = type;
     }
 
-    getFormData() {
-        return this.input.getData();
-    }
+    // getFormData() {
+    //     return this.input.getData();
+    // }
 
     render() {
         switch (this.type) {

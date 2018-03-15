@@ -1,7 +1,6 @@
 import Section from './section.js';
 import LoginForm from '../forms/loginForm.js';
 import UserController from '../../modules/userController.js';
-
 import sectionSwitcher from '../../application.js';
 
 
@@ -20,10 +19,20 @@ export default class LoginSection extends Section {
         this.login.appendChild(this.formHeader);
         this.login.appendChild(this.loginForm.render());
         this.loginForm.setOnSubmit(() => {
-            const userData = this.loginForm.checkState();
-            if (UserController.login(userData)) {
-                sectionSwitcher.changeSection('menuSection', 'root1');
-            }
+            const userData = this.loginForm.getData();
+            const jsonUserData = JSON.stringify(userData);
+            UserController.login(jsonUserData, (err, resp) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log(err, resp);
+                UserController.checkAuth( (isAuth) => {
+                    if (isAuth) {
+                        sectionSwitcher.changeSection('menuSection', root);
+                    }
+                })
+            })
         });
 
         return this.login;

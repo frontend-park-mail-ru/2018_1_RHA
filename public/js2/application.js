@@ -7,6 +7,7 @@ import ModalSection from './components/pages/modalSection/modalSection.js';
 import PlaySection from './components/pages/playSection.js';
 import renderDOM from './components/render/render.js';
 import {sectionSwitcher} from "./modules/sectionSwitcher.js";
+import UserController from './modules/userController.js';
 
 
 const loginSection = new LoginSection();
@@ -21,12 +22,23 @@ const Sections = {
     'modalSection': modalSection,
     'loginSection': loginSection,
     'registerSection': registerSection,
-    'menuSection': menuSection
+    'menuSection': menuSection,
+    'playSection': playSection
 };
 
 sectionSwitcher.setSections(Sections);
 
-renderDOM(playSection.render(), document.getElementById('root'));
+
+
+UserController.checkAuth( (isAuth) => {
+    console.log(isAuth);
+    if (isAuth) {
+        sectionSwitcher.changeSection('menuSection', root);   //Что за root? Оно работает, но я не понимаю
+    } else {
+        renderDOM(playSection.render(), document.getElementById('root'));
+    }
+});
+
 
 
 export default sectionSwitcher;

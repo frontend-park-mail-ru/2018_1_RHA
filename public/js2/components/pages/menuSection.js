@@ -1,6 +1,7 @@
 import Button from '../blocks/button.js';
 import Section from './section.js';
-import sectionSwitcher from '../../modules/sectionSwitcher.js';
+import UserController from '../../modules/userController.js';
+import sectionSwitcher from '../../application.js';
 
 export default class MenuSection extends Section {
     constructor(){
@@ -13,21 +14,34 @@ export default class MenuSection extends Section {
 
         this.profileButton = new Button('button', 'Profile');
         this.profileButton.setOnClick(() => {
-            sectionSwitcher.changeSection('profileSection', 'root1'); // исправить
+            //sectionSwitcher.changeSection('profileSection', 'root1'); // исправить
         });
 
         this.leaderboardButton = new Button('button', 'Leaderboard');
         this.leaderboardButton.setOnClick(() => {
-            sectionSwitcher.changeSection('leaderboardSection', 'root1');
+            //sectionSwitcher.changeSection('leaderboardSection', 'root1');
         });
 
         this.logoutButton = new Button('button', 'Log Out');
         this.logoutButton.setOnClick(() => {
-            sectionSwitcher.changeSection('playSection', 'root1'); // обернуть кнопку секцией
+            UserController.logout( (err, resp ) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log(err, resp);
+                UserController.checkAuth( (isAuth) => {
+                    if (!isAuth) {
+                        sectionSwitcher.changeSection('playSection', root); // обернуть кнопку секцией
+                    } else {
+                        console.log('error logout');
+                    }
+
+                })
+            })
         });
 
         this.menu = document.createElement('div');
-        this.menu.classList.add('menu');
         this.menu.appendChild(this.singleplayerButton.render());
         this.menu.appendChild(this.multiplayerButton.render());
         this.menu.appendChild(this.profileButton.render());

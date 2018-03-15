@@ -12,8 +12,8 @@ export default class LoginForm extends Form {
 
     getData() {
         return {
-            name: this.Name.getData(),
-            email: null,
+            name: null,
+            email: this.Email.getData(),
             password: this.Password.getData()
         }
     }
@@ -44,20 +44,16 @@ export default class LoginForm extends Form {
         this.formElement.appendChild(this.Password.render());
         this.formElement.appendChild(this.InputSubmit.render());
 
-        this.formElement.addEventListener('submit', (e) => e.preventDefault()); // непонятно
-
         return this.formElement;
     }
-    
-    checkState() {
-        return new Promise((positive, negative) => {
-            if (this.Email.getState() && this.Password.getState()) {
-                positive(this.getFormData());
-            } else {
-                negative();
-            }
-        });
+
+    setOnSubmit(callbackfn) {
+        this.formElement.addEventListener('submit', (ev) => {
+            ev.preventDefault();
+            callbackfn();
+        })
     }
+
 
     validateEmail() {
         const formState = Validator.checkEmail(this.Email);

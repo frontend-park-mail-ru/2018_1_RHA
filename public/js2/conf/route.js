@@ -1,4 +1,5 @@
-const serverUrl = 'https://rha-backend.herokuapp.com';
+//const serverUrl = 'http://rha-backend.herokuapp.com/';
+const serverUrl = 'http://localhost:5000/';
 
 const userAPIMethods = {
     login: 'users/auth',

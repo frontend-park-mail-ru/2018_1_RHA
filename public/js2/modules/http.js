@@ -1,17 +1,45 @@
 import config from '../conf/route.js';
 
 class HttpService {
-    static get(url) {
-        return this.__request('GET', url, undefined);
+    static get(url, callbackfn) {
+        return this.__request('GET', url)
+            .then (
+                response => {
+                    if (response.status === 200) {
+                        try {
+                            callbackfn(null, response.json());
+                        }
+                        catch (err) {
+                            console.error('get error: ', err);
+                        }
+                    } else {
+                        callbackfn(response);
+                    }
+                }
+            )
     }
 
-    static post(url, body) {
-        return this.__request('POST', url, body);
+    static post(url, body, callbackfn) {
+        return this.__request('POST', url, body)
+            .then (
+                response => {
+                    if (response.status === 200) {
+                        try {
+                            callbackfn(null, response.json());
+                        }
+                        catch (err) {
+                            console.error('post error: ', err);
+                            callbackfn(err);
+                        }
+
+                    } else {
+                        callbackfn(response);
+                    }
+
+                }
+            )
     }
 
-    static delete(url) {
-        return this.__request('DELETE', url, undefined);
-    }
 
     static __request(requestMethod, url, body) {
         const headers = new Headers();
@@ -20,14 +48,14 @@ class HttpService {
             headers.append('Content-Type', 'application/json; charset=utf-8');
         }
 
-        const req = new Request(`${config.serverUrl}${url}`, {
-            method: requestMethod,
-            body: body,
-            headers: headers,
-            credentials: 'include',
-            mode: 'cors'
-        });
-        return fetch(req);
+        const req = {
+          method: requestMethod,
+          headers: headers,
+          body: body,
+          credentials: 'include',
+          mode: 'cors'
+        };
+        return fetch(`${config.serverUrl}${url}`, req);
     }
 }
 

@@ -11,14 +11,11 @@ export default class PlaySection extends Section {
 
     render() {
         this.playButton = new Button('button', 'Play', );
-        this.playButton.render().classList.add('menu__button');
-        this.playButton.render().classList.add('btn-up');
         this.playButton.setOnClick(() => {
             sectionSwitcher.changeSection('modalSection', root);
         });
 
         this.playElement = document.createElement('div');
-        this.playElement.classList.add('btn-wrapper');
         this.playElement.appendChild(this.playButton.render());
 
         return this.playElement;

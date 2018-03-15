@@ -46,7 +46,6 @@ export default class RegisterForm extends Form {
         this.formElement.appendChild(this.ConfirmPassword.render());
         this.formElement.appendChild(this.InputSubmit.render());
 
-        this.formElement.addEventListener('submit', (e) => e.preventDefault());
         return this.formElement;
     }
 
@@ -59,25 +58,13 @@ export default class RegisterForm extends Form {
     }
 
     setOnSubmit(callbackfn) {
-        // пока хз, че делать
-        this.formElement.addEventListener('submit', (e) => {
-            e.preventDefault();
+        this.formElement.addEventListener('submit', (ev) => {
+            ev.preventDefault();
             callbackfn();
-        });
+        })
     }
 
-    checkState() {
-        return new Promise((positive, negative) => {
-            if (
-                this.Email.getState() && this.Password.getState() &&
-                    this.Name.getState() && this.ConfirmPassword.getState()
-            ) {
-                positive(this.getData());
-            } else {
-                negative();
-            }
-        });
-    }
+
 
     validateEmail() {
         const formState = Validator.checkEmail(this.Email);
