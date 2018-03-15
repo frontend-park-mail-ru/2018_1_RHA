@@ -15,9 +15,5 @@ export default class Form extends Block {
     }
 
     setOnSubmit(callbackfn) {
-        this.formElement.addEventListener('submit', (e) => {
-            e.preventDefault();
-            callbackfn();
-        });
     }
 }

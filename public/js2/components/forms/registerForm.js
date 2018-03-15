@@ -58,10 +58,12 @@ export default class RegisterForm extends Form {
         };
     }
 
-    setOnSubmit(callback) {
+    setOnSubmit(callbackfn) {
         // пока хз, че делать
-
-
+        this.formElement.addEventListener('submit', (e) => {
+            e.preventDefault();
+            callbackfn();
+        });
     }
 
     checkState() {

@@ -27,9 +27,9 @@ class UserController {
             )
     }
 
-    register(userData) {
+    static register(userData) {
         debugger;
-        return http.post(route.userAPIMethods.signup)
+        return http.post(route.userAPIMethods.signup, userData)
             .then (
                 response => {
                     if (response === 200) {

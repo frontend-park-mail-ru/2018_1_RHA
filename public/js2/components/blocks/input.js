@@ -14,7 +14,7 @@ export default class Input extends Block {
         this.InputWrapper = document.createElement('div');
         this.InputWrapper.appendChild(this.InputElement);
 
-        this.state = false;
+        this.state = true; //заглушка
 
         this.ErrorElement = document.createElement('div');
         this.InputWrapper.appendChild(this.ErrorElement);
