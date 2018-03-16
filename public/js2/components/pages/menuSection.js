@@ -19,7 +19,8 @@ export default class MenuSection extends Section {
 
         this.leaderboardButton = new Button('button', 'Leaderboard');
         this.leaderboardButton.setOnClick(() => {
-            //sectionSwitcher.changeSection('leaderboardSection', 'root1');
+
+            sectionSwitcher.changeSection('ratingSection', root);
         });
 
         this.logoutButton = new Button('button', 'Log Out');
