@@ -19,7 +19,8 @@ export default class MenuSection extends Section {
 
         this.leaderboardButton = new Button('button', 'Leaderboard');
         this.leaderboardButton.setOnClick(() => {
-            //sectionSwitcher.changeSection('leaderboardSection', 'root1');
+            debugger;
+            sectionSwitcher.changeSection('ratingSection', root);
         });
 
         this.logoutButton = new Button('button', 'Log Out');
@@ -36,7 +37,6 @@ export default class MenuSection extends Section {
                     } else {
                         console.log('error logout');
                     }
-
                 })
             })
         });
