@@ -34,10 +34,6 @@ export default class RatingSection extends Section {
                 }
             )
 
-
-
-
-
         });
         return this.rating;
     }
