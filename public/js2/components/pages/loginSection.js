@@ -21,6 +21,7 @@ export default class LoginSection extends Section {
         this.loginForm.setOnSubmit(() => {
             const userData = this.loginForm.getData();
             const jsonUserData = JSON.stringify(userData);
+            console.log(jsonUserData);
             UserController.login(jsonUserData, (err, resp) => {
                 if (err) {
                     console.error(err);

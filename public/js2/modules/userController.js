@@ -22,8 +22,8 @@ class UserController {
         return http.post(route.userAPIMethods.logout, {}, callbackfn);
     }
 
-    static rating(callbackfn) {
-        return http.get(route.userAPIMethods.leaderBoard, callbackfn);
+    static rating(page, callbackfn) {
+        return http.post(route.userAPIMethods.leaderBoard, page, callbackfn);
     }
 
 

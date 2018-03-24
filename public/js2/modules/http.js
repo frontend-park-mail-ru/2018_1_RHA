@@ -2,7 +2,7 @@ import config from '../conf/route.js';
 
 class HttpService {
     static get(url, callbackfn) {
-         return this.__request('GET', url)
+         return this.request('GET', url)
             .then (
                 response => {
                     if (response.status === 200) {
@@ -20,7 +20,7 @@ class HttpService {
     }
 
     static post(url, body, callbackfn) {
-        return this.__request('POST', url, body)
+        return this.request('POST', url, body)
             .then (
                 response => {
                     if (response.status === 200) {
@@ -41,7 +41,7 @@ class HttpService {
     }
 
 
-    static __request(requestMethod, url, body) {
+    static request(requestMethod, url, body) {
         const headers = new Headers();
 
         if (requestMethod ==='POST') {
