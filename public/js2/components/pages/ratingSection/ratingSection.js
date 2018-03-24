@@ -13,15 +13,14 @@ export default class RatingSection extends Section {
     render() {
         this.rating = document.createElement('div');
         this.rating.innerHTML = "";
-        this.load(1);
 
         this.prevButt = new Button('button', 'prev', this.rating);
         this.prevButt.setOnClick(() => {
 
-            this.rating.removeChild(this.rating.firstChild);
             if (this.page === 1) {
                 return;
             }
+            this.rating.removeChild(this.rating.firstChild);
 
             this.page --;
             this.load(this.page);
@@ -34,6 +33,8 @@ export default class RatingSection extends Section {
             this.page ++;
             this.load(this.page);
         });
+
+        this.load(1);
 
         return this.rating;
     }
@@ -66,7 +67,8 @@ export default class RatingSection extends Section {
                         tbody.appendChild(trow);
 
                     });
-                    this.rating.appendChild(table);
+                    this.rating.insertBefore(table, this.rating.firstChild);
+                    // this.rating.appendChild(table);
                     console.log(data);
                 }
             )
