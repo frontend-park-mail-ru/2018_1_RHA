@@ -2,7 +2,7 @@ import config from '../conf/route.js';
 
 class HttpService {
     static get(url, callbackfn) {
-        return this.__request('GET', url)
+         return this.__request('GET', url)
             .then (
                 response => {
                     if (response.status === 200) {
