@@ -1,8 +1,8 @@
 "use strict";
-import Section from "../section.js";
-import sectionSwitcher from '../../../application.js';
-import UserController from "../../../modules/userController.js";
-import Button from "../../blocks/button.js";
+import Section from "./section.js";
+import sectionSwitcher from '../../application.js';
+import UserController from "../../modules/userController.js";
+import Button from "../blocks/button.js";
 
 export default class RatingSection extends Section {
     constructor() {

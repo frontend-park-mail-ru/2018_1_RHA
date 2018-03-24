@@ -8,7 +8,8 @@ import PlaySection from './components/pages/playSection.js';
 import renderDOM from './components/render/render.js';
 import {sectionSwitcher} from "./modules/sectionSwitcher.js";
 import UserController from './modules/userController.js';
-import RatingSection from "./components/pages/ratingSection/ratingSection.js";
+import RatingSection from "./components/pages/ratingSection.js";
+import ProfileSection from "./components/pages/profileSection.js";
 
 
 const loginSection = new LoginSection();
@@ -17,7 +18,7 @@ const menuSection = new MenuSection();
 const modalSection = new ModalSection(loginSection, registerSection);
 const playSection = new PlaySection();
 const ratingSection = new RatingSection();
-
+const profileSection = new ProfileSection();
 
 
 const Sections = {
@@ -26,7 +27,8 @@ const Sections = {
     'registerSection': registerSection,
     'menuSection': menuSection,
     'playSection': playSection,
-    'ratingSection': ratingSection
+    'ratingSection': ratingSection,
+    'profileSection': profileSection
 };
 
 sectionSwitcher.setSections(Sections);

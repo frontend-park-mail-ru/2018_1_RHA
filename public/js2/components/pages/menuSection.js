@@ -14,7 +14,7 @@ export default class MenuSection extends Section {
 
         this.profileButton = new Button('button', 'Profile');
         this.profileButton.setOnClick(() => {
-            //sectionSwitcher.changeSection('profileSection', 'root1'); // исправить
+            sectionSwitcher.changeSection('profileSection', root);
         });
 
         this.leaderboardButton = new Button('button', 'Leaderboard');
