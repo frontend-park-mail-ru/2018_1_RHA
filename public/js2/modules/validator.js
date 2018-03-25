@@ -1,22 +1,25 @@
 export default class Validator {
-    //TODO: вызов валидатора должен быть произведен так, чтобы данные методы выдели поля коспонентов
-    //TODO: на компоненты надо повесить слушатель onChange и в слушатель передать объект компонента, чтобы там обновлялся state
-    //TODO: перед отправкой формы надо проверить, чтобы у всех инпутов state был true
+
     static checkMail(email) {
-        //TODO проверить по паттерну mail и установит state на true или false
+
+        const pattern = /([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)/;
+        if (pattern.test(email) === false) {
+            return false;
+        }
     }
 
-    static ckeckName(name) {
-        //TODO аналогично
+    static checkName(name) {
+
+        const pattern = /^[a-z0-9_-]{3,16}$/;
+        return pattern.test(name);
     }
 
     static ckeckPass(pass) {
-        //TODO аналогично
+
+        return pass.length >= 8;
     }
 
     static checkConfirm(pass, conf) {
-        //
+        return (pass === conf);
     }
-    //TODO если state стал true, то не забудь вызвать unsetError и захидить errorElement
-    //TODO если инпут не прошел проверку, то надо утсановить ошибку, то есть текст ошибки, но разхиживтать его не надо, разхидишь только после сабмита
 }

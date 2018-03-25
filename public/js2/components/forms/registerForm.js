@@ -1,11 +1,13 @@
 import Form from './form.js';
 import Input from '../blocks/input.js';
+import Validator from "../../modules/validator.js";
 // validator
 // и какие-то глобальные переменные
 
 export default class RegisterForm extends Form {
     constructor() {
         super();
+        this.state = true;
     }
 
     render() {
@@ -50,11 +52,49 @@ export default class RegisterForm extends Form {
     }
 
     getData() {
-        return {
-            name: this.Name.getData(),
-            email: this.Email.getData(),
-            password: this.Password.getData()
-        };
+
+        const validName = this.Name.getData();
+        const validEmail = this.Email.getData();
+        const validPass = this.Password.getData();
+        const validConfPass = this.ConfirmPassword.getData();
+
+        if (Validator.checkMail(validEmail) === false) {
+            this.state = false;
+            console.log('wrong mail');
+            //TODO: добавить ошибку
+        } else {
+            this.state = true;
+        }
+        if (Validator.checkName(validName) === false) {
+            this.state = false;
+            console.log('wrong name');
+        }
+        else {
+            this.state = true;
+        }
+        if (Validator.ckeckPass(validPass) === false) {
+            this.state = false;
+            console.log('wrong pass');
+        } else {
+            this.state = true;
+        }
+        if (Validator.checkConfirm(validPass, validConfPass) === false) {
+            this.state = false;
+            console.log('Passwords do not match');
+        } else {
+            this.state = true;
+        }
+
+        if (this.state === true) {
+            return {
+                name: this.Name.getData(),
+                email: this.Email.getData(),
+                password: this.Password.getData()
+            };
+        } else {
+            return null;
+        }
+
     }
 
     setOnSubmit(callbackfn) {
@@ -66,23 +106,4 @@ export default class RegisterForm extends Form {
 
 
 
-    validateEmail() {
-        const formState = Validator.checkEmail(this.Email);
-        this.Email.setError(formSate.errorMesage);
-    }
-
-    validatePassword() {
-        const formState = Validator.checkPassword(this.Password);
-        this.Password.setError(formSate.errorMesage);
-    }
-
-    validateName() {
-        const formState = Validator.checkName(this.Name);
-        this.Name.setError(formSate.errorMesage);
-    }
-
-    confirmPassword() {
-        const formState = Validator.confirmPassword(this.Password, this.ConfirmPassword);
-        this.ConfirmPassword.setError(formSate.errorMesage);
-    }
 }

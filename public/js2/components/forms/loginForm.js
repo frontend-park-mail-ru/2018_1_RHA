@@ -1,10 +1,11 @@
 import Form from './form.js';
 import Input from '../blocks/input.js';
 import Button from '../blocks/button.js';
+import Validator from "../../modules/validator.js";
+
 /*
 а еще проимпортить валидатор, и какие-то две переменные
  */
-
 export default class LoginForm extends Form {
     constructor() {
         super();
@@ -52,17 +53,6 @@ export default class LoginForm extends Form {
             ev.preventDefault();
             callbackfn();
         })
-    }
-
-
-    validateEmail() {
-        const formState = Validator.checkEmail(this.Email);
-        this.Email.setError(formState.errorMessage);
-    }
-
-    validatePassword() {
-        const formState = Validator.checkPassword((this.Password));
-        this.Password.setError(formState.errorMessage);
     }
 
 }
