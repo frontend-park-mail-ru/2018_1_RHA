@@ -21,6 +21,13 @@ export default class Button extends Block {
         return this.buttonWrapper;
     }
 
+    hide() {
+        this.buttonWrapper.hidden = true;
+    }
+    show() {
+        this.buttonWrapper.hidden = false;
+    }
+
     setOnClick(callbackfn) {
         this.buttonElement.addEventListener('click', (e) => {
             event.preventDefault();

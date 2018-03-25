@@ -23,6 +23,7 @@ export default class RatingSection extends Section {
             this.rating.removeChild(this.rating.firstChild);
 
             this.page --;
+            this.nextButt.show();
             this.load(this.page);
 
         });
@@ -31,11 +32,19 @@ export default class RatingSection extends Section {
         this.nextButt.setOnClick(() => {
             this.rating.removeChild(this.rating.firstChild);
             this.page ++;
-            this.load(this.page);
+            this.load(this.page, (empty) => {
+                if (empty) {
+                    this.nextButt.hide();
+                    this.lastPage = document.createElement('div');
+                    this.lastPage.innerText = 'This is the last page';
+                    this.rating.insertBefore(this.lastPage, this.rating.firstChild);
+                }
+            });
         });
 
         this.backButt = new Button('button', 'Back', this.rating);
         this.backButt.setOnClick(() => {
+            this.page = 1;
             sectionSwitcher.changeSection('menuSection', root);
         });
 
@@ -44,11 +53,13 @@ export default class RatingSection extends Section {
         return this.rating;
     }
 
-    load(page) {
+    load(page, callbackfn) {
+        console.log(page);
 
         UserController.rating( page, (err, users) => {
             if (err) {
                 console.error(err);
+                callbackfn(true);
                 return;
             }
             console.log(err, users);
