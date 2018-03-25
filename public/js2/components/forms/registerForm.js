@@ -7,7 +7,6 @@ import Validator from "../../modules/validator.js";
 export default class RegisterForm extends Form {
     constructor() {
         super();
-        this.state = true;
     }
 
     render() {
@@ -37,10 +36,18 @@ export default class RegisterForm extends Form {
         });
 
 
-        this.Email.setOnInputChange(() => {});  //заглушки
-        this.Name.setOnInputChange(() => {});
-        this.Password.setOnInputChange(() => {});
-        this.ConfirmPassword.setOnInputChange(() => {});
+        this.Email.setOnInputChange(() => {
+            Validator.checkMail(this.Email);
+        });  //заглушки
+        this.Name.setOnInputChange(() => {
+            Validator.checkName(this.Name);
+        });
+        this.Password.setOnInputChange(() => {
+            Validator.ckeckPass(this.Password);
+        });
+        this.ConfirmPassword.setOnInputChange(() => {
+            Validator.checkConfirm(this.Password, this.ConfirmPassword);
+        });
 
         this.formElement.appendChild(this.Email.render());
         this.formElement.appendChild(this.Name.render());
@@ -53,47 +60,20 @@ export default class RegisterForm extends Form {
 
     getData() {
 
-        const validName = this.Name.getData();
-        const validEmail = this.Email.getData();
-        const validPass = this.Password.getData();
-        const validConfPass = this.ConfirmPassword.getData();
-
-        if (Validator.checkMail(validEmail) === false) {
-            this.state = false;
-            console.log('wrong mail');
-            //TODO: добавить ошибку
-        } else {
-            this.state = true;
-        }
-        if (Validator.checkName(validName) === false) {
-            this.state = false;
-            console.log('wrong name');
-        }
-        else {
-            this.state = true;
-        }
-        if (Validator.ckeckPass(validPass) === false) {
-            this.state = false;
-            console.log('wrong pass');
-        } else {
-            this.state = true;
-        }
-        if (Validator.checkConfirm(validPass, validConfPass) === false) {
-            this.state = false;
-            console.log('Passwords do not match');
-        } else {
-            this.state = true;
-        }
-
-        if (this.state === true) {
+        if (
+            this.Email.getState() &&
+            this.Name.getState() &&
+            this.Password.getState() &&
+            this.ConfirmPassword.getState()
+        ) {
             return {
                 name: this.Name.getData(),
                 email: this.Email.getData(),
                 password: this.Password.getData()
             };
-        } else {
-            return null;
         }
+
+        return null;
 
     }
 
