@@ -23,7 +23,11 @@ class UserController {
     }
 
     static rating(page, callbackfn) {
-        return http.post(route.userAPIMethods.leaderBoard, page, callbackfn);
+        return http.get(route.userAPIMethods.leaderBoard + '/' + page.toString(), callbackfn);
+    }
+
+    static change(userData, callbackfn) {
+        return http.post(route.userAPIMethods.updateUser, userData, callbackfn);
     }
 
 
