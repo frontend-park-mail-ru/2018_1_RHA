@@ -11,6 +11,7 @@ import Bus from "./modules/bus.js";
 
 
 const root = document.getElementById('application');
+console.log(root);
 // const bus = new Bus();
 const router = new Router(root);
 

@@ -16,6 +16,7 @@ export default class Router {
     open(path) {
         debugger;
         const view = this.map[path];
+        console.log(view);
         sectionSwitcher.changeSection(view, this.root);
     }
 
