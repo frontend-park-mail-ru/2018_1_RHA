@@ -1,4 +1,4 @@
-const serverUrl = 'http://rha-backend.herokuapp.com/';
+const serverUrl = 'https://rha-backend.herokuapp.com/';
 //const serverUrl = 'http://localhost:5000/';
 
 /**
