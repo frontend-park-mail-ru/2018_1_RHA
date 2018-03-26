@@ -82,18 +82,7 @@ export default class RatingSection extends Section {
 
             users.then(
                 data => {
-                    const arr=[
-                        {
-                            name: "Petros",
-                            rating: "10"
-                        },
-                        {
-                            name: "Egor",
-                            rating: "9"
-                        }
-                    ];
-
-                    this.test.innerHTML += generateRating({"kaka":arr});
+                    this.test.innerHTML += generateRating({"data":data});
                     Object.keys(data).forEach((key) => {
                         if (key !== 'pages') {
                             const trow = document.createElement('tr');
