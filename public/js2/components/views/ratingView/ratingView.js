@@ -60,9 +60,9 @@ export default class RatingSection extends Section {
 
         this.load(1);
 
-        this.test = document.createElement('div');
+        // this.test = document.createElement('div');
 
-        this.rating.appendChild(this.test);
+        // this.rating.appendChild(this.test);
         return this.rating;
     }
 
@@ -82,34 +82,8 @@ export default class RatingSection extends Section {
 
             users.then(
                 data => {
-                    const arr=[
-                        {
-                            name: "Petros",
-                            rating: "10"
-                        },
-                        {
-                            name: "Egor",
-                            rating: "9"
-                        }
-                    ];
-
-                    this.test.innerHTML += generateRating({"kaka":arr});
-                    Object.keys(data).forEach((key) => {
-                        if (key !== 'pages') {
-                            const trow = document.createElement('tr');
-
-                            const tdname = document.createElement('td');
-                            tdname.textContent = key;
-
-                            const tdrating = document.createElement('td');
-                            tdrating.textContent = data[key];
-
-                            trow.appendChild(tdname);
-                            trow.appendChild(tdrating);
-                            tbody.appendChild(trow);
-                        }
-                    });
-                    this.rating.insertBefore(table, this.rating.firstChild);
+                    this.rating.innerHTML += generateRating({"data":data});
+                    // this.rating.insertBefore(table, this.rating.firstChild);
                     // this.rating.appendChild(table);
                     console.log(data);
                 }
