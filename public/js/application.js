@@ -22,5 +22,6 @@ router.add('/menu', MenuSection);
 router.add('/play', PlaySection);
 
 router.open('/play');
+router.start();
 
 export default router;

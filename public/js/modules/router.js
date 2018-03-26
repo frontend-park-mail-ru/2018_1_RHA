@@ -14,23 +14,7 @@ export default class Router {
     }
 
     open(path) {
-        // const view = this.map[path];
-        // if (!view || view === this.active || !view.allowed()) {
-        //     return this;
-        // }
-        //
-        // if (this.active) {
-        //     this.active.destroy();
-        //     this.active = null;
-        // }
-        //
-        // this.active = view.create();
-        // if (window.location.pathname !== path) {
-        //     window.history.pushState(null, '', path);
-        // }
-        //
-        // return this;
-
+        debugger;
         const view = this.map[path];
         sectionSwitcher.changeSection(view, this.root);
     }
