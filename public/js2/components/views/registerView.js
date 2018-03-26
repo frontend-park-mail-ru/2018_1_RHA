@@ -1,4 +1,4 @@
-import Section from './section.js';
+import Section from './baseView.js';
 import RegisterForm from '../forms/registerForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
@@ -48,11 +48,25 @@ export default class RegisterSection extends Section {
                     return;
                 }
                 console.log(err, resp);
-                UserController.checkAuth( (isAuth) => {
-                    if (isAuth) {
-                        sectionSwitcher.changeSection('menuSection', root); //Что за root? Оно работает, но я не понимаю
+                resp.then(
+                    data => {
+                        switch (data.message) {
+                            case 'SUCCESSFULLY_REGISTERED':
+                                sectionSwitcher.changeSection('menuSection', root);
+                                break;
+                            case 'ALREADY_AUTHENTICATED':
+                                sectionSwitcher.changeSection('menuSection', root);
+                                break;
+                            default:
+                                this.registerForm.Email.setError("Not unique email");
+                        }
                     }
-                });
+                );
+                // UserController.checkAuth( (isAuth) => {
+                //     if (isAuth) {
+                //         sectionSwitcher.changeSection('menuSection', root);
+                //     }
+                // });
             });
 
         });

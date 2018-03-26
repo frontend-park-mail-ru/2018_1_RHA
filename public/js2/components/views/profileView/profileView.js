@@ -1,9 +1,9 @@
-import Section from "./section.js";
-import user from "../../modules/userModel.js";
-import ChangeForm from "../forms/changeForm.js";
-import UserController from "../../modules/userController.js";
-import sectionSwitcher from "../../application.js";
-import Button from "../blocks/button.js";
+import Section from "../baseView.js";
+import user from "../../../modules/userModel.js";
+import ChangeForm from "../../forms/changeForm.js";
+import UserController from "../../../modules/userController.js";
+import sectionSwitcher from "../../../application.js";
+import Button from "../../blocks/button.js";
 
 /**
  * Class represents Section with Profile data and Form
@@ -21,6 +21,8 @@ export default class ProfileSection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
+
+
         this.profileElement = document.createElement('div');
         this.profileTable = document.createElement('table');
 
@@ -69,7 +71,7 @@ export default class ProfileSection extends Section {
                 console.log(err, resp);
                 UserController.checkAuth( (isAuth) => {
                     if (isAuth) {
-                        sectionSwitcher.changeSection('menuSection', root); //Что за root? Оно работает, но я не понимаю
+                        sectionSwitcher.changeSection('menuSection', root);
                     }
                 });
             })

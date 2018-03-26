@@ -13,7 +13,7 @@ export default class Button extends Block {
 
         this.buttonElement = document.createElement('button');
         this.buttonElement.innerHTML = value;
-        this.buttonElement.type = value;
+        this.buttonElement.type = type;
 
         if (parent) {
             parent.appendChild(this.buttonWrapper);

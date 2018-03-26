@@ -1,9 +1,8 @@
 "use strict";
-import Section from "./section.js";
-import sectionSwitcher from '../../application.js';
-import UserController from "../../modules/userController.js";
-import Button from "../blocks/button.js";
-
+import Section from "../baseView.js";
+import sectionSwitcher from '../../../application.js';
+import UserController from "../../../modules/userController.js";
+import Button from "../../blocks/button.js";
 /**
  * Class represents Section with Rating Table
  */
@@ -40,6 +39,7 @@ export default class RatingSection extends Section {
 
         this.nextButt = new Button('button', 'next', this.rating);
         this.nextButt.setOnClick(() => {
+
             this.rating.removeChild(this.rating.firstChild);
             this.page ++;
             this.load(this.page, (empty) => {
@@ -73,30 +73,12 @@ export default class RatingSection extends Section {
                 return;
             }
             console.log(err, users);
-            const table = document.createElement("table");
-            const tbody = document.createElement("tbody");
-            table.appendChild(tbody);
 
             users.then(
                 data => {
-                    Object.keys(data).forEach((key) => {
-                        if (key !== 'pages') {
-                            const trow = document.createElement('tr');
-
-                            const tdname = document.createElement('td');
-                            tdname.textContent = key;
-
-                            const tdrating = document.createElement('td');
-                            tdrating.textContent = data[key];
-
-                            trow.appendChild(tdname);
-                            trow.appendChild(tdrating);
-                            tbody.appendChild(trow);
-                        }
-                    });
-                    this.rating.insertBefore(table, this.rating.firstChild);
-                    // this.rating.appendChild(table);
-                    console.log(data);
+                    this.table = document.createElement('div');
+                    this.table.innerHTML = generateRating({"data": data});
+                    this.rating.insertBefore(this.table, this.rating.firstChild);
                 }
             );
         });

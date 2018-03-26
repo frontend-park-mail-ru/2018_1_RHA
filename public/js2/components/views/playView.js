@@ -1,5 +1,5 @@
 import Button from '../blocks/button.js';
-import Section from './section.js';
+import Section from './baseView.js';
 
 import sectionSwitcher from '../../application.js';
 
@@ -21,7 +21,7 @@ export default class PlaySection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
-        this.playButton = new Button('button', 'Play', );
+        this.playButton = new Button('button', 'Play');
         this.playButton.setOnClick(() => {
             sectionSwitcher.changeSection('modalSection', root);
         });

@@ -1,15 +1,15 @@
 'use strict';
 
-import LoginSection from './components/pages/loginSection.js';
-import RegisterSection from './components/pages/registerSection.js';
-import MenuSection from './components/pages/menuSection.js';
-import ModalSection from './components/pages/modalSection/modalSection.js';
-import PlaySection from './components/pages/playSection.js';
+import LoginSection from './components/views/loginView.js';
+import RegisterSection from './components/views/registerView.js';
+import MenuSection from './components/views/menuView.js';
+import ModalSection from './components/views/modalView/modalView.js';
+import PlaySection from './components/views/playView.js';
 import renderDOM from './components/render/render.js';
 import {sectionSwitcher} from "./modules/sectionSwitcher.js";
 import UserController from './modules/userController.js';
-import RatingSection from "./components/pages/ratingSection.js";
-import ProfileSection from "./components/pages/profileSection.js";
+import RatingSection from "./components/views/ratingView/ratingView.js";
+import ProfileSection from "./components/views/profileView/profileView.js";
 
 
 const loginSection = new LoginSection();

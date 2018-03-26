@@ -1,5 +1,5 @@
 import Button from '../blocks/button.js';
-import Section from './section.js';
+import Section from './baseView.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
 
