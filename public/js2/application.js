@@ -3,13 +3,13 @@
 import LoginSection from './components/views/loginView.js';
 import RegisterSection from './components/views/registerView.js';
 import MenuSection from './components/views/menuView.js';
-import ModalSection from './components/views/modalSection/modalView.js';
+import ModalSection from './components/views/modalView/modalView.js';
 import PlaySection from './components/views/playView.js';
 import renderDOM from './components/render/render.js';
 import {sectionSwitcher} from "./modules/sectionSwitcher.js";
 import UserController from './modules/userController.js';
-import RatingSection from "./components/views/ratingView.js";
-import ProfileSection from "./components/views/profileView.js";
+import RatingSection from "./components/views/ratingView/ratingView.js";
+import ProfileSection from "./components/views/profileView/profileView.js";
 
 
 const loginSection = new LoginSection();

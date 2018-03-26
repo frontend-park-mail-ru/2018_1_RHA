@@ -1,9 +1,8 @@
 "use strict";
-import Section from "./baseView.js";
-import sectionSwitcher from '../../application.js';
-import UserController from "../../modules/userController.js";
-import Button from "../blocks/button.js";
-
+import Section from "../baseView.js";
+import sectionSwitcher from '../../../application.js';
+import UserController from "../../../modules/userController.js";
+import Button from "../../blocks/button.js";
 /**
  * Class represents Section with Rating Table
  */
@@ -21,6 +20,7 @@ export default class RatingSection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
+
         this.rating = document.createElement('div');
         this.rating.innerHTML = "";
 
@@ -60,6 +60,9 @@ export default class RatingSection extends Section {
 
         this.load(1);
 
+        this.test = document.createElement('div');
+
+        this.rating.appendChild(this.test);
         return this.rating;
     }
 
@@ -79,6 +82,18 @@ export default class RatingSection extends Section {
 
             users.then(
                 data => {
+                    const arr=[
+                        {
+                            name: "Petros",
+                            rating: "10"
+                        },
+                        {
+                            name: "Egor",
+                            rating: "9"
+                        }
+                    ];
+
+                    this.test.innerHTML += generateRating({"kaka":arr});
                     Object.keys(data).forEach((key) => {
                         if (key !== 'pages') {
                             const trow = document.createElement('tr');
