@@ -21,7 +21,7 @@ export default class PlaySection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
-        this.playButton = new Button('button', 'Play', );
+        this.playButton = new Button('button', 'Play');
         this.playButton.setOnClick(() => {
             sectionSwitcher.changeSection('modalSection', root);
         });
