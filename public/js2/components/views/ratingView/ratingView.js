@@ -73,17 +73,12 @@ export default class RatingSection extends Section {
                 return;
             }
             console.log(err, users);
-            // const table = document.createElement("table");
-            // const tbody = document.createElement("tbody");
-            // table.appendChild(tbody);
 
             users.then(
                 data => {
                     this.table = document.createElement('div');
                     this.table.innerHTML = generateRating({"data": data});
                     this.rating.insertBefore(this.table, this.rating.firstChild);
-                    // this.rating.insertBefore(table, this.rating.firstChild);
-                    // this.rating.appendChild(table);
                 }
             );
         });
