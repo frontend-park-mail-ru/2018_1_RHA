@@ -18,6 +18,7 @@ export default class Input extends Block {
 
         this.ErrorElement = document.createElement('div');
         this.InputWrapper.appendChild(this.ErrorElement);
+
     }
 
     render() {
@@ -42,6 +43,9 @@ export default class Input extends Block {
             this.ErrorElement.style.display = "none";
         }
     }
+
+
+    //TODO: в качестве коллбека можешь передать методы валидатора, тогда ему будут видны поля этого класса
 
     setOnInputChange(callbackfn) {
         this.InputElement.addEventListener('change', (e) => {

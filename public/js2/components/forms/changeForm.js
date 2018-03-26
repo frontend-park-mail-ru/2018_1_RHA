@@ -1,13 +1,11 @@
 import Form from './form.js';
 import Input from '../blocks/input.js';
+// newInputData
 import Button from '../blocks/button.js';
-import Validator from "../../modules/validator.js";
+// despicable teens
 
-/*
-а еще проимпортить валидатор, и какие-то две переменные
- */
-export default class LoginForm extends Form {
-    constructor() {
+export default class ChangeForm extends Form {
+    constructor(type) {
         super();
     }
 
@@ -20,30 +18,29 @@ export default class LoginForm extends Form {
     }
 
     render() {
+
         this.Email = new Input({
             type: 'text',
             placeholder: 'email'
         });
 
         this.Password = new Input({
-           type: 'password',
-           placeholder: 'password'
+            type: 'password',
+            placeholder: 'password'
         });
 
         this.InputSubmit = new Input({
             type: 'submit',
-            value: 'Sign In'
+            value: 'Send'
         });
 
-        /*
-        навесить слушатели через валидатор
-        this.Email.setOnInputChange();
-        this.Password.setOnInputChange();
-        */
+        this.Email.setOnInputChange(() => {});  //заглушки
+        this.Password.setOnInputChange(() => {});
 
         this.formElement.appendChild(this.Email.render());
         this.formElement.appendChild(this.Password.render());
         this.formElement.appendChild(this.InputSubmit.render());
+
 
         return this.formElement;
     }
@@ -54,5 +51,7 @@ export default class LoginForm extends Form {
             callbackfn();
         })
     }
+
+
 
 }

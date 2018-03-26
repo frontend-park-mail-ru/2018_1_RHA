@@ -27,6 +27,9 @@ export default class RegisterSection extends Section {
 
         this.registerForm.setOnSubmit( () => {
             const userData = this.registerForm.getData();
+            if (userData === null) {
+                return;
+            }
             const jsonUserData = JSON.stringify(userData);
             UserController.register(jsonUserData, (err, resp) => {
                 if (err) {

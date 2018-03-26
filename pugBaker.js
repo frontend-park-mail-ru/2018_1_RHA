@@ -13,5 +13,5 @@ function bake(path, fileName, functionName, jsName)
 }
 
 bake("/js2/components/pages/modalSection/", "modalSection.pug", "generateModal", "modalTemplate.js");
-
+bake("/js2/components/pages/ratingSection/", "ratingTemplate.pug", "generateRating", "ratingTemplate.js");
 console.log("Baked!");

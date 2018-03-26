@@ -12,7 +12,6 @@ class SectionSwitcher {
             renderDOM(this.sections[newSection].render(), rootForElement);
         }
     }
-
 }
 
 const sectionSwitcher = new SectionSwitcher();
