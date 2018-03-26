@@ -12,6 +12,6 @@ function bake(path, fileName, functionName, jsName)
     fs.writeFileSync(fullPath + jsName, templateFunc);
 }
 
-bake("/js2/components/pages/modalSection/", "modalSection.pug", "generateModal", "modalTemplate.js");
-bake("/js2/components/pages/ratingSection/", "ratingTemplate.pug", "generateRating", "ratingTemplate.js");
+bake("/js2/components/Views/modalSection/", "modalSection.pug", "generateModal", "modalTemplate.js");
+bake("/js2/components/Views/ratingSection/", "ratingTemplate.pug", "generateRating", "ratingTemplate.js");
 console.log("Baked!");
