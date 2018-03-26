@@ -32,6 +32,7 @@ export default class Router {
         // return this;
 
         const view = this.map[path];
+        console.log(view);
         sectionSwitcher.changeSection(view, this.root);
     }
 
