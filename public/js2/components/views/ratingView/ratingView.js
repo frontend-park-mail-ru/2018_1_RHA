@@ -29,6 +29,7 @@ export default class RatingSection extends Section {
             if (this.page === 1) {
                 return;
             }
+
             this.rating.removeChild(this.rating.firstChild);
 
             this.page --;
