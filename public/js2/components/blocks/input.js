@@ -1,6 +1,10 @@
 import Block from './block.js';
-
+/** Class representing Input */
 export default class Input extends Block {
+    /**
+     * Creates input
+     * @param {object} data – contains type, value and placeholder
+     */
     constructor(data) {
         super();
 
@@ -21,18 +25,34 @@ export default class Input extends Block {
 
     }
 
+    /**
+     * Returns input DOM element
+     * @return {HTMLDivElement | *}
+     */
     render() {
         return this.InputWrapper;
     }
 
+    /**
+     * For validation process
+     * @return {boolean} – true if valid
+     */
     getState() {
         return this.state;
     }
 
+    /**
+     * Returns input data
+     * @return {string}
+     */
     getData() {
         return this.InputElement.value;
     }
 
+    /**
+     * To set error message or unset error
+     * @param {string} error
+     */
     setError(error) {
         if (error) {
             this.state = false;
@@ -46,7 +66,10 @@ export default class Input extends Block {
 
 
     //TODO: в качестве коллбека можешь передать методы валидатора, тогда ему будут видны поля этого класса
-
+    /**
+     * Defines behaviour on change
+     * @param {function} callbackfn – input data change handler
+     */
     setOnInputChange(callbackfn) {
         this.InputElement.addEventListener('change', (e) => {
            event.preventDefault();

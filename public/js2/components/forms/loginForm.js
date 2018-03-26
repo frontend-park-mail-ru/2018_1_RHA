@@ -3,14 +3,22 @@ import Input from '../blocks/input.js';
 import Button from '../blocks/button.js';
 import Validator from "../../modules/validator.js";
 
-/*
-а еще проимпортить валидатор, и какие-то две переменные
+
+/**
+ * Class representing Login Form
  */
 export default class LoginForm extends Form {
+    /**
+     * Creates generic form
+     */
     constructor() {
         super();
     }
 
+    /**
+     * Return input data of the form
+     * @return {{name: null, email: string, password: string}}
+     */
     getData() {
         return {
             name: null,
@@ -19,6 +27,10 @@ export default class LoginForm extends Form {
         }
     }
 
+    /**
+     * Renders and returns form DOM element
+     * @return {*}
+     */
     render() {
         this.Email = new Input({
             type: 'text',
@@ -35,11 +47,16 @@ export default class LoginForm extends Form {
             value: 'Sign In'
         });
 
-        /*
-        навесить слушатели через валидатор
-        this.Email.setOnInputChange();
-        this.Password.setOnInputChange();
-        */
+
+
+        this.Email.setOnInputChange(() => {
+            Validator.checkMail(this.Email);
+        });
+
+        this.Password.setOnInputChange(() => {
+            Validator.ckeckPass(this.Password);
+        });
+
 
         this.formElement.appendChild(this.Email.render());
         this.formElement.appendChild(this.Password.render());
@@ -48,6 +65,10 @@ export default class LoginForm extends Form {
         return this.formElement;
     }
 
+    /**
+     * Defines behaviour on submit
+     * @param {function} callbackfn – submit handler
+     */
     setOnSubmit(callbackfn) {
         this.formElement.addEventListener('submit', (ev) => {
             ev.preventDefault();

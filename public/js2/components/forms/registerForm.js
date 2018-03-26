@@ -83,7 +83,4 @@ export default class RegisterForm extends Form {
             callbackfn();
         })
     }
-
-
-
 }

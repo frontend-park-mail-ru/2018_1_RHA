@@ -5,12 +5,21 @@ import UserController from "../../modules/userController.js";
 import sectionSwitcher from "../../application.js";
 import Button from "../blocks/button.js";
 
-
+/**
+ * Class represents Section with Profile data and Form
+ */
 export default class ProfileSection extends Section {
+    /**
+     * Creates generic Section
+     */
     constructor() {
         super();
     }
 
+    /**
+     * Renders and returns ProfileSection DOM element
+     * @return {HTMLDivElement | *}
+     */
     render() {
         this.profileElement = document.createElement('div');
         this.profileTable = document.createElement('table');
