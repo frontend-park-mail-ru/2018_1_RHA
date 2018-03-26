@@ -1,4 +1,4 @@
-import Section from "./section.js";
+import Section from "./baseView.js";
 import user from "../../modules/userModel.js";
 import ChangeForm from "../forms/changeForm.js";
 import UserController from "../../modules/userController.js";

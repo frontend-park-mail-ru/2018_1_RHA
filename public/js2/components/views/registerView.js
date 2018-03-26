@@ -1,4 +1,4 @@
-import Section from './section.js';
+import Section from './baseView.js';
 import RegisterForm from '../forms/registerForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';

@@ -1,5 +1,5 @@
-//const serverUrl = 'http://rha-backend.herokuapp.com/';
-const serverUrl = 'http://localhost:5000/';
+const serverUrl = 'http://rha-backend.herokuapp.com/';
+//const serverUrl = 'http://localhost:5000/';
 
 /**
  * Contains methods' paths of user API

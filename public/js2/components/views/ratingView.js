@@ -1,5 +1,5 @@
 "use strict";
-import Section from "./section.js";
+import Section from "./baseView.js";
 import sectionSwitcher from '../../application.js';
 import UserController from "../../modules/userController.js";
 import Button from "../blocks/button.js";
