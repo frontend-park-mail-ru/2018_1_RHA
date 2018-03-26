@@ -14,4 +14,5 @@ function bake(path, fileName, functionName, jsName)
 
 bake("/js/components/views/modalView/", "modalSection.pug", "generateModal", "modalTemplate.js");
 bake("/js/components/views/ratingView/", "rating.pug", "generateRating", "ratingTemplate.js");
+bake("/js/components/views/playView/", "play.pug", "generatePlay", "playTemplate.js");
 console.log("Baked!");

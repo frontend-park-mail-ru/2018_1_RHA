@@ -23,11 +23,16 @@ export default class ModalSection extends Section {
      * Renders and returns ModalSection DOM element
      * @return {HTMLDivElement | *}
      */
-    render() {
+    render(parrent) {
+
         // формы-секции с оберткой-корнем
         this.innerWrapper = document.createElement('div');
         this.innerWrapper.appendChild(this.loginSection.render());
         this.innerWrapper.appendChild(this.registerSection.render());
+
+        if (parrent) {
+            parrent.appendChild(this.innerWrapper);
+        }
 
         // главная обертка
         this.modalElement = document.createElement('div');

@@ -1,7 +1,7 @@
-import Button from '../blocks/button.js';
-import Section from './baseView.js';
-import router from "../../application.js";
-import UserController from "../../modules/userController.js";
+import Button from '../../blocks/button.js';
+import Section from '../baseView.js';
+import router from "../../../application.js";
+import UserController from "../../../modules/userController.js";
 
 /**
  * Class represents Section with main Play button
@@ -34,6 +34,12 @@ export default class PlaySection extends Section {
 
         this.playElement = document.createElement('div');
         this.playElement.appendChild(this.playButton.render());
+
+        //---------ссылка для теста
+        //TODO: ссылка для теста (генерится из шаблона)
+        this.ahref = document.createElement('div');
+        this.ahref.innerHTML += generatePlay();
+        this.playElement.appendChild(this.ahref);
 
         return this.playElement;
     }

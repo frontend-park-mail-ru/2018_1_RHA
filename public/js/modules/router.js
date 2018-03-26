@@ -27,10 +27,11 @@ export default class Router {
         this.root.addEventListener('click', function (evt) {
             if (evt.target.tagName.toLowerCase() === 'a') {
                 evt.preventDefault();
+                window.history.pushState(null, 'link', evt.target.href);
                 this.open(evt.target.pathname);
             }
         }.bind(this));
-
+        console.log(window.location.pathname);
         this.open(window.location.pathname);
     }
 
