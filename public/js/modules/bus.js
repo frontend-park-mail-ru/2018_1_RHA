@@ -4,7 +4,7 @@
  * Модуль event-bus медиатора
  * @module EventBus
  */
-export default class Bus {
+class Bus {
     /**
      * @constructor
      */
@@ -61,4 +61,5 @@ export default class Bus {
     }
 }
 
-// export default new Bus();
+const bus = new Bus();
+export default bus;

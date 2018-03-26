@@ -2,6 +2,7 @@ import Section from './baseView.js';
 import RegisterForm from '../forms/registerForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
+import bus from "../../modules/bus.js";
 
 /**
  * Class represents Section with Registration Form

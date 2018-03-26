@@ -12,7 +12,6 @@ import Bus from "./modules/bus.js";
 
 const root = document.getElementById('application');
 console.log(root);
-// const bus = new Bus();
 const router = new Router(root);
 
 router.add('/register', RegisterSection);
@@ -23,6 +22,4 @@ router.add('/menu', MenuSection);
 router.add('/play', PlaySection);
 
 router.open('/play');
-router.start();
-
 export default router;

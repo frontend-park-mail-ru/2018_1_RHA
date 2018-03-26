@@ -2,6 +2,7 @@ import Button from '../blocks/button.js';
 import Section from './baseView.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
+import bus from "../../modules/bus.js";
 
 /**
  * Class represents Section with Menu buttons
@@ -58,5 +59,27 @@ export default class MenuSection extends Section {
         this.menu.appendChild(this.logoutButton.render());
 
         return this.menu;
+    }
+
+    sign() {
+        bus.on('user:authorized', ((data) => {
+            this.show();
+        }));
+
+        bus.on('user:unauthorized', ((data) => {
+            this.hide();
+        }));
+
+        bus.on('menu:hide', ((data) => {
+            this.hide();
+        }));
+    }
+
+    hide() {
+        this.menu.setAttribute("hidden", "hidden");
+    }
+
+    show() {
+        this.menu.removeAttribute("hidden");
     }
 }
