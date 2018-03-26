@@ -41,7 +41,7 @@ export default class RatingSection extends Section {
         this.nextButt = new Button('button', 'next', this.rating);
         this.nextButt.setOnClick(() => {
 
-            //this.rating.removeChild(this.rating.firstChild);
+            this.rating.removeChild(this.rating.firstChild);
             this.page ++;
             this.load(this.page, (empty) => {
                 if (empty) {
@@ -80,7 +80,9 @@ export default class RatingSection extends Section {
 
             users.then(
                 data => {
-                    this.rating.innerHTML += generateRating({"data":data});
+                    this.table = document.createElement('div');
+                    this.table.innerHTML = generateRating({"data": data});
+                    this.rating.insertBefore(this.table, this.rating.firstChild);
                     // this.rating.insertBefore(table, this.rating.firstChild);
                     // this.rating.appendChild(table);
                 }
