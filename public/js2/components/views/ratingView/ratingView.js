@@ -20,7 +20,6 @@ export default class RatingSection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
-
         this.rating = document.createElement('div');
         this.rating.innerHTML = "";
 
@@ -40,7 +39,8 @@ export default class RatingSection extends Section {
 
         this.nextButt = new Button('button', 'next', this.rating);
         this.nextButt.setOnClick(() => {
-            this.rating.removeChild(this.rating.firstChild);
+
+            //this.rating.removeChild(this.rating.firstChild);
             this.page ++;
             this.load(this.page, (empty) => {
                 if (empty) {
@@ -60,9 +60,6 @@ export default class RatingSection extends Section {
 
         this.load(1);
 
-        this.test = document.createElement('div');
-
-        this.rating.appendChild(this.test);
         return this.rating;
     }
 
@@ -76,31 +73,15 @@ export default class RatingSection extends Section {
                 return;
             }
             console.log(err, users);
-            const table = document.createElement("table");
-            const tbody = document.createElement("tbody");
-            table.appendChild(tbody);
+            // const table = document.createElement("table");
+            // const tbody = document.createElement("tbody");
+            // table.appendChild(tbody);
 
             users.then(
                 data => {
-                    this.test.innerHTML += generateRating({"data":data});
-                    Object.keys(data).forEach((key) => {
-                        if (key !== 'pages') {
-                            const trow = document.createElement('tr');
-
-                            const tdname = document.createElement('td');
-                            tdname.textContent = key;
-
-                            const tdrating = document.createElement('td');
-                            tdrating.textContent = data[key];
-
-                            trow.appendChild(tdname);
-                            trow.appendChild(tdrating);
-                            tbody.appendChild(trow);
-                        }
-                    });
-                    this.rating.insertBefore(table, this.rating.firstChild);
+                    this.rating.innerHTML += generateRating({"data":data});
+                    // this.rating.insertBefore(table, this.rating.firstChild);
                     // this.rating.appendChild(table);
-                    console.log(data);
                 }
             );
         });
