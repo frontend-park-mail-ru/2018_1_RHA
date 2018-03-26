@@ -2,14 +2,24 @@
 import Section from "./section.js";
 import sectionSwitcher from '../../application.js';
 import UserController from "../../modules/userController.js";
-import Button from "../blocks/button.js";;
+import Button from "../blocks/button.js";
 
+/**
+ * Class represents Section with Rating Table
+ */
 export default class RatingSection extends Section {
+    /**
+     * Creates generic Section
+     */
     constructor() {
         super();
         this.page = 1;
     }
 
+    /**
+     * Renders and returns RaringSection DOM element
+     * @return {HTMLDivElement | *}
+     */
     render() {
         this.rating = document.createElement('div');
         this.rating.innerHTML = "";

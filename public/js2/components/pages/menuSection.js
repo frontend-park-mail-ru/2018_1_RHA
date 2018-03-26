@@ -3,11 +3,21 @@ import Section from './section.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
 
+/**
+ * Class represents Section with Menu buttons
+ */
 export default class MenuSection extends Section {
+    /**
+     * Creates generic section
+     */
     constructor(){
         super();
     }
 
+    /**
+     * Renders and returns MenuSection DOM element
+     * @return {HTMLDivElement | *}
+     */
     render() {
         this.singleplayerButton = new Button('button', 'Singleplayer');
         this.multiplayerButton = new Button('button', 'Multiplayer');

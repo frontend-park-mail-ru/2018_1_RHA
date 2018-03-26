@@ -3,7 +3,14 @@ import RegisterForm from '../forms/registerForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
 
+/**
+ * Class represents Section with Registration Form
+ */
 export default class RegisterSection extends Section {
+    /**
+     * Creates generic Section and wraps into Parent element
+     * @param parent
+     */
     constructor(parent) {
         super();
         if (parent) {
@@ -12,6 +19,10 @@ export default class RegisterSection extends Section {
         }
     }
 
+    /**
+     * Renders and returns RegisterSection DOM element
+     * @return {HTMLDivElement}
+     */
     render() {
         this.formHeader = document.createElement('h2');
         this.formHeader.innerText = 'Sign Up';
