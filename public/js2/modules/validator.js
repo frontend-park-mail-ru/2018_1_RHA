@@ -1,5 +1,12 @@
+/**
+ * Class represents set of tools to validate forms
+ */
 export default class Validator {
 
+    /**
+     * Validation of Email input
+     * @param emailElem
+     */
     static checkMail(emailElem) {
 
         const email = emailElem.getData();
@@ -11,6 +18,10 @@ export default class Validator {
         }
     }
 
+    /**
+     * Validation of Name input
+     * @param nameElem
+     */
     static checkName(nameElem) {
         const name = nameElem.getData();
         const pattern = /^[a-z0-9_-]{3,16}$/;
@@ -21,6 +32,10 @@ export default class Validator {
         }
     }
 
+    /**
+     * Validation of Password input
+     * @param passElem
+     */
     static ckeckPass(passElem) {
         const pass = passElem.getData();
         if (pass.length < 8) {
@@ -30,6 +45,11 @@ export default class Validator {
         }
     }
 
+    /**
+     * Validation of PasswordConfirm input
+     * @param passElem
+     * @param confElem
+     */
     static checkConfirm(passElem, confElem) {
         if (passElem.getData() !== confElem.getData()) {
             confElem.setError("passwords do not match");

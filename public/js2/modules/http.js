@@ -1,6 +1,15 @@
 import config from '../conf/route.js';
 
+/**
+ * Class represents interface for working with HTTP
+ */
 class HttpService {
+    /**
+     * GET request
+     * @param url
+     * @param  {function} callbackfn
+     * @return {PromiseLike<T> | Promise<T>}
+     */
     static get(url, callbackfn) {
          return this.request('GET', url)
             .then (
@@ -19,6 +28,13 @@ class HttpService {
             )
     }
 
+    /**
+     * POST request
+     * @param url
+     * @param body
+     * @param  {function} callbackfn
+     * @return {PromiseLike<T> | Promise<T>}
+     */
     static post(url, body, callbackfn) {
         return this.request('POST', url, body)
             .then (
@@ -40,7 +56,13 @@ class HttpService {
             )
     }
 
-
+    /**
+     * Generic request
+     * @param requestMethod
+     * @param url
+     * @param body
+     * @return {Promise<Response>}
+     */
     static request(requestMethod, url, body) {
         const headers = new Headers();
 

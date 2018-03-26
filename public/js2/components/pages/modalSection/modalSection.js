@@ -4,14 +4,25 @@ import Button from "../../blocks/button.js";
 
 import sectionSwitcher from '../../../application.js';
 
-
+/**
+ * Class represents Section with Register and Login Sections
+ */
 export default class ModalSection extends Section {
+    /**
+     * Creates Generic section and wraps login and register sections
+     * @param lSection – login section
+     * @param rSection – register section
+     */
     constructor(lSection, rSection) {
         super();
         this.loginSection = lSection;
         this.registerSection = rSection;
     }
 
+    /**
+     * Renders and returns ModalSection DOM element
+     * @return {HTMLDivElement | *}
+     */
     render() {
         // формы-секции с оберткой-корнем
         this.innerWrapper = document.createElement('div');

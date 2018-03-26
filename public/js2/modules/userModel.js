@@ -1,6 +1,12 @@
 import UserController from "./userController.js";
 
+/**
+ * Class represents Model of User to store and manage user data
+ */
 class User {
+    /**
+     * Creates user and loads user data
+     */
     constructor() {
         UserController.loadMe((err, me) => {
             if (err) {
