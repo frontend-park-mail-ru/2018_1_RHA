@@ -62,11 +62,11 @@ export default class RegisterSection extends Section {
                         }
                     }
                 );
-                // UserController.checkAuth( (isAuth) => {
-                //     if (isAuth) {
-                //         sectionSwitcher.changeSection('menuSection', root);
-                //     }
-                // });
+                UserController.checkAuth( (isAuth) => {
+                    if (isAuth) {
+                        // sectionSwitcher.changeSection('menuSection', root);
+                    }
+                });
             });
 
         });

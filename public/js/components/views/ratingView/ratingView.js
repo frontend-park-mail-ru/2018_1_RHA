@@ -88,6 +88,5 @@ export default class RatingSection extends Section {
                 }
             );
         });
-
     }
 }

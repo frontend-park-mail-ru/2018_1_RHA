@@ -16,13 +16,17 @@ export default class LoginSection extends Section {
      * Renders and returns LoginSection DOM element
      * @return {HTMLDivElement | *}
      */
-    render() {
+    render(parent) {
         this.formHeader = document.createElement('h2');
         this.formHeader.innerText = 'Sign In';
 
         this.loginForm = new LoginForm();
 
         this.login = document.createElement('div');
+        if (parent) {
+            parent.appendChild(this.login);
+        }
+
         this.login.appendChild(this.formHeader);
         this.login.appendChild(this.loginForm.render());
         this.loginForm.setOnSubmit(() => {

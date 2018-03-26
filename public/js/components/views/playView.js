@@ -1,7 +1,7 @@
 import Button from '../blocks/button.js';
 import Section from './baseView.js';
-
-import sectionSwitcher from '../../application.js';
+import router from "../../application.js";
+import UserController from "../../modules/userController.js";
 
 /**
  * Class represents Section with main Play button
@@ -23,7 +23,13 @@ export default class PlaySection extends Section {
     render() {
         this.playButton = new Button('button', 'Play');
         this.playButton.setOnClick(() => {
-            sectionSwitcher.changeSection('modalSection', root);
+            UserController.checkAuth((isAuthed) => {
+                if (isAuthed) {
+                    router.open('/menu');
+                } else {
+                    router.open('/login');
+                }
+            })
         });
 
         this.playElement = document.createElement('div');
