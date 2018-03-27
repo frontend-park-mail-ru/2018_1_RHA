@@ -3,6 +3,8 @@ import RegisterForm from '../forms/registerForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
 import bus from "../../modules/bus.js";
+import Button from "../blocks/button.js";
+import router from "../../application.js";
 
 /**
  * Class represents Section with Registration Form
@@ -36,6 +38,12 @@ export default class RegisterSection extends Section {
 
         this.register.appendChild(this.formHeader);
         this.register.appendChild(this.registerForm.render());
+
+        this.backLink = document.createElement('a');
+        this.backLink.setAttribute('href', '/landing');
+        this.backLink.innerText = 'Back to menu';
+
+        this.register.appendChild(this.backLink);
 
         this.registerForm.setOnSubmit( () => {
             const userData = this.registerForm.getData();

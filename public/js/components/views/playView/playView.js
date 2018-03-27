@@ -2,7 +2,6 @@ import Button from '../../blocks/button.js';
 import Section from '../baseView.js';
 import router from "../../../application.js";
 import UserController from "../../../modules/userController.js";
-import Link from "../../blocks/link/link.js";
 
 /**
  * Class represents Section with main Play button
@@ -22,27 +21,29 @@ export default class PlaySection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
-        this.playButton = new Button('button', 'Play');
-        this.playButton.setOnClick(() => {
-            UserController.checkAuth((isAuthed) => {
-                if (isAuthed) {
-                    router.open('/menu');
-                } else {
-                    router.open('/login');
-                }
-            })
-        });
+        // this.playButton = new Button('button', 'Play');
+        // this.playButton.setOnClick(() => {
+        //     UserController.checkAuth((isAuthed) => {
+        //         if (isAuthed) {
+        //             router.open('/menu');
+        //         } else {
+        //             router.open('/login');
+        //         }
+        //     })
+        // });
+        //
+         this.playElement = document.createElement('div');
+        // this.playElement.appendChild(this.playButton.render());
 
-        this.playElement = document.createElement('div');
-        this.playElement.appendChild(this.playButton.render());
-        this.playButton.appendChild(new Link('/login', 'LOGIN').render());
+        this.attrs = {
+            title: 'Play',
+            href: '/landing'
+        };
+
 
         //---------ссылка для теста
         //TODO: ссылка для теста (генерится из шаблона)
-        this.ahref = document.createElement('div');
-        this.ahref.innerHTML += generatePlay();
-        this.playElement.appendChild(this.ahref);
-
+        this.playElement.innerHTML = generatePlay({'attrs': this.attrs});
         return this.playElement;
     }
 }
