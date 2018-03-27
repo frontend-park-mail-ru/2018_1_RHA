@@ -2,6 +2,7 @@ import Section from './baseView.js';
 import LoginForm from '../forms/loginForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
+import Link from "../blocks/link/link.js";
 
 /** Class represents section with Login Form */
 export default class LoginSection extends Section {
@@ -27,6 +28,7 @@ export default class LoginSection extends Section {
             parent.appendChild(this.login);
         }
 
+        this.login.appendChild(new Link("play", "BACK").render());
         this.login.appendChild(this.formHeader);
         this.login.appendChild(this.loginForm.render());
         this.loginForm.setOnSubmit(() => {

@@ -11,7 +11,6 @@ import Bus from "./modules/bus.js";
 
 
 const root = document.getElementById('application');
-console.log(root);
 const router = new Router(root);
 
 router.add('/register', RegisterSection);
@@ -20,8 +19,7 @@ router.add('/rating', RatingSection);
 router.add('/login', LoginSection);
 router.add('/menu', MenuSection);
 router.add('/', PlaySection);
-//outer.open('/menu');
+
+// router.open('/play');
 router.start();
 export default router;
-
-//TODO: необходимо переделать все кнопки на теги "а" с хрефами

@@ -10,7 +10,6 @@ export default class Button extends Block {
     constructor(type, value, parent) {
         super();
         this.buttonWrapper = document.createElement('div');
-
         this.buttonElement = document.createElement('button');
         this.buttonElement.innerHTML = value;
         this.buttonElement.type = type;

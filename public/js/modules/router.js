@@ -25,7 +25,7 @@ export default class Router {
         }.bind(this));
 
         this.root.addEventListener('click', function (evt) {
-            if (evt.target.tagName.toLowerCase() === 'a') {
+            if (evt.target.tagName.toLowerCase() === 'button') {
                 evt.preventDefault();
                 window.history.pushState(null, 'link', evt.target.href);
                 this.open(evt.target.pathname);
