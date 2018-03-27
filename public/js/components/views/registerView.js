@@ -51,32 +51,37 @@ export default class RegisterSection extends Section {
                 return;
             }
             const jsonUserData = JSON.stringify(userData);
-            UserController.register(jsonUserData, (err, resp) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log(err, resp);
-                resp.then(
-                    data => {
-                        switch (data.message) {
-                            case 'SUCCESSFULLY_REGISTERED':
-                                sectionSwitcher.changeSection('menuSection', root);
-                                break;
-                            case 'ALREADY_AUTHENTICATED':
-                                sectionSwitcher.changeSection('menuSection', root);
-                                break;
-                            default:
-                                this.registerForm.Email.setError("Not unique email");
-                        }
-                    }
-                );
-                UserController.checkAuth( (isAuth) => {
-                    if (isAuth) {
-                        // sectionSwitcher.changeSection('menuSection', root);
-                    }
-                });
-            });
+            bus.emit("user:signup", jsonUserData);
+            bus.on("not_unique", (error) => {
+                this.registerForm.Email.setError(error.payload);
+            })
+
+            // UserController.register(jsonUserData, (err, resp) => {
+            //     if (err) {
+            //         console.log(err);
+            //         return;
+            //     }
+            //     console.log(err, resp);
+            //     resp.then(
+            //         data => {
+            //             switch (data.message) {
+            //                 case 'SUCCESSFULLY_REGISTERED':
+            //                     sectionSwitcher.changeSection('menuSection', root);
+            //                     break;
+            //                 case 'ALREADY_AUTHENTICATED':
+            //                     sectionSwitcher.changeSection('menuSection', root);
+            //                     break;
+            //                 default:
+            //                     this.registerForm.Email.setError("Not unique email");
+            //             }
+            //         }
+            //     );
+            //     UserController.checkAuth( (isAuth) => {
+            //         if (isAuth) {
+            //             // sectionSwitcher.changeSection('menuSection', root);
+            //         }
+            //     });
+            // });
 
         });
 

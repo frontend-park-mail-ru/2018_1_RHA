@@ -16,6 +16,7 @@ export default class Router {
     open(path) {
         const view = this.map[path];
         console.log(view);
+        window.history.pushState(null, 'link', path);
         sectionSwitcher.changeSection(view, this.root);
     }
 
@@ -25,7 +26,7 @@ export default class Router {
         }.bind(this));
 
         this.root.addEventListener('click', function (evt) {
-            if (evt.target.tagName.toLowerCase() === 'button') {
+            if (evt.target.tagName.toLowerCase() === 'a') {
                 evt.preventDefault();
                 window.history.pushState(null, 'link', evt.target.href);
                 this.open(evt.target.pathname);

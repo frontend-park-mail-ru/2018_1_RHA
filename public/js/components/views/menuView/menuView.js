@@ -22,14 +22,14 @@ export default class MenuSection extends Section {
     render() {
         this.menu = document.createElement('div');
         this.attrs =[];
-        UserController.checkAuth( (isAuth) => {
-            if (!isAuth) {
-                // sectionSwitcher.changeSection('playSection', root); // обернуть кнопку секцией
-
-            } else {
-
-            }
-        });
+        // UserController.checkAuth( (isAuth) => {
+        //     if (!isAuth) {
+        //         // sectionSwitcher.changeSection('playSection', root); // обернуть кнопку секцией
+        //
+        //     } else {
+        //
+        //     }
+        // });
 
         // this.singleplayerButton = new Button('button', 'Singleplayer');
         // this.multiplayerButton = new Button('button', 'Multiplayer');
@@ -71,10 +71,19 @@ export default class MenuSection extends Section {
             {
                 title: "rating",
                 href: '/rating'
-            }
+            },
+
         ];
 
+        this.logout = document.createElement('a');
+        this.logout.setAttribute('href', '/');
+        this.logout.innerText = 'logout';
+        this.logout.addEventListener('click', (e) => {
+            e.preventDefault();
+            bus.emit('logout', null);
+        });
         this.menu.innerHTML = generateMenu({'attrs': this.attrs});
+        this.menu.appendChild(this.logout);
         return this.menu;
     }
 

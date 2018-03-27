@@ -61,5 +61,4 @@ class Bus {
     }
 }
 
-const bus = new Bus();
-export default bus;
+export default new Bus();

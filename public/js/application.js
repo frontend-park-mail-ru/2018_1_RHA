@@ -18,10 +18,15 @@ router.add('/register', RegisterSection);
 // router.add('/profile', ProfileSection);
 // router.add('/rating', RatingSection);
 router.add('/login', LoginSection);
-//router.add('/menu', MenuSection);
+router.add('/menu', MenuSection);
 router.add('/', PlaySection);
 router.add('/landing', ModalView);
-//debugger;
-//router.open('/menu');
 router.start();
 export default router;
+
+//TODO: проверка на авторизацию
+
+//TODO: дописать в меню кнопки
+
+//TODO: profile, rating
+
