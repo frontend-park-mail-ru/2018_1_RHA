@@ -15,6 +15,8 @@ export default class Router {
 
     open(path) {
         const view = this.map[path];
+        if (view.allowed === false)
+            return;
         window.history.pushState(null, 'link', path);
         sectionSwitcher.changeSection(view, this.root);
     }
@@ -34,5 +36,5 @@ export default class Router {
         console.log(window.location.pathname);
         this.open(window.location.pathname);
     }
-
 }
+//TODO может как-то переделаем роутер, чтобы он хранил объект класса

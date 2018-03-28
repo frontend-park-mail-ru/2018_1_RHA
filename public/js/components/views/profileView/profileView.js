@@ -4,6 +4,7 @@ import ChangeForm from "../../forms/changeForm.js";
 import UserController from "../../../modules/userController.js";
 import sectionSwitcher from "../../../application.js";
 import Button from "../../blocks/button.js";
+import bus from "../../../modules/bus.js";
 
 /**
  * Class represents Section with Profile data and Form
@@ -14,6 +15,7 @@ export default class ProfileSection extends Section {
      */
     constructor() {
         super();
+        this.allowed = false;
     }
 
     /**
@@ -21,13 +23,8 @@ export default class ProfileSection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
-
-
         this.profileElement = document.createElement('div');
         this.profileTable = document.createElement('table');
-
-
-
         this.trowMail = document.createElement('tr');
             this.tdKeyMail = document.createElement('td');
             this.tdKeyMail.textContent = 'email: ';
@@ -76,8 +73,18 @@ export default class ProfileSection extends Section {
                 });
             })
         });
-
+        this.sign();
         return this.profileElement;
         //TODO: сделать загрузку аватара
+        //TODO: а еще перевести это в шаблон!!!
+    }
+    sign() {
+        bus.on('user:authorized', () => {
+            this.allowed = true;
+        });
+
+        bus.on('user:unauthorized', () => {
+            this.allowed = false;
+        });
     }
 }

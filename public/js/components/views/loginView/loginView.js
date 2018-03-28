@@ -1,7 +1,5 @@
 import Section from '../baseView.js';
 import LoginForm from '../../forms/loginForm.js';
-import UserController from '../../../modules/userController.js';
-import sectionSwitcher from '../../../application.js';
 import bus from "../../../modules/bus.js";
 
 /** Class represents section with Login Form */
@@ -11,6 +9,7 @@ export default class LoginSection extends Section {
      */
     constructor() {
         super();
+        this.allowed = true;
     }
 
     /**
@@ -39,26 +38,24 @@ export default class LoginSection extends Section {
             const jsonUserData = JSON.stringify(userData);
             console.log(jsonUserData);
             bus.emit('user:login', jsonUserData);
-            bus.on('alreadyAuth', (error) => {
-                alert(error.payload);
-            });
-            bus.on('wrong', (error) => {
-                this.loginForm.Email.setError(error.payload);
-            })
-            // UserController.login(jsonUserData, (err, resp) => {
-            //     if (err) {
-            //         console.error(err);
-            //         return;
-            //     }
-            //     console.log(err, resp);
-            //     UserController.checkAuth( (isAuth) => {
-            //         if (isAuth) {
-            //             sectionSwitcher.changeSection('menuSection', root);
-            //         }
-            //     })
-            // })
         });
-
+        this.sign();
         return this.login;
+    }
+
+    sign() {
+        bus.on('alreadyAuth', (error) => {
+            alert(error.payload);
+        });
+        bus.on('wrong', (error) => {
+            this.loginForm.Email.setError(error.payload);
+        });
+        bus.on('user:authorized', ((data) => {
+            this.allowed = true;
+        }));
+
+        bus.on('user:unauthorized', ((data) => {
+            this.allowed = false;
+        }));
     }
 }

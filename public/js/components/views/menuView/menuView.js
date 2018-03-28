@@ -1,8 +1,6 @@
-import Button from '../../blocks/button.js';
 import Section from '../baseView.js';
-import UserController from '../../../modules/userController.js';
-import sectionSwitcher from '../../../application.js';
 import bus from "../../../modules/bus.js";
+import router from "../../../application.js";
 
 /**
  * Class represents Section with Menu buttons
@@ -13,6 +11,7 @@ export default class MenuSection extends Section {
      */
     constructor(){
         super();
+        this.allowed = false;
     }
 
     /**
@@ -21,47 +20,6 @@ export default class MenuSection extends Section {
      */
     render() {
         this.menu = document.createElement('div');
-        this.attrs =[];
-        // UserController.checkAuth( (isAuth) => {
-        //     if (!isAuth) {
-        //         // sectionSwitcher.changeSection('playSection', root); // обернуть кнопку секцией
-        //
-        //     } else {
-        //
-        //     }
-        // });
-
-        // this.singleplayerButton = new Button('button', 'Singleplayer');
-        // this.multiplayerButton = new Button('button', 'Multiplayer');
-        //
-        // this.profileButton = new Button('button', 'Profile');
-        // this.profileButton.setOnClick(() => {
-        //     sectionSwitcher.changeSection('profileSection', root);
-        // });
-        //
-        // this.leaderboardButton = new Button('button', 'Leaderboard');
-        // this.leaderboardButton.setOnClick(() => {
-        //     sectionSwitcher.changeSection('ratingSection', root);
-        // });
-        //
-        // this.logoutButton = new Button('button', 'Log Out');
-        // this.logoutButton.setOnClick(() => {
-        //     UserController.logout( (err, resp ) => {
-        //         if (err) {
-        //             console.error(err);
-        //             return;
-        //         }
-        //         console.log(err, resp);
-        //
-        //     })
-        // });
-        //
-        // this.menu = document.createElement('div');
-        // this.menu.appendChild(this.singleplayerButton.render());
-        // this.menu.appendChild(this.multiplayerButton.render());
-        // this.menu.appendChild(this.profileButton.render());
-        // this.menu.appendChild(this.leaderboardButton.render());
-        // this.menu.appendChild(this.logoutButton.render());
         this.attrs = [
             {
                 title: "singleplayer",
@@ -80,7 +38,6 @@ export default class MenuSection extends Section {
                 href: '/rating'
             },
         ];
-
         this.logout = document.createElement('a');
         this.logout.setAttribute('href', '/');
         this.logout.innerText = 'logout';
@@ -96,11 +53,12 @@ export default class MenuSection extends Section {
 
     sign() {
         bus.on('user:authorized', ((data) => {
-            this.show();
+            this.allowed = true;
+            router.open('/menu');
         }));
 
         bus.on('user:unauthorized', ((data) => {
-            this.hide();
+            this.allowed = false;
         }));
 
         bus.on('menu:hide', ((data) => {
@@ -110,9 +68,5 @@ export default class MenuSection extends Section {
 
     hide() {
         this.menu.setAttribute("hidden", "hidden");
-    }
-
-    show() {
-        this.menu.removeAttribute("hidden");
     }
 }

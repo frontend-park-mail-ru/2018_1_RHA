@@ -4,7 +4,7 @@ import bus from "./bus.js";
 /**
  * Class represents Model of User to store and manage user data
  */
-class User {
+export default class User {
     /**
      * Creates user and loads user data
      */
@@ -36,7 +36,3 @@ class User {
         });
     }
 }
-
-const user = new User();
-
-export default user;

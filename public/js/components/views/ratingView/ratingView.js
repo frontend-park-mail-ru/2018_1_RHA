@@ -3,6 +3,7 @@ import Section from "../baseView.js";
 import sectionSwitcher from '../../../application.js';
 import UserController from "../../../modules/userController.js";
 import Button from "../../blocks/button.js";
+import bus from "../../../modules/bus.js";
 /**
  * Class represents Section with Rating Table
  */
@@ -13,6 +14,7 @@ export default class RatingSection extends Section {
     constructor() {
         super();
         this.page = 1;
+        this.allowed = false;
     }
 
     /**
@@ -60,7 +62,7 @@ export default class RatingSection extends Section {
         });
 
         this.load(1);
-
+        this.sign();
         return this.rating;
     }
 
@@ -82,6 +84,15 @@ export default class RatingSection extends Section {
                     this.rating.insertBefore(this.table, this.rating.firstChild);
                 }
             );
+        });
+    }
+
+    sign() {
+        bus.on('user:authorized', () => {
+            this.allowed = true;
+        });
+        bus.on('user:unauthorized', () => {
+            this.allowed = false;
         });
     }
 }

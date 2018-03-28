@@ -10,25 +10,23 @@ import ModalView from './components/views/modalView/modalView.js';
 import Router from "./modules/router.js";
 import bus from "./modules/bus.js";
 import userController from "./modules/userController.js";
-import user from "./modules/userModel.js";
-
+import User from "./modules/userModel.js";
 
 const root = document.getElementById('application');
 const router = new Router(root);
 //
 router.add('/register', RegisterSection);
-// router.add('/profile', ProfileSection);
-// router.add('/rating', RatingSection);
+router.add('/profile', ProfileSection);
+router.add('/rating', RatingSection);
 router.add('/login', LoginSection);
 router.add('/menu', MenuSection);
 router.add('/', PlaySection);
 router.add('/landing', ModalView);
-
 router.start();
 
 export default router;
 
-bus.emit('user:authorized', null);
+const user = new User();
 
 //TODO: проверка на авторизацию
 

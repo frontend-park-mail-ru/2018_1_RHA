@@ -1,7 +1,6 @@
-import Button from '../../blocks/button.js';
 import Section from '../baseView.js';
+import bus from "../../../modules/bus.js";
 import router from "../../../application.js";
-import UserController from "../../../modules/userController.js";
 
 /**
  * Class represents Section with main Play button
@@ -14,6 +13,7 @@ export default class PlaySection extends Section {
     constructor(parent) {
         super();
         this.parent = parent;
+        this.allowed = true;
     }
 
     /**
@@ -21,29 +21,19 @@ export default class PlaySection extends Section {
      * @return {HTMLDivElement | *}
      */
     render() {
-        // this.playButton = new Button('button', 'Play');
-        // this.playButton.setOnClick(() => {
-        //     UserController.checkAuth((isAuthed) => {
-        //         if (isAuthed) {
-        //             router.open('/menu');
-        //         } else {
-        //             router.open('/login');
-        //         }
-        //     })
-        // });
-        //
-         this.playElement = document.createElement('div');
-        // this.playElement.appendChild(this.playButton.render());
-
+        this.playElement = document.createElement('div');
         this.attrs = {
             title: 'Play',
             href: '/landing'
         };
-
-
         //---------ссылка для теста
         //TODO: ссылка для теста (генерится из шаблона)
         this.playElement.innerHTML = generatePlay({'attrs': this.attrs});
+        this.sign();
         return this.playElement;
+    }
+
+    sign() {
+
     }
 }
