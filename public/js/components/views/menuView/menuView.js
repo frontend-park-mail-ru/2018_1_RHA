@@ -64,15 +64,21 @@ export default class MenuSection extends Section {
         // this.menu.appendChild(this.logoutButton.render());
         this.attrs = [
             {
+                title: "singleplayer",
+                href: '#'
+            },
+            {
+                title: "multiplayer",
+                href: '#'
+            },
+            {
                 title: "profile",
                 href: '/profle'
             },
-
             {
                 title: "rating",
                 href: '/rating'
             },
-
         ];
 
         this.logout = document.createElement('a');
@@ -84,6 +90,7 @@ export default class MenuSection extends Section {
         });
         this.menu.innerHTML = generateMenu({'attrs': this.attrs});
         this.menu.appendChild(this.logout);
+        this.sign();
         return this.menu;
     }
 

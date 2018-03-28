@@ -15,7 +15,6 @@ export default class Router {
 
     open(path) {
         const view = this.map[path];
-        console.log(view);
         window.history.pushState(null, 'link', path);
         sectionSwitcher.changeSection(view, this.root);
     }

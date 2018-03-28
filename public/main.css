@@ -65,3 +65,18 @@
     /*user-select: none;*/
     /*z-index: 1;*/
 /*}*/
+
+a {
+    text-decoration: none;
+    border: solid;
+    width: 200px;
+    margin-bottom: 20%;
+}
+
+a:hover {
+    color: red;
+}
+
+li {
+    margin: 1%;
+}
