@@ -9,12 +9,12 @@ export default class Router {
     }
 
     add(path, View) {
-        this.map[path] = new View().render(this.root);
+        this.map[path] = new View(this.root);
         return this;
     }
 
     open(path) {
-        const view = this.map[path];
+        const view = this.map[path].render();
         if (view.allowed === false)
             return;
         window.history.pushState(null, 'link', path);
