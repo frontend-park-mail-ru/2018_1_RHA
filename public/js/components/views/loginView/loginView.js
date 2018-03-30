@@ -10,6 +10,7 @@ export default class LoginSection extends Section {
     constructor() {
         super();
         this.allowed = true;
+        this.sign();
     }
 
     /**
@@ -39,7 +40,6 @@ export default class LoginSection extends Section {
             console.log(jsonUserData);
             bus.emit('user:login', jsonUserData);
         });
-        this.sign();
         return this.login;
     }
 

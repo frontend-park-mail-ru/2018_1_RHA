@@ -44,25 +44,6 @@ export default class ModalSection extends Section {
 
         this.modalElement.appendChild(this.backLink);
 
-        // // главная обертка
-        // this.modalElement = document.createElement('div');
-        // this.modalElement.innerHTML = generateModal();
-        // this.modalElement.children[0].children[0].appendChild(this.innerWrapper);
-        //
-        // // переключатели секций
-        // sectionSwitcher.changeSection('loginSection', this.innerWrapper);
-        // const listItems = this.modalElement.getElementsByTagName('li');
-        // this.switchToLoginButton = new Button('button', 'Sign In', listItems[0]);
-        // this.switchToLoginButton.setOnClick(() => {
-        //     sectionSwitcher.changeSection('loginSection', this.innerWrapper);
-        // });
-        // this.switchToRegisterButton = new Button('button', 'Sign Up', listItems[1]);
-        // this.switchToRegisterButton.setOnClick(() => {
-        //     sectionSwitcher.changeSection('registerSection', this.innerWrapper);
-        // });
-        // listItems[0].appendChild(this.switchToLoginButton.render());
-        // listItems[1].appendChild(this.switchToRegisterButton.render());
-
 
         return this.modalElement;
     }

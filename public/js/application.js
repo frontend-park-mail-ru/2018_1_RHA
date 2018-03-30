@@ -15,6 +15,7 @@ import User from "./modules/userModel.js";
 const root = document.getElementById('application');
 const router = new Router(root);
 //
+
 router.add('/register', RegisterSection);
 router.add('/profile', ProfileSection);
 router.add('/rating', RatingSection);

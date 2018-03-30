@@ -12,6 +12,9 @@ export default class MenuSection extends Section {
     constructor(){
         super();
         this.allowed = false;
+        console.log(this.allowed);
+        this.sign();
+        console.log(this.allowed);
     }
 
     /**
@@ -47,7 +50,7 @@ export default class MenuSection extends Section {
         });
         this.menu.innerHTML = generateMenu({'attrs': this.attrs});
         this.menu.appendChild(this.logout);
-        this.sign();
+
         return this.menu;
     }
 

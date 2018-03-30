@@ -16,6 +16,7 @@ export default class ProfileSection extends Section {
     constructor() {
         super();
         this.allowed = false;
+        this.sign();
     }
 
     /**
@@ -57,23 +58,22 @@ export default class ProfileSection extends Section {
             sectionSwitcher.changeSection('menuSection', root);
         });
 
-        this.changeForm.setOnSubmit( () => {
-            const userData = this.changeForm.getData();
-            const jsonUserData = JSON.stringify(userData);
-            UserController.change(jsonUserData, (err, resp) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log(err, resp);
-                UserController.checkAuth( (isAuth) => {
-                    if (isAuth) {
-                        sectionSwitcher.changeSection('menuSection', root);
-                    }
-                });
-            })
-        });
-        this.sign();
+        // this.changeForm.setOnSubmit( () => {
+        //     const userData = this.changeForm.getData();
+        //     const jsonUserData = JSON.stringify(userData);
+        //     UserController.change(jsonUserData, (err, resp) => {
+        //         if (err) {
+        //             console.log(err);
+        //             return;
+        //         }
+        //         console.log(err, resp);
+        //         UserController.checkAuth( (isAuth) => {
+        //             if (isAuth) {
+        //                 sectionSwitcher.changeSection('menuSection', root);
+        //             }
+        //         });
+        //     })
+        // });
         return this.profileElement;
         //TODO: сделать загрузку аватара
         //TODO: а еще перевести это в шаблон!!!

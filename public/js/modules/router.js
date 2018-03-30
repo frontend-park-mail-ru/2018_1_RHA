@@ -14,11 +14,20 @@ export default class Router {
     }
 
     open(path) {
-        const view = this.map[path].render();
-        if (view.allowed === false)
+        const view = this.map[path];
+        if (view.allowed === false) {
+            if (this.map['/'].allowed === true) {
+                window.history.pushState(null, 'link', '/');
+                sectionSwitcher.changeSection(this.map['/'].render(), this.root);
+            }
+            else {
+                window.history.pushState(null, 'link', '/landing');
+                sectionSwitcher.changeSection(this.map['/landing'].render(), this.root);
+            }
             return;
+        }
         window.history.pushState(null, 'link', path);
-        sectionSwitcher.changeSection(view, this.root);
+        sectionSwitcher.changeSection(view.render(), this.root);
     }
 
     start() {
