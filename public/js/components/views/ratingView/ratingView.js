@@ -62,8 +62,7 @@ export default class RatingSection extends Section {
             router.open('/menu')
         });
 
-        this.load(1);
-        this.sign();
+        this.load(1, ()=>{});
         return this.rating;
     }
 
@@ -88,12 +87,4 @@ export default class RatingSection extends Section {
         });
     }
 
-    sign() {
-        bus.on('user:authorized', () => {
-            this.allowed = true;
-        });
-        bus.on('user:unauthorized', () => {
-            this.allowed = false;
-        });
-    }
 }
