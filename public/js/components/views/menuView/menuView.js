@@ -34,7 +34,7 @@ export default class MenuSection extends Section {
             },
             {
                 title: "profile",
-                href: '/profle'
+                href: '/profile'
             },
             {
                 title: "rating",

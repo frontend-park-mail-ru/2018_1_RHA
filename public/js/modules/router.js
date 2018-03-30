@@ -10,6 +10,7 @@ export default class Router {
 
     add(path, View) {
         this.map[path] = new View(this.root);
+        console.log(this.map[path]);
         return this;
     }
 

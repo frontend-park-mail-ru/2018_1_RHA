@@ -16,6 +16,7 @@ export default class RatingSection extends Section {
         super();
         this.page = 1;
         this.allowed = false;
+        this.sign();
     }
 
     /**
@@ -86,5 +87,15 @@ export default class RatingSection extends Section {
             );
         });
     }
+    sign() {
+        bus.on('user:authorized', ((data) => {
+            this.allowed = true;
+        }));
+
+        bus.on('user:unauthorized', ((data) => {
+            this.allowed = false;
+        }));
+    }
+
 
 }
