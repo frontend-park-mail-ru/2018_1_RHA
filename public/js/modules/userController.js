@@ -77,6 +77,25 @@ class UserController {
                 )
             })
         });
+        // bus.on("getUser", (data) => {
+        //     this.loadMe((err, resp) => {
+        //         if (err) {
+        //             console.log(err);
+        //             return;
+        //         }
+        //         resp.then(
+        //             response => {
+        //                 this.avatar = null; //TODO: допилить аватарку
+        //                 this.status = true;
+        //                 console.log(response.data.email);
+        //                 console.log(response.data.rating);
+        //                 bus.emit("data", {email: response.data.email,
+        //                                   rating: response.data.rating});
+        //                 bus.emit('user:authorized', this); // TODO:: говнина
+        //             }
+        //         )
+        //     })
+        // });
 
         UserController.__instance = this;
     }

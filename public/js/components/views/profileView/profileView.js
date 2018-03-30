@@ -1,11 +1,11 @@
 import Section from "../baseView.js";
-import user from "../../../modules/userModel.js";
 import ChangeForm from "../../forms/changeForm.js";
 import UserController from "../../../modules/userController.js";
 import sectionSwitcher from "../../../application.js";
 import Button from "../../blocks/button.js";
 import bus from "../../../modules/bus.js";
 import router from "../../../application.js";
+import User from "../../../modules/userModel.js";
 
 /**
  * Class represents Section with Profile data and Form
@@ -32,7 +32,9 @@ export default class ProfileSection extends Section {
             this.tdKeyMail.textContent = 'email: ';
 
             this.tdValMail = document.createElement('td');
-            this.tdValMail.textContent = user.email;
+
+
+            this.tdValMail.textContent = User.getMail();
 
             this.trowMail.appendChild(this.tdKeyMail);
             this.trowMail.appendChild(this.tdValMail);
@@ -41,7 +43,8 @@ export default class ProfileSection extends Section {
             this.tdKeyName.textContent = 'name: ';
 
             this.tdValName = document.createElement('td');
-            this.tdValName.textContent = user.name;
+
+            this.tdValName.textContent = User.getRating();
 
             this.trowName.appendChild(this.tdKeyName);
             this.trowName.appendChild(this.tdValName);
@@ -59,22 +62,22 @@ export default class ProfileSection extends Section {
             router.open('/menu');
         });
 
-        this.changeForm.setOnSubmit( () => {
-            const userData = this.changeForm.getData();
-            const jsonUserData = JSON.stringify(userData);
-            UserController.change(jsonUserData, (err, resp) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log(err, resp);
-                UserController.checkAuth( (isAuth) => {
-                    if (isAuth) {
-                        sectionSwitcher.changeSection('menuSection', root);
-                    }
-                });
-            })
-        });
+        // this.changeForm.setOnSubmit( () => {
+        //     const userData = this.changeForm.getData();
+        //     const jsonUserData = JSON.stringify(userData);
+        //     UserController.change(jsonUserData, (err, resp) => {
+        //         if (err) {
+        //             console.log(err);
+        //             return;
+        //         }
+        //         console.log(err, resp);
+        //         UserController.checkAuth( (isAuth) => {
+        //             if (isAuth) {
+        //                 sectionSwitcher.changeSection('menuSection', root);
+        //             }
+        //         });
+        //     })
+        // });
         return this.profileElement;
         //TODO: сделать загрузку аватара
         //TODO: а еще перевести это в шаблон!!!

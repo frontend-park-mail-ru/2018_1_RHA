@@ -4,11 +4,14 @@ import bus from "./bus.js";
 /**
  * Class represents Model of User to store and manage user data
  */
+let email = null;
+let rating = null;
 export default class User {
     /**
      * Creates user and loads user data
      */
     constructor() {
+
         userController.loadMe((err, me) => {
             if (err) {
                 console.error("Not authorised");
@@ -17,14 +20,10 @@ export default class User {
 
             me.then(
                 response => {
-                    this.email = response.data.email;
-                    this.rating = response.data.rating;
-                    console.log({
-                        'email': this.email,
-                        'rating': this.rating
-                    });
                     this.avatar = null; //TODO: допилить аватарку
                     this.status = true;
+                    email = response.data.email;
+                    rating = response.data.rating;
                     bus.emit('user:authorized', this);
                 }
             ).catch(
@@ -34,5 +33,16 @@ export default class User {
                 }
             )
         });
+    }
+
+    update() {
+        // TODO  прописать обновление пользовательских данных
+    }
+
+    static getMail() {
+        return email;
+    }
+    static getRating() {
+        return rating;
     }
 }

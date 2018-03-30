@@ -10,11 +10,15 @@ export default class Router {
 
     add(path, View) {
         this.map[path] = new View(this.root);
-        console.log(this.map[path]);
         return this;
     }
 
     open(path) {
+        // TODO исправить этот sheatycode
+        if (path === '/profile') {
+
+        }
+
         const view = this.map[path];
         if (view.allowed === false) {
             if (this.map['/'].allowed === true) {
