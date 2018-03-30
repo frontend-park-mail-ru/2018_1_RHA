@@ -4,6 +4,7 @@ import sectionSwitcher from '../../../application.js';
 import UserController from "../../../modules/userController.js";
 import Button from "../../blocks/button.js";
 import bus from "../../../modules/bus.js";
+import router from "../../../application.js";
 /**
  * Class represents Section with Rating Table
  */
@@ -58,7 +59,7 @@ export default class RatingSection extends Section {
         this.backButt = new Button('button', 'Back', this.rating);
         this.backButt.setOnClick(() => {
             this.page = 1;
-            sectionSwitcher.changeSection('menuSection', root);
+            router.open('/menu')
         });
 
         this.load(1);
