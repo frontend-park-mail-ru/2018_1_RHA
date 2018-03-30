@@ -1,6 +1,6 @@
 const CACHE_NAME = 'sampe_sw-v1';
+const URLS = ['/rating', '/register', '/profile', '/login', '/menu', '/landing'];
 const DATA = [
-    '/',
     '/img/lion.jpg',
     '/js/components/blocks/link/link.js',
     '/js/components/blocks/link/linkTemplate.js',
@@ -33,12 +33,22 @@ const DATA = [
     '/js/modules/userModel.js',
     '/js/modules/validator.js'
 ];
+
+const ALL_DATA = [];
+ALL_DATA.push('/');
+URLS.forEach(temp => {
+    DATA.forEach(url => {
+        ALL_DATA.push(temp + url);
+    })
+});
+
+
 // При установке воркера мы должны закешировать часть данных (статику).
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches
             .open(CACHE_NAME)
-            .then((cache) => cache.addAll(DATA))
+            .then((cache) => cache.addAll(ALL_DATA))
     );
 });
 

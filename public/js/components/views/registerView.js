@@ -3,6 +3,8 @@ import RegisterForm from '../forms/registerForm.js';
 import UserController from '../../modules/userController.js';
 import sectionSwitcher from '../../application.js';
 import bus from "../../modules/bus.js";
+import Button from "../blocks/button.js";
+import router from "../../application.js";
 
 /**
  * Class represents Section with Registration Form
@@ -37,38 +39,49 @@ export default class RegisterSection extends Section {
         this.register.appendChild(this.formHeader);
         this.register.appendChild(this.registerForm.render());
 
+        this.backLink = document.createElement('a');
+        this.backLink.setAttribute('href', '/landing');
+        this.backLink.innerText = 'Back to menu';
+
+        this.register.appendChild(this.backLink);
+
         this.registerForm.setOnSubmit( () => {
             const userData = this.registerForm.getData();
             if (userData === null) {
                 return;
             }
             const jsonUserData = JSON.stringify(userData);
-            UserController.register(jsonUserData, (err, resp) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log(err, resp);
-                resp.then(
-                    data => {
-                        switch (data.message) {
-                            case 'SUCCESSFULLY_REGISTERED':
-                                sectionSwitcher.changeSection('menuSection', root);
-                                break;
-                            case 'ALREADY_AUTHENTICATED':
-                                sectionSwitcher.changeSection('menuSection', root);
-                                break;
-                            default:
-                                this.registerForm.Email.setError("Not unique email");
-                        }
-                    }
-                );
-                UserController.checkAuth( (isAuth) => {
-                    if (isAuth) {
-                        // sectionSwitcher.changeSection('menuSection', root);
-                    }
-                });
-            });
+            bus.emit("user:signup", jsonUserData);
+            bus.on("not_unique", (error) => {
+                this.registerForm.Email.setError(error.payload);
+            })
+
+            // UserController.register(jsonUserData, (err, resp) => {
+            //     if (err) {
+            //         console.log(err);
+            //         return;
+            //     }
+            //     console.log(err, resp);
+            //     resp.then(
+            //         data => {
+            //             switch (data.message) {
+            //                 case 'SUCCESSFULLY_REGISTERED':
+            //                     sectionSwitcher.changeSection('menuSection', root);
+            //                     break;
+            //                 case 'ALREADY_AUTHENTICATED':
+            //                     sectionSwitcher.changeSection('menuSection', root);
+            //                     break;
+            //                 default:
+            //                     this.registerForm.Email.setError("Not unique email");
+            //             }
+            //         }
+            //     );
+            //     UserController.checkAuth( (isAuth) => {
+            //         if (isAuth) {
+            //             // sectionSwitcher.changeSection('menuSection', root);
+            //         }
+            //     });
+            // });
 
         });
 

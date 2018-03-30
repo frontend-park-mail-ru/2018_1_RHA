@@ -1,5 +1,7 @@
 import http from './http.js';
 import route from '../conf/route.js';
+import bus from "./bus.js";
+import router from "../application.js";
 
 // error transformer
 
@@ -11,7 +13,72 @@ class UserController {
      * Creates user and loads user data
      */
     constructor() {
-        this.user = this.loadMe();
+        if (UserController.__instance) {
+            return UserController.__instance;
+        }
+        bus.on("user:signup", (data) => {
+            const user = data.payload;
+            this.register(user, (err, resp) => {
+                if (err) {
+                    console.log(err);
+                    bus.emit('not_unique', "Not unique email");
+                    return;
+                }
+                console.log(resp);
+                resp.then(
+                    data => {
+                        switch (data.message) {
+                            case 'SUCCESSFULLY_REGISTERED':
+                                router.open('/menu');
+                                break;
+                            case 'ALREADY_AUTHENTICATED':
+                                router.open('/menu');
+                                break;
+                            default: //TODO: придумать
+
+                        }
+                    }
+                )
+            })
+        });
+        bus.on('logout', () => {
+            this.logout( (err, resp) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log(resp);
+            })
+        });
+
+        bus.on('user:login', (data) => {
+            const user = data.payload;
+            this.login(user, (err, resp) => {
+                if (err) {
+                    console.error(err);
+                    bus.emit('alreadyAuth', 'ALREADY_AUTHENTICATED');
+                    return;
+                }
+                console.log(resp);
+                resp.then(
+                    data => {
+                        switch (data.message) {
+                            case 'SUCCESSFULLY_AUTHED':
+                                router.open('/menu');
+                                break;
+                            case 'WRONG_CREDENTIALS':
+                                bus.emit('wrong', 'WRONG_CREDENTIALS');
+                                break;
+
+                            default: //TODO: придумать
+
+                        }
+                    }
+                )
+            })
+        });
+
+        UserController.__instance = this;
     }
 
     /**
@@ -19,7 +86,7 @@ class UserController {
      * @param {function} callbackfn
      * @return {PromiseLike<T>|Promise<T>}
      */
-    static loadMe(callbackfn) {
+    loadMe(callbackfn) {
         return http.get(route.userAPIMethods.user, callbackfn);
     }
 
@@ -29,7 +96,7 @@ class UserController {
      * @param {function} callbackfn
      * @return {PromiseLike<T>|Promise<T>}
      */
-    static register(userData, callbackfn) {
+    register(userData, callbackfn) {
         return http.post(route.userAPIMethods.signup, userData, callbackfn);
     }
 
@@ -39,7 +106,7 @@ class UserController {
      * @param {function} callbackfn
      * @return {PromiseLike<T>|Promise<T>}
      */
-    static login(userData, callbackfn) {
+    login(userData, callbackfn) {
         return http.post(route.userAPIMethods.login, userData, callbackfn);
     }
 
@@ -48,7 +115,7 @@ class UserController {
      * @param {function} callbackfn
      * @return {PromiseLike<T>|Promise<T>}
      */
-    static logout(callbackfn) {
+    logout(callbackfn) {
         return http.post(route.userAPIMethods.logout, {}, callbackfn);
     }
 
@@ -58,7 +125,7 @@ class UserController {
      * @param {function} callbackfn
      * @return {PromiseLike<T>|Promise<T>}
      */
-    static rating(page, callbackfn) {
+    rating(page, callbackfn) {
         return http.get(route.userAPIMethods.leaderBoard + '/' + page.toString(), callbackfn);
     }
 
@@ -68,7 +135,7 @@ class UserController {
      * @param {function} callbackfn
      * @return {PromiseLike<T>|Promise<T>}
      */
-    static change(userData, callbackfn) {
+    change(userData, callbackfn) {
         return http.post(route.userAPIMethods.updateUser, userData, callbackfn);
     }
 
@@ -76,7 +143,7 @@ class UserController {
      * Check if user is authorised
      * @param callbackfn
      */
-    static checkAuth(callbackfn) {
+    checkAuth(callbackfn) {
         this.loadMe( (err, me ) => {
             if (err) {
                 console.log('Not authorized');
@@ -88,5 +155,5 @@ class UserController {
         });
     }
 }
-
-export default UserController;
+const userController = new UserController();
+export default userController;
