@@ -18,15 +18,15 @@ export default class User {
         this.rating = data.rating;
     }
     static auth() {
-        if (curUser) {
-            console.log('in if   aaaaa',curUser );
-            return Promise.resolve(curUser);
-        }
+        // if (curUser) {
+        //     console.log('in if   aaaaa',curUser );
+        //     return Promise.resolve(curUser);
+        // }
         return new Promise( (resolve, reject) => {
-            console.log('in prom   aaaaa', curUser);
             http.get(route.userAPIMethods.user, (err, resp) => {
                 if (err) {
                     if (err.status === 401) {
+                        curUser = null;
                         return resolve(null);
                     }
                     return reject(err);
@@ -34,9 +34,10 @@ export default class User {
                 resp.then(
                     promiseValue => {
                         curUser = new User(promiseValue.data);
+                        resolve(curUser);
                     }
                 );
-                resolve(curUser);
+
             });
         })
     }
@@ -64,6 +65,18 @@ export default class User {
     static signUp(userData) {
         return new Promise( (resolve, reject) => {
             http.post(route.userAPIMethods.signup, userData, (err, resp) => {
+                if (err) {
+                    return reject(err);
+                }
+                console.log(resp);
+                resolve(User.auth());
+            })
+        })
+    }
+
+    static logout() {
+        return new Promise( (resolve, reject) => {
+            http.post(route.userAPIMethods.logout, {}, (err, resp) => {
                 if (err) {
                     return reject(err);
                 }

@@ -17,7 +17,6 @@ export default class RatingSection extends Section {
     constructor() {
         super();
         this.page = 1;
-        //this.allowed = false;
         this.sign();
     }
 

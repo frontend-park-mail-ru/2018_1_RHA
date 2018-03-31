@@ -19,50 +19,43 @@ class UserController {
         bus.on("user:signup", (data) => {
             const user = data.payload;
             User.signUp(user)
-                .then( (user) => {
-                    new Router().open('/menu');
+                .then(
+                    user => {
+                        new Router().open('/menu');
                 })
-                .catch( (error) => {
-                    bus.emit('signup-error', error);
+                .catch(
+                    error => {
+                        bus.emit('signup-error', error);
                 })
 
         });
         bus.on('logout', () => {
-            this.logout( (err, resp) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log(resp);
-            })
+            User.logout()
+                .then(
+                    user => {
+                        new Router().open('/');
+                    }
+                )
+                .catch(
+                    error => {
+                        bus.emit('logout-error', error);
+                    }
+                )
         });
 
         bus.on('user:login', (data) => {
             const user = data.payload;
-            this.login(user, (err, resp) => {
-                if (err) {
-                    console.error(err);
-                    bus.emit('alreadyAuth', 'ALREADY_AUTHENTICATED');
-                    return;
-                }
-                console.log(resp);
-                User.auth().then();
-                resp.then(
-                    data => {
-                        switch (data.message) {
-                            case 'SUCCESSFULLY_AUTHED':
-                                new Router().open('/menu');
-                                break;
-                            case 'WRONG_CREDENTIALS':
-                                bus.emit('wrong', 'WRONG_CREDENTIALS');
-                                break;
-
-                            default: //TODO: придумать
-
-                        }
+            User.signIn(user)
+                .then(
+                    user => {
+                        new Router().open('/menu');
                     }
-                );
-            })
+                )
+                .catch(
+                    error => {
+                        bus.emit('login-error', error);
+                    }
+                )
         });
 
 

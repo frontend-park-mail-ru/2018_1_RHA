@@ -10,7 +10,6 @@ export default class LoginSection extends Section {
      */
     constructor() {
         super();
-        //this.allowed = true;
         this.sign();
     }
 

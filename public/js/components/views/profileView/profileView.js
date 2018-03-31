@@ -14,7 +14,6 @@ export default class ProfileSection extends Section {
      */
     constructor() {
         super();
-        //this.allowed = false;
         this.sign();
     }
 
@@ -32,7 +31,7 @@ export default class ProfileSection extends Section {
             this.tdValMail = document.createElement('td');
 
 
-            this.tdValMail.textContent = User.getMail();
+            this.tdValMail.textContent = User.getCurUser().email;
 
             this.trowMail.appendChild(this.tdKeyMail);
             this.trowMail.appendChild(this.tdValMail);
@@ -42,7 +41,7 @@ export default class ProfileSection extends Section {
 
             this.tdValName = document.createElement('td');
 
-            this.tdValName.textContent = User.getRating();
+            this.tdValName.textContent = User.getCurUser().rating;
 
             this.trowName.appendChild(this.tdKeyName);
             this.trowName.appendChild(this.tdValName);

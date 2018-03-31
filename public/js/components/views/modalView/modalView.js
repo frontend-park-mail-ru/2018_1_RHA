@@ -14,8 +14,6 @@ export default class ModalSection extends Section {
      */
     constructor(lSection, rSection) {
         super();
-        this.loginSection = lSection;
-        this.registerSection = rSection;
     }
 
     /**

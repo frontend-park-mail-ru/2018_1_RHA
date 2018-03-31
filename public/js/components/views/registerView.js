@@ -20,6 +20,7 @@ export default class RegisterSection extends Section {
             this.register = document.createElement('div');
             parent.appendChild(this.register);
         }
+        User.isAuthorized();
         this.sign();
     }
 
