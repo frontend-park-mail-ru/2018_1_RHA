@@ -3,9 +3,16 @@ import {sectionSwitcher} from "./sectionSwitcher.js";
 export default class Router {
 
     constructor(root) {
+
+        if (Router.__instance) {
+            return Router.__instance;
+        }
+
         this.root = root;
         this.map = {};
         this.active = null;
+
+        Router.__instance = this;
     }
 
     add(path, View) {
@@ -14,16 +21,14 @@ export default class Router {
     }
 
     open(path) {
-        // TODO исправить этот sheatycode
-        if (path === '/profile') {
-
-        }
 
         const view = this.map[path];
-        if (view.allowed === false) {
-            if (this.map['/'].allowed === true) {
-                window.history.pushState(null, 'link', '/');
-                sectionSwitcher.changeSection(this.map['/'].render(), this.root);
+
+        console.log("view ", path, "is allowed: ", view.allowed());
+        if (!view.allowed()) {
+            if (this.map['/menu'].allowed()) {
+                window.history.pushState(null, 'link', '/menu');
+                sectionSwitcher.changeSection(this.map['/menu'].render(), this.root);
             }
             else {
                 window.history.pushState(null, 'link', '/landing');
@@ -31,7 +36,9 @@ export default class Router {
             }
             return;
         }
-        window.history.pushState(null, 'link', path);
+        if (window.location.pathname !== path) {
+            window.history.pushState(null, '', path);
+        }
         sectionSwitcher.changeSection(view.render(), this.root);
     }
 

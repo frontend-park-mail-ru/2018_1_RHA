@@ -1,8 +1,8 @@
 import http from './http.js';
 import route from '../conf/route.js';
 import bus from "./bus.js";
-import router from "../application.js";
-
+import Router from "./router.js";
+import User from "./userModel.js";
 // error transformer
 
 /**
@@ -18,28 +18,14 @@ class UserController {
         }
         bus.on("user:signup", (data) => {
             const user = data.payload;
-            this.register(user, (err, resp) => {
-                if (err) {
-                    console.log(err);
-                    bus.emit('not_unique', "Not unique email");
-                    return;
-                }
-                console.log(resp);
-                resp.then(
-                    data => {
-                        switch (data.message) {
-                            case 'SUCCESSFULLY_REGISTERED':
-                                router.open('/menu');
-                                break;
-                            case 'ALREADY_AUTHENTICATED':
-                                router.open('/menu');
-                                break;
-                            default: //TODO: придумать
+            User.signUp(user)
+                .then( (user) => {
+                    new Router().open('/menu');
+                })
+                .catch( (error) => {
+                    bus.emit('signup-error', error);
+                })
 
-                        }
-                    }
-                )
-            })
         });
         bus.on('logout', () => {
             this.logout( (err, resp) => {
@@ -60,11 +46,12 @@ class UserController {
                     return;
                 }
                 console.log(resp);
+                User.auth().then();
                 resp.then(
                     data => {
                         switch (data.message) {
                             case 'SUCCESSFULLY_AUTHED':
-                                router.open('/menu');
+                                new Router().open('/menu');
                                 break;
                             case 'WRONG_CREDENTIALS':
                                 bus.emit('wrong', 'WRONG_CREDENTIALS');
@@ -74,28 +61,10 @@ class UserController {
 
                         }
                     }
-                )
+                );
             })
         });
-        // bus.on("getUser", (data) => {
-        //     this.loadMe((err, resp) => {
-        //         if (err) {
-        //             console.log(err);
-        //             return;
-        //         }
-        //         resp.then(
-        //             response => {
-        //                 this.avatar = null; //TODO: допилить аватарку
-        //                 this.status = true;
-        //                 console.log(response.data.email);
-        //                 console.log(response.data.rating);
-        //                 bus.emit("data", {email: response.data.email,
-        //                                   rating: response.data.rating});
-        //                 bus.emit('user:authorized', this); // TODO:: говнина
-        //             }
-        //         )
-        //     })
-        // });
+
 
         UserController.__instance = this;
     }

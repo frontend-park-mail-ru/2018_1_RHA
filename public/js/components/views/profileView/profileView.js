@@ -1,11 +1,9 @@
 import Section from "../baseView.js";
 import ChangeForm from "../../forms/changeForm.js";
-import UserController from "../../../modules/userController.js";
-import sectionSwitcher from "../../../application.js";
 import Button from "../../blocks/button.js";
 import bus from "../../../modules/bus.js";
-import router from "../../../application.js";
 import User from "../../../modules/userModel.js";
+import Router from "../../../modules/router.js";
 
 /**
  * Class represents Section with Profile data and Form
@@ -16,7 +14,7 @@ export default class ProfileSection extends Section {
      */
     constructor() {
         super();
-        this.allowed = false;
+        //this.allowed = false;
         this.sign();
     }
 
@@ -59,7 +57,7 @@ export default class ProfileSection extends Section {
 
         this.backButt = new Button('button', 'Back', this.profileElement);
         this.backButt.setOnClick(() => {
-            router.open('/menu');
+            new Router().open('/menu');
         });
 
         // this.changeForm.setOnSubmit( () => {
@@ -82,6 +80,11 @@ export default class ProfileSection extends Section {
         //TODO: сделать загрузку аватара
         //TODO: а еще перевести это в шаблон!!!
     }
+
+    allowed() {
+        return User.isAuthorized();
+    }
+
     sign() {
         bus.on('user:authorized', () => {
             this.allowed = true;

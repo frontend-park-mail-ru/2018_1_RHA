@@ -1,8 +1,7 @@
 'use strict';
 import Section from '../baseView.js';
 import Button from "../../blocks/button.js";
-
-import sectionSwitcher from '../../../application.js';
+import User from "../../../modules/userModel.js";
 
 /**
  * Class represents Section with Register and Login Sections
@@ -44,7 +43,10 @@ export default class ModalSection extends Section {
 
         this.modalElement.appendChild(this.backLink);
 
-
         return this.modalElement;
+    }
+
+    allowed() {
+        return !User.isAuthorized();
     }
 }

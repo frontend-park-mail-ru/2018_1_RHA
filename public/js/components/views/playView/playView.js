@@ -1,6 +1,7 @@
 import Section from '../baseView.js';
 import bus from "../../../modules/bus.js";
-import router from "../../../application.js";
+import User from "../../../modules/userModel.js";
+
 
 /**
  * Class represents Section with main Play button
@@ -13,7 +14,7 @@ export default class PlaySection extends Section {
     constructor(parent) {
         super();
         this.parent = parent;
-        this.allowed = true;
+        //this.allowed = true;
     }
 
     /**
@@ -31,6 +32,11 @@ export default class PlaySection extends Section {
         this.playElement.innerHTML = generatePlay({'attrs': this.attrs});
         this.sign();
         return this.playElement;
+    }
+
+    allowed() {
+        User.isAuthorized();
+        return true;
     }
 
     sign() {

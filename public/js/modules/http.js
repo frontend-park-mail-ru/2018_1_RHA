@@ -22,7 +22,7 @@ class HttpService {
                             console.error('get error: ', err);
                         }
                     } else {
-                        callbackfn(response);
+                        callbackfn(response, null);
                     }
                 }
             )

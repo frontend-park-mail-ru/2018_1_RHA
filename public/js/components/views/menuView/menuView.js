@@ -1,6 +1,8 @@
 import Section from '../baseView.js';
 import bus from "../../../modules/bus.js";
-import router from "../../../application.js";
+import Router from "../../../modules/router.js";
+import User from "../../../modules/userModel.js";
+
 
 /**
  * Class represents Section with Menu buttons
@@ -11,10 +13,7 @@ export default class MenuSection extends Section {
      */
     constructor(){
         super();
-        this.allowed = false;
-        console.log(this.allowed);
         this.sign();
-        console.log(this.allowed);
     }
 
     /**
@@ -54,14 +53,18 @@ export default class MenuSection extends Section {
         return this.menu;
     }
 
+    allowed() {
+        return User.isAuthorized();
+    }
+
     sign() {
         bus.on('user:authorized', ((data) => {
-            this.allowed = true;
-            router.open('/menu');
+            this.allow = true;
+            new Router().open('/menu');
         }));
 
         bus.on('user:unauthorized', ((data) => {
-            this.allowed = false;
+            this.allow = false;
         }));
 
         bus.on('menu:hide', ((data) => {

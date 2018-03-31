@@ -12,5 +12,9 @@ export default class Section {
     render() {
     }
 
+    allowed() {
+        return true;
+    }
+
 
 }

@@ -1,10 +1,10 @@
 import Section from './baseView.js';
 import RegisterForm from '../forms/registerForm.js';
-import UserController from '../../modules/userController.js';
-import sectionSwitcher from '../../application.js';
+
 import bus from "../../modules/bus.js";
-import Button from "../blocks/button.js";
-import router from "../../application.js";
+import User from "../../modules/userModel.js";
+
+
 
 /**
  * Class represents Section with Registration Form
@@ -20,6 +20,7 @@ export default class RegisterSection extends Section {
             this.register = document.createElement('div');
             parent.appendChild(this.register);
         }
+        this.sign();
     }
 
     /**
@@ -52,12 +53,32 @@ export default class RegisterSection extends Section {
             }
             const jsonUserData = JSON.stringify(userData);
             bus.emit("user:signup", jsonUserData);
-            bus.on("not_unique", (error) => {
+            bus.on("signup-error", (error) => {
                 this.registerForm.Email.setError(error.payload);
             })
 
         });
 
         return this.register;
+    }
+
+    allowed() {
+        return !User.isAuthorized();
+    }
+
+    sign() {
+        bus.on('alreadyAuth', (error) => {
+            alert(error.payload);
+        });
+        bus.on('wrong', (error) => {
+            this.registerForm.Email.setError(error.payload);
+        });
+        bus.on('user:authorized', ((data) => {
+            this.allowed = true;
+        }));
+
+        bus.on('user:unauthorized', ((data) => {
+            this.allowed = false;
+        }));
     }
 }

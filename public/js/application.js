@@ -13,21 +13,23 @@ import userController from "./modules/userController.js";
 import User from "./modules/userModel.js";
 
 const root = document.getElementById('application');
-const router = new Router(root);
-//
 
-router.add('/register', RegisterSection);
-router.add('/profile', ProfileSection);
-router.add('/rating', RatingSection);
-router.add('/login', LoginSection);
-router.add('/menu', MenuSection);
-router.add('/', PlaySection);
-router.add('/landing', ModalView);
-router.start();
 
-export default router;
+User.auth()
+    .then( (currUser) => {
+        new Router(root)
+            .add('/', PlaySection)
+            .add('/register', RegisterSection)
+            .add('/profile', ProfileSection)
+            .add('/rating', RatingSection)
+            .add('/menu', MenuSection)
+            .add('/login', LoginSection)
+            .add('/landing', ModalView)
+            .start()
+    })
+    .catch(console.error);
 
-const user = new User();
+
 
 //TODO: проверка на авторизацию
 

@@ -1,10 +1,12 @@
 "use strict";
 import Section from "../baseView.js";
-import sectionSwitcher from '../../../application.js';
 import UserController from "../../../modules/userController.js";
 import Button from "../../blocks/button.js";
 import bus from "../../../modules/bus.js";
-import router from "../../../application.js";
+import Router from "../../../modules/router.js";
+import User from "../../../modules/userModel.js";
+
+
 /**
  * Class represents Section with Rating Table
  */
@@ -15,7 +17,7 @@ export default class RatingSection extends Section {
     constructor() {
         super();
         this.page = 1;
-        this.allowed = false;
+        //this.allowed = false;
         this.sign();
     }
 
@@ -60,7 +62,7 @@ export default class RatingSection extends Section {
         this.backButt = new Button('button', 'Back', this.rating);
         this.backButt.setOnClick(() => {
             this.page = 1;
-            router.open('/menu')
+            new Router().open('/menu')
         });
 
         this.load(1, ()=>{});
@@ -95,6 +97,10 @@ export default class RatingSection extends Section {
         bus.on('user:unauthorized', ((data) => {
             this.allowed = false;
         }));
+    }
+
+    allowed() {
+        return User.isAuthorized();
     }
 
 
