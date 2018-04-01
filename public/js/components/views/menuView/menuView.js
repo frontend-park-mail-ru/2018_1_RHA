@@ -61,13 +61,16 @@ export default class MenuSection extends Section {
             e.preventDefault();
             bus.emit('logout', null);
         });
+        this.logoutWrapper = document.createElement('div');
+        this.logoutWrapper.classList.add('button');
+        this.logoutWrapper.appendChild(this.logout);
         if (User.isAuthorized()) {
             this.menu.innerHTML = generateMenu({'attrs': this.attrsActive});
         }
         else {
             this.menu.innerHTML = generateMenu({'attrs': this.attrPassive});
         }
-        this.menu.appendChild(this.logout);
+        this.menu.appendChild(this.logoutWrapper);
 
         return this.menu;
     }

@@ -10,10 +10,14 @@ export default class Input extends Block {
 
         this.InputElement = document.createElement('input');
         this.InputElement.type = data.type;
-        if(data.type === 'submit')
+        if(data.type === 'submit') {
             this.InputElement.value = data.value;
-        else
+            this.InputElement.classList.add('button');
+        }
+        else {
             this.InputElement.placeholder = data.placeholder;
+            this.InputElement.classList.add('input');
+        }
 
         this.InputWrapper = document.createElement('div');
         this.InputWrapper.appendChild(this.InputElement);

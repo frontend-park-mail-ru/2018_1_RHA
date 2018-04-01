@@ -3,4 +3,5 @@ div
         ul
             each i in attrs
                 li
-                    a.button(href=i.href) #{i.title}
+                    div.button
+                        a(href=i.href) #{i.title}

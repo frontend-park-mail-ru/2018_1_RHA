@@ -42,6 +42,7 @@ export default class RegisterSection extends Section {
         this.register.appendChild(this.registerForm.render());
 
         this.backLink = document.createElement('a');
+        this.backLink.classList.add('button');
         this.backLink.setAttribute('href', '/landing');
         this.backLink.innerText = 'Back to menu';
 

@@ -66,17 +66,76 @@
     /*z-index: 1;*/
 /*}*/
 
-a {
-    text-decoration: none;
-    border: solid;
-    width: 200px;
-    margin-bottom: 20%;
+@import "reset.css";
+@import "a_button.css";
+@import "../js/components/blocks/input.css";
+/*@import "../js/components/radar/radar.css";*/
+
+
+#radar-wrapper {
+    width: 60%;
+    background-color: #111111;
+    margin: 0;
+    position: absolute;
+    height: 100%;
+    display: inline-block;
+    clear: both;
+    float: left;
 }
 
-a:hover {
-    color: red;
+#application-wrapper {
+    width: 40%;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    float: right;
+    height: 900px;
+}
+
+#application {
+    width: 70%;
+    margin-top: 40%;
+    margin-left: 15%;
+}
+
+/*a {*/
+    /*text-decoration: none;*/
+    /*border: solid;*/
+    /*width: 200px;*/
+    /*margin-bottom: 20%;*/
+/*}*/
+
+/*a:hover {*/
+    /*color: red;*/
+/*}*/
+
+a {
+    text-decoration: none;
+    color: black;
+    height: 100%;
+    display: block;
+    font-family: "armalite";
 }
 
 li {
     margin: 1%;
+}
+
+@font-face {
+    font-family: "armalite";
+    src: local('armalite');
+    url("../fonts/armalite.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+li {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+form {
+    padding: 0;
 }

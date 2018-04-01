@@ -101,6 +101,4 @@ export default class RatingSection extends Section {
     allowed() {
         return User.isAuthorized();
     }
-
-
 }

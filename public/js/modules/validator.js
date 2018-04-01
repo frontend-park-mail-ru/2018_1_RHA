@@ -24,7 +24,7 @@ export default class Validator {
      */
     static checkName(nameElem) {
         const name = nameElem.getData();
-        const pattern = /^[a-z0-9_-]{3,16}$/;
+        const pattern = /^[a-zA-Z0-9_-]{3,16}$/;
         if (pattern.test(name)) {
             nameElem.setError(null);
         } else {
