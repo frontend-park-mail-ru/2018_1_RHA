@@ -12,5 +12,10 @@ function bake(path, fileName, functionName, jsName)
     fs.writeFileSync(fullPath + jsName, templateFunc);
 }
 
-bake("/js2/components/views/modalView/", "modalSection.pug", "generateModal", "modalTemplate.js");
-bake("/js2/components/views/ratingView/", "rating.pug", "generateRating", "ratingTemplate.js");console.log("Baked!");
+
+bake("/js/components/views/modalView/", "modalSection.pug", "generateModal", "modalTemplate.js");
+bake("/js/components/views/ratingView/", "rating.pug", "generateRating", "ratingTemplate.js");
+bake("/js/components/views/playView/", "play.pug", "generatePlay", "playTemplate.js");
+bake("/js/components/views/menuView/", "menu.pug", "generateMenu", "menuTemplate.js");
+bake("/js/components/views/loginView/", "login.pug", "generateLogin", "loginTemplate.js");
+console.log("Baked!");
