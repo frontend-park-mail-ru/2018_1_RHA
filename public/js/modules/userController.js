@@ -57,48 +57,62 @@ class UserController {
                     }
                 )
         });
+        bus.on('user:update', (data) => {
+            const user = data.payload;
+            User.update(user)
+                .then(
+                    user => {
+                        new Router().open('/menu');
+                    }
+                )
+                .catch(
+                    error => {
+                        bus.emit('update-error', error);
+                    }
+                )
+        });
 
 
         UserController.__instance = this;
     }
 
-    /**
-     * Loads user data
-     * @param {function} callbackfn
-     * @return {PromiseLike<T>|Promise<T>}
-     */
-    loadMe(callbackfn) {
-        return http.get(route.userAPIMethods.user, callbackfn);
-    }
-
-    /**
-     * To register user
-     * @param userData
-     * @param {function} callbackfn
-     * @return {PromiseLike<T>|Promise<T>}
-     */
-    register(userData, callbackfn) {
-        return http.post(route.userAPIMethods.signup, userData, callbackfn);
-    }
-
-    /**
-     * Logs User in
-     * @param userData
-     * @param {function} callbackfn
-     * @return {PromiseLike<T>|Promise<T>}
-     */
-    login(userData, callbackfn) {
-        return http.post(route.userAPIMethods.login, userData, callbackfn);
-    }
-
-    /**
-     * Logs user out
-     * @param {function} callbackfn
-     * @return {PromiseLike<T>|Promise<T>}
-     */
-    logout(callbackfn) {
-        return http.post(route.userAPIMethods.logout, {}, callbackfn);
-    }
+    // /**
+    //  * Loads user data
+    //  * @param {function} callbackfn
+    //  * @return {PromiseLike<T>|Promise<T>}
+    //  */
+    // loadMe(callbackfn) {
+    //     return http.get(route.userAPIMethods.user, callbackfn);
+    // }
+    //
+    // /**
+    //  * To register user
+    //  * @param userData
+    //  * @param {function} callbackfn
+    //  * @return {PromiseLike<T>|Promise<T>}
+    //  */
+    // register(userData, callbackfn) {
+    //     return http.post(route.userAPIMethods.signup, userData, callbackfn);
+    // }
+    //
+    // /**
+    //  * Logs User in
+    //  * @param userData
+    //  * @param {function} callbackfn
+    //  * @return {PromiseLike<T>|Promise<T>}
+    //  */
+    // login(userData, callbackfn) {
+    //     return http.post(route.userAPIMethods.login, userData, callbackfn);
+    // }
+    //
+    // /**
+    //  * Logs user out
+    //  * @param {function} callbackfn
+    //  * @return {PromiseLike<T>|Promise<T>}
+    //  */
+    // logout(callbackfn) {
+    //     return http.post(route.userAPIMethods.logout, {}, callbackfn);
+    // }
 
     /**
      * Loads Rating of all Users
@@ -110,31 +124,17 @@ class UserController {
         return http.get(route.userAPIMethods.leaderBoard + '/' + page.toString(), callbackfn);
     }
 
-    /**
-     * Changes user data
-     * @param userData
-     * @param {function} callbackfn
-     * @return {PromiseLike<T>|Promise<T>}
-     */
-    change(userData, callbackfn) {
-        return http.post(route.userAPIMethods.updateUser, userData, callbackfn);
-    }
+    // /**
+    //  * Changes user data
+    //  * @param userData
+    //  * @param {function} callbackfn
+    //  * @return {PromiseLike<T>|Promise<T>}
+    //  */
+    // change(userData, callbackfn) {
+    //     return http.post(route.userAPIMethods.updateUser, userData, callbackfn);
+    // }
 
-    /**
-     * Check if user is authorised
-     * @param callbackfn
-     */
-    checkAuth(callbackfn) {
-        this.loadMe( (err, me ) => {
-            if (err) {
-                console.log('Not authorized');
-                callbackfn(false);
-                return;
-            }
-            console.log('i am', me);
-            callbackfn(true);
-        });
-    }
+
 }
 const userController = new UserController();
 export default userController;

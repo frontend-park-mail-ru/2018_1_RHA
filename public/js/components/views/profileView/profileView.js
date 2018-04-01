@@ -59,22 +59,11 @@ export default class ProfileSection extends Section {
             new Router().open('/menu');
         });
 
-        // this.changeForm.setOnSubmit( () => {
-        //     const userData = this.changeForm.getData();
-        //     const jsonUserData = JSON.stringify(userData);
-        //     UserController.change(jsonUserData, (err, resp) => {
-        //         if (err) {
-        //             console.log(err);
-        //             return;
-        //         }
-        //         console.log(err, resp);
-        //         UserController.checkAuth( (isAuth) => {
-        //             if (isAuth) {
-        //                 sectionSwitcher.changeSection('menuSection', root);
-        //             }
-        //         });
-        //     })
-        // });
+        this.changeForm.setOnSubmit( () => {
+            const userData = this.changeForm.getData();
+            const jsonUserData = JSON.stringify(userData);
+            bus.emit("user:update", jsonUserData);
+        });
         return this.profileElement;
         //TODO: сделать загрузку аватара
         //TODO: а еще перевести это в шаблон!!!
@@ -85,12 +74,8 @@ export default class ProfileSection extends Section {
     }
 
     sign() {
-        bus.on('user:authorized', () => {
-            this.allowed = true;
-        });
-
-        bus.on('user:unauthorized', () => {
-            this.allowed = false;
-        });
+        bus.on('update:error', data => {
+            this.changeForm.Email.setError(data.payload);
+        })
     }
 }

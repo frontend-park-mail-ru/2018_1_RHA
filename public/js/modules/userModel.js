@@ -6,8 +6,7 @@ import route from "../conf/route.js";
 /**
  * Class represents Model of User to store and manage user data
  */
-let email = null;
-let rating = null;
+
 let curUser = null;
 export default class User {
     /**
@@ -18,10 +17,6 @@ export default class User {
         this.rating = data.rating;
     }
     static auth() {
-        // if (curUser) {
-        //     console.log('in if   aaaaa',curUser );
-        //     return Promise.resolve(curUser);
-        // }
         return new Promise( (resolve, reject) => {
             http.get(route.userAPIMethods.user, (err, resp) => {
                 if (err) {
@@ -86,14 +81,17 @@ export default class User {
         })
     }
 
-    update() {
-        // TODO  прописать обновление пользовательских данных
+   static update(userData) {
+        return new Promise((resolve, reject) => {
+            http.post(route.userAPIMethods.updateUser, userData, (err, resp) => {
+                if (err) {
+                    return reject(err);
+                }
+                console.log(resp);
+                resolve(User.auth());
+            })
+        })
     }
 
-    static getMail() {
-        return email;
-    }
-    static getRating() {
-        return rating;
-    }
+
 }

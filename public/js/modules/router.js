@@ -21,17 +21,18 @@ export default class Router {
     }
 
     open(path) {
-
         const view = this.map[path];
 
         console.log("view ", path, "is allowed: ", view.allowed());
         if (!view.allowed()) {
             if (this.map['/menu'].allowed()) {
-                window.history.pushState(null, 'link', '/menu');
-                sectionSwitcher.changeSection(this.map['/menu'].render(), this.root);
+                // window.history.pushState(null, '', '/menu');
+                // sectionSwitcher.changeSection(this.map['/menu'].render(), this.root);
+                window.history.replaceState(null, '', '/menu');
+                this.open('/menu');
             }
             else {
-                window.history.pushState(null, 'link', '/landing');
+                window.history.pushState(null, '', '/landing');
                 sectionSwitcher.changeSection(this.map['/landing'].render(), this.root);
             }
             return;
@@ -50,7 +51,7 @@ export default class Router {
         this.root.addEventListener('click', function (evt) {
             if (evt.target.tagName.toLowerCase() === 'a') {
                 evt.preventDefault();
-                window.history.pushState(null, 'link', evt.target.href);
+                window.history.pushState(null, '', evt.target.href);
                 this.open(evt.target.pathname);
             }
         }.bind(this));

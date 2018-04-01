@@ -48,18 +48,8 @@ export default class LoginSection extends Section {
     }
 
     sign() {
-        bus.on('alreadyAuth', (error) => {
-            alert(error.payload);
-        });
-        bus.on('wrong', (error) => {
+        bus.on('login-error', (error) => {
             this.loginForm.Email.setError(error.payload);
         });
-        bus.on('user:authorized', ((data) => {
-            this.allowed = true;
-        }));
-
-        bus.on('user:unauthorized', ((data) => {
-            this.allowed = false;
-        }));
     }
 }

@@ -68,18 +68,10 @@ export default class RegisterSection extends Section {
     }
 
     sign() {
-        bus.on('alreadyAuth', (error) => {
-            alert(error.payload);
-        });
-        bus.on('wrong', (error) => {
+
+        bus.on('signup-error', (error) => {
             this.registerForm.Email.setError(error.payload);
         });
-        bus.on('user:authorized', ((data) => {
-            this.allowed = true;
-        }));
 
-        bus.on('user:unauthorized', ((data) => {
-            this.allowed = false;
-        }));
     }
 }

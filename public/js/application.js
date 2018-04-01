@@ -8,8 +8,6 @@ import LoginSection from "./components/views/loginView/loginView.js";
 import MenuSection from './components/views/menuView/menuView.js';
 import ModalView from './components/views/modalView/modalView.js';
 import Router from "./modules/router.js";
-import bus from "./modules/bus.js";
-import userController from "./modules/userController.js";
 import User from "./modules/userModel.js";
 
 const root = document.getElementById('application');
@@ -31,9 +29,7 @@ User.auth()
 
 
 
-//TODO: проверка на авторизацию
 
-//TODO: дописать в меню кнопки
 
 //TODO: profile, rating
 
