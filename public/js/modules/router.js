@@ -26,8 +26,7 @@ export default class Router {
         console.log("view ", path, "is allowed: ", view.allowed());
         if (!view.allowed()) {
             if (this.map['/menu'].allowed()) {
-                // window.history.pushState(null, '', '/menu');
-                // sectionSwitcher.changeSection(this.map['/menu'].render(), this.root);
+
                 window.history.replaceState(null, '', '/menu');
                 this.open('/menu');
             }
