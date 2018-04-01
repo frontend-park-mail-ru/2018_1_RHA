@@ -36,7 +36,7 @@ export default class Validator {
      * Validation of Password input
      * @param passElem
      */
-    static ckeckPass(passElem) {
+    static checkPass(passElem) {
         const pass = passElem.getData();
         if (pass.length < 8) {
             passElem.setError("too short password");

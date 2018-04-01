@@ -38,12 +38,12 @@ export default class RegisterForm extends Form {
 
         this.Email.setOnInputChange(() => {
             Validator.checkMail(this.Email);
-        });  //заглушки
+        });
         this.Name.setOnInputChange(() => {
             Validator.checkName(this.Name);
         });
         this.Password.setOnInputChange(() => {
-            Validator.ckeckPass(this.Password);
+            Validator.checkPass(this.Password);
         });
         this.ConfirmPassword.setOnInputChange(() => {
             Validator.checkConfirm(this.Password, this.ConfirmPassword);

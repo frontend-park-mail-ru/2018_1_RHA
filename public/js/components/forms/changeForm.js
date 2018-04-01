@@ -1,8 +1,7 @@
 import Form from './form.js';
 import Input from '../blocks/input.js';
-// newInputData
-import Button from '../blocks/button.js';
-// despicable teens
+import Validator from "../../modules/validator.js";
+
 
 export default class ChangeForm extends Form {
     constructor(type) {
@@ -12,21 +11,26 @@ export default class ChangeForm extends Form {
     getData() {
         return {
             name: null,
-            email: this.Email.getData(),
+            old_password: this.OldPassword.getData(),
             password: this.Password.getData()
         }
     }
 
     render() {
 
-        this.Email = new Input({
-            type: 'text',
-            placeholder: 'email'
+        this.OldPassword = new Input({
+            type: 'password',
+            placeholder: 'old password'
         });
 
         this.Password = new Input({
             type: 'password',
-            placeholder: 'password'
+            placeholder: 'new password'
+        });
+
+        this.RepeatPassword = new Input({
+            type: 'password',
+            placeholder: 'repeat password'
         });
 
         this.InputSubmit = new Input({
@@ -34,11 +38,20 @@ export default class ChangeForm extends Form {
             value: 'Send'
         });
 
-        this.Email.setOnInputChange(() => {});  //заглушки
-        this.Password.setOnInputChange(() => {});
+        //TODO:: бэк
+        this.OldPassword.setOnInputChange(() => {
+            Validator.checkPass(this.OldPassword);
+        });
+        this.Password.setOnInputChange(() => {
+            Validator.checkPass(this.Password);
+        });
+        this.RepeatPassword.setOnInputChange(() => {
+            Validator.checkConfirm(this.Password, this.RepeatPassword);
+        });
 
-        this.formElement.appendChild(this.Email.render());
+        this.formElement.appendChild(this.OldPassword.render());
         this.formElement.appendChild(this.Password.render());
+        this.formElement.appendChild(this.RepeatPassword.render());
         this.formElement.appendChild(this.InputSubmit.render());
 
 

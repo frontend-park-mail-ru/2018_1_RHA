@@ -22,7 +22,7 @@ export default class MenuSection extends Section {
      */
     render() {
         this.menu = document.createElement('div');
-        this.attrs = [
+        this.attrsActive = [
             {
                 title: "singleplayer",
                 href: '#'
@@ -40,6 +40,20 @@ export default class MenuSection extends Section {
                 href: '/rating'
             },
         ];
+        this.attrPassive = [
+            {
+                title: "singleplayer",
+                href: '#'
+            },
+            {
+                title: "Sign In",
+                href: '/login'
+            },
+            {
+                title: "Sign Up",
+                href: '/register'
+            },
+        ];
         this.logout = document.createElement('a');
         this.logout.setAttribute('href', '/');
         this.logout.innerText = 'logout';
@@ -47,14 +61,19 @@ export default class MenuSection extends Section {
             e.preventDefault();
             bus.emit('logout', null);
         });
-        this.menu.innerHTML = generateMenu({'attrs': this.attrs});
+        if (User.isAuthorized()) {
+            this.menu.innerHTML = generateMenu({'attrs': this.attrsActive});
+        }
+        else {
+            this.menu.innerHTML = generateMenu({'attrs': this.attrPassive});
+        }
         this.menu.appendChild(this.logout);
 
         return this.menu;
     }
 
     allowed() {
-        return User.isAuthorized();
+        return true;
     }
 
     sign() {

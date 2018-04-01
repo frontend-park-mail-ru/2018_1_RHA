@@ -25,7 +25,7 @@ export default class PlaySection extends Section {
         this.playElement = document.createElement('div');
         this.attrs = {
             title: 'Play',
-            href: '/landing'
+            href: '/menu'
         };
         //---------ссылка для теста
         //TODO: ссылка для теста (генерится из шаблона)

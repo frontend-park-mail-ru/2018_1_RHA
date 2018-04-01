@@ -4,6 +4,7 @@ import Button from "../../blocks/button.js";
 import bus from "../../../modules/bus.js";
 import User from "../../../modules/userModel.js";
 import Router from "../../../modules/router.js";
+import LoadForm from "../../forms/loadPictureForm.js";
 
 /**
  * Class represents Section with Profile data and Form
@@ -23,33 +24,15 @@ export default class ProfileSection extends Section {
      */
     render() {
         this.profileElement = document.createElement('div');
-        this.profileTable = document.createElement('table');
-        this.trowMail = document.createElement('tr');
-            this.tdKeyMail = document.createElement('td');
-            this.tdKeyMail.textContent = 'email: ';
 
-            this.tdValMail = document.createElement('td');
-
-
-            this.tdValMail.textContent = User.getCurUser().email;
-
-            this.trowMail.appendChild(this.tdKeyMail);
-            this.trowMail.appendChild(this.tdValMail);
-        this.trowName = document.createElement('tr');
-            this.tdKeyName = document.createElement('td');
-            this.tdKeyName.textContent = 'name: ';
-
-            this.tdValName = document.createElement('td');
-
-            this.tdValName.textContent = User.getCurUser().rating;
-
-            this.trowName.appendChild(this.tdKeyName);
-            this.trowName.appendChild(this.tdValName);
-
-        this.profileTable.appendChild(this.trowMail);
-        this.profileTable.appendChild(this.trowName);
-
+        this.attrs = User.getCurUser();
+        this.profileTable = document.createElement('div');
+        this.profileTable.innerHTML = generateProfile({"user": this.attrs});
         this.profileElement.appendChild(this.profileTable);
+
+
+        this.fileForm = new LoadForm();
+        this.profileElement.appendChild(this.fileForm.render());
 
         this.changeForm = new ChangeForm();
         this.profileElement.appendChild(this.changeForm.render());
@@ -65,8 +48,6 @@ export default class ProfileSection extends Section {
             bus.emit("user:update", jsonUserData);
         });
         return this.profileElement;
-        //TODO: сделать загрузку аватара
-        //TODO: а еще перевести это в шаблон!!!
     }
 
     allowed() {

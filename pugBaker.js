@@ -18,4 +18,5 @@ bake("/js/components/views/ratingView/", "rating.pug", "generateRating", "rating
 bake("/js/components/views/playView/", "play.pug", "generatePlay", "playTemplate.js");
 bake("/js/components/views/menuView/", "menu.pug", "generateMenu", "menuTemplate.js");
 bake("/js/components/views/loginView/", "login.pug", "generateLogin", "loginTemplate.js");
+bake("/js/components/views/profileView/", "profile.pug", "generateProfile", "profileTemplate.js");
 console.log("Baked!");

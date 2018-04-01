@@ -17,6 +17,9 @@ export default class User {
         this.rating = data.rating;
     }
     static auth() {
+        // if (curUser) {
+        //     resolve(curUser);
+        // }
         return new Promise( (resolve, reject) => {
             http.get(route.userAPIMethods.user, (err, resp) => {
                 if (err) {
