@@ -1,5 +1,5 @@
 var radar = document.getElementById( 'radar' ),
-    diameter = 220,
+    diameter = 620,
     radius = diameter / 2,
     padding = 14,
     ctx = Sketch.create({
@@ -14,12 +14,12 @@ var radar = document.getElementById( 'radar' ),
     sweepAngle = 270,
     sweepSize = 2,
     sweepSpeed = 1.2,
-    rings = 4,
+    rings = 6,
     hueStart = 120,
     hueEnd = 170,
     hueDiff = Math.abs( hueEnd - hueStart ),
-    saturation = 50,
-    lightness = 40,
+    saturation = 60,
+    lightness = 30,
     lineWidth = 2,
     gradient = ctx.createLinearGradient( radius, 0, 0, 0 );
 
