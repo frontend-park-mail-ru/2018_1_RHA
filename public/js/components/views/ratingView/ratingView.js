@@ -61,7 +61,7 @@ export default class RatingSection extends Section {
         this.backButt.render().classList.add("page-button");
         this.backButt.setOnClick(() => {
             this.page = 1;
-            new Router().open('/menu')
+            new Router().open('/')
         });
 
         this.load(1, ()=>{});

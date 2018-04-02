@@ -27,12 +27,14 @@
     clear: both;
     float: right;
     height: 900px;
+    padding: 0;
+
 }
 
 #application {
     width: 70%;
     margin-top: 40%;
-    margin-left: 15%;
+    margin-left: 10%;
 }
 
 
@@ -43,26 +45,21 @@ a {
     display: block;
 }
 
+
+
+/*@font-face {*/
+    /*font-family: "armalite";*/
+    /*src: local('armalite');*/
+    /*url("../fonts/armalite.ttf") format('truetype');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
+
+
 li {
     margin: 1%;
-}
-
-@font-face {
-    font-family: "armalite";
-    src: local('armalite');
-    url("../fonts/armalite.ttf") format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-li {
     margin-left: 0;
     margin-right: 0;
-}
-
-form {
-    padding: 0;
 }
 
 h2 {

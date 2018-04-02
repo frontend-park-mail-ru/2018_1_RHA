@@ -95,6 +95,4 @@ export default class User {
             })
         })
     }
-
-
 }

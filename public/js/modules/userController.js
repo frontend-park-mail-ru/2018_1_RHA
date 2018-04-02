@@ -21,7 +21,7 @@ class UserController {
             User.signUp(user)
                 .then(
                     user => {
-                        new Router().open('/menu');
+                        new Router().open('/');
                 })
                 .catch(
                     error => {
@@ -48,7 +48,7 @@ class UserController {
             User.signIn(user)
                 .then(
                     user => {
-                        new Router().open('/menu');
+                        new Router().open('/');
                     }
                 )
                 .catch(
@@ -62,7 +62,7 @@ class UserController {
             User.update(user)
                 .then(
                     user => {
-                        new Router().open('/menu');
+                        new Router().open('/');
                     }
                 )
                 .catch(
@@ -76,43 +76,6 @@ class UserController {
         UserController.__instance = this;
     }
 
-    // /**
-    //  * Loads user data
-    //  * @param {function} callbackfn
-    //  * @return {PromiseLike<T>|Promise<T>}
-    //  */
-    // loadMe(callbackfn) {
-    //     return http.get(route.userAPIMethods.user, callbackfn);
-    // }
-    //
-    // /**
-    //  * To register user
-    //  * @param userData
-    //  * @param {function} callbackfn
-    //  * @return {PromiseLike<T>|Promise<T>}
-    //  */
-    // register(userData, callbackfn) {
-    //     return http.post(route.userAPIMethods.signup, userData, callbackfn);
-    // }
-    //
-    // /**
-    //  * Logs User in
-    //  * @param userData
-    //  * @param {function} callbackfn
-    //  * @return {PromiseLike<T>|Promise<T>}
-    //  */
-    // login(userData, callbackfn) {
-    //     return http.post(route.userAPIMethods.login, userData, callbackfn);
-    // }
-    //
-    // /**
-    //  * Logs user out
-    //  * @param {function} callbackfn
-    //  * @return {PromiseLike<T>|Promise<T>}
-    //  */
-    // logout(callbackfn) {
-    //     return http.post(route.userAPIMethods.logout, {}, callbackfn);
-    // }
 
     /**
      * Loads Rating of all Users
@@ -123,17 +86,6 @@ class UserController {
     rating(page, callbackfn) {
         return http.get(route.userAPIMethods.leaderBoard + '/' + page.toString(), callbackfn);
     }
-
-    // /**
-    //  * Changes user data
-    //  * @param userData
-    //  * @param {function} callbackfn
-    //  * @return {PromiseLike<T>|Promise<T>}
-    //  */
-    // change(userData, callbackfn) {
-    //     return http.post(route.userAPIMethods.updateUser, userData, callbackfn);
-    // }
-
 
 }
 const userController = new UserController();
