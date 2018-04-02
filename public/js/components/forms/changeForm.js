@@ -35,7 +35,7 @@ export default class ChangeForm extends Form {
 
         this.InputSubmit = new Input({
             type: 'submit',
-            value: 'Send'
+            value: 'Save'
         });
 
         //TODO:: бэк

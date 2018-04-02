@@ -14,7 +14,7 @@ export default class LoadForm extends Form {
         });
         this.UploadSubmit = new Input({
             type: "submit",
-            value: "Send"
+            value: "Save picture"
         });
 
         this.formElement.appendChild(this.UploadInput.render());

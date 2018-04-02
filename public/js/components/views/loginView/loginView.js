@@ -28,6 +28,7 @@ export default class LoginSection extends Section {
             parent.appendChild(this.login);
         }
 
+        this.login.classList.add('form-wrapper');
 
         this.backWrap = document.createElement('div');
         this.backLink = document.createElement('a');
