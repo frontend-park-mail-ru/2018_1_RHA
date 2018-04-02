@@ -4,7 +4,7 @@ import Button from "../../blocks/button.js";
 import bus from "../../../modules/bus.js";
 import User from "../../../modules/userModel.js";
 import Router from "../../../modules/router.js";
-import LoadForm from "../../forms/loadPictureForm.js";
+import LoadForm from "../../forms/loadPictureForm/loadPictureForm.js";
 
 /**
  * Class represents Section with Profile data and Form
@@ -24,12 +24,13 @@ export default class ProfileSection extends Section {
      */
     render() {
         this.profileElement = document.createElement('div');
+        this.profileElement.classList.add('div__profile-wrapper');
 
         this.attrs = User.getCurUser();
         this.profileTable = document.createElement('div');
         this.profileTable.innerHTML = generateProfile({"user": this.attrs});
         this.profileElement.appendChild(this.profileTable);
-
+        this.profileElement.appendChild(document.createElement('hr'));
 
         this.fileForm = new LoadForm();
         this.profileElement.appendChild(this.fileForm.render());
@@ -39,7 +40,7 @@ export default class ProfileSection extends Section {
 
         this.backButt = new Button('button', 'Back', this.profileElement);
         this.backButt.setOnClick(() => {
-            new Router().open('/menu');
+            new Router().open('/');
         });
 
         this.changeForm.setOnSubmit( () => {

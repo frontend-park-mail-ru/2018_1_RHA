@@ -25,6 +25,7 @@ export default class Input extends Block {
         this.state = true; //заглушка
 
         this.ErrorElement = document.createElement('div');
+        this.ErrorElement.classList.add('error');
         this.InputWrapper.appendChild(this.ErrorElement);
 
     }
@@ -61,10 +62,11 @@ export default class Input extends Block {
         if (error) {
             this.state = false;
             this.ErrorElement.innerHTML = error;
-            this.ErrorElement.style.display = "block";
+            this.InputElement.classList.add('input__error');
         } else {
             this.state = true;
             this.ErrorElement.style.display = "none";
+            this.InputElement.classList.remove('input__error');
         }
     }
 

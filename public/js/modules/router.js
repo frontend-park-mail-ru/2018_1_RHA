@@ -25,8 +25,8 @@ export default class Router {
 
         console.log("view ", path, "is allowed: ", view.allowed());
         if (!view.allowed()) {
-            window.history.replaceState(null, '', '/menu');
-            this.open('/menu');
+            window.history.replaceState(null, '', '/');
+            this.open('/');
             return;
         }
         if (window.location.pathname !== path) {

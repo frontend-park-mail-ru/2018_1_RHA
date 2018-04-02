@@ -1,10 +1,11 @@
-img(src="default.jpg")#avatar
+div.div__avatar-wrapper
+    img.avatar(src="default.jpg")#avatar
 
-table
-    tr
-        td Email:
-        td #{user.email}
+    table.table__profile
+        tr.tr__profile
+            td Email:
+            td #{user.email}
 
-    tr
-        td Rating:
-        td #{user.rating}
+        tr.tr__profile
+            td Rating:
+            td #{user.rating}

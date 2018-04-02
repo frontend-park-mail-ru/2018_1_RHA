@@ -1,0 +1,32 @@
+.avatar {
+    width: 50%;
+    border: solid;
+    border-color: white;
+    float: left;
+}
+
+.div__profile-wrapper {
+    border: solid;
+    border-color: white;
+    display: inline-block;
+}
+
+.table__profile {
+    text-align: center;
+    padding-top: 10%;
+    display: block;
+    margin-left: 5%;
+}
+
+.tr__profile {
+    text-align: center;
+    width: 100%;
+    color: black;
+    font-size: larger;
+    margin-bottom: 5%;
+    display: block;
+}
+
+.div__avatar-wrapper {
+    display: inline-block;
+}

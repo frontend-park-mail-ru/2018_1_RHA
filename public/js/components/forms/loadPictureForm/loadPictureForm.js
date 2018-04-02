@@ -1,5 +1,5 @@
-import Form from "./form.js";
-import Input from "../blocks/input.js";
+import Form from "../form.js";
+import Input from "../../blocks/input.js";
 
 
 export default class LoadForm extends Form {
@@ -21,7 +21,7 @@ export default class LoadForm extends Form {
         this.formElement.appendChild(this.UploadSubmit.render());
 
         this.formElement.setAttribute("enctype", "multipart/form-data");
-
+        this.formElement.classList.add('form__loadFile');
         return this.formElement;
     }
 }

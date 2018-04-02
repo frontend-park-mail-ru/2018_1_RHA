@@ -36,6 +36,7 @@ export default class RegisterSection extends Section {
             this.register = document.createElement('div');
         }
         this.register.id = 'registerSection';
+        this.register.classList.add('form-wrapper');
         this.registerForm = new RegisterForm();
 
         this.register.appendChild(this.formHeader);
@@ -43,7 +44,7 @@ export default class RegisterSection extends Section {
 
         this.backLink = document.createElement('a');
         this.backLink.classList.add('button');
-        this.backLink.setAttribute('href', '/landing');
+        this.backLink.setAttribute('href', '/');
         this.backLink.innerText = 'Back to menu';
 
         this.register.appendChild(this.backLink);

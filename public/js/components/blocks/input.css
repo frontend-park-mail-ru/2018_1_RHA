@@ -7,7 +7,7 @@
 
 .input {
     padding: 5px;
-    font-size: 18px;
+    font-size: small;
     background-color: #ffffff;
     color: #000000;
     border: 7px groove #CCCCCC;
@@ -17,7 +17,25 @@
     margin-top: 1%;
     margin-bottom: 1%;
     width: 94.2%;
+    text-align: center;
 }
+
 .input:focus {
     outline:none;
+    border-width: 8px;
+    border-color: crimson;
+}
+
+.input__error {
+    border-color: orange;
+}
+
+.error {
+    color: white;
+    font-size: larger;
+    background-color: crimson;
+}
+
+input[type=file].input__file {
+    border: solid;
 }
