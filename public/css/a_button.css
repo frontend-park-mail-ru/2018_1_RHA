@@ -92,7 +92,8 @@
       background: -ms-linear-gradient(top, #acbac4, #454b4f);
       background: -o-linear-gradient(top, #acbac4, #454b4f);
       background-image: -ms-linear-gradient(top, #acbac4 0%, #454b4f 100%);
-      padding: 16px 32px;
+      /*padding: 16px 32px;*/
+      height: 39px;
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       border-radius: 0px;
@@ -101,7 +102,7 @@
       box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
       text-shadow: #6f7273 0 1px 0;
       color: #000000;
-      font-size: small;
+      font-size: large;
       font-family: helvetica, serif;
       text-decoration: none;
       vertical-align: middle;

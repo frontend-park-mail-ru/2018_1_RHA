@@ -7,6 +7,15 @@
 @import "../js/components/views/menuView/menu.css";
 /*@import "../js/components/radar/radar.css";*/
 
+.input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
+.input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
+.input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
+.input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
+.input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
+.input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
+.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+
 
 #radar-wrapper {
     width: 60%;
@@ -37,12 +46,19 @@
     margin-left: 10%;
 }
 
+/*.button {*/
+    /*height: 100px;*/
+    /*width: 100px;*/
+    /*border: seagreen;*/
+    /*background: #c91919;*/
+/*}*/
 
-a {
+.button a {
+    display: block;
+    margin-top: 10px;
     text-decoration: none;
     color: black;
     height: 100%;
-    display: block;
 }
 
 

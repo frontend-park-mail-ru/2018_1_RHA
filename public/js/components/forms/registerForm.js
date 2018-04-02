@@ -59,23 +59,20 @@ export default class RegisterForm extends Form {
     }
 
     getData() {
-
-        if (
-            this.Email.getState() &&
-            this.Name.getState() &&
-            this.Password.getState() &&
-            this.ConfirmPassword.getState()
-        ) {
-            return {
-                name: this.Name.getData(),
-                email: this.Email.getData(),
-                password: this.Password.getData()
-            };
+        const name = this.Name.getData();
+        const email = this.Email.getData();
+        const password = this.Password.getData();
+        if (name === '' || email === '' || password === '') {
+            return null;
         }
-
-        return null;
-
+        return {
+            name: name,
+            email: email,
+            password: password
+        }
     }
+
+
 
     setOnSubmit(callbackfn) {
         this.formElement.addEventListener('submit', (ev) => {

@@ -20,10 +20,14 @@ export default class LoginForm extends Form {
      * @return {{name: null, email: string, password: string}}
      */
     getData() {
+        const email = this.Email.getData();
+        const password = this.Password.getData();
+        if (email === '' || password === '') {
+            return null;
+        }
         return {
-            name: null,
-            email: this.Email.getData(),
-            password: this.Password.getData()
+            email: email,
+            password: password
         }
     }
 

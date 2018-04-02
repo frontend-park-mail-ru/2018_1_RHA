@@ -42,16 +42,21 @@ export default class RegisterSection extends Section {
         this.register.appendChild(this.formHeader);
         this.register.appendChild(this.registerForm.render());
 
+        this.backWrap = document.createElement('div');
         this.backLink = document.createElement('a');
-        this.backLink.classList.add('button');
+        this.backWrap.classList.add('button');
         this.backLink.setAttribute('href', '/');
         this.backLink.innerText = 'Back to menu';
+        this.backWrap.appendChild(this.backLink);
 
-        this.register.appendChild(this.backLink);
+        this.register.appendChild(this.backWrap);
 
         this.registerForm.setOnSubmit( () => {
             const userData = this.registerForm.getData();
+            debugger;
+            console.log(userData);
             if (userData === null) {
+                this.registerForm.Email.setError("Empty fields");
                 return;
             }
             const jsonUserData = JSON.stringify(userData);
