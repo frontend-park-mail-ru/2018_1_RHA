@@ -54,23 +54,25 @@ export default class MenuSection extends Section {
                 href: '/register'
             },
         ];
-        this.logout = document.createElement('a');
-        this.logout.setAttribute('href', '/');
-        this.logout.innerText = 'logout';
-        this.logout.addEventListener('click', (e) => {
-            e.preventDefault();
-            bus.emit('logout', null);
-        });
-        this.logoutWrapper = document.createElement('div');
-        this.logoutWrapper.classList.add('button');
-        this.logoutWrapper.appendChild(this.logout);
+
         if (User.isAuthorized()) {
             this.menu.innerHTML = generateMenu({'attrs': this.attrsActive});
+            this.logout = document.createElement('a');
+            this.logout.setAttribute('href', '/');
+            this.logout.innerText = 'logout';
+            this.logout.addEventListener('click', (e) => {
+                e.preventDefault();
+                bus.emit('logout', null);
+            });
+            this.logoutWrapper = document.createElement('div');
+            this.logoutWrapper.classList.add('button');
+            this.logoutWrapper.appendChild(this.logout);
+            this.menu.appendChild(this.logoutWrapper);
         }
         else {
             this.menu.innerHTML = generateMenu({'attrs': this.attrPassive});
         }
-        this.menu.appendChild(this.logoutWrapper);
+
 
         return this.menu;
     }

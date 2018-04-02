@@ -69,6 +69,7 @@
 @import "reset.css";
 @import "a_button.css";
 @import "../js/components/blocks/input.css";
+@import "../js/components/views/ratingView/rating.css";
 /*@import "../js/components/radar/radar.css";*/
 
 

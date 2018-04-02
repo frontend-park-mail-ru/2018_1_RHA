@@ -11,12 +11,15 @@ export default class Button extends Block {
         super();
         this.buttonWrapper = document.createElement('div');
         this.buttonElement = document.createElement('button');
+        this.buttonElement.classList.add("btn-style");
+        this.buttonElement.classList.add("button");
         this.buttonElement.innerHTML = value;
         this.buttonElement.type = type;
 
         if (parent) {
             parent.appendChild(this.buttonWrapper);
         }
+        this.buttonWrapper.classList.add("page-button");
 
         this.buttonWrapper.appendChild(this.buttonElement);
     }
@@ -33,14 +36,14 @@ export default class Button extends Block {
      * To make a button hidden
      */
     hide() {
-        this.buttonWrapper.hidden = true;
+        this.buttonWrapper.classList.add("hidden");
     }
 
     /**
      * To make button visible
      */
     show() {
-        this.buttonWrapper.hidden = false;
+        this.buttonWrapper.classList.remove("hidden");
     }
 
     /**

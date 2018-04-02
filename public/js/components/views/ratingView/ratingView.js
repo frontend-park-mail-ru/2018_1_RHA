@@ -45,7 +45,6 @@ export default class RatingSection extends Section {
 
         this.nextButt = new Button('button', 'next', this.rating);
         this.nextButt.setOnClick(() => {
-
             this.rating.removeChild(this.rating.firstChild);
             this.page ++;
             this.load(this.page, (empty) => {
@@ -59,6 +58,7 @@ export default class RatingSection extends Section {
         });
 
         this.backButt = new Button('button', 'Back', this.rating);
+        this.backButt.render().classList.add("page-button");
         this.backButt.setOnClick(() => {
             this.page = 1;
             new Router().open('/menu')
