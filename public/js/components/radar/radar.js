@@ -1,5 +1,5 @@
 var radar = document.getElementById( 'radar' ),
-    diameter = 620,
+    diameter = window.innerWidth * 0.35,
     radius = diameter / 2,
     padding = 14,
     ctx = Sketch.create({
