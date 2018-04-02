@@ -56,9 +56,9 @@
 
 }
 /*канва под радар*/
-   .radar-canvas{
+   .radar-canvas {
        border-width: 5px;
-       border-color: #444;
+       border-color: red;
        border-style: groove;
        width: 70%;
        height: 90%;
@@ -78,7 +78,6 @@
     border-color: #444;
     border-style: groove;
     display: inline-block;
-
 }
 
 
@@ -135,83 +134,6 @@
       background-image: -ms-linear-gradient(top, #b7bac2 0%, #2e2a2e 100%);
       color: #000000;
   }
-
-
-/**
- * CSS Buttons Generator for your pleasure!
- * http://www.dextronet.com/css-buttons-generator
- *
- * (c) Ondrej Zabojnik <zabojnik@dextronet.com>, released under the MIT license
- *
- * Usage:
- *   <a href="" class="shiny-button"><strong>Singleplayer</strong></a>
- *
- */
-/*Ультимативная металлическая кнопка(запаска)*/
-/*
-.shiny-button {
-    display: inline-block;
-    text-align: center;
-    border-width: 1px;
-    border-style: solid;
-    text-transform: uppercase;
-    text-decoration: none;
-    line-height: 1.1;
-    font-weight: normal;
-    font-family: sans-serif;
-    color: #FFFCF2;
-    font-size: 12px;
-    background-color: #7A7D82;
-    background-image: -webkit-linear-gradient(top, #7d8085 0%, #929292 48%, #7A7D82 49%, #7A7D82 82%, #888b90 100%);
-    background-image: -moz-linear-gradient(top, #7d8085 0%, #929292 48%, #7A7D82 49%, #7A7D82 82%, #888b90 100%);
-    background-image: -o-linear-gradient(top, #7d8085 0%, #929292 48%, #7A7D82 49%, #7A7D82 82%, #888b90 100%);
-    background-image: linear-gradient(top, #7d8085 0%, #929292 48%, #7A7D82 49%, #7A7D82 82%, #888b90 100%);
-    border-color: hsl(0, 0%, 49%);
-    -webkit-box-shadow: inset 0 0 1px 1px #94979b, 0 0 1px 3px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: inset 0 0 1px 1px #94979b, 0 0 1px 3px rgba(0, 0, 0, 0.15);
-    box-shadow: inset 0 0 1px 1px #94979b, 0 0 1px 3px rgba(0, 0, 0, 0.15);
-    -webkit-text-shadow: 1px 1px 1px #494a4d;
-    -moz-text-shadow: 1px 1px 1px #494a4d;
-    -o-text-shadow: 1px 1px 1px #494a4d;
-    text-shadow: 1px 1px 1px #494a4d;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    padding: 12px 30px 12px 30px;
-}
-
-.shiny-button strong {
-    letter-spacing: 1px;
-    font-size: 15px;
-}
-
-.shiny-button:hover {
-    color: #FFFCF2;
-    background-color: #828589;
-    background-image: -webkit-linear-gradient(top, #85888b 0%, #9a9a9a 48%, #828589 49%, #828589 82%, #909397 100%);
-    background-image: -moz-linear-gradient(top, #85888b 0%, #9a9a9a 48%, #828589 49%, #828589 82%, #909397 100%);
-    background-image: -o-linear-gradient(top, #85888b 0%, #9a9a9a 48%, #828589 49%, #828589 82%, #909397 100%);
-    background-image: linear-gradient(top, #85888b 0%, #9a9a9a 48%, #828589 49%, #828589 82%, #909397 100%);
-    border-color: hsl(0, 0%, 52%);
-    -webkit-box-shadow: inset 0 0 1px 1px #9c9fa2, 0 0 1px 3px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: inset 0 0 1px 1px #9c9fa2, 0 0 1px 3px rgba(0, 0, 0, 0.15);
-    box-shadow: inset 0 0 1px 1px #9c9fa2, 0 0 1px 3px rgba(0, 0, 0, 0.15);
-    -webkit-text-shadow: 1px 1px 1px #505255;
-    -moz-text-shadow: 1px 1px 1px #505255;
-    -o-text-shadow: 1px 1px 1px #505255;
-    text-shadow: 1px 1px 1px #505255;
-}
-
-.shiny-button:active {
-    color: #FFFCF2;
-    background-color: #73757a;
-    background-image: -webkit-linear-gradient(top, #6e7075 0%, #7A7D82 100%);
-    background-image: -moz-linear-gradient(top, #6e7075 0%, #7A7D82 100%);
-    background-image: -o-linear-gradient(top, #6e7075 0%, #7A7D82 100%);
-    background-image: linear-gradient(top, #6e7075 0%, #7A7D82 100%);
-    padding: 13px 30px 11px 30px;
-}*/
-
 
 /*лампочка красная(ну почти)*/
 .lamp-red {

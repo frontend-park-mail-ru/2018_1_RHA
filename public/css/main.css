@@ -5,7 +5,7 @@
 @import "../js/components/views/profileView/profile.css";
 @import "../js/components/forms/loadPictureForm/loadPictureForm.css";
 @import "../js/components/views/menuView/menu.css";
-/*@import "../js/components/radar/radar.css";*/
+@import "../js/components/radar/radar.css";
 
 .input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
 .input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
