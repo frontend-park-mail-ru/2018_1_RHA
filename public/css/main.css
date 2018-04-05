@@ -1,0 +1,90 @@
+@import "reset.css";
+@import "a_button.css";
+@import "../js/components/blocks/input.css";
+@import "../js/components/views/ratingView/rating.css";
+@import "../js/components/views/profileView/profile.css";
+@import "../js/components/forms/loadPictureForm/loadPictureForm.css";
+@import "../js/components/views/menuView/menu.css";
+@import "../js/components/radar/radar.css";
+
+.input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
+.input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
+.input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
+.input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
+.input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
+.input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
+.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+
+
+#radar-wrapper {
+    width: 60%;
+    background-color: #111111;
+    margin: 0;
+    position: absolute;
+    height: 100%;
+    display: inline-block;
+    clear: both;
+    float: left;
+}
+
+#application-wrapper {
+    width: 40%;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    float: right;
+    height: 900px;
+    padding: 0;
+
+}
+
+#application {
+    width: 95%;
+    margin-top: 25%;
+    margin-left: 3%;
+}
+
+/*.button {*/
+    /*height: 100px;*/
+    /*width: 100px;*/
+    /*border: seagreen;*/
+    /*background: #c91919;*/
+/*}*/
+
+.button a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+    height: 100%;
+}
+
+
+
+/*@font-face {*/
+    /*font-family: "armalite";*/
+    /*src: local('armalite');*/
+    /*url("../fonts/armalite.ttf") format('truetype');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
+
+
+li {
+    margin: 1%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+h2 {
+    color: white;
+    font-size: 300%;
+    margin: 2%;
+}
+
+.form-wrapper {
+    text-align: center;
+}
+

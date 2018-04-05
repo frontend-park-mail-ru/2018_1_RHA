@@ -1,0 +1,11 @@
+table.scorboard_table
+    thead
+        tr
+            td Email
+            td Score
+    tbody
+        each fuck in data
+            tr.scorboard_row
+                td #{Object.keys(fuck) }
+                td #{Object.values(fuck)}
+
