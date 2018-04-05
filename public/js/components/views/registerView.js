@@ -52,8 +52,8 @@ export default class RegisterSection extends Section {
         this.register.appendChild(this.backWrap);
 
         this.registerForm.setOnSubmit( () => {
-            const userData = this.registerForm.getData();
             debugger;
+            const userData = this.registerForm.getData();
             console.log(userData);
             if (userData === null) {
                 this.registerForm.Email.setError("Empty fields");

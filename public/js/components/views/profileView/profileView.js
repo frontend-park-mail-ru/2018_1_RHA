@@ -48,6 +48,14 @@ export default class ProfileSection extends Section {
             const jsonUserData = JSON.stringify(userData);
             bus.emit("user:update", jsonUserData);
         });
+        this.fileForm.setOnSubmit( () => {
+            //TODO:
+            const formData = new FormData();
+            //formData.append("avatar", this.fileForm.getData().files[0]);
+            //const avatar = this.fileForm.getData();
+            //const jsonAvatar = JSON.stringify(avatar);
+            bus.emit("user:avatarUpload", formData);
+        });
         return this.profileElement;
     }
 

@@ -66,7 +66,7 @@ export default class RegisterForm extends Form {
             return null;
         }
         return {
-            name: name,
+            username: name,
             email: email,
             password: password
         }

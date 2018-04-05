@@ -95,4 +95,15 @@ export default class User {
             })
         })
     }
+
+    static uploadAvatar(userData) {
+        return new Promise((resolve, reject) => {
+            http.post('http://localhost:3000/avatar', userData, (err, resp) => {
+                if (err) {
+                    return reject(err);
+                }
+                console.log(resp);
+            })
+        })
+    }
 }

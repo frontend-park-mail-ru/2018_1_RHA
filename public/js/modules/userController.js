@@ -71,6 +71,22 @@ class UserController {
                     }
                 )
         });
+        bus.on('user:avatarUpload', (data) => {
+            const avatar = data.payload;
+            console.log(avatar);
+            User.uploadAvatar(avatar)
+                .then(
+                    user => {
+                        new Router().open('/profile');
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error);
+                    }
+                )
+
+        });
 
 
         UserController.__instance = this;

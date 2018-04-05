@@ -39,7 +39,7 @@ class HttpService {
         return this.request('POST', url, body)
             .then (
                 response => {
-                    if (response.status === 200) {
+                    if (response.status < 300) {
                         try {
                             callbackfn(null, response.json());
                         }
@@ -77,6 +77,10 @@ class HttpService {
           credentials: 'include',
           mode: 'cors'
         };
+        //TODO:: на время
+        if (url === 'http://localhost:3000/avatar') {
+            return fetch(url, req);
+        }
         return fetch(`${config.serverUrl}${url}`, req);
     }
 }

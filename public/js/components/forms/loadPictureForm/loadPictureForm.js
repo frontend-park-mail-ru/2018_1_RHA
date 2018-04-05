@@ -7,6 +7,16 @@ export default class LoadForm extends Form {
         super();
     }
 
+    getData() {
+        const avatar = this.UploadInput.getFormData();
+        if (avatar === '') {
+            return null;
+        }
+        return {
+            avatar: avatar
+        }
+    }
+
     render() {
         this.UploadInput = new Input({
             type: "file",
@@ -22,6 +32,14 @@ export default class LoadForm extends Form {
 
         this.formElement.setAttribute("enctype", "multipart/form-data");
         this.formElement.classList.add('form__loadFile');
+
         return this.formElement;
+    }
+
+    setOnSubmit(callbackfn) {
+        this.formElement.addEventListener('submit', (ev) => {
+            ev.preventDefault();
+            callbackfn();
+        })
     }
 }

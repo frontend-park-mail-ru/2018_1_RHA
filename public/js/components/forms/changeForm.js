@@ -10,7 +10,7 @@ export default class ChangeForm extends Form {
 
     getData() {
         return {
-            name: null,
+            username: null,
             old_password: this.OldPassword.getData(),
             password: this.Password.getData()
         }

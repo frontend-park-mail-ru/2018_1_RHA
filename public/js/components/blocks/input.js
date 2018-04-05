@@ -53,6 +53,9 @@ export default class Input extends Block {
     getData() {
         return this.InputElement.value;
     }
+    getFormData() {
+        return this.InputElement;
+    }
 
     /**
      * To set error message or unset error
