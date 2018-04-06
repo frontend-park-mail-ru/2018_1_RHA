@@ -4,15 +4,14 @@ import Validator from '../../modules/validator.js';
 
 
 export default class ChangeForm extends Form {
-	constructor(type) {
+	constructor() {
 		super();
 	}
 
 	getData() {
 		return {
-			username: null,
-			old_password: this.OldPassword.getData(),
-			password: this.Password.getData()
+			oldp: this.OldPassword.getData(),
+			newp: this.Password.getData()
 		};
 	}
 
@@ -64,7 +63,4 @@ export default class ChangeForm extends Form {
 			callbackfn();
 		});
 	}
-
-
-
 }
