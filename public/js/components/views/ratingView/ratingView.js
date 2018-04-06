@@ -81,9 +81,9 @@ export default class RatingSection extends Section {
 
             users.then(
                 data => {
-                    console.log(Object.values(data[0]));
+                    console.log(data);
                     this.table = document.createElement('div');
-                    this.table.innerHTML = generateRating({"data": data});
+                    this.table.innerHTML = generateRating({"data": data[0]});
                     this.rating.insertBefore(this.table, this.rating.firstChild);
                 }
             );
