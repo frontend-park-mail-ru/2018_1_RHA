@@ -1,6 +1,6 @@
 export default class Block {
-    /**
-     * should be overriden
-     */
-    render() {}
+/**
+* should be overriden
+*/
+	render() {}
 }
