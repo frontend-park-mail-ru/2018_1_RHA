@@ -11,7 +11,7 @@ const userAPIMethods = {
     signup: 'users/create',
     logout: 'users/logout',
     user: 'users/info',
-    updateUser: 'users/change',
+    updateUser: 'users/chpwd',
     leaderBoard: 'users/rating',
 };
 
