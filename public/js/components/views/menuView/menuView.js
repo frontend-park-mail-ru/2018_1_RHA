@@ -25,7 +25,7 @@ export default class MenuSection extends Section {
 		this.attrsActive = [
 			{
 				title: 'singleplayer',
-				href: '#'
+				href: '/singleplayer'
 			},
 			{
 				title: 'multiplayer',
@@ -43,7 +43,7 @@ export default class MenuSection extends Section {
 		this.attrPassive = [
 			{
 				title: 'singleplayer',
-				href: '#'
+				href: '/singleplayer'
 			},
 			{
 				title: 'Sign In',
