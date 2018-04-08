@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 import Section from '../baseView.js';
+import Hexagon from "../../../modules/graphics/hexagon.js";
+import inPoly from "../../../modules/game/core/core.js";
 
 export default class GameSection extends Section {
 	constructor () {
@@ -17,29 +19,13 @@ export default class GameSection extends Section {
 	}
 
 	render() {
+		this.canvas.addEventListener('click', event => {
+			if (inPoly(event.x, event.y)) {
+				alert('kaka');
+			}
+		});
 		this.ctx = this.canvas.getContext('2d');
-		this.ctx.beginPath();
-        this.ctx.lineJoin = 'round';
-        this.ctx.lineWidth = 10;
-		this.ctx.moveTo(100,100);
-        this.ctx.lineTo(100,500);
-        this.ctx.lineTo(500,500);
-        this.ctx.lineTo(100,100);
-        let gradient = this.ctx.createLinearGradient(100,100,500,500);
-        gradient.addColorStop(0, 'black');
-        gradient.addColorStop(0.1, 'grey');
-        gradient.addColorStop(0.2, 'brown');
-        gradient.addColorStop(0.3, 'red');
-        gradient.addColorStop(0.4, 'green');
-        gradient.addColorStop(0.5, 'blue');
-        gradient.addColorStop(0.6, 'orange');
-        gradient.addColorStop(0.7, 'yellow');
-        gradient.addColorStop(0.8, 'grey');
-        gradient.addColorStop(1, 'white');
-        this.ctx.fillStyle = gradient;
-		this.ctx.stroke();
-		this.ctx.fill();
-		this.ctx.closePath();
+		new Hexagon(this.ctx).draw();
 		return this.wrapper;
 	}
 	allowed() {
