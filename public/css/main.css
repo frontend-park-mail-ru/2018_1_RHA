@@ -88,3 +88,7 @@ h2 {
     text-align: center;
 }
 
+canvas {
+    border: solid;
+}
+
