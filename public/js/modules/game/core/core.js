@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 
-let xp = [100, 100, 500]; // Массив X-координат полигона
-let yp = [100, 500, 500]; // Массив Y-координат полигона
-const inPoly = (x,y) => {
+const inPoly = (x,y, xp, yp) => {
 	let npol = xp.length;
 	let j = npol - 1;
 	let c = false;

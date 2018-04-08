@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import Section from '../baseView.js';
-import Hexagon from "../../../modules/graphics/hexagon.js";
-import inPoly from "../../../modules/game/core/core.js";
+import Hexagon from '../../../modules/graphics/hexagon.js';
+import inPoly from '../../../modules/game/core/core.js';
 
 export default class GameSection extends Section {
 	constructor () {
@@ -19,13 +19,41 @@ export default class GameSection extends Section {
 	}
 
 	render() {
-		this.canvas.addEventListener('click', event => {
-			if (inPoly(event.x, event.y)) {
-				alert('kaka');
-			}
-		});
+
 		this.ctx = this.canvas.getContext('2d');
-		new Hexagon(this.ctx).draw();
+		this.figures = [
+			{
+				name: 'hex1',
+				figure: new Hexagon(this.ctx, 500, 500)
+			},
+			{
+				name: 'hex2',
+				figure: new Hexagon(this.ctx, 650, 413.4)
+			},
+			{
+				name: 'hex3',
+				figure: new Hexagon(this.ctx, 650, 586.6)
+			},
+			{
+				name: 'hex4',
+				figure: new Hexagon(this.ctx, 500, 326.8)
+			},
+			{
+				name: 'hex5',
+				figure: new Hexagon(this.ctx, 800, 500)
+			}
+		];
+
+		this.canvas.addEventListener('click', event => {
+
+			this.figures.forEach( (obj) => {
+				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
+					alert(obj.name);
+				}
+			});
+		});
+
+
 		return this.wrapper;
 	}
 	allowed() {
