@@ -25,23 +25,28 @@ export default class GameSection extends Section {
 		this.figures = [
 			{
 				name: 'hex1',
-				figure: new Hexagon(this.ctx, 500, 500)
+				color: 'red',
+				figure: new Hexagon(this.ctx, 500, 500, 'red')
 			},
 			{
 				name: 'hex2',
-				figure: new Hexagon(this.ctx, 650, 413.4)
+				color: 'yellow',
+				figure: new Hexagon(this.ctx, 650, 413.4, 'yellow')
 			},
 			{
 				name: 'hex3',
-				figure: new Hexagon(this.ctx, 650, 586.6)
+				color: 'white',
+				figure: new Hexagon(this.ctx, 650, 586.6, 'white')
 			},
 			{
 				name: 'hex4',
-				figure: new Hexagon(this.ctx, 500, 326.8)
+				color: 'green',
+				figure: new Hexagon(this.ctx, 500, 326.8, 'green')
 			},
 			{
 				name: 'hex5',
-				figure: new Hexagon(this.ctx, 800, 500)
+				color: 'cyan',
+				figure: new Hexagon(this.ctx, 800, 500, 'cyan')
 			}
 		];
 
@@ -49,7 +54,20 @@ export default class GameSection extends Section {
 
 			this.figures.forEach( (obj) => {
 				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-					alert(obj.name);
+					//TODO::something click
+				}
+			});
+		});
+
+		this.canvas.addEventListener('mousemove', event => {
+
+			this.figures.forEach( (obj) => {
+				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
+					console.log('orange');
+					obj.figure.reDraw('orange');
+				}
+				else {
+					obj.figure.reStore();
 				}
 			});
 		});
