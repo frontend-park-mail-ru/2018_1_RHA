@@ -1,6 +1,5 @@
 import Form from './form.js';
 import Input from '../blocks/input.js';
-import Button from '../blocks/button.js';
 import Validator from '../../modules/validator.js';
 
 

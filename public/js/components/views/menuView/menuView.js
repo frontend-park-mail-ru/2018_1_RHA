@@ -21,11 +21,23 @@ export default class MenuSection extends Section {
      * @return {HTMLDivElement | *}
      */
 	render() {
+		debugger;
+		if (document.getElementById('application') == null) {
+			document.getElementById('body').innerHTML = '' +
+				'<div id="radar-wrapper">\n' +
+				'\t\t\t<div id="bg"></div>\n' +
+				'\t\t\t<div id="radar"></div>\n' +
+				'\t\t\t</div>\n' +
+				'\n' +
+				'\t\t\t<div id="application-wrapper" class="body">\n' +
+				'\t\t\t<div id="application"></div>\n' +
+				'\t\t\t</div>';
+		}
 		this.menu = document.createElement('div');
 		this.attrsActive = [
 			{
 				title: 'singleplayer',
-				href: '#'
+				href: '/game'
 			},
 			{
 				title: 'multiplayer',
@@ -72,8 +84,6 @@ export default class MenuSection extends Section {
 		else {
 			this.menu.innerHTML = generateMenu({'attrs': this.attrPassive});
 		}
-
-
 		return this.menu;
 	}
 
@@ -82,16 +92,16 @@ export default class MenuSection extends Section {
 	}
 
 	sign() {
-		bus.on('user:authorized', ((data) => {
+		bus.on('user:authorized', (() => {
 			this.allow = true;
 			new Router().open('/menu');
 		}));
 
-		bus.on('user:unauthorized', ((data) => {
+		bus.on('user:unauthorized', (() => {
 			this.allow = false;
 		}));
 
-		bus.on('menu:hide', ((data) => {
+		bus.on('menu:hide', (() => {
 			this.hide();
 		}));
 	}

@@ -2,7 +2,7 @@ import {sectionSwitcher} from './sectionSwitcher.js';
 
 export default class Router {
 
-	constructor(root) {
+	constructor(root, global) {
 
 		if (Router.__instance) {
 			return Router.__instance;
@@ -10,6 +10,7 @@ export default class Router {
 
 		this.root = root;
 		this.map = {};
+		this.global = global;
 		this.active = null;
 
 		Router.__instance = this;
@@ -22,7 +23,6 @@ export default class Router {
 
 	open(path) {
 		const view = this.map[path];
-
 		console.log('view ', path, 'is allowed: ', view.allowed());
 		if (!view.allowed()) {
 			window.history.replaceState(null, '', '/');
@@ -32,6 +32,12 @@ export default class Router {
 		if (window.location.pathname !== path) {
 			window.history.pushState(null, '', path);
 		}
+
+		if (path === '/game') {
+			sectionSwitcher.changeSection(view.render(), this.global);
+		}
+
+
 		sectionSwitcher.changeSection(view.render(), this.root);
 	}
 
