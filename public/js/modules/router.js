@@ -9,6 +9,8 @@ export default class Router {
 		}
 
 		this.root = root;
+		this.startRoot = document.getElementById('start');
+		this.gameRoot = document.getElementById('game');
 		this.map = {};
 		this.global = global;
 		this.active = null;
@@ -23,6 +25,19 @@ export default class Router {
 
 	open(path) {
 		const view = this.map[path];
+		let rootForSwitch;
+		if (path === '/singleplayer' ) {
+			console.log('if');
+			rootForSwitch =  this.gameRoot;
+			this.startRoot.hidden = true;
+			rootForSwitch.hidden = false;
+		} else {
+			console.log('else');
+			rootForSwitch = this.root;
+			this.startRoot.hidden = false;
+			this.gameRoot.hidden = true;
+		}
+
 		console.log('view ', path, 'is allowed: ', view.allowed());
 		if (!view.allowed()) {
 			window.history.replaceState(null, '', '/');
@@ -36,9 +51,7 @@ export default class Router {
 		if (path === '/game') {
 			sectionSwitcher.changeSection(view.render(), this.global);
 		}
-
-
-		sectionSwitcher.changeSection(view.render(), this.root);
+		sectionSwitcher.changeSection(view.render(), rootForSwitch);
 	}
 
 	start() {

@@ -1,18 +1,18 @@
 import Section from '../baseView.js';
-import User from "../../../modules/userModel.js";
+import User from '../../../modules/userModel.js';
 
-export default class Game extends Section {
-	constructor() {
+export default class GameSection extends Section {
+	constructor () {
 		super();
 	}
 
-	render() {
-		this.game = document.createElement('div');
-		this.game.innerText = 'Hello Game!!!';
-		return this.game;
+	render(parent) {
+		this.gameHeader = document.createElement('h1');
+		this.gameHeader.innerText = 'Super Game!';
+		return this.gameHeader;
 	}
-
 	allowed() {
-		return User.isAuthorized();
+		// return User.isAuthorized();
+		return true;
 	}
 }

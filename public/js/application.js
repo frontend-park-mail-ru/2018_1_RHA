@@ -7,7 +7,7 @@ import LoginSection from './components/views/loginView/loginView.js';
 import MenuSection from './components/views/menuView/menuView.js';
 import Router from './modules/router.js';
 import User from './modules/userModel.js';
-import Game from './components/views/gameView/gameView.js';
+import GameSection from "./components/views/gameView/gameView.js";
 
 const root = document.getElementById('application');
 const globalRoot = document.getElementById('body');
@@ -20,7 +20,7 @@ User.auth()
 			.add('/profile', ProfileSection)
 			.add('/rating', RatingSection)
 			.add('/login', LoginSection)
-			.add('/game', Game)
+			.add('/singleplayer', GameSection)
 			.start();
 	})
 	.catch();
