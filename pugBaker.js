@@ -16,4 +16,5 @@ function bake(path, fileName, functionName, jsName)
 bake('/js/components/views/ratingView/', 'rating.pug', 'generateRating', 'ratingTemplate.js');
 bake('/js/components/views/menuView/', 'menu.pug', 'generateMenu', 'menuTemplate.js');
 bake('/js/components/views/profileView/', 'profile.pug', 'generateProfile', 'profileTemplate.js');
+bake('/js/components/views/gameView/', 'gameTemplate.pug', 'generateCanvas', 'gameTemplate.js');
 console.log('Baked!');

@@ -1,15 +1,27 @@
+/* eslint-disable no-undef */
 import Section from '../baseView.js';
-import User from '../../../modules/userModel.js';
 
 export default class GameSection extends Section {
 	constructor () {
 		super();
+		this.parent = document.getElementById('game');
+		this.wrapper = document.createElement('div');
+		this.wrapper.innerHTML = generateCanvas(
+			{
+				'width': screen.width,
+				'height':screen.height
+			}
+		);
+		this.parent.appendChild(this.wrapper);
+		this.canvas = document.getElementById('game-canvas');
 	}
 
-	render(parent) {
-		this.gameHeader = document.createElement('h1');
-		this.gameHeader.innerText = 'Super Game!';
-		return this.gameHeader;
+	render() {
+		this.ctx = this.canvas.getContext('2d');
+		this.ctx.fillRect(25,25,100,100);
+		this.ctx.clearRect(45,45,60,60);
+		this.ctx.strokeRect(50,50,50,50);
+		return this.wrapper;
 	}
 	allowed() {
 		// return User.isAuthorized();
