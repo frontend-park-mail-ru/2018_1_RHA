@@ -1,5 +1,5 @@
-import inPoly from "./inPoly";
-import bus from "../bus.js";
+
+import bus from '../bus.js';
 
 export default class Controller {
 	constructor(canvas) {

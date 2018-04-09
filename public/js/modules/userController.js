@@ -88,6 +88,13 @@ class UserController {
 
 		});
 
+		bus.on('select-region', data => {
+			console.log("im here");
+			const region = data.payload;
+			region.selected = true;
+			region.figure.reDraw('red', 3);
+
+		});
 
 		UserController.__instance = this;
 	}

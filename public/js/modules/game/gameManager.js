@@ -1,16 +1,29 @@
-//TODO:: create players
-//TODO::
+import bus from '../bus.js';
 
 export default class GameManager {
 	constructor() {
+		// bus.on('select-region', data => {
+		// 	console.log("im here");
+		// 	const region = data.payload;
+		// 	region.selected = true;
+		// 	region.figure.reDraw('red', 3);
+		//
+		// });
 
+		bus.on('change-selection', data => {
+			const regions = data.payload;
+			regions.active.selected = false;
+			regions.new.selected = true;
+			regions.figure.reDraw('black', 3);
+		});
 	}
 
-	start() {
-		
-	}
-
-	destroy() {
-
-	}
+	// setBacklightOfRegion(region) {
+	// 	if (region.selected === true) {
+	// 		region.figure.reDraw('red', 3);
+	// 	}
+	// 	else {
+	// 		region.figure.reDraw('black', 3);
+	// 	}
+	// }
 }

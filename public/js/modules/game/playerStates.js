@@ -1,9 +1,8 @@
 const PLAYER_STATES = {
-	READY : 1,
-	SELECTED_REGION : 2,
-	READY_TO_ATTACK : 3,
-	DISABLED : 4,
-	WON : 5
+	DEFAULT : 1,
+	READY : 2,
+	DISABLED : 3,
+	WON : 4
 };
 
 export default PLAYER_STATES;

@@ -2,7 +2,9 @@
 import Section from '../baseView.js';
 import inPoly from '../../../modules/game/inPoly.js';
 import GameScene from '../../../modules/game/gameScene.js';
+import Controller from '../../../modules/game/controller.js';
 import GameManager from '../../../modules/game/gameManager.js';
+import Player from '../../../modules/game/player.js';
 
 export default class GameSection extends Section {
 	constructor () {
@@ -22,10 +24,16 @@ export default class GameSection extends Section {
 	}
 
 	render() {
-		this.scene  = new GameScene(this.canvas, this.canvas.getContext('2d'));
+		this.controller = new Controller(this.canvas);
+		this.controller.start();
+		this.players = [
+			new Player()
+		];
+		this.scene  = new GameScene(this.canvas, this.canvas.getContext('2d'), this.players);
+		this.scene.onListeners();
+		this.manager = new GameManager();
 		this.scene.render();
 
-		this.manager = GameManager();
 		return this.wrapper;
 	}
 
@@ -36,13 +44,4 @@ export default class GameSection extends Section {
 
 
 
-	// setOnClick(ctx) {
-	// 	// this.canvas.addEventListener('click', (ev) => {
-	// 	// 	if (ctx.isPointInPath(ev.x, ev.y)) {
-	// 	//
-	// 	// 	}
-	// 	// });
-	//
-	//
-	// }
 }

@@ -1,12 +1,15 @@
+/* eslint-disable indent */
 import Hexagon from '../graphics/hexagon.js';
 import inPoly from './inPoly.js';
-import bus from "../bus.js";
+import bus from '../bus.js';
+import PLAYER_STATES from './playerStates.js';
 
 export default class GameScene {
 	constructor(canvas, ctx, players) {
 		this.canvas  = canvas;
 		this.ctx = ctx;
 		this.players = players;
+		this.status = PLAYER_STATES.DEFAULT;
 	}
 
 	render() {
@@ -42,39 +45,105 @@ export default class GameScene {
 				selected: false
 			}
 		];
-
+		this.players.forEach( (obj, i) => {
+			obj.addRegion(this.regions[i]);
+		});
+		//todo:
+		this.players[0].active = true;
 
 		return this.wrapper;
 	}
 
+	currentPlayer() {
+		for (let i = 0; i < this.players.length; ++i) {
+			if (this.players[i].active) {
+				return this.players[i];
+			}
+		}
+	}
+
+
+	//возвращает регион, если такой существует
+	isRegion(x, y) {
+		for (let i = 0; i < this.regions.length; ++i) {
+			if (inPoly(x, y, this.regions[i].figure.xp, this.regions[i].figure.yp)) {
+				return this.regions[i];
+			}
+		}
+		return false;
+	}
+
+	activeRegion() {
+		this.regions.forEach( (obj) => {
+			if (obj.selected === true) {
+				return obj;
+			}
+		});
+	}
+
+
+
 	onListeners() {
 		bus.on('left-click', data => {
 			const coordinates = data.payload;
+			if (this.status.DISABLED) {
+				return;
+			}
+			const curRegion = this.isRegion(coordinates.x, coordinates.y);
+			console.log(curRegion, 'aaa');
+			if (!curRegion) {
+				return;
+			}
 
-		});
-		this.canvas.addEventListener('click', event => {
-			this.figures.forEach( (obj) => {
-				//todo:: отправить событие на шину, сигнализирующее о том, что мы выбрали какой то объект
-				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-					if (obj.selected === false) {
-						obj.selected = true;
-						obj.figure.reDraw('red', 3);
-					} else {
-						obj.selected = false;
-						obj.figure.reDraw('black',3);
+			switch (this.status) {
+				case PLAYER_STATES.DEFAULT:
+					debugger;
+					const curPlayer = this.currentPlayer();
+					console.log(curPlayer);
+					if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+						return;
 					}
-				}
-			});
-		});
+					this.status = PLAYER_STATES.READY;
+					//TODO:
+					bus.emit('select-region', curRegion);
+					break;
+				case PLAYER_STATES.READY:
+					if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+						return;
+					}
+					bus.emit('change-selection',
+						{
+							active: this.activeRegion(),
+							new: curRegion
+						});
+					break;
+			}
 
-		document.addEventListener('mousemove', event => {
-			this.figures.forEach( (obj) => {
-				if (obj.selected === true || inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-					obj.figure.reDraw('red', 3);
-				} else {
-					obj.figure.reDraw('black', 3);
-				}
-			});
+
 		});
+		// this.canvas.addEventListener('click', event => {
+		// 	this.regions.forEach( (obj) => {
+		// 		//todo:: отправить событие на шину, сигнализирующее о том, что мы выбрали какой то объект
+		// 		if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
+		// 			if (obj.selected === false) {
+		// 				obj.selected = true;
+		// 				obj.figure.reDraw('red', 3);
+		// 			} else {
+		// 				obj.selected = false;
+		// 				obj.figure.reDraw('black',3);
+		// 			}
+		// 		}
+		// 	});
+		// });
+		//
+		// document.addEventListener('mousemove', event => {
+		// 	this.regions.forEach( (obj) => {
+		// 		if (obj.selected === true || inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
+		// 			obj.figure.reDraw('red', 3);
+		// 		} else {
+		// 			obj.figure.reDraw('black', 3);
+		// 		}
+		// 	});
+		// });
 	}
 }

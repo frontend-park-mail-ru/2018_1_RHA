@@ -6,19 +6,22 @@ export default class Player {
 		this.score = 0;
 		this.resources = 0;
 		this.regions = [];
-		this.state = PLAYER_STATES.READY;
+		this.state = PLAYER_STATES.DEFAULT;
+		this.active = false;
 	}
 
 	init() {
 
 	}
 
-	currentRegion() {
-		//todo:: подписаться на нажатие на регион и сравнить с нашими
+	isTheRegionOfPlayer(region) {
+		this.regions.forEach( (obj) => {
+			return obj.name === region.name;
+		});
 	}
 
 	addRegion(something) {
-		this.regions.add(something);
+		this.regions.push(something);
 	}
 
 	setActive(bool) {
