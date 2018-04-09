@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import Section from '../baseView.js';
-
-import Hexagon from '../../../modules/graphics/hexagon.js';
 import inPoly from '../../../modules/game/inPoly.js';
+import GameScene from '../../../modules/game/gameScene.js';
+import GameManager from "../../../modules/game/gameManager";
 
 export default class GameSection extends Section {
 	constructor () {
@@ -18,82 +18,31 @@ export default class GameSection extends Section {
 		);
 		this.parent.appendChild(this.wrapper);
 		this.canvas = document.getElementById('game-canvas');
+		this.setOnClick(this.canvas.getContext('2d'));
 	}
 
 	render() {
-		this.ctx = this.canvas.getContext('2d');
-		this.figures = [
-			{
-				name: 'hex1',
-				color: 'red',
-				figure: new Hexagon(this.ctx, 500, 500, 'black'),
-				selected: false
-			},
-			{
-				name: 'hex2',
-				color: 'yellow',
-				figure: new Hexagon(this.ctx, 650, 413.4, 'yellow'),
-				selected: false
-			},
-			{
-				name: 'hex3',
-				color: 'white',
-				figure: new Hexagon(this.ctx, 650, 586.6, 'white'),
-				selected: false
-			},
-			{
-				name: 'hex4',
-				color: 'green',
-				figure: new Hexagon(this.ctx, 500, 326.8, 'green'),
-				selected: false
-			},
-			{
-				name: 'hex5',
-				color: 'cyan',
-				figure: new Hexagon(this.ctx, 800, 500, 'cyan'),
-				selected: false
-			}
-		];
+		this.scene  = new GameScene(this.canvas, this.canvas.getContext('2d'));
+		this.scene.render();
 
-		this.canvas.addEventListener('click', event => {
-
-			this.figures.forEach( (obj) => {
-				//todo:: отправить событие на шину, сигнализирующее о том, что мы выбрали какой то объект
-				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-					if (obj.selected === false) {
-						obj.selected = true;
-						obj.figure.reDraw('red', 3);
-					} else {
-						obj.selected = false;
-						obj.figure.reDraw('black',3);
-					}
-				}
-			});
-		});
-
-		this.canvas.addEventListener('mousemove', event => {
-
-			this.figures.forEach( (obj) => {
-
-				if (obj.selected === true || inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-					obj.figure.reDraw('red', 3);
-				} else {
-					obj.figure.reDraw('black', 3);
-				}
-			});
-		});
+		this.manager = GameManager();
 		return this.wrapper;
 	}
+
 	allowed() {
 		// return User.isAuthorized();
 		return true;
 	}
 
-	setOnClick(ctx) {
-		this.canvas.addEventListener('click', (ev) => {
-			if (ctx.isPointInPath(ev.x, ev.y)) {
-				alert('!!!');
-			}
-		});
-	}
+
+
+	// setOnClick(ctx) {
+	// 	// this.canvas.addEventListener('click', (ev) => {
+	// 	// 	if (ctx.isPointInPath(ev.x, ev.y)) {
+	// 	//
+	// 	// 	}
+	// 	// });
+	//
+	//
+	// }
 }

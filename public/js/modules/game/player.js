@@ -1,3 +1,4 @@
+import PLAYER_STATES from './playerStates.js';
 
 
 export default class Player {
@@ -5,7 +6,7 @@ export default class Player {
 		this.score = 0;
 		this.resources = 0;
 		this.regions = [];
-		this.active = false;
+		this.state = PLAYER_STATES.READY;
 	}
 
 	init() {
