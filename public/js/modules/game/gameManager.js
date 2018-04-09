@@ -1,5 +1,7 @@
 import bus from '../bus.js';
 
+
+//todo: подписываемся на события связанные с действиями в игре
 export default class GameManager {
 	constructor() {
 		bus.on('select-region', data => {

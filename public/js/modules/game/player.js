@@ -14,6 +14,8 @@ export default class Player {
 
 	}
 
+
+	//Принадлежит ли данный регион игроку
 	isTheRegionOfPlayer(region) {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].name === region.name) {

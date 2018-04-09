@@ -13,6 +13,7 @@ export default class GameScene {
 	}
 
 	render() {
+		//todo: регионы, которые принадлежат игроку должны быть окрашены в один цвет
 		this.regions = [
 			{
 				name: 'hex1',
@@ -45,15 +46,22 @@ export default class GameScene {
 				selected: false
 			}
 		];
-		this.players.forEach( (obj, i) => {
-			obj.addRegion(this.regions[i]);
-		});
-		//todo:
+
+		//Раздаем каждому игроку по зоне
+		// this.players.forEach( (obj, i) => {
+		// 	obj.addRegion(this.regions[i]);
+		// });
+		//todo: просто дал одному пользователю права рулить и пару регионов(желтый и белый)
 		this.players[0].active = true;
+		this.players[0].addRegion(this.regions[1]);
+		this.players[0].addRegion(this.regions[2]);
 
 		return this.wrapper;
 	}
 
+
+	//TODO: все циклы return'ящие что то, должны быть оформлены в таком виде
+	//текущий игрок
 	currentPlayer() {
 		for (let i = 0; i < this.players.length; ++i) {
 			if (this.players[i].active) {
@@ -73,6 +81,7 @@ export default class GameScene {
 		return false;
 	}
 
+	//выделенный регион
 	activeRegion() {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].selected === true) {
@@ -81,8 +90,7 @@ export default class GameScene {
 		}
 	}
 
-
-
+	//подписываемся на события кликов мышки
 	onListeners() {
 		bus.on('left-click', data => {
 			const coordinates = data.payload;
@@ -101,7 +109,6 @@ export default class GameScene {
 						return;
 					}
 					this.status = PLAYER_STATES.READY;
-					//TODO:
 					bus.emit('select-region', curRegion);
 					break;
 				case PLAYER_STATES.READY:
@@ -109,7 +116,7 @@ export default class GameScene {
 						return;
 					}
 
-					//если нажали на выделенную
+					//если нажали на выделенный регион
 					if (curRegion === this.activeRegion()) {
 						this.status = PLAYER_STATES.DEFAULT;
 					}
@@ -123,29 +130,6 @@ export default class GameScene {
 
 
 		});
-		// this.canvas.addEventListener('click', event => {
-		// 	this.regions.forEach( (obj) => {
-		// 		//todo:: отправить событие на шину, сигнализирующее о том, что мы выбрали какой то объект
-		// 		if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-		// 			if (obj.selected === false) {
-		// 				obj.selected = true;
-		// 				obj.figure.reDraw('red', 3);
-		// 			} else {
-		// 				obj.selected = false;
-		// 				obj.figure.reDraw('black',3);
-		// 			}
-		// 		}
-		// 	});
-		// });
-		//
-		// document.addEventListener('mousemove', event => {
-		// 	this.regions.forEach( (obj) => {
-		// 		if (obj.selected === true || inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-		// 			obj.figure.reDraw('red', 3);
-		// 		} else {
-		// 			obj.figure.reDraw('black', 3);
-		// 		}
-		// 	});
-		// });
+
 	}
 }
