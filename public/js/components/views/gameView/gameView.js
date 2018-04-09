@@ -26,27 +26,32 @@ export default class GameSection extends Section {
 			{
 				name: 'hex1',
 				color: 'red',
-				figure: new Hexagon(this.ctx, 500, 500, 'red')
+				figure: new Hexagon(this.ctx, 500, 500, 'black'),
+				selected: false
 			},
 			{
 				name: 'hex2',
 				color: 'yellow',
-				figure: new Hexagon(this.ctx, 650, 413.4, 'yellow')
+				figure: new Hexagon(this.ctx, 650, 413.4, 'yellow'),
+				selected: false
 			},
 			{
 				name: 'hex3',
 				color: 'white',
-				figure: new Hexagon(this.ctx, 650, 586.6, 'white')
+				figure: new Hexagon(this.ctx, 650, 586.6, 'white'),
+				selected: false
 			},
 			{
 				name: 'hex4',
 				color: 'green',
-				figure: new Hexagon(this.ctx, 500, 326.8, 'green')
+				figure: new Hexagon(this.ctx, 500, 326.8, 'green'),
+				selected: false
 			},
 			{
 				name: 'hex5',
 				color: 'cyan',
-				figure: new Hexagon(this.ctx, 800, 500, 'cyan')
+				figure: new Hexagon(this.ctx, 800, 500, 'cyan'),
+				selected: false
 			}
 		];
 
@@ -54,7 +59,13 @@ export default class GameSection extends Section {
 
 			this.figures.forEach( (obj) => {
 				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-					//TODO::something click
+					if (obj.selected === false) {
+						obj.selected = true;
+						obj.figure.reDraw('red', 3);
+					} else {
+						obj.selected = false;
+						obj.figure.reDraw('black',3);
+					}
 				}
 			});
 		});
@@ -62,12 +73,11 @@ export default class GameSection extends Section {
 		this.canvas.addEventListener('mousemove', event => {
 
 			this.figures.forEach( (obj) => {
-				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
-					console.log('orange');
-					obj.figure.reDraw('orange');
-				}
-				else {
-					obj.figure.reStore();
+
+				if (obj.selected === true || inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
+					obj.figure.reDraw('red', 3);
+				} else {
+					obj.figure.reDraw('black', 3);
 				}
 			});
 		});
