@@ -6,6 +6,8 @@ export default class Controller {
 		this.canvas = canvas;
 	}
 
+	//todo:: подписываемся на все события мышки (можно подписываться прямо на документ, Толя делал так по крайей мере)
+
 	start() {
 		document.addEventListener('click', event => {
 			bus.emit('left-click', {x: event.x, y: event.y});
