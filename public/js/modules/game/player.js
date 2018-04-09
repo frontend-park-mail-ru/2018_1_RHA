@@ -15,9 +15,12 @@ export default class Player {
 	}
 
 	isTheRegionOfPlayer(region) {
-		this.regions.forEach( (obj) => {
-			return obj.name === region.name;
-		});
+		for (let i = 0; i < this.regions.length; ++i) {
+			if (this.regions[i].name === region.name) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	addRegion(something) {

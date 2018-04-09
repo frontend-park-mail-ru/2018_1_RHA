@@ -74,11 +74,11 @@ export default class GameScene {
 	}
 
 	activeRegion() {
-		this.regions.forEach( (obj) => {
-			if (obj.selected === true) {
-				return obj;
+		for (let i = 0; i < this.regions.length; ++i) {
+			if (this.regions[i].selected === true) {
+				return this.regions[i];
 			}
-		});
+		}
 	}
 
 
@@ -90,17 +90,14 @@ export default class GameScene {
 				return;
 			}
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
-			console.log(curRegion, 'aaa');
 			if (!curRegion) {
 				return;
 			}
 
 			switch (this.status) {
 				case PLAYER_STATES.DEFAULT:
-					debugger;
 					const curPlayer = this.currentPlayer();
-					console.log(curPlayer);
-					if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+					if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
 						return;
 					}
 					this.status = PLAYER_STATES.READY;
@@ -110,6 +107,11 @@ export default class GameScene {
 				case PLAYER_STATES.READY:
 					if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
 						return;
+					}
+
+					//если нажали на выделенную
+					if (curRegion === this.activeRegion()) {
+						this.status = PLAYER_STATES.DEFAULT;
 					}
 					bus.emit('change-selection',
 						{
