@@ -2,7 +2,7 @@
 import Section from '../baseView.js';
 
 import Hexagon from '../../../modules/graphics/hexagon.js';
-import inPoly from '../../../modules/game/core/core.js';
+import inPoly from '../../../modules/game/inPoly.js';
 
 export default class GameSection extends Section {
 	constructor () {
@@ -58,6 +58,7 @@ export default class GameSection extends Section {
 		this.canvas.addEventListener('click', event => {
 
 			this.figures.forEach( (obj) => {
+				//todo:: отправить событие на шину, сигнализирующее о том, что мы выбрали какой то объект
 				if (inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
 					if (obj.selected === false) {
 						obj.selected = true;
