@@ -1,15 +1,16 @@
 import Hexagon from '../graphics/hexagon.js';
 import inPoly from './inPoly.js';
+import bus from "../bus.js";
 
 export default class GameScene {
-	constructor(canvas, ctx) {
+	constructor(canvas, ctx, players) {
 		this.canvas  = canvas;
 		this.ctx = ctx;
-		this.setListeners();
+		this.players = players;
 	}
 
 	render() {
-		this.figures = [
+		this.regions = [
 			{
 				name: 'hex1',
 				color: 'red',
@@ -41,12 +42,16 @@ export default class GameScene {
 				selected: false
 			}
 		];
-		this.players = [];
+
 
 		return this.wrapper;
 	}
 
-	setListeners() {
+	onListeners() {
+		bus.on('left-click', data => {
+			const coordinates = data.payload;
+
+		});
 		this.canvas.addEventListener('click', event => {
 			this.figures.forEach( (obj) => {
 				//todo:: отправить событие на шину, сигнализирующее о том, что мы выбрали какой то объект
@@ -62,7 +67,7 @@ export default class GameScene {
 			});
 		});
 
-		this.canvas.addEventListener('mousemove', event => {
+		document.addEventListener('mousemove', event => {
 			this.figures.forEach( (obj) => {
 				if (obj.selected === true || inPoly(event.x, event.y, obj.figure.xp, obj.figure.yp)) {
 					obj.figure.reDraw('red', 3);

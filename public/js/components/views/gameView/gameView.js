@@ -2,7 +2,7 @@
 import Section from '../baseView.js';
 import inPoly from '../../../modules/game/inPoly.js';
 import GameScene from '../../../modules/game/gameScene.js';
-import GameManager from "../../../modules/game/gameManager";
+import GameManager from '../../../modules/game/gameManager.js';
 
 export default class GameSection extends Section {
 	constructor () {
@@ -18,7 +18,7 @@ export default class GameSection extends Section {
 		);
 		this.parent.appendChild(this.wrapper);
 		this.canvas = document.getElementById('game-canvas');
-		this.setOnClick(this.canvas.getContext('2d'));
+		//this.setOnClick(this.canvas.getContext('2d'));
 	}
 
 	render() {
