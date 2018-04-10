@@ -1,5 +1,4 @@
 /* eslint-disable indent,no-case-declarations */
-import Hexagon from '../graphics/hexagon.js';
 import inPoly from './inPoly.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './playerStates.js';
@@ -101,5 +100,25 @@ export default class GameScene {
 			}
 		});
 
+		bus.on('contextmenu', data => {
+			const coordinates = data.payload;
+			if (this.status.DISABLED || !this.status.READY) {
+				return;
+			}
+			const curRegion = this.isRegion(coordinates.x, coordinates.y);
+			if (!curRegion) {
+				return;
+			}
+			const curPlayer = this.currentPlayer();
+			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
+				//TODO atac
+				bus.emit('attack', {
+					from: this.activeRegion(),
+					to: curRegion
+				});
+			} else {
+				//TODO move units
+			}
+		});
 	}
 }

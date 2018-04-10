@@ -9,6 +9,9 @@ export default class Region {
 		this.selected = false;
 		this.area = null;
 		this.allowedCoordinates = allowedCoordinates;
+		this.gameData = {
+			units: 100500
+		};
 		this.init();
 	}
 
