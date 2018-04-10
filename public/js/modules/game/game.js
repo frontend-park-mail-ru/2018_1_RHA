@@ -9,14 +9,16 @@ import Circle from '../graphics/circle.js';
 
 
 export default class Game {
-	constructor(mode, canvas) {
+	constructor(mode, game_canvas, change_canvas) {
 		//let GameConstructor = null;
 
 		//todo:: онлайн и оффлайн режимы
 		this.mode = mode;
-		this.canvas = canvas;
-		this.ctx = this.canvas.getContext('2d');
-		this.controller = new Controller(this.canvas);
+		this.game_canvas = game_canvas;
+		this.change_canvas = change_canvas;
+		this.game_ctx = this.game_canvas.getContext('2d');
+		this.change_ctx = this.change_canvas.getContext('2d');
+		this.controller = new Controller(this.game_canvas, this.change_canvas);
 		this.players = [
 			new Player('first','green'),
 			new Player('second','blue'),
@@ -27,14 +29,13 @@ export default class Game {
 		this.regions = [];
 		this.players.forEach( (player) => {
 			this.regions.push(new Region(player.name + '_area', player,
-				this.ctx, allowedCoordinates));
+				this.game_ctx, allowedCoordinates));
 		});
 
 
-		this.scene = new GameScene(this.canvas, this.players, this.regions);
+		this.switcher = new Switcher(70, this.change_canvas, 100, 360);
+		this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.switcher);
 		this.manager = new GameManager();
-		this.switcher = new Switcher(70, this.canvas, 100, 100);
-		// this.kaka = new Circle(100, 100, 50, this.canvas);
 		this.scene.render();
 	}
 

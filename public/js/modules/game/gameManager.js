@@ -1,4 +1,5 @@
 import bus from '../bus.js';
+import PLAYER_STATES from './config/playerStates.js';
 
 
 //todo: подписываемся на события связанные с действиями в игре
@@ -31,6 +32,13 @@ export default class GameManager {
 				from.owner.addRegion(to);
 				to.owner.delRegion(to);
 			}
+		});
+
+		bus.on('change-move', (dict) => {
+			const data = dict.payload;
+			data.switcher.reDraw('red');
+			data.current.state = PLAYER_STATES.DISABLED;
+			data.next.state = PLAYER_STATES.DEFAULT;
 		});
 	}
 
