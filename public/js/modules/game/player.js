@@ -2,18 +2,17 @@ import PLAYER_STATES from './playerStates.js';
 
 
 export default class Player {
-	constructor() {
+	constructor(color) {
 		this.score = 0;
 		this.resources = 0;
 		this.regions = [];
-		this.state = PLAYER_STATES.DEFAULT;
-		this.active = false;
+		this.state = PLAYER_STATES.DISABLED;
+		this.color = color;
 	}
 
 	init() {
 
 	}
-
 
 	//Принадлежит ли данный регион игроку
 	isTheRegionOfPlayer(region) {
@@ -26,13 +25,20 @@ export default class Player {
 	}
 
 	addRegion(something) {
+		something.figure.reColor(this.color);
 		this.regions.push(something);
+	}
+
+	delRegion(reg) {
+		this.regions.remove(reg);
+		if (this.regions.length == 0) {
+			console.log('player lose');
+			this.state = PLAYER_STATES.LOSE;
+		}
 	}
 
 	setActive(bool) {
 		this.active = bool;
 	}
-
-
 
 }

@@ -6,8 +6,6 @@ export default class Controller {
 		this.canvas = canvas;
 	}
 
-	//todo:: подписываемся на все события мышки (можно подписываться прямо на документ, Толя делал так по крайей мере)
-
 	start() {
 		document.addEventListener('click', event => {
 			bus.emit('left-click', {x: event.x, y: event.y});
@@ -16,7 +14,9 @@ export default class Controller {
 		document.addEventListener('mousemove', event => {
 			bus.emit('mousemove', {x: event.x, y: event.y});
 		});
+
 		document.addEventListener('contextmenu', event => {
+			event.preventDefault();
 			bus.emit('contextmenu', {x: event.x, y: event.y});
 		});
 	}
@@ -30,9 +30,9 @@ export default class Controller {
 			bus.emit('mousemove', {x: event.x, y: event.y});
 		});
 		document.removeEventListener('contextmenu', event => {
+			event.preventDefault();
 			bus.emit('contextmenu', {x: event.x, y: event.y});
 		});
 	}
-
 }
 

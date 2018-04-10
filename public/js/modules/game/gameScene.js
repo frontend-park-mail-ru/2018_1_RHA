@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+/* eslint-disable indent,no-case-declarations */
 import Hexagon from '../graphics/hexagon.js';
 import inPoly from './inPoly.js';
 import bus from '../bus.js';
@@ -51,25 +51,21 @@ export default class GameScene {
 		// this.players.forEach( (obj, i) => {
 		// 	obj.addRegion(this.regions[i]);
 		// });
-		//todo: просто дал одному пользователю права рулить и пару регионов(желтый и белый)
-		this.players[0].active = true;
-		this.players[0].addRegion(this.regions[1]);
-		this.players[0].addRegion(this.regions[2]);
-
+		this.players[0].status = PLAYER_STATES.DEFAULT;
+		this.setPlayersRegions();
 		return this.wrapper;
 	}
-
 
 	//TODO: все циклы return'ящие что то, должны быть оформлены в таком виде
 	//текущий игрок
 	currentPlayer() {
 		for (let i = 0; i < this.players.length; ++i) {
-			if (this.players[i].active) {
+			// TODO проверить работает ли это условие
+			if (this.players[i].status !== PLAYER_STATES.DISABLED !== PLAYER_STATES.LOSE ) {
 				return this.players[i];
 			}
 		}
 	}
-
 
 	//возвращает регион, если такой существует
 	isRegion(x, y) {
@@ -87,6 +83,16 @@ export default class GameScene {
 			if (this.regions[i].selected === true) {
 				return this.regions[i];
 			}
+		}
+	}
+
+	deactivatePlayers() {
+		this.players.forEach(player => player.active = false);
+	}
+
+	setPlayersRegions() {
+		for (let i = 0; i < this.players.length; i++ ) {
+			this.players[i].addRegion(this.regions[i]);
 		}
 	}
 
@@ -120,6 +126,7 @@ export default class GameScene {
 					if (curRegion === this.activeRegion()) {
 						this.status = PLAYER_STATES.DEFAULT;
 					}
+
 					bus.emit('change-selection',
 						{
 							active: this.activeRegion(),
@@ -127,9 +134,8 @@ export default class GameScene {
 						});
 					break;
 			}
-
-
 		});
 
+		bus.on('');
 	}
 }

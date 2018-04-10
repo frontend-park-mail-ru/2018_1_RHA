@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import Section from '../baseView.js';
-import inPoly from '../../../modules/game/inPoly.js';
 import GameScene from '../../../modules/game/gameScene.js';
 import Controller from '../../../modules/game/controller.js';
 import GameManager from '../../../modules/game/gameManager.js';
@@ -27,7 +26,11 @@ export default class GameSection extends Section {
 		this.controller = new Controller(this.canvas);
 		this.controller.start();
 		this.players = [
-			new Player()
+			new Player('orange'),
+			new Player('green'),
+			new Player('blue'),
+			new Player('yellow'),
+			new Player('pink')
 		];
 		this.scene  = new GameScene(this.canvas, this.canvas.getContext('2d'), this.players);
 		this.scene.onListeners();

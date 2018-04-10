@@ -9,7 +9,6 @@ export default class GameManager {
 			const region = data.payload;
 			region.selected = true;
 			region.figure.reDraw('red', 3);
-
 		});
 
 		bus.on('change-selection', data => {
