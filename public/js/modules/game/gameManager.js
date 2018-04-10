@@ -10,15 +10,15 @@ export default class GameManager {
 		bus.on('select-region', data => {
 			const region = data.payload;
 			region.selected = true;
-			region.area.reDraw('red', 3);
+			region.area.reDraw('red', 1);
 		});
 
 		bus.on('change-selection', data => {
 			const regions = data.payload;
 			regions.active.selected = false;
 			regions.new.selected = true;
-			regions.new.area.reDraw('red', 3);
-			regions.active.area.reDraw('black', 3);
+			regions.new.area.reDraw('red', 1);
+			regions.active.area.reDraw('black', 1);
 		});
 
 		bus.on('attack', data => {
@@ -28,10 +28,12 @@ export default class GameManager {
 			const result = 1; //TODO математика вычисления победы или поражения
 			if (result > 0) {
 				//TODO у нас нет нормального способа узнать владельца региона
+				from.owner.addRegion(to);
+				to.owner.delRegion(to);
 			}
-
 		});
 	}
+
 	destroy() {
 		bus.off('select-region', data => {
 			const region = data.payload;

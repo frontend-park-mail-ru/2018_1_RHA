@@ -1,4 +1,4 @@
-import PLAYER_STATES from './playerStates.js';
+import PLAYER_STATES from '../config/playerStates.js';
 
 
 export default class Player {
@@ -25,15 +25,15 @@ export default class Player {
 		return false;
 	}
 
-	addRegion(something) {
-		something.area.reColor(this.color);
-		this.regions.push(something);
+	addRegion(newRegion) {
+		newRegion.area.reColor(this.color);
+		newRegion.owner = this;
+		this.regions.push(newRegion);
 	}
 
 	delRegion(reg) {
 		this.regions.remove(reg);
-		if (this.regions.length == 0) {
-			console.log('player lose');
+		if (this.regions.length === 0) {
 			this.state = PLAYER_STATES.LOSE;
 		}
 	}

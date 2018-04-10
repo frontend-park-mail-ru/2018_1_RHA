@@ -2,37 +2,28 @@
 import Figure from './figure.js';
 
 export default class Circle extends Figure {
-	constructor() {
+	constructor(x, y, r, canvas) {
 		super();
-		this.parent = document.getElementById('game');
-		this.wrapper = document.createElement('div');
-		this.wrapper.innerHTML = generateCanvas(
-			{
-				'width': 500,
-				'height':500,
-				'id': 'circle'
-			}
-		);
-		this.parent.appendChild(this.wrapper);
-		this.canvas = document.getElementById('circle');
+		this.canvas = canvas;
 		this.ctx = this.canvas.getContext('2d');
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.draw();
 	}
 
 	draw() {
 		this.ctx.beginPath();
-		this.ctx.lineWidth = 10;
-		this.ctx.arc(100, 100, 50, 0, 2*Math.PI);
+		this.ctx.lineWidth = 3;
+		this.ctx.arc(this.x, this.y, this.r, 0, 2*Math.PI);
 		this.ctx.stroke();
+		this.ctx.fillStyle = 'silver';
+		this.ctx.fill();
 		this.ctx.closePath();
 		this.setOnClick();
-		return this.wrapper;
 	}
 
 	setOnClick() {
-		this.canvas.addEventListener('click', (ev) => {
-			if (this.ctx.isPointInPath(ev.x, ev.y)) {
-				alert('2');
-			}
-		});
+
 	}
 }

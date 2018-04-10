@@ -3,7 +3,7 @@ import Section from '../baseView.js';
 import GameScene from '../../../modules/game/gameScene.js';
 import Controller from '../../../modules/game/controller.js';
 import GameManager from '../../../modules/game/gameManager.js';
-import Player from '../../../modules/game/player.js';
+import Player from '../../../modules/game/player/player.js';
 import Game from '../../../modules/game/game.js';
 
 export default class GameSection extends Section {
