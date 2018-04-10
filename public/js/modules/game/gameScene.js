@@ -135,7 +135,6 @@ export default class GameScene {
 					break;
 			}
 		});
-
 		bus.on('');
 	}
 }
