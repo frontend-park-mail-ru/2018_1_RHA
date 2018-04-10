@@ -2,13 +2,14 @@ import Hexagon from '../graphics/hexagon.js';
 
 
 export default class Region {
-	constructor(name, color, ctx, allowedCoordinates) {
+	constructor(name, owner, ctx, allowedCoordinates) {
 		this.name = name;
-		this.color = color;
 		this.ctx = ctx;
 		this.selected = false;
 		this.area = null;
 		this.allowedCoordinates = allowedCoordinates;
+		this.owner = owner;
+		this.color = owner.color;
 		this.gameData = {
 			units: 100500
 		};

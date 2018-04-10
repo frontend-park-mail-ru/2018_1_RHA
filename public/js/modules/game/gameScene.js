@@ -67,7 +67,6 @@ export default class GameScene {
 	//подписываемся на события кликов мышки
 	onListeners() {
 		bus.on('left-click', data => {
-			debugger;
 			const coordinates = data.payload;
 			if (this.status.DISABLED) {
 				return;
@@ -106,8 +105,9 @@ export default class GameScene {
 		});
 
 		bus.on('contextmenu', data => {
+			console.log('in scene');
 			const coordinates = data.payload;
-			if (this.status.DISABLED || !this.status.READY) {
+			if (this.status === PLAYER_STATES.DISABLED || this.status !== PLAYER_STATES.READY) {
 				return;
 			}
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
@@ -116,7 +116,7 @@ export default class GameScene {
 			}
 			const curPlayer = this.currentPlayer();
 			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
-				//TODO atac
+				console.log('emit atac');
 				bus.emit('attack', {
 					from: this.activeRegion(),
 					to: curRegion

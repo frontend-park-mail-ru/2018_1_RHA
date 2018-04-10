@@ -17,11 +17,14 @@ export default class Game {
 		this.controller = new Controller(this.canvas);
 		this.players = [
 			new Player('first','green'),
-			new Player('second','blue')
+			new Player('second','blue'),
+			new Player('third', 'gold'),
+			new Player('forth', '#7a5901'),
+			new Player('admin', 'magenta'),
 		];
 		this.regions = [];
 		this.players.forEach( (player) => {
-			this.regions.push(new Region(player.name + '_area', player.color,
+			this.regions.push(new Region(player.name + '_area', player,
 				this.ctx, allowedCoordinates));
 		});
 

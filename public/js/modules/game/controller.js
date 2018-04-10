@@ -17,6 +17,7 @@ export default class Controller {
 
 		document.addEventListener('contextmenu', event => {
 			event.preventDefault();
+			console.log('in controller');
 			bus.emit('contextmenu', {x: event.x, y: event.y});
 		});
 	}

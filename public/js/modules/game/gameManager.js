@@ -22,14 +22,16 @@ export default class GameManager {
 		});
 
 		bus.on('attack', data => {
+			console.log('atacin');
 			const regions = data.payload;
 			const from = regions.from;
 			const to = regions.to;
 			const result = 1; //TODO математика вычисления победы или поражения
 			if (result > 0) {
 				//TODO у нас нет нормального способа узнать владельца региона
+				from.owner.addRegion(to);
+				to.owner.delRegion(to);
 			}
-
 		});
 	}
 	destroy() {
