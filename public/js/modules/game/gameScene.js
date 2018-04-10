@@ -17,10 +17,6 @@ export default class GameScene {
 		//todo: регионы, которые принадлежат игроку должны быть окрашены в один цвет
 
 
-		//Раздаем каждому игроку по зоне
-		// this.players.forEach( (obj, i) => {
-		// 	obj.addRegion(this.regions[i]);
-		// });
 		this.players[0].status = PLAYER_STATES.DEFAULT;
 		this.setPlayersRegions();
 	}
@@ -68,7 +64,6 @@ export default class GameScene {
 	//подписываемся на события кликов мышки
 	onListeners() {
 		bus.on('left-click', data => {
-			debugger;
 			const coordinates = data.payload;
 			if (this.status.DISABLED) {
 				return;
