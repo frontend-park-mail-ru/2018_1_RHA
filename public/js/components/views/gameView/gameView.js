@@ -4,6 +4,7 @@ import GameScene from '../../../modules/game/gameScene.js';
 import Controller from '../../../modules/game/controller.js';
 import GameManager from '../../../modules/game/gameManager.js';
 import Player from '../../../modules/game/player.js';
+import Game from '../../../modules/game/game.js';
 
 export default class GameSection extends Section {
 	constructor () {
@@ -23,19 +24,9 @@ export default class GameSection extends Section {
 	}
 
 	render() {
-		this.controller = new Controller(this.canvas);
-		this.controller.start();
-		this.players = [
-			new Player('orange'),
-			new Player('green'),
-			new Player('blue'),
-			new Player('yellow'),
-			new Player('pink')
-		];
-		this.scene  = new GameScene(this.canvas, this.canvas.getContext('2d'), this.players);
-		this.scene.onListeners();
-		this.manager = new GameManager();
-		this.scene.render();
+
+		this.game = new Game({}, this.canvas);
+		this.game.start();
 
 		return this.wrapper;
 	}

@@ -2,12 +2,13 @@ import PLAYER_STATES from './playerStates.js';
 
 
 export default class Player {
-	constructor(color) {
+	constructor(name, color) {
 		this.score = 0;
 		this.resources = 0;
 		this.regions = [];
 		this.state = PLAYER_STATES.DISABLED;
 		this.color = color;
+		this.name = name;
 	}
 
 	init() {
@@ -25,7 +26,7 @@ export default class Player {
 	}
 
 	addRegion(something) {
-		something.figure.reColor(this.color);
+		something.area.reColor(this.color);
 		this.regions.push(something);
 	}
 
