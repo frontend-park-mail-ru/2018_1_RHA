@@ -1,4 +1,4 @@
-import Hexagon from '../graphics/hexagon.js';
+import Hexagon from '../../graphics/hexagon.js';
 
 
 export default class Region {

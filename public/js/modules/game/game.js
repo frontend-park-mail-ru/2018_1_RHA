@@ -1,9 +1,9 @@
 import Controller from './controller.js';
 import GameScene from './gameScene.js';
 import GameManager from './gameManager.js';
-import Player from './player.js';
-import Region from './region.js';
-import allowedCoordinates from './allowedCoordinates.js';
+import Player from './player/player.js';
+import Region from './components/region.js';
+import allowedCoordinates from './config/allowedCoordinates.js';
 
 
 export default class Game {

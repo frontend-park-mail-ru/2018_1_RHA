@@ -1,5 +1,5 @@
 import Player from './player.js';
-import PLAYER_STATES from './playerStates.js';
+import PLAYER_STATES from '../config/playerStates.js';
 
 export default class MainPlayer extends Player {
 	constructor() {

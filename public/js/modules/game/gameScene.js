@@ -1,7 +1,7 @@
 /* eslint-disable indent,no-case-declarations */
-import inHex from './inHex.js';
+import inHex from './math/inHex.js';
 import bus from '../bus.js';
-import PLAYER_STATES from './playerStates.js';
+import PLAYER_STATES from './config/playerStates.js';
 
 export default class GameScene {
 	constructor(canvas, players, regions) {
