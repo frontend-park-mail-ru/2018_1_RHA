@@ -82,7 +82,6 @@ export default class GameScene {
 	//подписываемся на события кликов мышки
 	onListeners() {
 		bus.on('left-click', data => {
-			debugger;
 			const curPlayer = this.currentPlayer();
 			const coordinates = data.payload;
 			if (curPlayer.status === PLAYER_STATES.DISABLED) {
@@ -90,7 +89,6 @@ export default class GameScene {
 			}
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
 			if (!curRegion) {
-
 				return;
 			}
 

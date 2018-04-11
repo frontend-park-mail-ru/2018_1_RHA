@@ -46,8 +46,11 @@ export default class GameManager {
 			if (data.next instanceof MainPlayer) {
 				this.controller.start();
 			}
-
-			if (data.current instanceof MainPlayer) {
+			else if (data.next instanceof BotPlayer) {
+				this.controller.stop();
+				bus.emit('bot-move', data.nextPlayer());
+			}
+			else {
 				this.controller.stop();
 			}
 		});
