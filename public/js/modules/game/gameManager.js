@@ -2,7 +2,6 @@ import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
-import WebPlayer from './player/webPlayer.js';
 
 
 //todo: подписываемся на события связанные с действиями в игре

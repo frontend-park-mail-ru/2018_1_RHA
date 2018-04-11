@@ -148,11 +148,13 @@ export default class GameScene {
 		bus.on('left-click-change', data => {
 			const curPlayer = this.currentPlayer();
 			const coordinates = data.payload;
-			if (curPlayer.status === PLAYER_STATES.DISABLED) {
-				return;
-			}
-			if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {
-				return;
+			if (coordinates !== 'bot') {
+				if (curPlayer.status === PLAYER_STATES.DISABLED) {
+					return;
+				}
+				if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {
+					return;
+				}
 			}
 			bus.emit('change-move', {
 				current: this.currentPlayer(),

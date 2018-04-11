@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import Player from './player.js';
 import bus from '../../bus.js';
-import PLAYER_STATES from "../config/playerStates";
+import getRandom from '../math/getRandom.js';
 
 export default class BotPlayer extends Player {
 	constructor(name, color) {
@@ -12,33 +12,25 @@ export default class BotPlayer extends Player {
 
 	listeners() {
 		bus.on('bot-move', dict => {
+			debugger;
 			const nextPLayer = dict.payload;
-			if (nextPLayer.nextPlayer().name === this.name) {
-
+			if (nextPLayer.nextPlayer().name !== this.name) {
+				return;
 			}
-			switch (this.status) {
-				case PLAYER_STATES.DEFAULT:
 
-					this.status = PLAYER_STATES.READY;
-					bus.emit('select-region', curRegion);
-					break;
-				case PLAYER_STATES.READY:
-					if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
-						return;
-					}
-
-					//если нажали на выделенный регион
-					if (curRegion === this.activeRegion()) {
-						this.status = PLAYER_STATES.DEFAULT;
-					}
-
-					bus.emit('change-selection',
-						{
-							active: this.activeRegion(),
-							new: curRegion
-						});
-					break;
+			const attackers = [];
+			for (let i = 0; i < this.regions.length; i++) {
+				if (this.regions[i].neighbour.length === 0) {
+					continue;
+				}
+				attackers.add(this.regions[i]);
 			}
+			const attacker = getRandom(0, attackers.length);
+			bus.emit('attack', {
+				from: attackers[attacker],
+				to: attackers[attacker].neighbour[getRandom(0, attackers[attacker].neighbour.length)]
+			});
+			setTimeout(bus.emit('change-move', 'bot'), 100);
 		});
 	}
 }
