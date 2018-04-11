@@ -1,38 +1,73 @@
-import {sectionSwitcher} from "./sectionSwitcher.js";
+import {sectionSwitcher} from './sectionSwitcher.js';
 
 export default class Router {
 
-    constructor(root) {
-        this.root = root;
-        this.map = {};
-        this.active = null;
-    }
+	constructor(root, global) {
 
-    add(path, View) {
-        this.map[path] = new View().render(this.root);
-        return this;
-    }
+		if (Router.__instance) {
+			return Router.__instance;
+		}
 
-    open(path) {
-        const view = this.map[path];
-        console.log(view);
-        sectionSwitcher.changeSection(view, this.root);
-    }
+		this.root = root;
+		this.startRoot = document.getElementById('start');
+		this.gameRoot = document.getElementById('game');
+		this.map = {};
+		this.global = global;
+		this.active = null;
 
-    start() {
-        window.addEventListener('popstate', function () {
-            this.open(window.location.pathname);
-        }.bind(this));
+		Router.__instance = this;
+	}
 
-        this.root.addEventListener('click', function (evt) {
-            if (evt.target.tagName.toLowerCase() === 'button') {
-                evt.preventDefault();
-                window.history.pushState(null, 'link', evt.target.href);
-                this.open(evt.target.pathname);
-            }
-        }.bind(this));
-        console.log(window.location.pathname);
-        this.open(window.location.pathname);
-    }
+	add(path, View) {
+		this.map[path] = new View(this.root);
+		return this;
+	}
 
+	open(path) {
+		const view = this.map[path];
+		let rootForSwitch;
+		if (path === '/singleplayer' ) {
+			console.log('if');
+			rootForSwitch =  this.gameRoot;
+			this.startRoot.hidden = true;
+			rootForSwitch.hidden = false;
+		} else {
+			console.log('else');
+			rootForSwitch = this.root;
+			this.startRoot.hidden = false;
+			this.gameRoot.hidden = true;
+		}
+
+		console.log('view ', path, 'is allowed: ', view.allowed());
+		if (!view.allowed()) {
+			window.history.replaceState(null, '', '/');
+			this.open('/');
+			return;
+		}
+		if (window.location.pathname !== path) {
+			window.history.pushState(null, '', path);
+		}
+
+		if (path === '/game') {
+			sectionSwitcher.changeSection(view.render(), this.global);
+		}
+		sectionSwitcher.changeSection(view.render(), rootForSwitch);
+	}
+
+	start() {
+		window.addEventListener('popstate', function () {
+			this.open(window.location.pathname);
+		}.bind(this));
+
+		this.root.addEventListener('click', function (evt) {
+			if (evt.target.tagName.toLowerCase() === 'a') {
+				evt.preventDefault();
+				window.history.pushState(null, '', evt.target.href);
+				this.open(evt.target.pathname);
+			}
+		}.bind(this));
+		console.log(window.location.pathname);
+		this.open(window.location.pathname);
+	}
 }
+//TODO может как-то переделаем роутер, чтобы он хранил объект класса

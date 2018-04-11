@@ -1,25 +1,27 @@
 'use strict';
 
-import ProfileSection from "./components/views/profileView/profileView.js";
-import RatingSection from "./components/views/ratingView/ratingView.js";
+import ProfileSection from './components/views/profileView/profileView.js';
+import RatingSection from './components/views/ratingView/ratingView.js';
 import RegisterSection from './components/views/registerView.js';
-import LoginSection from "./components/views/loginView.js";
-import MenuSection from './components/views/menuView.js';
-import PlaySection from './components/views/playView/playView.js';
-import Router from "./modules/router.js";
-import Bus from "./modules/bus.js";
-
+import LoginSection from './components/views/loginView/loginView.js';
+import MenuSection from './components/views/menuView/menuView.js';
+import Router from './modules/router.js';
+import User from './modules/userModel.js';
+import GameSection from "./components/views/gameView/gameView.js";
 
 const root = document.getElementById('application');
-const router = new Router(root);
+const globalRoot = document.getElementById('body');
 
-router.add('/register', RegisterSection);
-router.add('/profile', ProfileSection);
-router.add('/rating', RatingSection);
-router.add('/login', LoginSection);
-router.add('/menu', MenuSection);
-router.add('/', PlaySection);
-
-// router.open('/play');
-router.start();
-export default router;
+User.auth()
+	.then( () => {
+		new Router(root, globalRoot)
+			.add('/', MenuSection)
+			.add('/register', RegisterSection)
+			.add('/profile', ProfileSection)
+			.add('/rating', RatingSection)
+			.add('/login', LoginSection)
+			.add('/singleplayer', GameSection)
+			.start();
+	})
+	.catch();
+//TODO: profile, rating

@@ -6,16 +6,30 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PHub</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="body" id="application">
-    <h1>изменение</h1>
-    <img src="img/lion.jpg" alt="">
+<body>
+    <div id="body">
+    <div id="start" class="start">
+        <!--<div id="radar-wrapper">-->
+            <!--<div id="bg"></div>-->
+            <!--<div id="radar"></div>-->
+        <!--</div>-->
+
+        <div id="application-wrapper" class="body">
+            <div id="application"></div>
+        </div>
+    </div>
+
+    <div id="game" class="game"></div>
+
+    <!--<script src="js/modules/sketch.js"></script>-->
+    <!--<script src="js/components/radar/radar.js"></script>-->
     <script src="js/modules/add-sw.js"></script>
-    <script src="js/components/views/playView/playTemplate.js"></script>
     <script src="js/components/views/ratingView/ratingTemplate.js"></script>
-    <script src="js/components/views/modalView/modalTemplate.js"></script>
-    <script src="js/components/blocks/link/linkTemplate.js"></script>
+    <script src="js/components/views/menuView/menuTemplate.js"></script>
+    <script src="js/components/views/profileView/profileTemplate.js"></script>
+    <script src="js/components/views/gameView/gameTemplate.js"></script>
     <script src="js/application.js" type="module"></script>
 </body>
 </html>

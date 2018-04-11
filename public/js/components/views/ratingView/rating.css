@@ -1,0 +1,31 @@
+
+.scorboard_row {
+}
+
+.scorboard_row:hover {
+    color: red;
+}
+
+.scorboard_table {
+    font-size: 20px;
+    border-collapse: separate;
+    border-spacing: 6px;
+    width: 100%;
+}
+
+.page-button {
+    margin: 1% 0 1% 0;
+    display: inline-block;
+    width: 50%;
+    clear: both;
+
+}
+.btn-style {
+    width: 100%;
+    padding: 2px;
+
+}
+
+.hidden {
+    display: none;
+}

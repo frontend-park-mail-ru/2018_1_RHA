@@ -1,11 +1,19 @@
-table#01
+table.scorboard_table
+    h1 Leaderboard
     thead
         tr
-            td Email
+            td Nickname
             td Score
     tbody
         each fuck in data
-            tr
-                td #{fuck.email}
-                td #{fuck.score}
+            tr.scorboard_row
+                td #{Object.keys(fuck)}
+                td #{Object.values(fuck)}
+        tr.scorboard_row
+            td ⋮
+        tr.scorboard_row
+            td #{Object.keys(user)}
+            td #{Object.values(user)}
+    div
+        p Страница #{page} из #{Object.values(pages)}
 

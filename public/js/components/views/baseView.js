@@ -1,16 +1,22 @@
+import User from '../../modules/userModel.js';
+
 /**
  * Class represents generic Section
  */
 export default class Section {
-    constructor() {
-        
-    }
+	constructor() {
+		User.isAuthorized();
+	}
 
-    /**
+	/**
      * Should be overriden
      */
-    render() {
-    }
+	render() {
+	}
+
+	allowed() {
+		return false;
+	}
 
 
 }
