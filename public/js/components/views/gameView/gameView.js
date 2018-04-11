@@ -44,6 +44,4 @@ export default class GameSection extends Section {
 		return true;
 	}
 
-
-
 }

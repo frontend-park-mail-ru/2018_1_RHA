@@ -8,17 +8,11 @@ export default class GameScene {
 		this.canvas  = canvas;
 		this.game_ctx = canvas.getContext('2d');
 		this.players = players;
-		this.status = PLAYER_STATES.DEFAULT;
 		this.regions = regions;
 		this.switcher = switcher;
-	}
-
-	render() {
-		//todo: регионы, которые принадлежат игроку должны быть окрашены в один цвет
-
-		this.players[0].status = PLAYER_STATES.DEFAULT;
 		this.setPlayersRegions();
 	}
+
 
 	//TODO: все циклы return'ящие что то, должны быть оформлены в таком виде
 	//текущий игрок
@@ -30,6 +24,7 @@ export default class GameScene {
 			}
 		}
 	}
+
 
 	nextPlayer() {
 		const curP = this.currentPlayer();
@@ -84,18 +79,13 @@ export default class GameScene {
 		return !!inHex(x, y, this.switcher.arrX, this.switcher.arrY);
 	}
 
-	// queue() {
-	// 	const current = this.currentPlayer();
-	// 	const next = this.nextPlayer();
-	// 	current.status = PLAYER_STATES.DISABLED;
-	// 	next.status = PLAYER_STATES.DEFAULT;
-	// }
-
 	//подписываемся на события кликов мышки
 	onListeners() {
 		bus.on('left-click', data => {
+			debugger;
+			const curPlayer = this.currentPlayer();
 			const coordinates = data.payload;
-			if (this.status.DISABLED) {
+			if (curPlayer.status === PLAYER_STATES.DISABLED) {
 				return;
 			}
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
@@ -104,13 +94,12 @@ export default class GameScene {
 				return;
 			}
 
-			switch (this.status) {
+			switch (curPlayer.status) {
 				case PLAYER_STATES.DEFAULT:
-					const curPlayer = this.currentPlayer();
 					if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
 						return;
 					}
-					this.status = PLAYER_STATES.READY;
+					curPlayer.status = PLAYER_STATES.READY;
 					bus.emit('select-region', curRegion);
 					break;
 				case PLAYER_STATES.READY:
@@ -133,23 +122,22 @@ export default class GameScene {
 		});
 
 		bus.on('contextmenu', data => {
+			const curPlayer = this.currentPlayer();
 			const activeRegion = this.activeRegion();
 			const coordinates = data.payload;
-			if (this.status === PLAYER_STATES.DISABLED || this.status !== PLAYER_STATES.READY) {
+			if (curPlayer.status === PLAYER_STATES.DISABLED || curPlayer.status !== PLAYER_STATES.READY) {
 				return;
 			}
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
 			if (!curRegion) {
 				return;
 			}
-			const curPlayer = this.currentPlayer();
 			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
 				// debugger;
 				if (this.isNeighbour(activeRegion, curRegion) === false) {
 					return;
 				}
 
-				console.log('emit atac');
 				bus.emit('attack', {
 					from: this.activeRegion(),
 					to: curRegion
@@ -160,8 +148,9 @@ export default class GameScene {
 		});
 
 		bus.on('left-click-change', data => {
+			const curPlayer = this.currentPlayer();
 			const coordinates = data.payload;
-			if (this.status.DISABLED) {
+			if (curPlayer.status === PLAYER_STATES.DISABLED) {
 				return;
 			}
 			if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {

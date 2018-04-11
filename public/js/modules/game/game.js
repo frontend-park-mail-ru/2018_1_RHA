@@ -37,7 +37,6 @@ export default class Game {
 		this.switcher = new Switcher(70, this.change_canvas, 100, 360);
 		this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.switcher);
 		this.manager = new GameManager(this.controller);
-		this.scene.render();
 	}
 
 	start() {

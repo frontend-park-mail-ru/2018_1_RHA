@@ -6,7 +6,7 @@ export default class Player {
 		this.score = 0;
 		this.resources = 0;
 		this.regions = [];
-		this.state = PLAYER_STATES.DISABLED;
+		this.status = PLAYER_STATES.DISABLED;
 		this.color = color;
 		this.name = name;
 	}
@@ -34,7 +34,7 @@ export default class Player {
 	delRegion(reg) {
 		this.regions.remove(reg);
 		if (this.regions.length === 0) {
-			this.state = PLAYER_STATES.LOSE;
+			this.status = PLAYER_STATES.LOSE;
 		}
 	}
 
