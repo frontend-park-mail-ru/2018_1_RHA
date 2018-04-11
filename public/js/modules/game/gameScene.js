@@ -4,22 +4,18 @@ import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 
 export default class GameScene {
-	constructor(canvas, players, regions) {
+	constructor(canvas, players, regions, switcher) {
 		this.canvas  = canvas;
-		this.ctx = canvas.getContext('2d');
+		this.game_ctx = canvas.getContext('2d');
 		this.players = players;
 		this.status = PLAYER_STATES.DEFAULT;
 		this.regions = regions;
+		this.switcher = switcher;
 	}
 
 	render() {
 		//todo: регионы, которые принадлежат игроку должны быть окрашены в один цвет
 
-
-		//Раздаем каждому игроку по зоне
-		// this.players.forEach( (obj, i) => {
-		// 	obj.addRegion(this.regions[i]);
-		// });
 		this.players[0].status = PLAYER_STATES.DEFAULT;
 		this.setPlayersRegions();
 	}
@@ -35,6 +31,16 @@ export default class GameScene {
 		}
 	}
 
+	nextPlayer() {
+		const curP = this.currentPlayer();
+		for (let i = 0; i < this.players.length; ++i) {
+			if (this.players[i] === curP) {
+				i = (i + 1) % this.players.length;
+				return this.players[i];
+			}
+		}
+	}
+
 	//возвращает регион, если такой существует
 	isRegion(x, y) {
 		for (let i = 0; i < this.regions.length; ++i) {
@@ -44,6 +50,7 @@ export default class GameScene {
 		}
 		return false;
 	}
+
 
 	isNeighbour(active, current) {
 		for (let i = 0; i < active.neighbour.length; i++) {
@@ -73,6 +80,17 @@ export default class GameScene {
 		}
 	}
 
+	isElementOfChangeCanvas(x, y) {
+		return !!inHex(x, y, this.switcher.arrX, this.switcher.arrY);
+	}
+
+	// queue() {
+	// 	const current = this.currentPlayer();
+	// 	const next = this.nextPlayer();
+	// 	current.status = PLAYER_STATES.DISABLED;
+	// 	next.status = PLAYER_STATES.DEFAULT;
+	// }
+
 	//подписываемся на события кликов мышки
 	onListeners() {
 		bus.on('left-click', data => {
@@ -82,6 +100,7 @@ export default class GameScene {
 			}
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
 			if (!curRegion) {
+
 				return;
 			}
 
@@ -138,6 +157,21 @@ export default class GameScene {
 			} else {
 				//TODO move units
 			}
+		});
+
+		bus.on('left-click-change', data => {
+			const coordinates = data.payload;
+			if (this.status.DISABLED) {
+				return;
+			}
+			if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {
+				return;
+			}
+			bus.emit('change-move', {
+				current: this.currentPlayer(),
+				next: this.nextPlayer(),
+				switcher: this.switcher
+			});
 		});
 	}
 }

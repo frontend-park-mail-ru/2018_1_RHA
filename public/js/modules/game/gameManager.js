@@ -1,9 +1,14 @@
 import bus from '../bus.js';
+import PLAYER_STATES from './config/playerStates.js';
+import MainPlayer from './player/mainPlayer.js';
+import BotPlayer from './player/botPlayer.js';
+import WebPlayer from './player/webPlayer.js';
 
 
 //todo: подписываемся на события связанные с действиями в игре
 export default class GameManager {
-	constructor() {
+	constructor(controller) {
+		this.controller = controller;
 	}
 
 	start() {
@@ -30,6 +35,21 @@ export default class GameManager {
 				//TODO у нас нет нормального способа узнать владельца региона
 				from.owner.addRegion(to);
 				to.owner.delRegion(to);
+			}
+		});
+
+		bus.on('change-move', (dict) => {
+			debugger;
+			const data = dict.payload;
+			data.switcher.reDraw('red');
+			data.current.state = PLAYER_STATES.DISABLED;
+			data.next.state = PLAYER_STATES.DEFAULT;
+			if (data.next instanceof MainPlayer) {
+				this.controller.start();
+			}
+
+			if (data.current instanceof MainPlayer) {
+				this.controller.stop();
 			}
 		});
 	}
