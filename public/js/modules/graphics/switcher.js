@@ -17,7 +17,6 @@ export default class Switcher extends Figure {
 		this.ctx.lineTo(this.x - this.a * 0.866, this.y + this.a / 2);
 		this.ctx.lineTo(this.x - this.a * 0.866, this.y - this.a / 2);
 		this.ctx.lineTo(this.x, this.y);
-
 		this.ctx.lineJoin = 'round';
 		this.ctx.lineWidth = 3;
 		this.ctx.strokeStyle = 'black';
