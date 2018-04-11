@@ -1,5 +1,6 @@
 # RHA
-
+## Можно поиграться [здесь](https://bf-balance.herokuapp.com)
+## Промежуточный деплой [тут](https://rha-staging-deploy.herokuapp.com)
 ## Команда
 - Адамян Петрос [@HimmelSpark](https://github.com/HimmelSpark)
 - Бритиков Константин [@BritikovKI](https://github.com/BritikovKI)

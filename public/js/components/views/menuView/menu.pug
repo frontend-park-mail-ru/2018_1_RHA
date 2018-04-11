@@ -1,6 +1,7 @@
-div
-    nav
+div.div__menu-wrapper
+    h2 MENU
         ul
             each i in attrs
                 li
-                    a.button(href=i.href) #{i.title}
+                    div.button
+                        a(href=i.href) #{i.title}
