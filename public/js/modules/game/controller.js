@@ -20,11 +20,11 @@ export default class Controller {
 			bus.emit('left-click-change', {x: event.x - screen.width * 0.9, y: event.y});
 		};
 		this.mousemovecanvas = (event) => {
-			bus.emit('mousemove-change', {x: event.x - screen.width * 0., y: event.y});
+			bus.emit('mousemove-change', {x: event.x - screen.width * 0.9, y: event.y});
 		};
 		this.conkekstcanvas = (event) => {
 			event.preventDefault();
-			bus.emit('contextmenu-change', {x: event.x - screen.width * 0., y: event.y});
+			bus.emit('contextmenu-change', {x: event.x - screen.width * 0.9, y: event.y});
 		};
 	}
 

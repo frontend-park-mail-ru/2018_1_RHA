@@ -14,15 +14,16 @@ export default class GameManager {
 		bus.on('select-region', data => {
 			const region = data.payload;
 			region.selected = true;
-			region.area.reDraw('red', 1);
+			region.area.reDraw('red', 2);
 		});
 
 		bus.on('change-selection', data => {
+			console.log('aaa');
 			const regions = data.payload;
 			regions.active.selected = false;
 			regions.new.selected = true;
-			regions.new.area.reDraw('red', 1);
-			regions.active.area.reDraw('black', 1);
+			regions.new.area.reDraw('red', 2);
+			regions.active.area.reDraw('black', 2);
 		});
 
 		bus.on('attack', data => {
@@ -32,22 +33,23 @@ export default class GameManager {
 			const result = 1; //TODO математика вычисления победы или поражения
 			if (result > 0) {
 				//TODO у нас нет нормального способа узнать владельца региона
-				from.owner.addRegion(to);
 				to.owner.delRegion(to);
+				from.owner.addRegion(to);
 			}
 		});
 
 		bus.on('change-move', (dict) => {
 			const data = dict.payload;
 			data.switcher.reDraw('red');
-			data.current.status = PLAYER_STATES.DISABLED;
-			data.next.status = PLAYER_STATES.DEFAULT;
+			data.current.setStatus(PLAYER_STATES.DISABLED);
+			data.next.setStatus(PLAYER_STATES.DEFAULT);
 			if (data.next instanceof MainPlayer) {
 				this.controller.start();
 			}
 			else if (data.next instanceof BotPlayer) {
+
 				this.controller.stop();
-				bus.emit('bot-move', data.nextPlayer());
+				bus.emit('bot-move', data.next);
 			}
 			else {
 				this.controller.stop();

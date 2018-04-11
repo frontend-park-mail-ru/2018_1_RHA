@@ -15,7 +15,7 @@ export default class Hexagon {
 		this.yp = [yC, yC + this.dR, yC + this.dR, yC, yC - this.dR, yC - this.dR, yC];
 		this.game_ctx.beginPath();
 		this.game_ctx.lineJoin = 'round';
-		this.game_ctx.lineWidth = 1;
+		this.game_ctx.lineWidth = 2;
 		this.game_ctx.moveTo(this.xp[0], this.yp[0]);
 		for (let i = 1; i < this.xp.length; ++i) {
 			this.game_ctx.lineTo(this.xp[i], this.yp[i]);

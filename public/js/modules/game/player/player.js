@@ -32,14 +32,20 @@ export default class Player {
 	}
 
 	delRegion(reg) {
-		this.regions.remove(reg);
+		for (let i = 0; i < this.regions.length; ++i) {
+			if (this.regions[i] === reg) {
+				this.regions.splice(i,1);
+			}
+		}
 		if (this.regions.length === 0) {
 			this.status = PLAYER_STATES.LOSE;
 		}
 	}
 
-	setActive(bool) {
-		this.active = bool;
+
+
+	setStatus(status) {
+		this.status = status;
 	}
 
 }

@@ -19,7 +19,7 @@ export default class GameScene {
 	currentPlayer() {
 		for (let i = 0; i < this.players.length; ++i) {
 			// TODO проверить работает ли это условие
-			if (this.players[i].status !== PLAYER_STATES.DISABLED !== PLAYER_STATES.LOSE ) {
+			if (this.players[i].status !== PLAYER_STATES.DISABLED ) {
 				return this.players[i];
 			}
 		}
@@ -107,7 +107,7 @@ export default class GameScene {
 
 					//если нажали на выделенный регион
 					if (curRegion === this.activeRegion()) {
-						this.status = PLAYER_STATES.DEFAULT;
+						curPlayer.status = PLAYER_STATES.DEFAULT;
 					}
 
 					bus.emit('change-selection',
@@ -120,6 +120,7 @@ export default class GameScene {
 		});
 
 		bus.on('contextmenu', data => {
+
 			const curPlayer = this.currentPlayer();
 			const activeRegion = this.activeRegion();
 			const coordinates = data.payload;
@@ -131,7 +132,6 @@ export default class GameScene {
 				return;
 			}
 			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
-				// debugger;
 				if (this.isNeighbour(activeRegion, curRegion) === false) {
 					return;
 				}
@@ -147,20 +147,46 @@ export default class GameScene {
 
 		bus.on('left-click-change', data => {
 			const curPlayer = this.currentPlayer();
+			const nextPlayer = this.nextPlayer();
 			const coordinates = data.payload;
-			if (coordinates !== 'bot') {
+			//if (coordinates !== 'bot') {
 				if (curPlayer.status === PLAYER_STATES.DISABLED) {
 					return;
 				}
 				if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {
 					return;
 				}
+			//}
+			bus.emit('change-move', {
+				current: curPlayer,
+				next: nextPlayer,
+				switcher: this.switcher
+			});
+		});
+
+		bus.on('bot-attack', data => {
+			const regs = data.payload;
+			for (let i = 0; i < this.regions.length; ++i) {
+				if (regs.to === this.regions[i].label) {
+					bus.emit('attack', {
+						from: regs.from,
+						to: this.regions[i]
+					});
+				}
 			}
+		});
+
+		bus.on('bot-change-move', data => {
 			bus.emit('change-move', {
 				current: this.currentPlayer(),
 				next: this.nextPlayer(),
 				switcher: this.switcher
 			});
 		});
+
 	}
 }
+
+//todo:: ходит только первый бот
+//todo:: бот может сходить в молоко
+//todo:: придумать как убирать соседей
