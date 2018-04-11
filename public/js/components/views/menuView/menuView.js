@@ -21,7 +21,6 @@ export default class MenuSection extends Section {
      * @return {HTMLDivElement | *}
      */
 	render() {
-		debugger;
 		if (document.getElementById('application') == null) {
 			document.getElementById('body').innerHTML = '' +
 				'<div id="radar-wrapper">\n' +

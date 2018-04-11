@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 const CACHE_NAME = 'rha-cache-v1';
 
-const cacheUrls = [
-	'/',
+const URLS = ['login', '', 'menu', 'register', 'profile', 'rating', 'singleplayer'];
+
+const CacheURLS = [
 	'/register',
 	'/profile',
 	'/rating',
@@ -72,47 +74,80 @@ const cacheUrls = [
 	'/js/modules/graphics/figure.js',
 	'/js/modules/graphics/hexagon.js',
 	'/js/modules/graphics/switcher.js',
-	'/js/modules/add-sw.js',
-	'/js/modules/bus.js',
-	'/js/modules/http.js',
-	'/js/modules/router.js',
-	'/js/modules/sectionSwitcher.js',
-	'/js/modules/sketch.js',
-	'/js/modules/userController.js',
-	'/js/modules/userModel.js',
-	'/js/modules/validator.js',
-	'/js/application.js',
-	'/default.jpg',
-	'/favicon.ico',
-	'/index.html',
-	'/sw.js'
+	// '/js/modules/add-sw.js',
+	// '/js/modules/bus.js',
+	// '/js/modules/http.js',
+	// '/js/modules/router.js',
+	// '/js/modules/sectionSwitcher.js',
+	// '/js/modules/sketch.js',
+	// '/js/modules/userController.js',
+	// '/js/modules/userModel.js',
+	// '/js/modules/validator.js',
+	// '/js/application.js',
+	// '/default.jpg',
+	// '/favicon.ico',
+	// '/index.html'
 ];
 
-this.addEventListener('install', (evt) => {
-	evt.waitUntil(
-		caches
-			.open(CACHE_NAME)
-			.then((cache) => cache.addAll(cacheUrls))
-			.catch((err) => console.log('Cache error!!!'))
+// this.addEventListener('install', (evt) => {
+// 	evt.waitUntil(
+// 		caches
+// 			.open(CACHE_NAME)
+// 			.then((cache) => cache.addAll(cacheUrls))
+// 			.catch((err) => console.log('Cache error!!!'))
+// 	);
+// });
+//
+// this.addEventListener('fetch', (evt) => {
+// 	debugger;
+// 	if (navigator.onLine) {
+// 		return fetch(evt.request);
+// 	}
+//
+// 	evt.respondWith(
+// 		caches
+// 			.match(evt.request)
+// 			.then((cachedResponse) => {
+// 				if (cachedResponse) {
+// 					return cachedResponse;
+// 				} else {
+// 					return fetch(evt.request);
+// 				}
+// 			})
+// 			.catch((err) => console.log('unable to fetch resource ', evt.request.url))
+// 	);
+// });
+
+const FinalArr = [];
+URLS.forEach(element => {
+	CacheURLS.forEach(el => {
+		FinalArr.push(element + el);
+	});
+});
+
+this.addEventListener('fetch', function(event) {
+	event.respondWith(
+		caches.match(event.request).then(function(response) {
+			// ресурс есть в кеше
+			console.log(event.request());
+			if (response) {
+				return response;
+			}
+			return fetch(event.request);
+		})
 	);
 });
 
-this.addEventListener('fetch', (evt) => {
-	debugger;
-	if (navigator.onLine) {
-		return fetch(evt.request);
-	}
-
-	evt.respondWith(
-		caches
-			.match(evt.request)
-			.then((cachedResponse) => {
-				if (cachedResponse) {
-					return cachedResponse;
-				} else {
-					return fetch(evt.request);
-				}
-			})
-			.catch((err) => console.log('unable to fetch resource ', evt.request.url))
+this.addEventListener('install', function(event) {
+	event.waitUntil(
+		caches.open(CACHE_NAME).then(function(cache) {
+			URLS.forEach(element => {
+				CacheURLS.forEach(el => {
+					FinalArr.push(element + el);
+				});
+			});
+			console.log(FinalArr);
+			return cache.addAll(FinalArr);
+		})
 	);
 });
