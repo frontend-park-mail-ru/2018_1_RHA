@@ -22,7 +22,6 @@ export default class GameManager {
 		});
 
 		bus.on('attack', data => {
-			console.log('atacin');
 			const regions = data.payload;
 			const from = regions.from;
 			const to = regions.to;
@@ -34,6 +33,7 @@ export default class GameManager {
 			}
 		});
 	}
+
 	destroy() {
 		bus.off('select-region', data => {
 			const region = data.payload;

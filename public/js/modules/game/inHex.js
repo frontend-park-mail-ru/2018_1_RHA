@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const inPoly = (x,y, xp, yp) => {
+const inHex = (x, y, xp, yp) => {
 	let npol = xp.length;
 	let j = npol - 1;
 	let c = false;
@@ -14,4 +14,4 @@ const inPoly = (x,y, xp, yp) => {
 	return c;
 };
 
-export default inPoly;
+export default inHex;

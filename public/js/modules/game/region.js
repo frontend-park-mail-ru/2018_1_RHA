@@ -13,6 +13,8 @@ export default class Region {
 		this.gameData = {
 			units: 100500
 		};
+		this.label = null;
+		this.neighbour = null;
 		this.init();
 	}
 
@@ -22,6 +24,8 @@ export default class Region {
 				this.area = new Hexagon(this.ctx, this.allowedCoordinates[i].x,
 					this.allowedCoordinates[i].y, this.color);
 				this.allowedCoordinates[i].allowed = false;
+				this.neighbour = this.allowedCoordinates[i].neighbour;
+				this.label = this.allowedCoordinates[i].name;
 				return;
 			}
 		}

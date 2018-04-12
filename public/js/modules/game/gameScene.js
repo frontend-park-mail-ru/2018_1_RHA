@@ -1,5 +1,5 @@
 /* eslint-disable indent,no-case-declarations */
-import inPoly from './inPoly.js';
+import inHex from './inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './playerStates.js';
 
@@ -38,8 +38,17 @@ export default class GameScene {
 	//возвращает регион, если такой существует
 	isRegion(x, y) {
 		for (let i = 0; i < this.regions.length; ++i) {
-			if (inPoly(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
+			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
 				return this.regions[i];
+			}
+		}
+		return false;
+	}
+
+	isNeighbour(active, current) {
+		for (let i = 0; i < active.neighbour.length; i++) {
+			if (current.label === active.neighbour[i]) {
+				return true;
 			}
 		}
 		return false;
@@ -105,7 +114,7 @@ export default class GameScene {
 		});
 
 		bus.on('contextmenu', data => {
-			console.log('in scene');
+			const activeRegion = this.activeRegion();
 			const coordinates = data.payload;
 			if (this.status === PLAYER_STATES.DISABLED || this.status !== PLAYER_STATES.READY) {
 				return;
@@ -116,6 +125,11 @@ export default class GameScene {
 			}
 			const curPlayer = this.currentPlayer();
 			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
+				// debugger;
+				if (this.isNeighbour(activeRegion, curRegion) === false) {
+					return;
+				}
+
 				console.log('emit atac');
 				bus.emit('attack', {
 					from: this.activeRegion(),
