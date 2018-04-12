@@ -1,0 +1,45 @@
+/*Бэкграунд*/
+.body {
+    background: #818181; /* Old Browsers */
+    background: -webkit-radial-gradient(top,#818181,#3d3d3d); /*Safari 5.1-6*/
+    background: -o-radial-gradient(top,#818181,#3d3d3d); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(top,#818181,#3d3d3d); /*Fx 3.6-15*/
+    background: radial-gradient(to bottom, #818181, #3d3d3d); /*Standard*/
+    background-repeat: no-repeat;
+    /*overflow-x: hidden;*/
+    /*min-width: 100%;*/
+    height: 100%;
+    /*position: relative;*/
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/*болт*/
+
+/*!*канва под радар*!*/
+/*.radar-canvas {*/
+    /*border-width: 5px;*/
+    /*border-color: red;*/
+    /*border-style: groove;*/
+    /*width: 70%;*/
+    /*height: 90%;*/
+/*}*/
+
+/*подложка под меню*/
+.menu{
+    border-width: 5px;
+    border-color: #444;
+    border-style: groove;
+    width: 20%;
+    height: 90%;
+}
+/*как подложка под меню и радар можеn/
+.top-part{
+    border-width: 5px;
+    border-color: #444;
+    border-style: groove;
+    display: inline-block;
+}
+
+
+

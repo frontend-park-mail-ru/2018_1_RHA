@@ -1,10 +1,13 @@
 @import "reset.css";
-@import "a_button.css";
 @import "../js/components/blocks/input.css";
+@import "../js/components/blocks/button.css";
+@import "../js/components/blocks/lamp.css";
+@import "../js/components/blocks/screw.css";
 @import "../js/components/views/ratingView/rating.css";
 @import "../js/components/views/profileView/profile.css";
 @import "../js/components/forms/loadPictureForm/loadPictureForm.css";
 @import "../js/components/views/menuView/menu.css";
+@import "../js/components/views/ViewsBack.css";
 /*@import "../js/components/radar/radar.css";*/
 
 .input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
