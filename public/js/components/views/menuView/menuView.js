@@ -21,18 +21,6 @@ export default class MenuSection extends Section {
      * @return {HTMLDivElement | *}
      */
 	render() {
-		debugger;
-		if (document.getElementById('application') == null) {
-			document.getElementById('body').innerHTML = '' +
-				'<div id="radar-wrapper">\n' +
-				'\t\t\t<div id="bg"></div>\n' +
-				'\t\t\t<div id="radar"></div>\n' +
-				'\t\t\t</div>\n' +
-				'\n' +
-				'\t\t\t<div id="application-wrapper" class="body">\n' +
-				'\t\t\t<div id="application"></div>\n' +
-				'\t\t\t</div>';
-		}
 		this.menu = document.createElement('div');
 		this.attrsActive = [
 			{
