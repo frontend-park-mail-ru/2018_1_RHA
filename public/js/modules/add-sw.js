@@ -9,4 +9,4 @@ const swloader = () => {
 			});
 	}
 };
-swloader();
+export default swloader();
