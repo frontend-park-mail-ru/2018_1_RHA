@@ -22,7 +22,7 @@ export default class Input extends Block {
 		this.InputWrapper = document.createElement('div');
 		this.InputWrapper.appendChild(this.InputElement);
 
-		this.state = true; //заглушка
+		this.status = true; //заглушка
 
 		this.ErrorElement = document.createElement('div');
 		this.ErrorElement.classList.add('error');
@@ -43,7 +43,7 @@ export default class Input extends Block {
      * @return {boolean} – true if valid
      */
 	getState() {
-		return this.state;
+		return this.status;
 	}
 
 	/**
@@ -63,11 +63,11 @@ export default class Input extends Block {
      */
 	setError(error) {
 		if (error) {
-			this.state = false;
+			this.status = false;
 			this.ErrorElement.innerHTML = error;
 			this.InputElement.classList.add('input__error');
 		} else {
-			this.state = true;
+			this.status = true;
 			this.ErrorElement.style.display = 'none';
 			this.InputElement.classList.remove('input__error');
 		}

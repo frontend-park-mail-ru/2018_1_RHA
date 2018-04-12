@@ -12,6 +12,13 @@ import GameSection from './components/views/gameView/gameView.js';
 const root = document.getElementById('application');
 const globalRoot = document.getElementById('body');
 
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js', {scope: '/'})
+		.catch((err) => {
+			console.log('Service worker error: ' + err);
+		});
+}
+
 User.auth()
 	.then( () => {
 		new Router(root, globalRoot)
@@ -24,4 +31,4 @@ User.auth()
 			.start();
 	})
 	.catch();
-//TODO: profile, rating
+
