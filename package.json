@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "build": "babel public/js -d public/js15 --presets es2015"
+    "build": "babel public -d dist --presets es2015",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
