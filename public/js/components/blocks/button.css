@@ -1,10 +1,11 @@
 .button {
+    /*border: 2px solid #000000;*/
     position:relative;
-    width: auto;
+    /*width: auto;*/
     display:inline-block;
     color:#ecf0f1;
     text-decoration:none;
-    border: 1px solid #000000;
+    border: 1px solid #536267;
     background: #979ca1;
     background: -webkit-gradient(linear, left top, left bottom, from(#bfc2c5), to(#454b4f));
     background: -webkit-linear-gradient(top, #bfc2c5, #979ca1);
@@ -19,11 +20,46 @@
     -webkit-transition: all 0.1s;
     -moz-transition: all 0.1s;
     transition: all 0.1s;
-
+    height: 39px;
+    width: 50%;
     -webkit-box-shadow: 0px 6px 0px #7c8389;
     -moz-box-shadow: 0px 6px 0px #7c8389;
     box-shadow: 0px 6px 0px #7c8389;
+    text-shadow: #6f7273 0 1px 0;
+    /*color: #000000;*/
+    font-size: large;
+    font-family: helvetica, serif;
+    /*text-decoration: none;*/
+    vertical-align: middle;
+    /*text-align: center;*/
 }
+
+/*{*/
+
+    /*background: #454b4f;*/
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#acbac4), to(#454b4f));*/
+    /*background: -webkit-linear-gradient(top, #acbac4, #454b4f);*/
+    /*background: -moz-linear-gradient(top, #acbac4, #454b4f);*/
+    /*background: -ms-linear-gradient(top, #acbac4, #454b4f);*/
+    /*background: -o-linear-gradient(top, #acbac4, #454b4f);*/
+    /*background-image: -ms-linear-gradient(top, #acbac4 0%, #454b4f 100%);*/
+/*!*padding: 16px 32px;*!*/
+    /*height: 39px;*/
+    /*-webkit-border-radius: 0px;*/
+    /*-moz-border-radius: 0px;*/
+    /*border-radius: 0px;*/
+    /*-webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;*/
+    /*-moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;*/
+    /*box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;*/
+    /*text-shadow: #6f7273 0 1px 0;*/
+    /*color: #000000;*/
+    /*font-size: large;*/
+    /*font-family: helvetica, serif;*/
+    /*text-decoration: none;*/
+    /*vertical-align: middle;*/
+    /*text-align: center;*/
+    /*width: 100%;*/
+/*}*/
 
 /*Ультимативная металлическая кнопка*/
 .button:hover {
