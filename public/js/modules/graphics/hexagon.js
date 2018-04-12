@@ -41,4 +41,21 @@ export default class Hexagon {
 		this.ctx.stroke();
 		this.ctx.closePath();
 	}
+
+	reColor (color) {
+		this.xp = [this.xC - this.R, this.xC - this.R / 2, this.xC + this.R / 2, this.xC + this.R, this.xC + this.R / 2, this.xC - this.R / 2, this.xC - this.R];
+		this.yp = [this.yC, this.yC + this.dR, this.yC + this.dR, this.yC, this.yC - this.dR, this.yC - this.dR, this.yC];
+		this.ctx.beginPath();
+		this.ctx.lineJoin = 'round';
+		this.ctx.lineWidth = 3;
+		this.ctx.moveTo(this.xp[0], this.yp[0]);
+		for (let i = 1; i < this.xp.length; ++i) {
+			this.ctx.lineTo(this.xp[i], this.yp[i]);
+		}
+		this.ctx.strokeStyle = 'black';
+		this.ctx.stroke();
+		this.ctx.fillStyle = color;
+		this.ctx.fill();
+		this.ctx.closePath();
+	}
 }
