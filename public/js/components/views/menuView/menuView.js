@@ -21,6 +21,7 @@ export default class MenuSection extends Section {
      * @return {HTMLDivElement | *}
      */
 	render() {
+
 		// if (document.getElementById('application') == null) {
 		// 	document.getElementById('body').innerHTML = '' +
 		// 		'<div id="radar-wrapper">\n' +
@@ -32,6 +33,7 @@ export default class MenuSection extends Section {
 		// 		'\t\t\t<div id="application"></div>\n' +
 		// 		'\t\t\t</div>';
 		// }
+
 		this.menu = document.createElement('div');
 		this.attrsActive = [
 			{

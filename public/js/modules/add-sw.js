@@ -1,12 +1,7 @@
 const swloader = () => {
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/sw.js', {scope: '/'})
-			.then((registration) => {
-				console.log('sw registration on scope ', registration.scope);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		navigator.serviceWorker.register('../../sw.js', {scope: '/'})
+			.catch((err) => {console.log('Service worker error: ' + err);});
 	}
 };
-export default swloader();
+

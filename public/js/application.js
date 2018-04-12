@@ -8,10 +8,16 @@ import MenuSection from './components/views/menuView/menuView.js';
 import Router from './modules/router.js';
 import User from './modules/userModel.js';
 import GameSection from './components/views/gameView/gameView.js';
-import swloader from './modules/add-sw.js';
 
 const root = document.getElementById('application');
 const globalRoot = document.getElementById('body');
+
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js', {scope: '/'})
+		.catch((err) => {
+			console.log('Service worker error: ' + err);
+		});
+}
 
 User.auth()
 	.then( () => {
@@ -25,4 +31,4 @@ User.auth()
 			.start();
 	})
 	.catch();
-// swloader();
+
