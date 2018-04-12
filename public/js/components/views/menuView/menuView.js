@@ -25,8 +25,8 @@ export default class MenuSection extends Section {
 		if (document.getElementById('application') == null) {
 			document.getElementById('body').innerHTML = '' +
 				'<div id="radar-wrapper">\n' +
-				'\t\t\t<div id="bg"></div>\n' +
-				'\t\t\t<div id="radar"></div>\n' +
+				'\t\t\t<div class="radar_bg"></div>\n' +
+				'\t\t\t<div class="radar"></div>\n' +
 				'\t\t\t</div>\n' +
 				'\n' +
 				'\t\t\t<div id="application-wrapper" class="body">\n' +
