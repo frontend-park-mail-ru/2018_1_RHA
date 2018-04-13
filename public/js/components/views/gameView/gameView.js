@@ -16,20 +16,28 @@ export default class GameSection extends Section {
 		this.wrapper.innerHTML = generateCanvas(
 			{
 				'width': screen.width * 0.8,
-				'height':screen.height,
+				'height':screen.height * 0.8,
 				'id' : 'game-canvas'
 			}
 		);
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': screen.width * 0.1,
-				'height':screen.height,
+				'height':screen.height * 0.8,
 				'id' : 'change-canvas'
+			}
+		);
+		this.wrapper.innerHTML += generateCanvas(
+			{
+				'width': screen.width * 0.9,
+				'height':screen.height * 0.2,
+				'id' : 'control-canvas'
 			}
 		);
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.change_canvas = document.getElementById('change-canvas');
+		this.control_canvas = document.getElementById('control-canvas');
 	}
 
 	/**

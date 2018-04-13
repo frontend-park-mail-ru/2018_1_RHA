@@ -11,14 +11,14 @@
 @import "../js/components/radar/radar.css";
 @import "../js/components/views/gameView/gameView.css";
 
-.input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
-.input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
-.input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
-.input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
-.input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
-.input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
-.input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
-.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+.input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease; font-family: armalite, serif;}
+.input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;     font-family: armalite, serif;}
+.input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
 
 body{
     overflow: hidden;
@@ -70,13 +70,12 @@ body{
 
 
 
-/*@font-face {*/
-    /*font-family: "armalite";*/
-    /*src: local('armalite');*/
-    /*url("../fonts/armalite.ttf") format('truetype');*/
-    /*font-weight: normal;*/
-    /*font-style: normal;*/
-/*}*/
+@font-face {
+    font-family: armalite;
+    src: local(armalite),
+    url(/fonts/armalite.ttf);
+
+}
 
 
 li {
@@ -86,6 +85,7 @@ li {
 }
 
 h2 {
+    font-family: armalite, serif;
     color: white;
     font-size: 300%;
     margin: 2%;
