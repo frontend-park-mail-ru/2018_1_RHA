@@ -1,7 +1,17 @@
 /* eslint-disable no-undef */
 import Figure from './figure.js';
 
+/**
+ * Class represents Circle graphical element
+ */
 export default class Circle extends Figure {
+	/**
+	 * Creates Circle
+	 * @param x
+	 * @param y
+	 * @param r
+	 * @param canvas
+	 */
 	constructor(x, y, r, canvas) {
 		super();
 		this.canvas = canvas;
@@ -12,6 +22,9 @@ export default class Circle extends Figure {
 		this.draw();
 	}
 
+	/**
+	 * draws circle
+	 */
 	draw() {
 		this.game_ctx.beginPath();
 		this.game_ctx.lineWidth = 3;
@@ -23,6 +36,9 @@ export default class Circle extends Figure {
 		this.setOnClick();
 	}
 
+	/**
+	 *
+	 */
 	setOnClick() {
 
 	}

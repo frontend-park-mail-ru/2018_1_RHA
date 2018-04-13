@@ -1,5 +1,13 @@
 /* eslint-disable no-undef */
 
+/**
+ * Answers if the point is in Hexagon
+ * @param x
+ * @param y
+ * @param xp
+ * @param yp
+ * @return {boolean}
+ */
 const inHex = (x, y, xp, yp) => {
 	let npol = xp.length;
 	let j = npol - 1;

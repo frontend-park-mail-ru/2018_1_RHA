@@ -3,12 +3,20 @@ import Input from '../blocks/input.js';
 import Validator from '../../modules/validator.js';
 // validator
 // и какие-то глобальные переменные
-
+/**
+ * Class representing registration form
+ */
 export default class RegisterForm extends Form {
+	/**
+	 * creates RegisterForm
+	 */
 	constructor() {
 		super();
 	}
 
+	/**
+	 * @return {HTMLDivElement}
+	 */
 	render() {
 		this.Email = new Input({
 			type: 'text',

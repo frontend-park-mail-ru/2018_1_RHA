@@ -4,7 +4,6 @@ import route from '../conf/route.js';
 /**
  * Class represents Model of User to store and manage user data
  */
-
 let curUser = null;
 export default class User {
 	/**
@@ -14,6 +13,11 @@ export default class User {
 		this.email = data.email;
 		this.rating = data.rating;
 	}
+
+	/**
+	 * Authenticates user
+	 * @return {Promise<any>}
+	 */
 	static auth() {
 		// if (curUser) {
 		//     resolve(curUser);
@@ -38,14 +42,27 @@ export default class User {
 		});
 	}
 
+	/**
+	 * If user authorized
+	 * @return {boolean}
+	 */
 	static isAuthorized() {
 		return !!curUser;
 	}
 
+	/**
+	 * Returns current user
+	 * @return {User}
+	 */
 	static getCurUser() {
 		return curUser;
 	}
 
+	/**
+	 * Signs user in
+	 * @param userData
+	 * @return {Promise<any>}
+	 */
 	static signIn(userData) {
 		return new Promise( (resolve, reject) => {
 			http.post(route.userAPIMethods.login, userData, (err, resp) => {
@@ -58,6 +75,11 @@ export default class User {
 		});
 	}
 
+	/**
+	 * signs user Up
+	 * @param userData
+	 * @return {Promise<any>}
+	 */
 	static signUp(userData) {
 		return new Promise( (resolve, reject) => {
 			http.post(route.userAPIMethods.signup, userData, (err, resp) => {
@@ -70,6 +92,10 @@ export default class User {
 		});
 	}
 
+	/**
+	 * logs user Off
+	 * @return {Promise<any>}
+	 */
 	static logout() {
 		return new Promise( (resolve, reject) => {
 			http.post(route.userAPIMethods.logout, {}, (err, resp) => {
@@ -82,6 +108,11 @@ export default class User {
 		});
 	}
 
+	/**
+	 * updates user data
+	 * @param userData
+	 * @return {Promise<any>}
+	 */
 	static update(userData) {
 		return new Promise((resolve, reject) => {
 			http.post(route.userAPIMethods.updateUser, userData, (err, resp) => {
@@ -94,6 +125,11 @@ export default class User {
 		});
 	}
 
+	/**
+	 * uploads user's avatar
+	 * @param userData
+	 * @return {Promise<any>}
+	 */
 	static uploadAvatar(userData) {
 		return new Promise((resolve, reject) => {
 			http.post('http://localhost:3000/avatar', userData, (err, resp) => {

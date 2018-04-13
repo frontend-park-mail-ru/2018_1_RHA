@@ -4,12 +4,21 @@ import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 
 
-//todo: подписываемся на события связанные с действиями в игре
+/**
+ * Class representing game logic
+ */
 export default class GameManager {
+	/**
+	 * Creates logic =)
+	 * @param controller
+	 */
 	constructor(controller) {
 		this.controller = controller;
 	}
 
+	/**
+	 * Starts game logic 8)
+	 */
 	start() {
 		bus.on('select-region', data => {
 			const region = data.payload;
@@ -57,6 +66,9 @@ export default class GameManager {
 		});
 	}
 
+	/**
+	 * destroys game logic ;)
+	 */
 	destroy() {
 		bus.off('select-region', data => {
 			const region = data.payload;

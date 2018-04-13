@@ -1,5 +1,15 @@
 /* eslint-disable no-undef */
+/**
+ * Class represents Hexagon graphical element
+ */
 export default class Hexagon {
+	/**
+	 * Creates Hexagon
+	 * @param ctx
+	 * @param xC
+	 * @param yC
+	 * @param color
+	 */
 	constructor(ctx, xC, yC, color) {
 		this.game_ctx = ctx;
 		this.draw(xC, yC, color);
@@ -8,6 +18,12 @@ export default class Hexagon {
 		this.color = color;
 	}
 
+	/**
+	 * Draws graphical element
+	 * @param xC
+	 * @param yC
+	 * @param color
+	 */
 	draw(xC, yC, color) {
 		this.R = 100;
 		this.dR = this.R * 0.866;
@@ -27,6 +43,11 @@ export default class Hexagon {
 		this.game_ctx.closePath();
 	}
 
+	/**
+	 * Redraws hexagon
+	 * @param color
+	 * @param width
+	 */
 	reDraw(color, width) {
 		this.xp = [this.xC - this.R, this.xC - this.R / 2, this.xC + this.R / 2, this.xC + this.R, this.xC + this.R / 2, this.xC - this.R / 2, this.xC - this.R];
 		this.yp = [this.yC, this.yC + this.dR, this.yC + this.dR, this.yC, this.yC - this.dR, this.yC - this.dR, this.yC];
@@ -42,6 +63,10 @@ export default class Hexagon {
 		this.game_ctx.closePath();
 	}
 
+	/**
+	 * Recolors hexagon
+	 * @param color
+	 */
 	reColor (color) {
 		this.xp = [this.xC - this.R, this.xC - this.R / 2, this.xC + this.R / 2, this.xC + this.R, this.xC + this.R / 2, this.xC - this.R / 2, this.xC - this.R];
 		this.yp = [this.yC, this.yC + this.dR, this.yC + this.dR, this.yC, this.yC - this.dR, this.yC - this.dR, this.yC];

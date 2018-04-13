@@ -3,7 +3,17 @@ import inHex from './math/inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 
+/**
+ * Class representing Game Scene (Set of graphical and logical elements)
+ */
 export default class GameScene {
+	/**
+	 * Creates scene
+	 * @param canvas
+	 * @param players
+	 * @param regions
+	 * @param switcher
+	 */
 	constructor(canvas, players, regions, switcher) {
 		this.canvas  = canvas;
 		this.game_ctx = canvas.getContext('2d');
@@ -13,9 +23,10 @@ export default class GameScene {
 		this.setPlayersRegions();
 	}
 
-
-	//TODO: все циклы return'ящие что то, должны быть оформлены в таком виде
-	//текущий игрок
+	/**
+	 * Returns current player
+	 * @return {*}
+	 */
 	currentPlayer() {
 		for (let i = 0; i < this.players.length; ++i) {
 			// TODO проверить работает ли это условие
@@ -25,7 +36,10 @@ export default class GameScene {
 		}
 	}
 
-
+	/**
+	 * Returns next player
+	 * @return {*}
+	 */
 	nextPlayer() {
 		const curP = this.currentPlayer();
 		for (let i = 0; i < this.players.length; ++i) {
@@ -36,17 +50,27 @@ export default class GameScene {
 		}
 	}
 
-	//возвращает регион, если такой существует
+	/**
+	 * Returns pointed region
+	 * @param x
+	 * @param y
+	 * @return {Region | null}
+	 */
 	isRegion(x, y) {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
 				return this.regions[i];
 			}
 		}
-		return false;
+		return null;
 	}
 
-
+	/**
+	 *
+	 * @param active
+	 * @param current
+	 * @return {boolean}
+	 */
 	isNeighbour(active, current) {
 		for (let i = 0; i < active.neighbour.length; i++) {
 			if (current.label === active.neighbour[i]) {
@@ -56,7 +80,10 @@ export default class GameScene {
 		return false;
 	}
 
-	//выделенный регион
+	/**
+	 *
+	 * @return {Region}
+	 */
 	activeRegion() {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].selected === true) {
@@ -65,21 +92,34 @@ export default class GameScene {
 		}
 	}
 
+	/**
+	 *
+	 */
 	deactivatePlayers() {
 		this.players.forEach(player => player.active = false);
 	}
 
+	/**
+	 * Sets regions for playes
+	 */
 	setPlayersRegions() {
 		for (let i = 0; i < this.players.length; i++ ) {
 			this.players[i].addRegion(this.regions[i]);
 		}
 	}
 
+	/**
+	 * @param x
+	 * @param y
+	 * @return {boolean}
+	 */
 	isElementOfChangeCanvas(x, y) {
 		return !!inHex(x, y, this.switcher.arrX, this.switcher.arrY);
 	}
 
-	//подписываемся на события кликов мышки
+	/**
+	 * подписываемся на события кликов мышки
+	 */
 	onListeners() {
 		bus.on('left-click', data => {
 			const curPlayer = this.currentPlayer();
@@ -188,5 +228,7 @@ export default class GameScene {
 }
 
 //todo:: ходит только первый бот
+
 //todo:: бот может сходить в молоко
+
 //todo:: придумать как убирать соседей

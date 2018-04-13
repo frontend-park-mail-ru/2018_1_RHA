@@ -1,7 +1,14 @@
 import PLAYER_STATES from '../config/playerStates.js';
 
-
+/**
+ * Class representing generic game Player
+ */
 export default class Player {
+	/**
+	 * Creates player
+	 * @param name
+	 * @param color
+	 */
 	constructor(name, color) {
 		this.score = 0;
 		this.resources = 0;
@@ -11,11 +18,18 @@ export default class Player {
 		this.name = name;
 	}
 
+	/**
+	 * should be overriden
+	 */
 	init() {
 
 	}
 
-	//Принадлежит ли данный регион игроку
+	/**
+	 * Принадлежит ли данный регион игроку
+	 * @param region
+	 * @return {boolean}
+	 */
 	isTheRegionOfPlayer(region) {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].name === region.name) {
@@ -25,12 +39,20 @@ export default class Player {
 		return false;
 	}
 
+	/**
+	 * Gives the player new region
+	 * @param newRegion
+	 */
 	addRegion(newRegion) {
 		newRegion.area.reColor(this.color);
 		newRegion.owner = this;
 		this.regions.push(newRegion);
 	}
 
+	/**
+	 * deletes region
+	 * @param reg
+	 */
 	delRegion(reg) {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i] === reg) {
@@ -42,8 +64,10 @@ export default class Player {
 		}
 	}
 
-
-
+	/**
+	 * sets player's status
+	 * @param status
+	 */
 	setStatus(status) {
 		this.status = status;
 	}

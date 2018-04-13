@@ -1,7 +1,15 @@
 
 import bus from '../bus.js';
 
+/**
+ * Class representing set of game controls
+ */
 export default class Controller {
+	/**
+	 * Creates controllers
+	 * @param game_canvas
+	 * @param change_canvas
+	 */
 	constructor(game_canvas, change_canvas) {
 		this.game_canvas = game_canvas;
 		this.change_canvas = change_canvas;
@@ -28,8 +36,9 @@ export default class Controller {
 		};
 	}
 
-
-
+	/**
+	 * Turns controls on
+	 */
 	start() {
 		this.game_canvas.addEventListener('click', this.onclick);
 
@@ -44,6 +53,9 @@ export default class Controller {
 		this.change_canvas.addEventListener('contextmenu', this.conkekstcanvas);
 	}
 
+	/**
+	 * Turn controls off
+	 */
 	stop() {
 		this.game_canvas.removeEventListener('click', this.onclick);
 

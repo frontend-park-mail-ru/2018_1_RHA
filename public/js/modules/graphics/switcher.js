@@ -1,6 +1,16 @@
 import Figure from './figure.js';
 
+/**
+ * Class represents Switcher graphical element
+ */
 export default class Switcher extends Figure {
+	/**
+	 * Creates switcher
+	 * @param a
+	 * @param canvas
+	 * @param x
+	 * @param y
+	 */
 	constructor(a, canvas, x, y) {
 		super();
 		this.a = a;
@@ -13,6 +23,9 @@ export default class Switcher extends Figure {
 		this.draw();
 	}
 
+	/**
+	 * draws switcher
+	 */
 	draw() {
 		this.game_ctx.beginPath();
 		this.game_ctx.moveTo(this.x, this.y);
@@ -28,6 +41,10 @@ export default class Switcher extends Figure {
 		this.game_ctx.closePath();
 	}
 
+	/**
+	 * Redraws switcher
+	 * @param color
+	 */
 	reDraw(color) {
 		this.game_ctx.beginPath();
 		this.game_ctx.moveTo(this.x, this.y);

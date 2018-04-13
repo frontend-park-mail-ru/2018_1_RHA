@@ -1,3 +1,7 @@
+/**
+ * for player management
+ * @type {{DEFAULT: number, READY: number, DISABLED: number, WON: number, LOSE: number}}
+ */
 const PLAYER_STATES = {
 	DEFAULT : 1,
 	READY : 2,

@@ -1,3 +1,6 @@
+/**
+ * @type {HTMLCollectionOf<Element>}
+ */
 var radar = document.getElementsByClassName( 'radar' ),
 	diameter = window.innerWidth * 0.35,
 	radius = diameter / 2,
@@ -28,6 +31,9 @@ radar.style.marginLeft = radar.style.marginTop = ( -diameter / 2 ) - padding + '
 gradient.addColorStop( 0, 'hsla( ' + hueStart + ', ' + saturation + '%, ' + lightness + '%, 1 )' );
 gradient.addColorStop( 1, 'hsla( ' + hueEnd + ', ' + saturation + '%, ' + lightness + '%, 0.1 )' );
 
+/**
+ *
+ */
 var renderRings = function(){
 	var i;
 	for( i = 0; i < rings; i++ ){
@@ -39,6 +45,9 @@ var renderRings = function(){
 	}
 };
 
+/**
+ *
+ */
 var renderGrid = function(){
 	ctx.beginPath();
 	ctx.moveTo( radius - lineWidth / 2, lineWidth );
@@ -49,6 +58,9 @@ var renderGrid = function(){
 	ctx.stroke();
 };
 
+/**
+ *
+ */
 var renderSweep = function(){
 	ctx.save();
 	ctx.translate( radius, radius );
@@ -62,6 +74,9 @@ var renderSweep = function(){
 	ctx.restore();
 };
 
+/**
+ *
+ */
 var renderScanLines = function(){
 	var i;
 	var j;
@@ -76,16 +91,25 @@ var renderScanLines = function(){
 	ctx.stroke();
 };
 
+/**
+ *
+ */
 ctx.clear = function(){
 	ctx.globalCompositeOperation = 'destination-out';
 	ctx.fillStyle = 'hsla( 0, 0%, 0%, 0.1 )';
 	ctx.fillRect( 0, 0, diameter, diameter );
 };
 
+/**
+ *
+ */
 ctx.update = function(){
 	sweepAngle += sweepSpeed;
 };
 
+/**
+ *
+ */
 ctx.draw = function(){
 	ctx.globalCompositeOperation = 'lighter';
 	renderRings();

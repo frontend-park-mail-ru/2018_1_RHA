@@ -3,13 +3,24 @@ import Player from './player.js';
 import bus from '../../bus.js';
 import getRandom from '../math/getRandom.js';
 
+/**
+ * Class representing game Player
+ */
 export default class BotPlayer extends Player {
+	/**
+	 * Creates Player
+	 * @param name
+	 * @param color
+	 */
 	constructor(name, color) {
 		super(name, color);
 
 		this.listeners();
 	}
 
+	/**
+	 * Sets up player's listeners
+	 */
 	listeners() {
 		bus.on('bot-move', dict => {
 			const nextPLayer = dict.payload;

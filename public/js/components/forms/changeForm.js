@@ -2,12 +2,21 @@ import Form from './form.js';
 import Input from '../blocks/input.js';
 import Validator from '../../modules/validator.js';
 
-
+/**
+ * Class representing form to change user data
+ */
 export default class ChangeForm extends Form {
+	/**
+	 * creates ChangeForm
+	 */
 	constructor() {
 		super();
 	}
 
+	/**
+	 * returns data of the form
+	 * @return {{oldp: string, newp: string}}
+	 */
 	getData() {
 		return {
 			oldp: this.OldPassword.getData(),
@@ -15,6 +24,9 @@ export default class ChangeForm extends Form {
 		};
 	}
 
+	/**
+	 * @return {HTMLDivElement}
+	 */
 	render() {
 
 		this.OldPassword = new Input({
@@ -57,6 +69,10 @@ export default class ChangeForm extends Form {
 		return this.formElement;
 	}
 
+	/**
+	 * Sets submit listener
+	 * @param callbackfn
+	 */
 	setOnSubmit(callbackfn) {
 		this.formElement.addEventListener('submit', (ev) => {
 			ev.preventDefault();

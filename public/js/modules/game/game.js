@@ -8,8 +8,16 @@ import Switcher from '../graphics/switcher.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 
-
+/**
+ * Class representing game
+ */
 export default class Game {
+	/**
+	 * Creates game
+	 * @param mode
+	 * @param game_canvas
+	 * @param change_canvas
+	 */
 	constructor(mode, game_canvas, change_canvas) {
 		//let GameConstructor = null;
 
@@ -39,12 +47,18 @@ export default class Game {
 		this.manager = new GameManager(this.controller);
 	}
 
+	/**
+	 * Starts game
+	 */
 	start() {
 		this.controller.start();
 		this.scene.onListeners();
 		this.manager.start();
 	}
 
+	/**
+	 * turns game off
+	 */
 	destroy() {
 		this.controller.stop();
 		this.manager.destroy();

@@ -1,11 +1,13 @@
 import Section from '../baseView.js';
-import GameScene from '../../../modules/game/gameScene.js';
-import Controller from '../../../modules/game/controller.js';
-import GameManager from '../../../modules/game/gameManager.js';
-import Player from '../../../modules/game/player/player.js';
 import Game from '../../../modules/game/game.js';
 
+/**
+ * Class representing Section of the game
+ */
 export default class GameSection extends Section {
+	/**
+	 * Creates game section
+	 */
 	constructor () {
 		super();
 
@@ -28,9 +30,11 @@ export default class GameSection extends Section {
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.change_canvas = document.getElementById('change-canvas');
-		//this.setOnClick(this.canvas.getContext('2d'));
 	}
 
+	/**
+	 * @return {HTMLDivElement | *}
+	 */
 	render() {
 
 		this.game = new Game({}, this.game_canvas, this.change_canvas);
@@ -39,6 +43,9 @@ export default class GameSection extends Section {
 		return this.wrapper;
 	}
 
+	/**
+	 * @return {boolean}
+	 */
 	allowed() {
 		// return User.isAuthorized();
 		return true;

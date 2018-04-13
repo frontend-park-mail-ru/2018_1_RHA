@@ -1,3 +1,7 @@
+/**
+ * Hardcode of regions
+ * @type {*[]}
+ */
 const allowedCoordinates = [
 	{
 		name: 'A',

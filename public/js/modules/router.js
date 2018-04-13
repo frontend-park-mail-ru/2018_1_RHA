@@ -1,7 +1,16 @@
 import {sectionSwitcher} from './sectionSwitcher.js';
 
+/**
+ * Class representing router
+ */
 export default class Router {
 
+	/**
+	 * Creates router
+	 * @param root
+	 * @param global
+	 * @return {Router|*}
+	 */
 	constructor(root, global) {
 
 		if (Router.__instance) {
@@ -18,11 +27,21 @@ export default class Router {
 		Router.__instance = this;
 	}
 
+	/**
+	 * adds new page to router
+	 * @param path
+	 * @param View
+	 * @return {Router}
+	 */
 	add(path, View) {
 		this.map[path] = new View(this.root);
 		return this;
 	}
 
+	/**
+	 * opens the page
+	 * @param path
+	 */
 	open(path) {
 		const view = this.map[path];
 		let rootForSwitch;
@@ -54,6 +73,9 @@ export default class Router {
 		sectionSwitcher.changeSection(view.render(), rootForSwitch);
 	}
 
+	/**
+	 * Starts the router
+	 */
 	start() {
 		window.addEventListener('popstate', function () {
 			this.open(window.location.pathname);
@@ -70,4 +92,3 @@ export default class Router {
 		this.open(window.location.pathname);
 	}
 }
-//TODO может как-то переделаем роутер, чтобы он хранил объект класса
