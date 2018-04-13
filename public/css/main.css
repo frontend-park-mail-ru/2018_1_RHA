@@ -8,7 +8,8 @@
 @import "../js/components/forms/loadPictureForm/loadPictureForm.css";
 @import "../js/components/views/menuView/menu.css";
 @import "../js/components/views/ViewsBack.css";
-/*@import "../js/components/radar/radar.css";*/
+@import "../js/components/radar/radar.css";
+@import "../js/components/views/gameView/gameView.css";
 
 .input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
 .input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
@@ -19,6 +20,9 @@
 .input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
 .input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
 
+body{
+    overflow: hidden;
+}
 
 #radar-wrapper {
     width: 60%;

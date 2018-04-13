@@ -51,7 +51,7 @@ export default class Button extends Block {
      * @param {function} callbackfn - button click handler
      */
 	setOnClick(callbackfn) {
-		this.buttonElement.addEventListener('click', (e) => {
+		this.buttonElement.addEventListener('click', function (e) {
 			event.preventDefault();
 			callbackfn();
 		});

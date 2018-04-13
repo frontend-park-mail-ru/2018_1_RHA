@@ -13,6 +13,7 @@ export default class Controller {
 	constructor(game_canvas, change_canvas) {
 		this.game_canvas = game_canvas;
 		this.change_canvas = change_canvas;
+		// this.change_canvas.getContext('2d').transform(1,0,0,1, screen.width*0.7, 0);
 
 		this.onclick = (event) => {
 			bus.emit('left-click', {x: event.x, y: event.y});
@@ -25,14 +26,15 @@ export default class Controller {
 			bus.emit('contextmenu', {x: event.x, y: event.y});
 		};
 		this.clickcanvas = (event) => {
-			bus.emit('left-click-change', {x: event.x - screen.width * 0.9, y: event.y});
+			console.log(event.x, ' ', event.y);
+			bus.emit('left-click-change', {x: event.x - screen.width * 0.8, y: event.y});
 		};
 		this.mousemovecanvas = (event) => {
-			bus.emit('mousemove-change', {x: event.x - screen.width * 0.9, y: event.y});
+			bus.emit('mousemove-change', {x: event.x- screen.width * 0.8, y: event.y});
 		};
 		this.conkekstcanvas = (event) => {
 			event.preventDefault();
-			bus.emit('contextmenu-change', {x: event.x - screen.width * 0.9, y: event.y});
+			bus.emit('contextmenu-change', {x: event.x - screen.width * 0.8, y: event.y});
 		};
 	}
 

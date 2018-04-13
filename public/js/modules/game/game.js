@@ -31,15 +31,27 @@ export default class Game {
 		this.players = [
 			new MainPlayer('first', 'green'),
 			new BotPlayer('second','blue'),
-			new BotPlayer('third', 'crimson'),
-			new BotPlayer('forth', 'silver'),
-			new BotPlayer('admin', 'pink'),
+
 		];
+		this.third = new BotPlayer('third', 'crimson');
+		this.forth = new BotPlayer('forth', 'silver');
+		this.admin = new BotPlayer('admin', 'pink');
+
 		this.regions = [];
 		this.players.forEach( (player) => {
 			this.regions.push(new Region(player.name + '_area', player,
 				this.game_ctx, allowedCoordinates));
 		});
+
+		//раздал вручную
+		this.regions.push(new Region(this.third.name + '_area', this.third,
+			this.game_ctx, allowedCoordinates));
+		this.regions.push(new Region(this.forth.name + '_area', this.forth,
+			this.game_ctx, allowedCoordinates));
+
+		this.regions.push(new Region(this.admin.name + '_area', this.admin,
+			this.game_ctx, allowedCoordinates));
+
 
 
 		this.switcher = new Switcher(70, this.change_canvas, 100, 360);

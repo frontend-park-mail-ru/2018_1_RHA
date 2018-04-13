@@ -545,6 +545,7 @@
 				switch( options.type ) {
 
 				case CANVAS:
+					element.classList.add('canvas-radar');
 
 					return element.getContext( '2d', options );
 
