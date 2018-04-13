@@ -7,12 +7,12 @@ const serverUrl = 'https://rha-backend.herokuapp.com/';
  * @type {{login: string, signup: string, logout: string, user: string, updateUser: string, leaderBoard: string}}
  */
 const userAPIMethods = {
-    login: 'users/auth',
-    signup: 'users/create',
-    logout: 'users/logout',
-    user: 'users/info',
-    updateUser: 'users/change',
-    leaderBoard: 'users/rating',
+	login: 'users/auth',
+	signup: 'users/create',
+	logout: 'users/logout',
+	user: 'users/info',
+	updateUser: 'users/chpwd',
+	leaderBoard: 'users/rating',
 };
 
 // export const route = {

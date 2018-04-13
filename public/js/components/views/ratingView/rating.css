@@ -1,4 +1,7 @@
 
+.scorboard_row {
+}
+
 .scorboard_row:hover {
     color: red;
 }

@@ -1,9 +1,9 @@
-body {
+.radar_body {
     background: #111 url(/images/classy_fabric.png);
     overflow: hidden;
 }
 
-#bg {
+.radar_bg {
     background: radial-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 1));
     height: 100%;
     left: 0;
@@ -11,7 +11,7 @@ body {
     width: 100%;
 }
 
-#radar {
+.radar {
     background: linear-gradient(#333, #111);
     box-shadow:
             0 0 0 1px hsla(0, 0%, 0%, 0.5),
@@ -25,7 +25,7 @@ body {
     top: 50%;
 }
 
-canvas {
+.radar_canvas {
     background: radial-gradient(#222, #111);
     border-radius: 100%;
     display: block;

@@ -8,26 +8,28 @@
     <title>PHub</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body id="body">
+<body>
+    <div id="body">
+    <div id="start" class="start">
+        <!--<div id="radar-wrapper">-->
+            <!--<div id="bg"></div>-->
+            <!--<div id="radar"></div>-->
+        <!--</div>-->
 
-    <div id="radar-wrapper">
-        <div id="bg"></div>
-        <div id="radar"></div>
-
+        <div id="application-wrapper" class="body">
+            <div id="application"></div>
+        </div>
     </div>
 
-    <div id="application-wrapper" class="body">
-        <div id="application"></div>
-    </div>
+    <div id="game" class="game"></div>
 
-
-    <script src="js/modules/sketch.js"></script>
-    <script src="js/components/radar/radar.js"></script>
-
-    <!--<script src="js/modules/add-sw.js"></script>-->
+    <!--<script src="js/modules/sketch.js"></script>-->
+    <!--<script src="js/components/radar/radar.js"></script>-->
+    <script src="js/modules/add-sw.js"></script>
     <script src="js/components/views/ratingView/ratingTemplate.js"></script>
     <script src="js/components/views/menuView/menuTemplate.js"></script>
     <script src="js/components/views/profileView/profileTemplate.js"></script>
+    <script src="js/components/views/gameView/gameTemplate.js"></script>
     <script src="js/application.js" type="module"></script>
 </body>
 </html>
