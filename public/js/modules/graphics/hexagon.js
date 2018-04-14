@@ -25,7 +25,7 @@ export default class Hexagon {
 	 * @param color
 	 */
 	draw(xC, yC, color) {
-		this.R = 100;
+		this.R = 98;
 		this.dR = this.R * 0.866;
 		this.xp = [xC - this.R, xC - this.R / 2, xC + this.R / 2, xC + this.R, xC + this.R / 2, xC - this.R / 2, xC - this.R];
 		this.yp = [yC, yC + this.dR, yC + this.dR, yC, yC - this.dR, yC - this.dR, yC];

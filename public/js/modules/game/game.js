@@ -18,7 +18,7 @@ export default class Game {
 	 * @param game_canvas
 	 * @param change_canvas
 	 */
-	constructor(mode, game_canvas, change_canvas) {
+	constructor(mode, game_canvas, change_canvas, info_canvas, control_canvas) {
 		//let GameConstructor = null;
 
 		//todo:: онлайн и оффлайн режимы

@@ -16,6 +16,7 @@ export default class Controller {
 		// this.change_canvas.getContext('2d').transform(1,0,0,1, screen.width*0.7, 0);
 
 		this.onclick = (event) => {
+			console.log(event.x - screen.width * 0.1, ' ', event.y);
 			bus.emit('left-click', {x: event.x, y: event.y});
 		};
 		this.mousemove = (event) => {
