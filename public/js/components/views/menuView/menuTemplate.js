@@ -17,13 +17,19 @@ pug_html = pug_html + "\u003Cul\u003E";
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var i = $$obj[pug_index0];
 ;pug_debug_line = 5;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + "\u003Cli\u003E";
+pug_html = pug_html + "\u003Cli class=\"li__menu\"\u003E";
 ;pug_debug_line = 6;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"div__menu-btn-wrapper\"\u003E";
+;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"lamp-box\"\u003E";
+;pug_debug_line = 8;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"red-lamp\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+;pug_debug_line = 9;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Cdiv class=\"button\"\u003E";
-;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+;pug_debug_line = 10;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Ca" + (pug_attr("href", i.href, true, false)) + "\u003E";
-;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
+;pug_debug_line = 10;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
       }
   } else {
     var $$l = 0;
@@ -31,13 +37,19 @@ pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_inte
       $$l++;
       var i = $$obj[pug_index0];
 ;pug_debug_line = 5;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + "\u003Cli\u003E";
+pug_html = pug_html + "\u003Cli class=\"li__menu\"\u003E";
 ;pug_debug_line = 6;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"div__menu-btn-wrapper\"\u003E";
+;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"lamp-box\"\u003E";
+;pug_debug_line = 8;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"red-lamp\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+;pug_debug_line = 9;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Cdiv class=\"button\"\u003E";
-;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+;pug_debug_line = 10;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Ca" + (pug_attr("href", i.href, true, false)) + "\u003E";
-;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
+;pug_debug_line = 10;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
     }
   }
 }).call(this);

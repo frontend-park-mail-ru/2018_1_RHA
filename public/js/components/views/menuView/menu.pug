@@ -2,6 +2,9 @@ div.div__menu-wrapper
     h2 MENU
         ul
             each i in attrs
-                li
-                    div.button
-                        a(href=i.href) #{i.title}
+                li.li__menu
+                    div.div__menu-btn-wrapper
+                        div.lamp-box
+                            div.red-lamp
+                        div.button
+                            a(href=i.href) #{i.title}

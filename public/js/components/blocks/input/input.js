@@ -35,9 +35,6 @@ export default class Input extends Block {
 		//
 		this.wrapper = document.createElement('div');
 		//TODO здесь надо указать все типы инпутов, которым не нужна лампа
-		if (!(data.type in {'submit':'', 'file':''})) {
-			this.wrapper.innerHTML += generateLamp();
-		}
 		this.wrapper.innerHTML += generateInput({
 			type: data.type,
 			placeholder: data.placeholder,

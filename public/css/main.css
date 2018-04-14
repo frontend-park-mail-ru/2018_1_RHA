@@ -20,7 +20,7 @@
 .input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
 .input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
 
-body{
+body {
     overflow: hidden;
 }
 
@@ -99,4 +99,3 @@ h2 {
 canvas {
     border: solid;
 }
-
