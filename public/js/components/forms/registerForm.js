@@ -1,5 +1,5 @@
 import Form from './form.js';
-import Input from '../blocks/input.js';
+import Input from '../blocks/input/input.js';
 import Validator from '../../modules/validator.js';
 // validator
 // и какие-то глобальные переменные
@@ -20,27 +20,32 @@ export default class RegisterForm extends Form {
 	render() {
 		this.Email = new Input({
 			type: 'text',
-			placeholder: 'email'
+			placeholder: 'email',
+			id: 'registerEmail'
 		});
 
 		this.Name = new Input({
 			type: 'text',
-			placeholder: 'name'
+			placeholder: 'name',
+			id: 'registerName'
 		});
 
 		this.Password = new Input({
 			type: 'password',
-			placeholder: 'password'
+			placeholder: 'password',
+			id: 'registerPass'
 		});
 
 		this.ConfirmPassword = new Input({
 			type: 'password',
-			placeholder: 'confirm password'
+			placeholder: 'confirm password',
+			id: 'registerPass2'
 		});
 
 		this.InputSubmit = new Input({
 			type: 'submit',
-			value: 'Sign Up'
+			value: 'Sign Up',
+			id: 'registerSubmit'
 		});
 
 

@@ -1,5 +1,5 @@
 import Form from './form.js';
-import Input from '../blocks/input.js';
+import Input from '../blocks/input/input.js';
 import Validator from '../../modules/validator.js';
 
 /**
@@ -31,22 +31,26 @@ export default class ChangeForm extends Form {
 
 		this.OldPassword = new Input({
 			type: 'password',
-			placeholder: 'old password'
+			placeholder: 'old password',
+			id: 'changeOld'
 		});
 
 		this.Password = new Input({
 			type: 'password',
-			placeholder: 'new password'
+			placeholder: 'new password',
+			id: 'changeNew'
 		});
 
 		this.RepeatPassword = new Input({
 			type: 'password',
-			placeholder: 'repeat password'
+			placeholder: 'repeat password',
+			id: 'changeRepeat'
 		});
 
 		this.InputSubmit = new Input({
 			type: 'submit',
-			value: 'Save'
+			value: 'Save',
+			id: 'changeSubmit'
 		});
 
 		//TODO:: бэк

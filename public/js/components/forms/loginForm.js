@@ -1,5 +1,5 @@
 import Form from './form.js';
-import Input from '../blocks/input.js';
+import Input from '../blocks/input/input.js';
 import Validator from '../../modules/validator.js';
 
 
@@ -37,27 +37,28 @@ export default class LoginForm extends Form {
 	render() {
 		this.Email = new Input({
 			type: 'text',
-			placeholder: 'email'
+			placeholder: 'email',
+			id: 'loginEmail'
 		});
 
 		this.Password = new Input({
 			type: 'password',
-			placeholder: 'password'
+			placeholder: 'password',
+			id: 'loginPassword'
 		});
 
 		this.InputSubmit = new Input({
 			type: 'submit',
-			value: 'Sign In'
+			value: 'Sign In',
+			id: 'loginSubmit'
 		});
-
-
 
 		this.Email.setOnInputChange(() => {
 			Validator.checkMail(this.Email);
 		});
 
 		this.Password.setOnInputChange(() => {
-			Validator.ckeckPass(this.Password);
+			Validator.checkPass(this.Password);
 		});
 
 
