@@ -6,10 +6,7 @@
 }
 
 .div__menu-btn-wrapper:hover .red-lamp {
-    -webkit-animation: blinkRed 0.5s;
-    -moz-animation: blinkRed 0.5s;
-    -ms-animation: blinkRed 0.5s;
-    -o-animation: blinkRed 0.5s;
-    animation: blinkRed 0.5s;
-    animation-iteration-count: infinite;
+    transition: 0.25s linear;
+    background-color: #F00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
 }
