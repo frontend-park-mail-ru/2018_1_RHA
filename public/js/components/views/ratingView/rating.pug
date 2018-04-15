@@ -1,5 +1,4 @@
 table.scorboard_table
-    h1 Leaderboard
     thead
         tr
             td Nickname
@@ -9,11 +8,16 @@ table.scorboard_table
             tr.scorboard_row
                 td #{Object.keys(fuck)}
                 td #{Object.values(fuck)}
-        tr.scorboard_row
+        tr
             td ⋮
         tr.scorboard_row
             td #{Object.keys(user)}
             td #{Object.values(user)}
-    div
-        p Страница #{page} из #{Object.values(pages)}
+br
+div.scorboard_pages
+    p Page #{page} of #{Object.values(pages)}
 
+//div.pagination#pagination
+//    a#prevBut(href="#") <
+//    a#nextBut(href="#") >
+//

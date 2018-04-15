@@ -28,43 +28,58 @@ export default class RatingSection extends Section {
 		this.rating = document.createElement('div');
 		this.rating.innerHTML = '';
 
-		this.prevButt = new Button('button', 'prev', this.rating);
-		this.prevButt.setOnClick(() => {
+		this.paginationWrap = document.createElement('div');
+		this.paginationWrap.classList.add('pagination');
 
-			if (this.page === 1) {
-				return;
-			}
+		this.prevButt = document.createElement('a');
+		this.prevButt.innerText = '<';
+		this.prevButt.addEventListener('click', event => {
+			event.preventDefault();
 
 			this.rating.removeChild(this.rating.firstChild);
-
-			this.page --;
-			this.nextButt.show();
+			this.page--;
+			this.prevButt.hidden = this.page === 1;
+			this.nextButt.hidden = false;
 			this.load(this.page);
-
 		});
+		this.nextButt = document.createElement('a');
 
-		this.nextButt = new Button('button', 'next', this.rating);
-		this.nextButt.setOnClick(() => {
+
+		this.nextButt.innerText = '>';
+		this.nextButt.addEventListener('click', event => {
+			event.preventDefault();
+
 			this.rating.removeChild(this.rating.firstChild);
-			this.page ++;
+			this.page++;
+			if (this.page !== 1) {
+				this.prevButt.hidden = false;
+			}
 			this.load(this.page, (empty) => {
 				if (empty) {
-					this.nextButt.hide();
+					this.nextButt.hidden = true;
 					this.lastPage = document.createElement('div');
 					this.lastPage.innerText = 'This is the last page';
 					this.rating.insertBefore(this.lastPage, this.rating.firstChild);
 				}
 			});
 		});
+		this.prevButt.hidden = this.page === 1;
 
-		this.backButt = new Button('button', 'Back', this.rating);
-		this.backButt.render().classList.add('page-button');
-		this.backButt.setOnClick(() => {
-			this.page = 1;
-			new Router().open('/');
-		});
+		this.paginationWrap.appendChild(this.prevButt);
+		this.paginationWrap.appendChild(this.nextButt);
+
+		this.backButtWrap = document.createElement('div');
+		this.backButtWrap.classList.add('button');
+		this.backButtWrap.classList.add('back-button');
+
+		this.backButt = document.createElement('a');
+		this.backButt.setAttribute('href', '/');
+		this.backButt.innerText = 'Back to menu';
+		this.backButtWrap.appendChild(this.backButt);
 
 		this.load(1, ()=>{});
+		this.rating.appendChild(this.paginationWrap);
+		this.rating.appendChild(this.backButtWrap);
 		return this.rating;
 	}
 
