@@ -2,6 +2,12 @@
  * Hardcode of regions
  * @type {*[]}
  */
+import bus from '../../bus.js';
+
+bus.on('resize', data => {
+	const sizes = data.payload;
+
+});
 const allowedCoordinates = [
 	{
 		name: 'A',
