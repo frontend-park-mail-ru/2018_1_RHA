@@ -14,6 +14,7 @@ export default class GameSection extends Section {
 
 		this.parent = document.getElementById('game');
 		this.wrapper = document.createElement('div');
+		this.wrapper.classList.add('wrapper');
 		console.log(screen.width, ' ', document.documentElement.clientWidth);
 
 

@@ -19,19 +19,32 @@
 
 .info-menu {
     position: relative;
-    height: 500px;
-    width: 6%;
+    height: 90%;
+    width: 10%;
     background-color: #7d8289;
     display: inline-block;
+    float: left;
 }
 
 .control-interface {
     position: relative;
-    height: 100px;
+    height: 10%;
     width: 100%;
     background-color: #007bff;
+    display: inline-block;
 }
 .canvas-wrap {
+    /*top: 0;*/
     display: inline-block;
     position: relative;
+    width: 90%;
+}
+
+.game {
+    height: 100%;
+    width: 100%;
+}
+.wrapper {
+    height: 100%;
+    width: 90%;
 }
