@@ -10,22 +10,22 @@ export default class Controller {
 	 * @param game_canvas
 	 * @param change_canvas
 	 */
-	constructor(game_canvas, change_canvas) {
+	constructor(game_canvas) {
 		this.game_canvas = game_canvas;
 		// this.change_canvas = change_canvas;
 		// this.change_canvas.getContext('2d').transform(1,0,0,1, screen.width*0.7, 0);
 
 		this.onclick = (event) => {
-			console.log(event.x,  ' ', event.y);
 			console.log(event.offsetX, ' ', event.offsetY);
-			bus.emit('left-click', {x: event.x, y: event.y});
+			// console.log(event.offsetX * 1000 / this.game_canvas.width);
+			bus.emit('left-click', {x: event.offsetX, y: event.offsetY});
 		};
 		this.mousemove = (event) => {
-			bus.emit('mousemove', {x: event.x, y: event.y});
+			bus.emit('mousemove', {x: event.offsetX, y: event.offsetY});
 		};
 		this.contextmenu = (event) => {
 			event.preventDefault();
-			bus.emit('contextmenu', {x: event.x, y: event.y});
+			bus.emit('contextmenu', {x: event.offsetX, y: event.offsetY});
 		};
 		// this.clickcanvas = (event) => {
 		// 	console.log(event.x, ' ', event.y);
