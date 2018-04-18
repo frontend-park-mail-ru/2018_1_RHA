@@ -21,15 +21,17 @@ pug_html = pug_html + "\u003Cli class=\"li__menu\"\u003E";
 ;pug_debug_line = 6;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Cdiv class=\"div__menu-btn-wrapper\"\u003E";
 ;pug_debug_line = 7;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + "\u003Cdiv class=\"lamp-box\"\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"planck\"\u003E";
 ;pug_debug_line = 8;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + "\u003Cdiv class=\"red-lamp\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"lamp-box\"\u003E";
 ;pug_debug_line = 9;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"red-lamp\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+;pug_debug_line = 10;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Cdiv class=\"button\"\u003E";
-;pug_debug_line = 10;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+;pug_debug_line = 11;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Ca" + (pug_attr("href", i.href, true, false)) + "\u003E";
-;pug_debug_line = 10;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
+;pug_debug_line = 11;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
       }
   } else {
     var $$l = 0;
@@ -41,15 +43,17 @@ pug_html = pug_html + "\u003Cli class=\"li__menu\"\u003E";
 ;pug_debug_line = 6;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Cdiv class=\"div__menu-btn-wrapper\"\u003E";
 ;pug_debug_line = 7;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + "\u003Cdiv class=\"lamp-box\"\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"planck\"\u003E";
 ;pug_debug_line = 8;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + "\u003Cdiv class=\"red-lamp\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"lamp-box\"\u003E";
 ;pug_debug_line = 9;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + "\u003Cdiv class=\"red-lamp\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+;pug_debug_line = 10;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Cdiv class=\"button\"\u003E";
-;pug_debug_line = 10;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+;pug_debug_line = 11;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
 pug_html = pug_html + "\u003Ca" + (pug_attr("href", i.href, true, false)) + "\u003E";
-;pug_debug_line = 10;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
+;pug_debug_line = 11;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FmenuView\u002Fmenu.pug";
+pug_html = pug_html + (pug_escape(null == (pug_interp = i.title) ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
     }
   }
 }).call(this);

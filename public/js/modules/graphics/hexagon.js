@@ -22,6 +22,7 @@ export default class Hexagon {
 		bus.on('resize-for-draw', () => {
 			//todo: Разобраться с цветом
 			//todo: при обновлении страницы наезжают хексы
+			//todo: далее с соседями
 			this.draw(xC, yC, color);
 		});
 	}
