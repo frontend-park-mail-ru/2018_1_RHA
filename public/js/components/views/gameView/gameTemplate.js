@@ -10,7 +10,7 @@ pug_html = pug_html + "\u003Cdiv class=\"canvas-wrap\"\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
 pug_html = pug_html + "\u003Ccanvas" + (pug_attr("width", width, true, false)+pug_attr("height", height, true, false)+pug_attr("id", id, true, false)) + "\u003E\u003C\u002Fcanvas\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 5;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
-pug_html = pug_html + "\u003Cdiv class=\"chat-wrap\"\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"chat\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 6;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
 pug_html = pug_html + "\u003Cdiv class=\"control-interface\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002FТехнопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";

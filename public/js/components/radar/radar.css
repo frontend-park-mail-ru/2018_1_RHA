@@ -1,5 +1,9 @@
 #radar-wrapper {
     background: #111;
+    border-style: groove;
+    border-width: 8px;
+    margin-right: 16px;
+    border-color:#646464;
     /*overflow: hidden;*/
 }
 

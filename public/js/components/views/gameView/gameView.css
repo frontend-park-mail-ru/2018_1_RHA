@@ -18,29 +18,46 @@
 }
 
 .info-menu {
-    height: 500px;
-    width: 20%;
-    border: solid;
+    position: relative;
+    height: 85%;
+    width: 15%;
+    background-color: #7d8289;
+    display: inline-block;
     float: left;
+    opacity: 0.7;
 }
 
+.chat {
+    height: 85%;
+    width: 15%;
+    background-color: orange;
+    display: inline-block;
+    float: right;
+    position: relative;
+    opacity: 0.7;
+}
 .control-interface {
-    height: 100px;
+    position: relative;
+    height: 15%;
     width: 100%;
     background-color: #007bff;
-    bottom: 0;
-    float: left;
+    display: inline-block;
+    opacity: 0.7;
 }
 .canvas-wrap {
-    left: 20%;
-    width: 60%;
-    float: left;
+    /*top: 0;*/
+    display: inline-block;
+    position: relative;
+    width: 70%;
 }
 
-.chat-wrap {
-    width: 20%;
-    height: 600px;
-    border: solid;
-    right: 0;
-    float: left;
+
+
+.game {
+    height: 100%;
+    width: 100%;
+}
+.wrapper {
+    height: 100%;
+    width: 100%;
 }
