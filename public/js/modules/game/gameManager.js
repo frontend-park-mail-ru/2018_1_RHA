@@ -42,6 +42,7 @@ export default class GameManager {
 			const result = 1; //TODO математика вычисления победы или поражения
 			if (result > 0) {
 				//TODO у нас нет нормального способа узнать владельца региона
+				// from.setColor(to.getColor());
 				to.owner.delRegion(to);
 				from.owner.addRegion(to);
 			}

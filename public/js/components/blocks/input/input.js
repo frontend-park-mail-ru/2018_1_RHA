@@ -48,7 +48,7 @@ export default class Input extends Block {
 			error_id: data.id.concat('_error'),
 			CLASS: CLASS
 		});
-		this.ErrorElement = this.wrapper.getElementsByTagName('div')[2];
+		this.ErrorElement = this.wrapper.getElementsByTagName('div')[0];
 		this.InputElement = this.wrapper.getElementsByTagName('input')[0];
 	}
 

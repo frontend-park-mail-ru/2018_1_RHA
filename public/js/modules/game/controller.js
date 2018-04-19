@@ -20,6 +20,7 @@ export default class Controller {
 			console.log(event.offsetX * 1000 / this.game_canvas.width);
 			bus.emit('left-click', {x: event.offsetX, y: event.offsetY});
 		};
+
 		this.mousemove = (event) => {
 			bus.emit('mousemove', {x: event.offsetX, y: event.offsetY});
 		};

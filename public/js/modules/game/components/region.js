@@ -29,6 +29,12 @@ export default class Region {
 		this.neighbour = null;
 		this.init();
 	}
+	setColor(color) {
+		this.area.setColor(color);
+	}
+	getColor() {
+		return this.area.getColor();
+	}
 
 	/**
 	 * Draws Region and sets it up
