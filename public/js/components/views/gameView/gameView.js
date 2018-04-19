@@ -19,8 +19,8 @@ export default class GameSection extends Section {
 
 		this.wrapper.innerHTML += generateCanvas(
 			{
-				'width': window.innerWidth * 0.7,
-				'height': window.innerHeight * 0.7,
+				'width': window.innerWidth * 0.6,
+				'height': window.innerHeight * 0.9,
 				'id': 'game-canvas'
 			}
 		);
@@ -41,8 +41,6 @@ export default class GameSection extends Section {
 		this.game = new Game({}, this.game_canvas);
 		this.game.start();
 		this.setWindowResizeHandler();
-
-
 		return this.wrapper;
 	}
 
