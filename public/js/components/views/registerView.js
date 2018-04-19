@@ -31,28 +31,23 @@ export default class RegisterSection extends Section {
 	render() {
 		this.formHeader = document.createElement('h2');
 		this.formHeader.innerText = 'Sign Up';
-
 		if (!this.parent) {
 			this.register = document.createElement('div');
 		}
 		this.register.id = 'registerSection';
 		this.register.classList.add('form-wrapper');
 		this.registerForm = new RegisterForm();
-
 		this.register.appendChild(this.formHeader);
 		this.register.appendChild(this.registerForm.render());
-
 		this.backWrap = document.createElement('div');
 		this.backLink = document.createElement('a');
 		this.backWrap.classList.add('button');
 		this.backLink.setAttribute('href', '/');
 		this.backLink.innerText = 'Back to menu';
 		this.backWrap.appendChild(this.backLink);
-
 		this.register.appendChild(this.backWrap);
-
 		this.registerForm.setOnSubmit( () => {
-			
+
 			const userData = this.registerForm.getData();
 			console.log(userData);
 			if (userData === null) {
@@ -66,6 +61,9 @@ export default class RegisterSection extends Section {
 			});
 
 		});
+
+		// this.KAKA = new RegisterForm().render();
+		// this.register.appendChild(this.KAKA);
 
 		return this.register;
 	}

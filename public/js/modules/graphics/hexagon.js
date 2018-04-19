@@ -20,9 +20,7 @@ export default class Hexagon {
 		this.xC = xC;
 		this.yC = yC;
 		this.color = color;
-		bus.on('resize-with-color', (data) => {
-			const colorReg = data.payload;
-			//todo: Разобраться с цветом
+		bus.on('resize-for-draw', () => {
 			//todo: далее с соседями
 			for (let i = 0; i < coordinate.allowedCoord.length; i++) {
 				if (coordinate.allowedCoord[i].name === this.name) {
@@ -30,7 +28,8 @@ export default class Hexagon {
 					this.yC = coordinate.allowedCoord[i].y;
 				}
 			} 
-			this.draw(this.xC, this.yC, colorReg);
+			this.draw(this.xC, this.yC, this.color);
+
 		});
 	}
 
@@ -44,6 +43,10 @@ export default class Hexagon {
 	setColor(color) {
 		this.color = color;
 	}
+	getColor() {
+		return this.color;
+	}
+
 	draw(xC, yC, color) {
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;

@@ -29,6 +29,13 @@ export default class Region {
 		this.neighbour = null;
 		this.init();
 	}
+	setColor(color) {
+		this.area.setColor(color);
+	}
+	getColor() {
+		console.log(this.area.getColor());
+		return this.area.getColor();
+	}
 
 	/**
 	 * Draws Region and sets it up
