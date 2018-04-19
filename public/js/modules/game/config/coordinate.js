@@ -14,6 +14,8 @@ export default class Coordinate {
 		this.xSize = game_canvas.width / amountofCoorX;
 		this.ySize = game_canvas.height / amountofCoorY;
 
+		console.log(game_canvas.width, '  qqq');
+
 		const lengthSide = 90;
 		this.allowedCoord = [
 			{
@@ -25,7 +27,7 @@ export default class Coordinate {
 			},
 			{
 				name: 'B',
-				x: (365 + lengthSide * 2) * this.xSize,
+				x: (331 + lengthSide * 2) * this.xSize,
 				y: (345 - lengthSide * 0.86) * this.ySize,
 				allowed: true,
 				neighbour: ['A', 'C', 'D', 'E']
@@ -57,6 +59,7 @@ export default class Coordinate {
 	reSize(game_canvas) {
 		this.xSize = game_canvas.width / amountofCoorX;
 		this.ySize = game_canvas.height / amountofCoorY;
+		console.log(game_canvas.width, '  www');
 
 	}
 

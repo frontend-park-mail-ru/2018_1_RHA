@@ -37,6 +37,7 @@ export default class GameSection extends Section {
 		// this.change_canvas = document.getElementById('change-canvas');
 		//this.control_canvas = document.getElementById('control-canvas');
 
+		debugger;
 		this.coordinate = new Coordinate(this.game_canvas);
 	}
 
