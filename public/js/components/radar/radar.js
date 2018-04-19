@@ -2,7 +2,7 @@
  * @type {HTMLCollectionOf<Element>}
  */
 var radar = document.getElementById( 'radar' ),
-	diameter = 400,
+	diameter = Math.min(document.getElementById( 'radar-wrapper' ).offsetHeight,document.getElementById( 'radar-wrapper' ).offsetWidth)-100,
 	radius = diameter / 2,
 	padding = 14,
 	ctx = Sketch.create({

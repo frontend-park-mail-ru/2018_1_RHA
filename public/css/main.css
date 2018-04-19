@@ -21,7 +21,8 @@
 .input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
 .input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
 
-html{
+
+html {
     height: 100%;
     width: 100%;
 }
@@ -90,7 +91,6 @@ body {
     font-family: armalite;
     src: local(armalite),
     url(/fonts/armalite.ttf);
-
 }
 
 

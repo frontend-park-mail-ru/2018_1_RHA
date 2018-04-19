@@ -1,13 +1,9 @@
-import Controller from './controller.js';
-import GameScene from './gameScene.js';
-import GameManager from './gameManager.js';
-import Player from './player/player.js';
-import Region from './components/region.js';
-// import allowedCoordinates from './config/allowedCoordinates.js';
-import Switcher from '../graphics/switcher.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
-import Coordinate from './config/coordinate.js';
+import Region from './components/region.js';
+import GameManager from './gameManager.js';
+import Controller from './controller.js';
+import GameScene from './gameScene.js';
 
 /**
  * Class representing game
@@ -31,7 +27,6 @@ export default class Game {
 		this.players = [
 			new MainPlayer('first', 'green'),
 			new BotPlayer('second','blue'),
-
 		];
 		this.third = new BotPlayer('third', 'crimson');
 		this.forth = new BotPlayer('forth', 'silver');

@@ -36,12 +36,20 @@ export default class Region {
 	init() {
 		for (let i = 0; i < this.allowedCoordinates.length; ++i) {
 			if (this.allowedCoordinates[i].allowed) {
+
 				console.log(this.allowedCoordinates[i].name, ' ', this.allowedCoordinates[i].x);
-				this.area = new Hexagon(this.canvas, this.allowedCoordinates[i].x,
-					this.allowedCoordinates[i].y, this.color, this.coordinate);
-				this.allowedCoordinates[i].allowed = false;
+
+				this.area = new Hexagon(
+					this.allowedCoordinates[i].name,
+					this.canvas, this.allowedCoordinates[i].x,
+					this.allowedCoordinates[i].y,
+					this.color,
+					this.coordinate
+				);
+
 				this.neighbour = this.allowedCoordinates[i].neighbour;
 				this.label = this.allowedCoordinates[i].name;
+				this.allowedCoordinates[i].allowed = false;
 				return;
 			}
 		}

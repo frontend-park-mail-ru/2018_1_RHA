@@ -1,4 +1,5 @@
 import PLAYER_STATES from '../config/playerStates.js';
+import bus from '../../bus.js';
 
 /**
  * Class representing generic game Player
@@ -16,6 +17,10 @@ export default class Player {
 		this.status = PLAYER_STATES.DISABLED;
 		this.color = color;
 		this.name = name;
+		bus.on('resize-for-draw', () => {
+			console.log('color ', this.color);
+			bus.emit('resize-with-color', this.color);
+		});
 	}
 
 	/**

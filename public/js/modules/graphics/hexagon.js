@@ -12,18 +12,25 @@ export default class Hexagon {
 	 * @param yC
 	 * @param color
 	 */
-	constructor(canvas, xC, yC, color) {
+	constructor(name, canvas, xC, yC, color, coordinate) {
+		this.name = name;
 		this.canvas = canvas;
 		this.game_ctx = this.canvas.getContext('2d');
 		this.draw(xC, yC, color);
 		this.xC = xC;
 		this.yC = yC;
 		this.color = color;
-		bus.on('resize-for-draw', () => {
+		bus.on('resize-with-color', (data) => {
+			const colorReg = data.payload;
 			//todo: Разобраться с цветом
-			//todo: при обновлении страницы наезжают хексы
 			//todo: далее с соседями
-			this.draw(xC, yC, color);
+			for (let i = 0; i < coordinate.allowedCoord.length; i++) {
+				if (coordinate.allowedCoord[i].name === this.name) {
+					this.xC = coordinate.allowedCoord[i].x;
+					this.yC = coordinate.allowedCoord[i].y;
+				}
+			} 
+			this.draw(this.xC, this.yC, colorReg);
 		});
 	}
 
@@ -43,22 +50,22 @@ export default class Hexagon {
 		this.R = 90;
 		this.dR = this.R * 0.866;
 		this.xp = [
-			(xC - this.R) * this.canvas.width / amountofCoorX,
-			(xC - this.R / 2) *  this.canvas.width / amountofCoorX,
-			(xC + this.R / 2) *  this.canvas.width / amountofCoorX,
-			(xC + this.R) * this.canvas.width / amountofCoorX,
-			(xC + this.R / 2) * this.canvas.width / amountofCoorX,
-			(xC - this.R / 2) * this.canvas.width / amountofCoorX,
-			(xC - this.R) * this.canvas.width / amountofCoorX
+			xC - this.R * this.canvas.width / amountofCoorX,
+			xC - this.R / 2 *  this.canvas.width / amountofCoorX,
+			xC + this.R / 2 *  this.canvas.width / amountofCoorX,
+			xC + this.R * this.canvas.width / amountofCoorX,
+			xC + this.R / 2 * this.canvas.width / amountofCoorX,
+			xC - this.R / 2 * this.canvas.width / amountofCoorX,
+			xC - this.R * this.canvas.width / amountofCoorX
 		];
 		this.yp = [
-			yC *  this.canvas.height / amountofCoorY,
-			(yC + this.dR) * this.canvas.height / amountofCoorY,
-			(yC + this.dR) * this.canvas.height / amountofCoorY,
-			yC * this.canvas.height / amountofCoorY,
-			(yC - this.dR) * this.canvas.height / amountofCoorY,
-			(yC - this.dR) *this.canvas.height / amountofCoorY,
-			yC * this.canvas.height / amountofCoorY
+			yC,
+			yC + this.dR * this.canvas.height / amountofCoorY,
+			yC + this.dR * this.canvas.height / amountofCoorY,
+			yC,
+			yC - this.dR * this.canvas.height / amountofCoorY,
+			yC - this.dR *this.canvas.height / amountofCoorY,
+			yC
 		];
 		this.game_ctx.beginPath();
 		this.game_ctx.lineJoin = 'round';
@@ -83,22 +90,22 @@ export default class Hexagon {
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.xp = [
-			(this.xC - this.R) * this.canvas.width / amountofCoorX,
-			(this.xC - this.R / 2) *  this.canvas.width / amountofCoorX,
-			(this.xC + this.R / 2) *  this.canvas.width / amountofCoorX,
-			(this.xC + this.R) * this.canvas.width / amountofCoorX,
-			(this.xC + this.R / 2) * this.canvas.width / amountofCoorX,
-			(this.xC - this.R / 2) * this.canvas.width / amountofCoorX,
-			(this.xC - this.R) * this.canvas.width / amountofCoorX
+			this.xC - this.R * this.canvas.width / amountofCoorX,
+			this.xC - this.R / 2 *  this.canvas.width / amountofCoorX,
+			this.xC + this.R / 2 *  this.canvas.width / amountofCoorX,
+			this.xC + this.R * this.canvas.width / amountofCoorX,
+			this.xC + this.R / 2 * this.canvas.width / amountofCoorX,
+			this.xC - this.R / 2 * this.canvas.width / amountofCoorX,
+			this.xC - this.R * this.canvas.width / amountofCoorX
 		];
 		this.yp = [
-			this.yC *  this.canvas.height / amountofCoorY,
-			(this.yC + this.dR) * this.canvas.height / amountofCoorY,
-			(this.yC + this.dR) * this.canvas.height / amountofCoorY,
-			this.yC * this.canvas.height / amountofCoorY,
-			(this.yC - this.dR) * this.canvas.height / amountofCoorY,
-			(this.yC - this.dR) *this.canvas.height / amountofCoorY,
-			this.yC * this.canvas.height / amountofCoorY
+			this.yC,
+			this.yC + this.dR * this.canvas.height / amountofCoorY,
+			this.yC + this.dR * this.canvas.height / amountofCoorY,
+			this.yC,
+			this.yC - this.dR * this.canvas.height / amountofCoorY,
+			this.yC - this.dR *this.canvas.height / amountofCoorY,
+			this.yC
 		];
 		this.game_ctx.beginPath();
 		this.game_ctx.lineJoin = 'round';
@@ -120,22 +127,22 @@ export default class Hexagon {
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.xp = [
-			(this.xC - this.R) * this.canvas.width / amountofCoorX,
-			(this.xC - this.R / 2) *  this.canvas.width / amountofCoorX,
-			(this.xC + this.R / 2) *  this.canvas.width / amountofCoorX,
-			(this.xC + this.R) * this.canvas.width / amountofCoorX,
-			(this.xC + this.R / 2) * this.canvas.width / amountofCoorX,
-			(this.xC - this.R / 2) * this.canvas.width / amountofCoorX,
-			(this.xC - this.R) * this.canvas.width / amountofCoorX
+			this.xC - this.R * this.canvas.width / amountofCoorX,
+			this.xC - this.R / 2 *  this.canvas.width / amountofCoorX,
+			this.xC + this.R / 2 *  this.canvas.width / amountofCoorX,
+			this.xC + this.R * this.canvas.width / amountofCoorX,
+			this.xC + this.R / 2 * this.canvas.width / amountofCoorX,
+			this.xC - this.R / 2 * this.canvas.width / amountofCoorX,
+			this.xC - this.R * this.canvas.width / amountofCoorX
 		];
 		this.yp = [
-			this.yC *  this.canvas.height / amountofCoorY,
-			(this.yC + this.dR) * this.canvas.height / amountofCoorY,
-			(this.yC + this.dR) * this.canvas.height / amountofCoorY,
-			this.yC * this.canvas.height / amountofCoorY,
-			(this.yC - this.dR) * this.canvas.height / amountofCoorY,
-			(this.yC - this.dR) *this.canvas.height / amountofCoorY,
-			this.yC * this.canvas.height / amountofCoorY
+			this.yC,
+			this.yC + this.dR * this.canvas.height / amountofCoorY,
+			this.yC + this.dR * this.canvas.height / amountofCoorY,
+			this.yC,
+			this.yC - this.dR * this.canvas.height / amountofCoorY,
+			this.yC - this.dR *this.canvas.height / amountofCoorY,
+			this.yC
 		];
 		this.game_ctx.beginPath();
 		this.game_ctx.lineJoin = 'round';

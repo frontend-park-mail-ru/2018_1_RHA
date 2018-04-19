@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Section from '../baseView.js';
 import Game from '../../../modules/game/game.js';
 import bus from '../../../modules/bus.js';
@@ -37,7 +38,6 @@ export default class GameSection extends Section {
 		// this.change_canvas = document.getElementById('change-canvas');
 		//this.control_canvas = document.getElementById('control-canvas');
 
-		debugger;
 		this.coordinate = new Coordinate(this.game_canvas);
 	}
 
@@ -49,8 +49,6 @@ export default class GameSection extends Section {
 		this.game = new Game({}, this.game_canvas, this.coordinate);
 		this.game.start();
 		this.setWindowResizeHandler();
-
-
 		return this.wrapper;
 	}
 

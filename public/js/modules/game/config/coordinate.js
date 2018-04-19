@@ -14,9 +14,9 @@ export default class Coordinate {
 		this.xSize = game_canvas.width / amountofCoorX;
 		this.ySize = game_canvas.height / amountofCoorY;
 
-		console.log(game_canvas.width, '  qqq');
 
-		const lengthSide = 90;
+		this.lengthSide = 90;
+
 		this.allowedCoord = [
 			{
 				name: 'A',
@@ -27,8 +27,10 @@ export default class Coordinate {
 			},
 			{
 				name: 'B',
-				x: (331 + lengthSide * 2) * this.xSize,
-				y: (345 - lengthSide * 0.86) * this.ySize,
+
+				x: (321 + this.lengthSide * 2) * this.xSize,
+				y: (345 - this.lengthSide * 0.86) * this.ySize,
+
 				allowed: true,
 				neighbour: ['A', 'C', 'D', 'E']
 			},
@@ -59,7 +61,45 @@ export default class Coordinate {
 	reSize(game_canvas) {
 		this.xSize = game_canvas.width / amountofCoorX;
 		this.ySize = game_canvas.height / amountofCoorY;
-		console.log(game_canvas.width, '  www');
+
+		//TODO сделать по-человечески
+		this.allowedCoord = [
+			{
+				name: 'A',
+				x: this.xSize * 365,
+				y: 345 * this.ySize,
+				allowed: true,
+				neighbour: ['B', 'C', 'D']
+			},
+			{
+				name: 'B',
+				x: (321 + this.lengthSide * 2) * this.xSize,
+				y: (345 - this.lengthSide * 0.86) * this.ySize,
+				allowed: true,
+				neighbour: ['A', 'C', 'D', 'E']
+			},
+			{
+				name: 'C',
+				x: 1000 * this.xSize,
+				y: 1000.6 * this.ySize,
+				allowed: true,
+				neighbour: ['A', 'B', 'E']
+			},
+			{
+				name: 'D',
+				x: 1000 * this.xSize,
+				y: 1000.8 * this.ySize,
+				allowed: true,
+				neighbour: ['A', 'B']
+			},
+			{
+				name: 'E',
+				x: 1000 * this.xSize,
+				y: 1000 * this.ySize,
+				allowed: true,
+				neighbour: ['B', 'C']
+			}
+		];
 
 	}
 
