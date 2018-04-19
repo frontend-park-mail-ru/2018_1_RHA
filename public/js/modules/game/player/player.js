@@ -44,6 +44,7 @@ export default class Player {
 	 * @param newRegion
 	 */
 	addRegion(newRegion) {
+		newRegion.area.setColor(this.color);
 		newRegion.area.reColor(this.color);
 		newRegion.owner = this;
 		this.regions.push(newRegion);
