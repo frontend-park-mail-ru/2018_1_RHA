@@ -20,4 +20,5 @@ bake('/js/components/blocks/decorations/', 'lamp.pug', 'generateLamp', 'lampTemp
 bake('/js/components/blocks/input/', 'input.pug', 'generateInput', 'inputTemplate.js');
 bake('/js/components/views/menuView/', 'menu.pug', 'generateMenu', 'menuTemplate.js');
 bake('/js/components/views/loginView/', 'login.pug', 'generateLogin', 'loginTemplate.js');
+bake('/js/components/views/registerView/', 'register.pug', 'generateRegister', 'registerTemplate.js');
 console.log('Baked!');

@@ -2,7 +2,7 @@
 
 import ProfileSection from './components/views/profileView/profileView.js';
 import RatingSection from './components/views/ratingView/ratingView.js';
-import RegisterSection from './components/views/registerView.js';
+import RegisterSection from './components/views/registerView/registerView.js';
 import LoginSection from './components/views/loginView/loginView.js';
 import MenuSection from './components/views/menuView/menuView.js';
 import Router from './modules/router.js';
