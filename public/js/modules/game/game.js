@@ -47,6 +47,9 @@ export default class Game {
 		this.regions.push(new Region(this.admin.name + '_area', this.admin,
 			this.game_canvas, this.coordinate));
 
+		this.regions.forEach(temp => {
+			temp.setGlobalRegions(this.regions);
+		});
 
 		this.scene = new GameScene(this.game_canvas, this.players, this.regions);
 		this.manager = new GameManager(this.controller);

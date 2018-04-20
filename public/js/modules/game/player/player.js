@@ -1,5 +1,4 @@
 import PLAYER_STATES from '../config/playerStates.js';
-import bus from '../../bus.js';
 
 /**
  * Class representing generic game Player
@@ -73,5 +72,4 @@ export default class Player {
 	setStatus(status) {
 		this.status = status;
 	}
-
 }
