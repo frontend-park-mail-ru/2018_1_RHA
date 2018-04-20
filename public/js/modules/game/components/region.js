@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 import Hexagon from '../../graphics/hexagon.js';
-import bus from '../../bus.js';
+import {reachMatrix} from '../config/reach';
 
 /**
  * Class representing game region
@@ -27,14 +28,21 @@ export default class Region {
 		};
 		this.label = null;
 		this.neighbour = null;
+		this.globalRegions = null;
 		this.init();
+		this.setBusListeners();
 	}
+
 	setColor(color) {
 		this.area.setColor(color);
 	}
+
 	getColor() {
-		console.log(this.area.getColor());
 		return this.area.getColor();
+	}
+
+	setGlobalRegions(regions) {
+		this.globalRegions = regions;
 	}
 
 	/**
@@ -60,5 +68,41 @@ export default class Region {
 				return;
 			}
 		}
+	}
+
+	setNeighbours(num) {
+		reachMatrix[num].forEach(temp => {
+			if (temp === 1) {
+				this.neighbour.push(temp + 1);
+			}
+		});
+	}
+
+	setBusListeners() {
+		bus.on('update-neighbour', dict => {
+			const data = dict.payload;
+			if (data.from.name === this.name) {
+				this.removeNeighbour(data.to.name);
+			} else if(data.to.name === this.name) {
+				this.neighbour.forEach(temp => {
+					this.globalRegions.forEach(global => {
+						if (temp === global.name === data.from.name) {
+							this.removeNeighbour(temp);
+						}
+					});
+				});
+			} else {
+				const neigh = null;
+
+			}
+		});
+	}
+
+	removeNeighbour(name) {
+		this.neighbour = this.neighbour.map((cur) => {
+			if (cur !== name) {
+				return cur;
+			}
+		});
 	}
 }

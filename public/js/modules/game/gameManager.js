@@ -46,6 +46,11 @@ export default class GameManager {
 				to.owner.delRegion(to);
 				from.owner.addRegion(to);
 			}
+
+			bus.emit('update-neighbour', {
+				from: from,
+				to: to
+			});
 		});
 
 		bus.on('change-move', (dict) => {
