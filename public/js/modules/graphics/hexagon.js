@@ -22,6 +22,7 @@ export default class Hexagon {
 		this.color = color;
 		bus.on('resize-for-draw', () => {
 			//todo: далее с соседями
+			//todo: сделать кексы прозрачными плюс фон
 			for (let i = 0; i < coordinate.allowedCoord.length; i++) {
 				if (coordinate.allowedCoord[i].name === this.name) {
 					this.xC = coordinate.allowedCoord[i].x;

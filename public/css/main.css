@@ -39,6 +39,9 @@ body {
     /*background-image: url("/map.png");*/
     /*background-repeat: no-repeat;*/
 }
+.start {
+    height: 100%;
+}
 
 #radar-wrapper {
     width: 60%;
@@ -58,7 +61,7 @@ body {
     display: inline-block;
     clear: both;
     float: right;
-    height: 900px;
+    height: 100%;
     padding: 0;
 
 }
