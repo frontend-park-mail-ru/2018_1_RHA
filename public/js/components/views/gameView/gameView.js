@@ -25,17 +25,13 @@ export default class GameSection extends Section {
 			{
 				'width': window.innerWidth * 0.7,
 				'height': window.innerWidth * 0.525 * 0.83,
-				// 'height': window.innerHeight * 0.83,
 				'id': 'game-canvas'
 			}
 		);
 
 
 		this.parent.appendChild(this.wrapper);
-		//this.info_canvas = document.getElementById('info-canvas');
 		this.game_canvas = document.getElementById('game-canvas');
-		// this.change_canvas = document.getElementById('change-canvas');
-		//this.control_canvas = document.getElementById('control-canvas');
 
 		this.coordinate = new Coordinate(this.game_canvas);
 	}
@@ -44,7 +40,8 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-
+		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+		this.changeBut.addEventListener('click', ()=>{});
 		this.game = new Game({}, this.game_canvas, this.coordinate);
 		this.game.start();
 		this.setWindowResizeHandler();

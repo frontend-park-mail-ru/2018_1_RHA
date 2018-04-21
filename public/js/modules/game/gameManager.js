@@ -45,12 +45,11 @@ export default class GameManager {
 				to.setColor(from.getColor());
 				to.owner.delRegion(to);
 				from.owner.addRegion(to);
+				bus.emit('update-neighbour', {
+					from: from,
+					to: to
+				});
 			}
-
-			bus.emit('update-neighbour', {
-				from: from,
-				to: to
-			});
 		});
 
 		bus.on('change-move', (dict) => {
