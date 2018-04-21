@@ -85,7 +85,6 @@ export default class Region {
 			} else if(data.to.name === this.name) {
 
 				data.from.owner.regions.forEach(temp => {
-					//todo надо пушить регионы, которые принадлежали игроку, которого атаковали
 					this.removeNeighbour(temp.name);
 				});
 				data.to.owner.regions.forEach(temp => {

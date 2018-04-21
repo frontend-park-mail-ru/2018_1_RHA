@@ -27,11 +27,13 @@ export default class Game {
 		this.players = [
 			new MainPlayer('A', 'green'),
 			new BotPlayer('B','blue'),
-			new BotPlayer('C', 'crimson')
+			new BotPlayer('C', 'crimson'),
+			new BotPlayer('D', 'silver'),
+			new BotPlayer('E', 'yellow')
 		];
-		this.third = new BotPlayer('C', 'crimson');
-		this.forth = new BotPlayer('D', 'silver');
-		this.admin = new BotPlayer('E', 'pink');
+		// this.third = new BotPlayer('C', 'crimson');
+		// this.forth = new BotPlayer('D', 'silver');
+		// this.admin = new BotPlayer('E', 'pink');
 
 		this.regions = [];
 		this.players.forEach( (player) => {
@@ -42,11 +44,11 @@ export default class Game {
 		//раздал вручную
 		// this.regions.push(new Region(this.third.name, this.third,
 		// 	this.game_canvas, this.coordinate));
-		this.regions.push(new Region(this.forth.name, this.forth,
-			this.game_canvas, this.coordinate));
-
-		this.regions.push(new Region(this.admin.name, this.admin,
-			this.game_canvas, this.coordinate));
+		// this.regions.push(new Region(this.forth.name, this.forth,
+		// 	this.game_canvas, this.coordinate));
+		//
+		// this.regions.push(new Region(this.admin.name, this.admin,
+		// 	this.game_canvas, this.coordinate));
 
 		this.regions.forEach(temp => {
 			temp.setGlobalRegions(this.regions);
@@ -73,3 +75,7 @@ export default class Game {
 		this.manager.destroy();
 	}
 }
+
+//todo ограничить действия (ввести юнитов (математика), таймер)
+//todo при выделении границы говнятся, потому что не стираются старые
+//todo ИНТЕРФЕЙС БЛ*ТЬ
