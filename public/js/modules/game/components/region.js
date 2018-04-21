@@ -82,21 +82,28 @@ export default class Region {
 	setBusListeners() {
 		bus.on('update-neighbour', dict => {
 			const data = dict.payload;
+			//debugger;
 			if (data.from.name === this.name) {
 				this.removeNeighbour(data.to.name);
 			} else if(data.to.name === this.name) {
-				this.neighbour.forEach(temp => {
-					this.globalRegions.forEach(global => {
-						if (temp === global.name === data.from.name) {
-							this.removeNeighbour(temp);
-						}
-					});
+
+				data.from.owner.regions.forEach(temp => {
+					this.removeNeighbour(temp.name);
 				});
+
 			} else {
 				this.globalRegions.forEach(region => {
 					if (region.name === data.to.name) {
 						if (reachMatrix[this.number][region.number] === 1) {
-							this.neighbour.push(data.to.name);
+							let f = false;
+							for (let i = 0; i < this.neighbour.length; ++i) {
+								if (this.neighbour[i] === data.to.name) {
+									f = true;
+								}
+							}
+							if (f === false) {
+								this.neighbour.push(data.to.name);
+							}
 							return;
 						}
 					}
@@ -106,10 +113,11 @@ export default class Region {
 	}
 
 	removeNeighbour(name) {
-		this.neighbour = this.neighbour.map((cur) => {
-			if (cur !== name) {
-				return cur;
+		this.neighbour.forEach((cur, i) => {
+			if (cur === name) {
+				this.neighbour.splice(i, 1);
 			}
 		});
+		console.log(this.name, '  ', this.neighbour);
 	}
 }

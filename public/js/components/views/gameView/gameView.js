@@ -41,8 +41,7 @@ export default class GameSection extends Section {
 	 */
 	render() {
 		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-		this.changeBut.addEventListener('click', ()=>{});
-		this.game = new Game({}, this.game_canvas, this.coordinate);
+		this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut);
 		this.game.start();
 		this.setWindowResizeHandler();
 		return this.wrapper;

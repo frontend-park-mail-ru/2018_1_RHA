@@ -54,7 +54,7 @@ export default class GameManager {
 
 		bus.on('change-move', (dict) => {
 			const data = dict.payload;
-			data.switcher.reDraw('red');
+			//data.switcher.reDraw('red');
 			data.current.setStatus(PLAYER_STATES.DISABLED);
 			data.next.setStatus(PLAYER_STATES.DEFAULT);
 			if (data.next instanceof MainPlayer) {

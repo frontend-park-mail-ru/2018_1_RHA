@@ -25,9 +25,11 @@ export default class Hexagon {
 			//todo: далее с соседями
 			//todo: сделать кексы прозрачными плюс фон
 			for (let i = 0; i < coordinate.allowedCoord.length; i++) {
+				//console.log(coordinate.allowedCoord.length, '      length');
 				if (coordinate.allowedCoord[i].name === this.name) {
 					this.xC = coordinate.allowedCoord[i].x;
 					this.yC = coordinate.allowedCoord[i].y;
+					break;
 				}
 			} 
 			this.draw(this.xC, this.yC, this.color);
@@ -50,6 +52,7 @@ export default class Hexagon {
 	}
 
 	draw(xC, yC, color) {
+		console.log(xC, '    ', yC);
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.R = 90;
