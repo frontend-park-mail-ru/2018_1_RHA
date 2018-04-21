@@ -52,7 +52,6 @@ export default class Hexagon {
 	}
 
 	draw(xC, yC, color) {
-		console.log(xC, '    ', yC);
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.R = 90;

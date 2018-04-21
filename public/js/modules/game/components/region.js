@@ -52,9 +52,6 @@ export default class Region {
 	init() {
 		for (let i = 0; i < this.allowedCoordinates.length; ++i) {
 			if (this.allowedCoordinates[i].allowed) {
-
-				console.log(this.allowedCoordinates[i].name, ' ', this.allowedCoordinates[i].x);
-
 				this.area = new Hexagon(
 					this.allowedCoordinates[i].name,
 					this.canvas, this.allowedCoordinates[i].x,
@@ -88,10 +85,26 @@ export default class Region {
 			} else if(data.to.name === this.name) {
 
 				data.from.owner.regions.forEach(temp => {
+					//todo надо пушить регионы, которые принадлежали игроку, которого атаковали
 					this.removeNeighbour(temp.name);
+				});
+				data.to.owner.regions.forEach(temp => {
+
+					if (reachMatrix[data.to.number][temp.number] === 1) {
+						let f = false;
+						for (let i = 0; i < data.to.neighbour.length; ++i) {
+							if (data.to.neighbour[i] === temp.name)  {
+								f = true;
+							}
+						}
+						if (f === false) {
+							data.to.neighbour.push(temp.name);
+						}
+					}
 				});
 
 			} else {
+				// debugger;
 				this.globalRegions.forEach(region => {
 					if (region.name === data.to.name) {
 						if (reachMatrix[this.number][region.number] === 1) {

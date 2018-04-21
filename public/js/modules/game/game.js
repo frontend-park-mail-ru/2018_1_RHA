@@ -27,7 +27,7 @@ export default class Game {
 		this.players = [
 			new MainPlayer('A', 'green'),
 			new BotPlayer('B','blue'),
-			new BotPlayer('third', 'crimson')
+			new BotPlayer('C', 'crimson')
 		];
 		this.third = new BotPlayer('C', 'crimson');
 		this.forth = new BotPlayer('D', 'silver');

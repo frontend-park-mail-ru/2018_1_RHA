@@ -131,7 +131,7 @@ export default class GameScene {
 			if (!curRegion) {
 				return;
 			}
-
+			console.log(curRegion.neighbour);
 			switch (curPlayer.status) {
 				case PLAYER_STATES.DEFAULT:
 					if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
@@ -222,6 +222,17 @@ export default class GameScene {
 				next: this.nextPlayer(),
 				//switcher: this.switcher
 			});
+		});
+
+		bus.on('delete-from-queue', data => {
+			const player = data.payload;
+			// console.log(this.players, '  b ');
+			this.players.forEach((cur, i) => {
+				if (cur === player) {
+					this.players.splice(i, 1);
+				}
+			});
+			// console.log(this.players, ' a');
 		});
 
 	}
