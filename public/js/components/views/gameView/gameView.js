@@ -44,7 +44,6 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-
 		this.game = new Game({}, this.game_canvas, this.coordinate);
 		this.game.start();
 		this.setWindowResizeHandler();
