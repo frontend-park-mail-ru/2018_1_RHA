@@ -16,6 +16,7 @@ export default class GameManager {
 		this.controller = controller;
 	}
 
+
 	/**
 	 * Starts game logic 8)
 	 */
@@ -27,7 +28,6 @@ export default class GameManager {
 		});
 
 		bus.on('change-selection', data => {
-			console.log('aaa');
 			const regions = data.payload;
 			regions.active.selected = false;
 			regions.new.selected = true;
@@ -41,21 +41,24 @@ export default class GameManager {
 			const to = regions.to;
 			const result = 1; //TODO математика вычисления победы или поражения
 			if (result > 0) {
-				//TODO у нас нет нормального способа узнать владельца региона
 				to.setColor(from.getColor());
 				to.owner.delRegion(to);
+
+				if (to.owner.regions.length === 0) {
+					to.owner.setStatus(PLAYER_STATES.DISABLED);
+					bus.emit('delete-from-queue', to.owner);
+
+				}
+				bus.emit('update-neighbour', {
+					from: from,
+					to: to
+				});
 				from.owner.addRegion(to);
 			}
-
-			bus.emit('update-neighbour', {
-				from: from,
-				to: to
-			});
 		});
-
 		bus.on('change-move', (dict) => {
 			const data = dict.payload;
-			data.switcher.reDraw('red');
+			//data.switcher.reDraw('red');
 			data.current.setStatus(PLAYER_STATES.DISABLED);
 			data.next.setStatus(PLAYER_STATES.DEFAULT);
 			if (data.next instanceof MainPlayer) {
@@ -70,6 +73,7 @@ export default class GameManager {
 				this.controller.stop();
 			}
 		});
+
 	}
 
 	/**

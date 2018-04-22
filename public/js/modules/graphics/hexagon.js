@@ -20,13 +20,16 @@ export default class Hexagon {
 		this.xC = xC;
 		this.yC = yC;
 		this.color = color;
+		this.strokeColor = 'black';
 		bus.on('resize-for-draw', () => {
 			//todo: далее с соседями
 			//todo: сделать кексы прозрачными плюс фон
 			for (let i = 0; i < coordinate.allowedCoord.length; i++) {
+				//console.log(coordinate.allowedCoord.length, '      length');
 				if (coordinate.allowedCoord[i].name === this.name) {
 					this.xC = coordinate.allowedCoord[i].x;
 					this.yC = coordinate.allowedCoord[i].y;
+					break;
 				}
 			} 
 			this.draw(this.xC, this.yC, this.color);
@@ -73,12 +76,12 @@ export default class Hexagon {
 		];
 		this.game_ctx.beginPath();
 		this.game_ctx.lineJoin = 'round';
-		this.game_ctx.lineWidth = 2;
+		this.game_ctx.lineWidth = 4;
 		this.game_ctx.moveTo(this.xp[0], this.yp[0]);
 		for (let i = 1; i < this.xp.length; ++i) {
 			this.game_ctx.lineTo(this.xp[i], this.yp[i]);
 		}
-		this.game_ctx.strokeStyle = 'black';
+		this.game_ctx.strokeStyle = this.strokeColor;
 		this.game_ctx.stroke();
 		this.game_ctx.fillStyle = color;
 		this.game_ctx.fill();
@@ -112,13 +115,14 @@ export default class Hexagon {
 			this.yC
 		];
 		this.game_ctx.beginPath();
-		this.game_ctx.lineJoin = 'round';
-		this.game_ctx.lineWidth = width;
+		// this.game_ctx.lineJoin = 'round';
+		this.game_ctx.lineWidth = 2;
 		this.game_ctx.moveTo(this.xp[0], this.yp[0]);
 		for (let i = 1; i < this.xp.length; ++i) {
 			this.game_ctx.lineTo(this.xp[i], this.yp[i]);
 		}
 		this.game_ctx.strokeStyle = color;
+		this.strokeColor = color;
 		this.game_ctx.stroke();
 		this.game_ctx.closePath();
 	}
@@ -149,8 +153,8 @@ export default class Hexagon {
 			this.yC
 		];
 		this.game_ctx.beginPath();
-		this.game_ctx.lineJoin = 'round';
-		this.game_ctx.lineWidth = 1;
+		// this.game_ctx.lineJoin = 'round';
+		// this.game_ctx.lineWidth = 1;
 		this.game_ctx.moveTo(this.xp[0], this.yp[0]);
 		for (let i = 1; i < this.xp.length; ++i) {
 			this.game_ctx.lineTo(this.xp[i], this.yp[i]);

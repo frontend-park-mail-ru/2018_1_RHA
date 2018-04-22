@@ -11,10 +11,14 @@
     height: 0;
     border-style: solid;
     border-width: 50px 0 50px 86.6px;
-    border-color: transparent transparent transparent #007bff;
+    border-color: transparent transparent transparent red;
     line-height: 0;
     /*_border-color: #000000 #000000 #000000 #007bff;*/
     _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+    float: right;
+}
+.change:hover{
+    border-color: transparent transparent transparent orange;
 }
 
 .info-menu {

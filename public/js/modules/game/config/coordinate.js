@@ -36,24 +36,24 @@ export default class Coordinate {
 			},
 			{
 				name: 'C',
-				x: 1000 * this.xSize,
-				y: 1000.6 * this.ySize,
-				allowed: true,
-				neighbour: ['A', 'B', 'E']
-			},
-			{
-				name: 'D',
-				x: 1000 * this.xSize,
-				y: 1000.8 * this.ySize,
+				x: 365 * this.xSize,
+				y: (345 - this.lengthSide * 0.86 * 2) * this.ySize,
 				allowed: true,
 				neighbour: ['A', 'B']
 			},
 			{
-				name: 'E',
-				x: 1000 * this.xSize,
-				y: 1000 * this.ySize,
+				name: 'D',
+				x: (321 + this.lengthSide * 2) * this.xSize,
+				y: (345 + this.lengthSide * 0.86) * this.ySize,
 				allowed: true,
-				neighbour: ['B', 'C']
+				neighbour: ['A', 'B', 'E']
+			},
+			{
+				name: 'E',
+				x: ((321 + this.lengthSide * 2) + 136) * this.xSize,
+				y: 345 * this.ySize,
+				allowed: true,
+				neighbour: ['B', 'D']
 			}
 		];
 	}
@@ -80,32 +80,26 @@ export default class Coordinate {
 			},
 			{
 				name: 'C',
-				x: 1000 * this.xSize,
-				y: 1000.6 * this.ySize,
-				allowed: true,
-				neighbour: ['A', 'B', 'E']
-			},
-			{
-				name: 'D',
-				x: 1000 * this.xSize,
-				y: 1000.8 * this.ySize,
+				x: 365 * this.xSize,
+				y: (345 - this.lengthSide * 0.86 * 2) * this.ySize,
 				allowed: true,
 				neighbour: ['A', 'B']
 			},
 			{
-				name: 'E',
-				x: 1000 * this.xSize,
-				y: 1000 * this.ySize,
+				name: 'D',
+				x: (321 + this.lengthSide * 2) * this.xSize,
+				y: (345 + this.lengthSide * 0.86) * this.ySize,
 				allowed: true,
-				neighbour: ['B', 'C']
+				neighbour: ['A', 'B', 'E']
+			},
+			{
+				name: 'E',
+				x: ((321 + this.lengthSide * 2) + 136) * this.xSize,
+				y: 345 * this.ySize,
+				allowed: true,
+				neighbour: ['B', 'D']
 			}
 		];
 
 	}
-
-	getC() {
-		console.log(this.xSize, ' get  ', this.ySize);
-		return [this.xSize, this.ySize];
-	}
-
 }

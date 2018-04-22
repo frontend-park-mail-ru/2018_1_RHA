@@ -10,14 +10,15 @@ export default class Controller {
 	 * @param game_canvas
 	 * @param change_canvas
 	 */
-	constructor(game_canvas) {
+	constructor(game_canvas, changeBut) {
 		this.game_canvas = game_canvas;
+		this.changeBut = changeBut;
 		// this.change_canvas = change_canvas;
 		// this.change_canvas.getContext('2d').transform(1,0,0,1, screen.width*0.7, 0);
 
 		this.onclick = (event) => {
-			console.log(event.offsetX, ' ', event.offsetY);
-			console.log(event.offsetX * 1000 / this.game_canvas.width);
+			// console.log(event.offsetX, ' ', event.offsetY);
+			// console.log(event.offsetX * 1000 / this.game_canvas.width);
 			bus.emit('left-click', {x: event.offsetX, y: event.offsetY});
 		};
 
@@ -28,10 +29,9 @@ export default class Controller {
 			event.preventDefault();
 			bus.emit('contextmenu', {x: event.offsetX, y: event.offsetY});
 		};
-		// this.clickcanvas = (event) => {
-		// 	console.log(event.x, ' ', event.y);
-		// 	bus.emit('left-click-change', {x: event.x - screen.width * 0.8, y: event.y});
-		// };
+		this.clickChangeBut = (event) => {
+			bus.emit('left-click-change', {});
+		};
 		// this.mousemovecanvas = (event) => {
 		// 	bus.emit('mousemove-change', {x: event.x- screen.width * 0.8, y: event.y});
 		// };
@@ -51,7 +51,7 @@ export default class Controller {
 
 		this.game_canvas.addEventListener('contextmenu', this.contextmenu);
 
-		// this.change_canvas.addEventListener('click', this.clickcanvas);
+		this.changeBut.addEventListener('click', this.clickChangeBut);
 		//
 		// this.change_canvas.addEventListener('mousemove', this.mousemovecanvas);
 		//
@@ -68,7 +68,7 @@ export default class Controller {
 
 		this.game_canvas.removeEventListener('contextmenu', this.contextmenu);
 
-		// this.change_canvas.removeEventListener('click', this.clickcanvas);
+		this.changeBut.removeEventListener('click', this.clickChangeBut);
 		//
 		// this.change_canvas.removeEventListener('mousemove', this.mousemovecanvas);
 		//
