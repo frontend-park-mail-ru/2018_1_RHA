@@ -64,6 +64,8 @@ export default class GameManager {
 			data.current.setStatus(PLAYER_STATES.DISABLED);
 			data.next.setStatus(PLAYER_STATES.DEFAULT);
 			if (data.next instanceof MainPlayer) {
+				//вызываем таймер заного для текущего игрока
+				timer(this.timer);
 				this.controller.start();
 			}
 			else if (data.next instanceof BotPlayer) {
@@ -74,10 +76,9 @@ export default class GameManager {
 				this.controller.stop();
 			}
 		});
-
-		//this.timer.innerHTML = '30';
 		timer(this.timer);
 	}
+
 
 	/**
 	 * destroys game logic ;)

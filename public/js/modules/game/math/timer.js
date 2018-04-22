@@ -9,5 +9,4 @@ export const timer = (htmlElement) => {
 			bus.emit('left-click-change', {});
 		}
 	}, 1000);
-
 };
