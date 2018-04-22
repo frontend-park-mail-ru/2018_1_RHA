@@ -28,8 +28,6 @@ export default class GameSection extends Section {
 				'id': 'game-canvas'
 			}
 		);
-
-
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 
