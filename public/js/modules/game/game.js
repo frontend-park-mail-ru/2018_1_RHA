@@ -33,9 +33,9 @@ export default class Game {
 		];
 
 		this.regions = [];
-		this.players.forEach( (player, i) => {
+		this.players.forEach( (player, i, arr) => {
 			this.regions.push(new Region(player.name, player,
-				this.game_canvas, this.coordinate, (i + 1) * 1000));
+				this.game_canvas, this.coordinate, (arr.length - i) * 1000));
 		});
 
 

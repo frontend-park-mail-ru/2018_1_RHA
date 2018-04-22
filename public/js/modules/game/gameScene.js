@@ -139,6 +139,8 @@ export default class GameScene {
 						return;
 					}
 					curPlayer.status = PLAYER_STATES.READY;
+
+					//выводим информацию о регионе
 					aboutRegion(curRegion, this.about_region);
 					bus.emit('select-region', curRegion);
 					break;
@@ -151,6 +153,8 @@ export default class GameScene {
 					if (curRegion === this.activeRegion()) {
 						curPlayer.status = PLAYER_STATES.DEFAULT;
 					}
+
+					//выводим информацию о регионе
 					aboutRegion(curRegion, this.about_region);
 					bus.emit('change-selection',
 						{
@@ -169,11 +173,16 @@ export default class GameScene {
 			if (curPlayer.status === PLAYER_STATES.DISABLED || curPlayer.status !== PLAYER_STATES.READY) {
 				return;
 			}
+
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
 			if (!curRegion) {
 				return;
 			}
+
+
+			//если не является регионом игрока
 			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
+				//если не является соседом, то выходим
 				if (this.isNeighbour(activeRegion, curRegion) === false) {
 					return;
 				}
@@ -183,7 +192,16 @@ export default class GameScene {
 					to: curRegion
 				});
 			} else {
-				//TODO move units
+				//перемещаем юнитов между своими регионами
+				curRegion.gameData.units += activeRegion.gameData.units;
+				activeRegion.gameData.units = 0;
+				bus.emit('change-selection',
+					{
+						active: this.activeRegion(),
+						new: curRegion
+					});
+				//выводим информацию о регионе
+				aboutRegion(curRegion, this.about_region);
 			}
 		});
 
