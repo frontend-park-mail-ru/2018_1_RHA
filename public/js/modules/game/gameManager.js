@@ -2,6 +2,7 @@ import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
+import {timer} from './math/timer.js';
 
 
 /**
@@ -14,6 +15,7 @@ export default class GameManager {
 	 */
 	constructor(controller) {
 		this.controller = controller;
+		this.timer = document.getElementById('timer');
 	}
 
 
@@ -74,6 +76,8 @@ export default class GameManager {
 			}
 		});
 
+		this.timer.innerHTML = '30';
+		timer(this.timer);
 	}
 
 	/**

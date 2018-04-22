@@ -61,11 +61,18 @@
     height: 100%;
     width: 100%;
 }
+
 .wrapper {
     height: 100%;
     width: 100%;
 }
 
-/*.canvas {*/
-    /*background: url("/map.png") no-repeat;*/
-/*}*/
+
+
+.timer {
+    width: 10%;
+    position: absolute;
+    top: 0;
+    left: 40%;
+}
+
