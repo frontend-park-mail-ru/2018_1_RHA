@@ -6,7 +6,7 @@ pug_html = pug_html + "\u003Cdiv class=\"info-menu\"\u003E\u003C\u002Fdiv\u003E"
 ;pug_debug_line = 2;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
 pug_html = pug_html + "\u003Cdiv class=\"canvas-wrap\"\u003E";
 ;pug_debug_line = 3;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
-pug_html = pug_html + "\u003Ccanvas" + (pug_attr("width", width, true, false)+pug_attr("height", height, true, false)+pug_attr("id", id, true, false)) + "\u003E\u003C\u002Fcanvas\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Ccanvas" + (" class=\"canvas\""+pug_attr("width", width, true, false)+pug_attr("height", height, true, false)+pug_attr("id", id, true, false)) + "\u003E\u003C\u002Fcanvas\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
 pug_html = pug_html + "\u003Cdiv class=\"chat\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 5;pug_debug_filename = "\u002Fhome\u002Fegor\u002FProjects\u002Ffrontend\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";

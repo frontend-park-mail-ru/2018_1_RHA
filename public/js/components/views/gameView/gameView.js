@@ -32,7 +32,6 @@ export default class GameSection extends Section {
 
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
-
 		this.coordinate = new Coordinate(this.game_canvas);
 	}
 
