@@ -185,7 +185,7 @@ export default class GameScene {
 			}
 		});
 
-		bus.on('left-click-change', data => {
+		bus.on('left-click-change', () => {
 			const curPlayer = this.currentPlayer();
 			const nextPlayer = this.nextPlayer();
 			//const coordinates = data.payload;

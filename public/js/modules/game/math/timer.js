@@ -1,12 +1,13 @@
 import bus from '../../bus.js';
 
 export const timer = (htmlElement) => {
-	let sec = parseInt(htmlElement.innerHTML);
-	if (sec === 0) {
-		bus.emit('timer', {});
-	} else {
-		// TODO возможно тут бяка, но это неточно
+	let sec = 30;
+	let g = setInterval(() => {
 		htmlElement.innerHTML = --sec;
-		setTimeout(timer, 1000);
-	}
+		if (sec === 25) {
+			clearInterval(g);
+			bus.emit('left-click-change', {});
+		}
+	}, 1000);
+
 };

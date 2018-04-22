@@ -67,7 +67,6 @@ export default class GameManager {
 				this.controller.start();
 			}
 			else if (data.next instanceof BotPlayer) {
-
 				this.controller.stop();
 				bus.emit('bot-move', data.next);
 			}
@@ -76,7 +75,7 @@ export default class GameManager {
 			}
 		});
 
-		this.timer.innerHTML = '30';
+		//this.timer.innerHTML = '30';
 		timer(this.timer);
 	}
 
