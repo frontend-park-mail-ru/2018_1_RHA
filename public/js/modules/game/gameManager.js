@@ -2,7 +2,7 @@ import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
-import {timer} from './math/timer.js';
+import {timer} from './helperFuncs/timer.js';
 
 
 /**

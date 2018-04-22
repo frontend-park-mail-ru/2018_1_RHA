@@ -13,7 +13,7 @@ export default class Region {
 	 * @param canvas
 	 * @param coordinate
 	 */
-	constructor(name, owner, canvas, coordinate) {
+	constructor(name, owner, canvas, coordinate, units) {
 		this.name = name;
 		this.canvas = canvas;
 		this.game_ctx = this.canvas.getContext('2d');
@@ -23,7 +23,7 @@ export default class Region {
 		this.owner = owner;
 		this.color = owner.color;
 		this.gameData = {
-			units: 100500
+			units: units
 		};
 		this.setBusListeners();
 		this.area = null;

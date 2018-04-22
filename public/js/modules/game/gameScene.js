@@ -2,6 +2,7 @@
 import inHex from './math/inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
+import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -14,12 +15,12 @@ export default class GameScene {
 	 * @param regions
 	 * @param switcher
 	 */
-	constructor(canvas, players, regions, switcher) {
+	constructor(canvas, players, regions) {
 		this.canvas  = canvas;
 		this.game_ctx = canvas.getContext('2d');
 		this.players = players;
 		this.regions = regions;
-		this.switcher = switcher;
+		this.about_region = document.getElementById('about-region');
 		this.setPlayersRegions();
 	}
 
@@ -138,6 +139,7 @@ export default class GameScene {
 						return;
 					}
 					curPlayer.status = PLAYER_STATES.READY;
+					aboutRegion(curRegion, this.about_region);
 					bus.emit('select-region', curRegion);
 					break;
 				case PLAYER_STATES.READY:
@@ -149,7 +151,7 @@ export default class GameScene {
 					if (curRegion === this.activeRegion()) {
 						curPlayer.status = PLAYER_STATES.DEFAULT;
 					}
-
+					aboutRegion(curRegion, this.about_region);
 					bus.emit('change-selection',
 						{
 							active: this.activeRegion(),
