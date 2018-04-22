@@ -185,22 +185,15 @@ export default class GameScene {
 			}
 		});
 
-		bus.on('left-click-change', data => {
+		bus.on('left-click-change', () => {
 			const curPlayer = this.currentPlayer();
 			const nextPlayer = this.nextPlayer();
-			//const coordinates = data.payload;
-			//if (coordinates !== 'bot') {
 				if (curPlayer.status === PLAYER_STATES.DISABLED) {
 					return;
 				}
-				// if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {
-				// 	return;
-				// }
-			//}
 			bus.emit('change-move', {
 				current: curPlayer,
 				next: nextPlayer,
-				//switcher: this.switcher
 			});
 		});
 
@@ -216,11 +209,10 @@ export default class GameScene {
 			}
 		});
 
-		bus.on('bot-change-move', data => {
+		bus.on('bot-change-move', () => {
 			bus.emit('change-move', {
 				current: this.currentPlayer(),
 				next: this.nextPlayer(),
-				//switcher: this.switcher
 			});
 		});
 

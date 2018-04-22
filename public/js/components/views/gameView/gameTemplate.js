@@ -6,12 +6,14 @@ pug_html = pug_html + "\u003Cdiv class=\"info-menu\"\u003E\u003C\u002Fdiv\u003E"
 ;pug_debug_line = 2;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002F2Технопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
 pug_html = pug_html + "\u003Cdiv class=\"canvas-wrap\"\u003E";
 ;pug_debug_line = 3;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002F2Технопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
-pug_html = pug_html + "\u003Ccanvas" + (pug_attr("width", width, true, false)+pug_attr("height", height, true, false)+pug_attr("id", id, true, false)) + "\u003E\u003C\u002Fcanvas\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Ccanvas" + (" class=\"canvas\""+pug_attr("width", width, true, false)+pug_attr("height", height, true, false)+pug_attr("id", id, true, false)) + "\u003E\u003C\u002Fcanvas\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 4;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002F2Технопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
 pug_html = pug_html + "\u003Cdiv class=\"chat\"\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 5;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002F2Технопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
-pug_html = pug_html + "\u003Cdiv class=\"control-interface\"\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"control-interface\"\u003E";
 ;pug_debug_line = 6;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002F2Технопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
-pug_html = pug_html + "\u003Cdiv class=\"change\"\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"change\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
 ;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002F2Технопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
-pug_html = pug_html + "\u003Cdiv class=\"timer\" id=\"timer\"\u003E\u003C\u002Fdiv\u003E";}.call(this,"height" in locals_for_with?locals_for_with.height:typeof height!=="undefined"?height:undefined,"id" in locals_for_with?locals_for_with.id:typeof id!=="undefined"?id:undefined,"width" in locals_for_with?locals_for_with.width:typeof width!=="undefined"?width:undefined));} catch (err) {pug_rethrow(err, pug_debug_filename, pug_debug_line);};return pug_html;}
+pug_html = pug_html + "\u003Cdiv class=\"timer\" id=\"timer\"\u003E";
+;pug_debug_line = 7;pug_debug_filename = "\u002FUsers\u002Fpetrosadaman\u002FDocuments\u002F2Технопарк\u002F2 sem\u002FJS\u002Ffront\u002F2018_1_RHA\u002Fpublic\u002Fjs\u002Fcomponents\u002Fviews\u002FgameView\u002FgameTemplate.pug";
+pug_html = pug_html + "30\u003C\u002Fdiv\u003E";}.call(this,"height" in locals_for_with?locals_for_with.height:typeof height!=="undefined"?height:undefined,"id" in locals_for_with?locals_for_with.id:typeof id!=="undefined"?id:undefined,"width" in locals_for_with?locals_for_with.width:typeof width!=="undefined"?width:undefined));} catch (err) {pug_rethrow(err, pug_debug_filename, pug_debug_line);};return pug_html;}

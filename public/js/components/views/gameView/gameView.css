@@ -68,12 +68,16 @@
 }
 
 
+
 .timer {
     width: 10%;
     position: absolute;
     top: 0;
     left: 45%;
-    border: solid;
     margin-top: 2%;
     text-align: center;
+    font-family: armalite;
+    font-size: 3em;
+    color: white;
 }
+
