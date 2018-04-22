@@ -122,6 +122,11 @@ export default class Region {
 				});
 			}
 		});
+
+		bus.on('change-move', data => {
+			//todo какое то будущее, прослушал все((
+			this.gameData.units += 1000;
+		});
 	}
 
 	removeNeighbour(name) {

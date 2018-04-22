@@ -9,4 +9,8 @@ export const timer = (htmlElement) => {
 			bus.emit('left-click-change', {});
 		}
 	}, 1000);
+	bus.on('left-click-change', () => {
+		//sec = 0;
+		clearInterval(g);
+	});
 };

@@ -17,6 +17,7 @@ export default class GameManager {
 	constructor(controller) {
 		this.controller = controller;
 		this.timer = document.getElementById('timer');
+		timer(this.timer);
 	}
 
 
@@ -81,7 +82,6 @@ export default class GameManager {
 				this.controller.stop();
 			}
 		});
-		timer(this.timer);
 	}
 
 
