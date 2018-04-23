@@ -2,6 +2,7 @@
 import inHex from './math/inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
+import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -14,12 +15,12 @@ export default class GameScene {
 	 * @param regions
 	 * @param switcher
 	 */
-	constructor(canvas, players, regions, switcher) {
+	constructor(canvas, players, regions) {
 		this.canvas  = canvas;
 		this.game_ctx = canvas.getContext('2d');
 		this.players = players;
 		this.regions = regions;
-		this.switcher = switcher;
+		this.about_region = document.getElementById('about-region');
 		this.setPlayersRegions();
 	}
 
@@ -138,6 +139,9 @@ export default class GameScene {
 						return;
 					}
 					curPlayer.status = PLAYER_STATES.READY;
+
+					//выводим информацию о регионе
+					aboutRegion(curRegion, this.about_region);
 					bus.emit('select-region', curRegion);
 					break;
 				case PLAYER_STATES.READY:
@@ -150,6 +154,8 @@ export default class GameScene {
 						curPlayer.status = PLAYER_STATES.DEFAULT;
 					}
 
+					//выводим информацию о регионе
+					aboutRegion(curRegion, this.about_region);
 					bus.emit('change-selection',
 						{
 							active: this.activeRegion(),
@@ -167,11 +173,16 @@ export default class GameScene {
 			if (curPlayer.status === PLAYER_STATES.DISABLED || curPlayer.status !== PLAYER_STATES.READY) {
 				return;
 			}
+
 			const curRegion = this.isRegion(coordinates.x, coordinates.y);
 			if (!curRegion) {
 				return;
 			}
+
+
+			//если не является регионом игрока
 			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
+				//если не является соседом, то выходим
 				if (this.isNeighbour(activeRegion, curRegion) === false) {
 					return;
 				}
@@ -181,26 +192,28 @@ export default class GameScene {
 					to: curRegion
 				});
 			} else {
-				//TODO move units
+				//перемещаем юнитов между своими регионами
+				curRegion.gameData.units += activeRegion.gameData.units;
+				activeRegion.gameData.units = 0;
+				bus.emit('change-selection',
+					{
+						active: this.activeRegion(),
+						new: curRegion
+					});
+				//выводим информацию о регионе
+				aboutRegion(curRegion, this.about_region);
 			}
 		});
 
-		bus.on('left-click-change', data => {
+		bus.on('left-click-change', () => {
 			const curPlayer = this.currentPlayer();
 			const nextPlayer = this.nextPlayer();
-			//const coordinates = data.payload;
-			//if (coordinates !== 'bot') {
 				if (curPlayer.status === PLAYER_STATES.DISABLED) {
 					return;
 				}
-				// if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {
-				// 	return;
-				// }
-			//}
 			bus.emit('change-move', {
 				current: curPlayer,
 				next: nextPlayer,
-				//switcher: this.switcher
 			});
 		});
 
@@ -216,11 +229,10 @@ export default class GameScene {
 			}
 		});
 
-		bus.on('bot-change-move', data => {
+		bus.on('bot-change-move', () => {
 			bus.emit('change-move', {
 				current: this.currentPlayer(),
 				next: this.nextPlayer(),
-				//switcher: this.switcher
 			});
 		});
 

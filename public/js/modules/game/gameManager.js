@@ -2,6 +2,8 @@ import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
+import {timer} from './helperFuncs/timer.js';
+import {battleCalc} from './helperFuncs/battleCalc.js';
 
 
 /**
@@ -14,6 +16,8 @@ export default class GameManager {
 	 */
 	constructor(controller) {
 		this.controller = controller;
+		this.timer = document.getElementById('timer');
+		timer(this.timer);
 	}
 
 
@@ -39,8 +43,12 @@ export default class GameManager {
 			const regions = data.payload;
 			const from = regions.from;
 			const to = regions.to;
-			const result = 1; //TODO математика вычисления победы или поражения
-			if (result > 0) {
+
+
+			//true если первый, false если второй
+			const fromWin = battleCalc(from, to);
+
+			if (fromWin) {
 				to.setColor(from.getColor());
 				to.owner.delRegion(to);
 
@@ -62,10 +70,11 @@ export default class GameManager {
 			data.current.setStatus(PLAYER_STATES.DISABLED);
 			data.next.setStatus(PLAYER_STATES.DEFAULT);
 			if (data.next instanceof MainPlayer) {
+				//вызываем таймер заного для текущего игрока
+				timer(this.timer);
 				this.controller.start();
 			}
 			else if (data.next instanceof BotPlayer) {
-
 				this.controller.stop();
 				bus.emit('bot-move', data.next);
 			}
@@ -73,8 +82,8 @@ export default class GameManager {
 				this.controller.stop();
 			}
 		});
-
 	}
+
 
 	/**
 	 * destroys game logic ;)

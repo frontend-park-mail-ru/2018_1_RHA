@@ -3,6 +3,7 @@ import Section from '../baseView.js';
 import Game from '../../../modules/game/game.js';
 import bus from '../../../modules/bus.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
+import Input from '../../blocks/input/input.js';
 
 
 /**
@@ -28,11 +29,8 @@ export default class GameSection extends Section {
 				'id': 'game-canvas'
 			}
 		);
-
-
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
-
 		this.coordinate = new Coordinate(this.game_canvas);
 	}
 
