@@ -1,5 +1,4 @@
 .screw {
-
     top: 10px;
     left: 49%;
     width: 30px;
@@ -36,4 +35,34 @@
     margin-left:-2px;
     border-bottom:1px solid rgba(255,255,255,0.3);
 
+}
+
+.left-top {
+    position:absolute; /* добавили */
+    left: 0;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.right-top {
+    position:absolute; /* добавили */
+    right: 0;
+    margin-bottom: 30px;
+    margin-right: 10px;
+}
+
+.left-bot {
+    position:absolute; /* добавили */
+    bottom:0; /* добавили */
+    left: 0;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.right-bot {
+    position:absolute; /* добавили */
+    bottom:0; /* добавили */
+    right: 0;
+    margin-bottom: 30px;
+    margin-right: 10px;
 }
