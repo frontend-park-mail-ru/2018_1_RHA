@@ -31,17 +31,29 @@ export default class GameSection extends Section {
 		);
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
+		this.ctx = this.game_canvas.getContext('2d');
+		let img = new Image();
+		img.src = '/map.png';
+		console.log(img);
+
+		//this.ctx.fillStyle = this.ctx.createPattern(img, 'repeat');
+		// this.ctx.fillRect(10, 10, 150, 150);
+		// this.ctx.strokeRect(10, 10, 150, 150);
+
 		this.coordinate = new Coordinate(this.game_canvas);
+		this.setWindowResizeHandler();
 	}
 
 	/**
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
+
+
+
 		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 		this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut);
 		this.game.start();
-		this.setWindowResizeHandler();
 		return this.wrapper;
 	}
 

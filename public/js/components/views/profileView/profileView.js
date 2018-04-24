@@ -50,10 +50,12 @@ export default class ProfileSection extends Section {
 		});
 		this.fileForm.setOnSubmit( () => {
 			//TODO:
+			const file = document.getElementById('loadImageInput');
 			const formData = new FormData();
-			//formData.append("avatar", this.fileForm.getData().files[0]);
-			//const avatar = this.fileForm.getData();
-			//const jsonAvatar = JSON.stringify(avatar);
+			const upload = file.files[0];
+
+			formData.append('image', upload);
+
 			bus.emit('user:avatarUpload', formData);
 		});
 		return this.profileElement;

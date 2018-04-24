@@ -13,6 +13,7 @@ const userAPIMethods = {
 	user: 'users/info',
 	updateUser: 'users/chpwd',
 	leaderBoard: 'users/rating',
+	updateAvatar: 'users/chava'
 };
 
 // export const route = {

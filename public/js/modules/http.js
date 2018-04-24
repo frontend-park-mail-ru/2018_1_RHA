@@ -67,7 +67,10 @@ class HttpService {
 		const headers = new Headers();
 
 		if (requestMethod ==='POST') {
-			headers.append('Content-Type', 'application/json; charset=utf-8');
+			if (url !== 'users/chava') {
+				headers.append('Content-Type', 'application/json; charset=utf-8');
+			}
+
 		}
 
 		const req = {
@@ -78,8 +81,8 @@ class HttpService {
 			mode: 'cors'
 		};
 		//TODO:: на время
-		if (url === 'http://localhost:3000/avatar') {
-			return fetch(url, req);
+		if (url === 'users/chava') {
+			return fetch('http://localhost:5000/users/chava', req);
 		}
 		return fetch(`${config.serverUrl}${url}`, req);
 	}

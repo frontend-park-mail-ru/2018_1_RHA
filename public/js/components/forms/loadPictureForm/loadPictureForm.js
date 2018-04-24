@@ -46,7 +46,8 @@ export default class LoadForm extends Form {
 		this.formElement.appendChild(this.UploadSubmit.render());
 
 		this.formElement.setAttribute('enctype', 'multipart/form-data');
-		this.formElement.classList.add('form__loadFile');
+		this.formElement.setAttribute('name', 'form_loadFile');
+		this.formElement.classList.add('form-loadFile');
 
 		return this.formElement;
 	}

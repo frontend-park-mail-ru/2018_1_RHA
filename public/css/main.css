@@ -35,7 +35,7 @@ body {
 #body {
     height: 100%;
     width: 100%;
-    background-color: magenta;
+    /*background-color: magenta;*/
     /*background-image: url("/map.png");*/
     /*background-repeat: no-repeat;*/
 }
