@@ -34,26 +34,32 @@ export default class GameSection extends Section {
 		this.ctx = this.game_canvas.getContext('2d');
 		let img = new Image();
 		img.src = '/map.png';
-		console.log(img);
+		img.onload = () => {
+			//let pattern = this.ctx.createPattern(img, 'repeat');
+			this.ctx.drawImage(img, 10,10);
+			bus.emit('load-img', {});
+		};
 
 		//this.ctx.fillStyle = this.ctx.createPattern(img, 'repeat');
 		// this.ctx.fillRect(10, 10, 150, 150);
 		// this.ctx.strokeRect(10, 10, 150, 150);
+		bus.on('load-img', () => {
+			this.coordinate = new Coordinate(this.game_canvas);
+			this.setWindowResizeHandler();
+		});
 
-		this.coordinate = new Coordinate(this.game_canvas);
-		this.setWindowResizeHandler();
 	}
 
 	/**
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
+		bus.on('load-img', () => {
+			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+			this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut);
+			this.game.start();
+		});
 
-
-
-		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-		this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut);
-		this.game.start();
 		return this.wrapper;
 	}
 
