@@ -24,7 +24,7 @@
     height: 10px;
     width: 33px;
     margin-top: 10px;
-    background-image: url('img/nail-head.jpg');
+    /*background-image: url('img/nail-head.jpg');*/
     -moz-box-shadow: inset 0px 1px 8px #222;
     -webkit-box-shadow: inset 0px 1px 8px #222;
     box-shadow: inset 0px 1px 8px #222;
