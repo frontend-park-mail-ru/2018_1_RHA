@@ -31,19 +31,22 @@ module.exports = {
 				// 		use: ['css-loader']
 				// 	}
 				// )
-				use: [ 'style-loader', 'css-loader' ]
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
 			},
 			{
 				test: /\.pug$/,
 				use: 'pug-loader'
 			},
 			{
-				test: /(\.jpg|\.png|woff2?|eot|ttf)$/,
+				test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
 				use: 'file-loader'
 			},
 		]
 	},
 	resolve: {
 		extensions: ['.js', '.css', '.pug'],
-	}
+	},
+	plugins: [
+		new ExtractTextPlugin('bundle.css')
+	]
 };
