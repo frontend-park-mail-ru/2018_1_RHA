@@ -83,7 +83,8 @@ export default class Hexagon {
 		}
 		this.game_ctx.strokeStyle = this.strokeColor;
 		this.game_ctx.stroke();
-		this.game_ctx.fillStyle = color;
+		// this.game_ctx.fillStyle = color;
+		this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
 		this.game_ctx.fill();
 		this.game_ctx.closePath();
 	}
@@ -122,6 +123,7 @@ export default class Hexagon {
 			this.game_ctx.lineTo(this.xp[i], this.yp[i]);
 		}
 		this.game_ctx.strokeStyle = color;
+
 		this.strokeColor = color;
 		this.game_ctx.stroke();
 		this.game_ctx.closePath();
@@ -161,7 +163,8 @@ export default class Hexagon {
 		}
 		this.game_ctx.strokeStyle = 'black';
 		this.game_ctx.stroke();
-		this.game_ctx.fillStyle = color;
+		// this.game_ctx.fillStyle = color;
+		this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
 		this.game_ctx.fill();
 		this.game_ctx.closePath();
 	}

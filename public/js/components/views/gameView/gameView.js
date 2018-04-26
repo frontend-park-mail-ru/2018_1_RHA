@@ -32,17 +32,14 @@ export default class GameSection extends Section {
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
-		let img = new Image();
-		img.src = '/map.png';
-		img.onload = () => {
+		this.img = new Image();
+		this.img.src = '/map.png';
+		this.img.onload = () => {
 			//let pattern = this.ctx.createPattern(img, 'repeat');
-			this.ctx.drawImage(img, 10,10);
+			this.ctx.drawImage(this.img, 0,0);
 			bus.emit('load-img', {});
 		};
 
-		//this.ctx.fillStyle = this.ctx.createPattern(img, 'repeat');
-		// this.ctx.fillRect(10, 10, 150, 150);
-		// this.ctx.strokeRect(10, 10, 150, 150);
 		bus.on('load-img', () => {
 			this.coordinate = new Coordinate(this.game_canvas);
 			this.setWindowResizeHandler();
@@ -79,9 +76,22 @@ export default class GameSection extends Section {
 	setWindowResizeHandler() {
 		window.addEventListener('resize', () => {
 			[this.game_canvas.width, this.game_canvas.height] = this.computeCanvasSize();
+			this.ctx.drawImage(this.img, 0,0);
 			this.coordinate.reSize(this.game_canvas);
 			bus.emit('resize-for-draw', {});
 		});
 		return this;
 	}
 }
+
+
+//todo логирование событий игры в правом диве
+//todo инструкция
+//todo синглплеер ~ треня
+//todo графоний
+
+
+//todo НА ЗАВТРА ЕПТ (разобраться с цветами хексов, начать реализовывать
+// интерфейс по красоте, установить другой фон
+// реализовать логику выбора юнитов(их кол-во для атаки)
+// анимации

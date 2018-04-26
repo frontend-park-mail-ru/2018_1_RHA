@@ -43,6 +43,7 @@ export default class Router {
 	 * @param path
 	 */
 	open(path) {
+		console.log('open');
 		const view = this.map[path];
 		let rootForSwitch;
 		if (path === '/singleplayer' ) {
@@ -67,9 +68,9 @@ export default class Router {
 			window.history.pushState(null, '', path);
 		}
 
-		if (path === '/game') {
-			sectionSwitcher.changeSection(view.render(), this.global);
-		}
+		// if (path === '/game') {
+		// 	sectionSwitcher.changeSection(view.render(), this.global);
+		// }
 		sectionSwitcher.changeSection(view.render(), rootForSwitch);
 	}
 

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bake": "node pugbaker.js",
+    "bake": "node pugbaker",
+    "quickStart": "webpack && node app.js",
     "start": "node pugBaker && webpack && node app.js"
   },
   "author": "",
