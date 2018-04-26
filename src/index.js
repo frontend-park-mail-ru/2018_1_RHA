@@ -1,5 +1,5 @@
-import '../public/css/main.css';
 import '../public/css/reset.css';
+import '../public/css/main.css';
 import '../public/js/components/blocks/input/input.css';
 import '../public/js/components/blocks/button.css';
 import '../public/js/components/blocks/decorations/lamp.css';

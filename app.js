@@ -22,7 +22,8 @@ function sendIndex(req, res) {
 	res.sendFile(indexFile);
 }
 
-app.get('/', sendIndex);
+app.get('/*', sendIndex);
+// app.get('/singleplayer', sendIndex);
 // app.get('/*', (req, res) => {
 // 	res.sendFile(path.join(root, 'index.html'));
 // });

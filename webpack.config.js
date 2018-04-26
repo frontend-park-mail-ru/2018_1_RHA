@@ -7,8 +7,8 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		// path: path.join(__dirname, 'build'),
-		path: __dirname + '/public',
-		filename: './public/bundle.js',
+		path: __dirname + '/public/',
+		filename: 'bundle.js',
 		// publicPath: '/build/'
 	},
 	module: {
