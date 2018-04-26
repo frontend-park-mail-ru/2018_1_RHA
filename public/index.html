@@ -1,60 +1,38 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/kostyan.css">
-    <link rel="stylesheet" href="css/supreme.css">
-
-
+    <title>PHub</title>
+    <!--<link rel="stylesheet" href="css/main.css">-->
+    <!--<link rel="stylesheet" href="/build/bundle.css">-->
 </head>
-<body class="body">
+<body>
+    <div id="body">
+    <div id="start" class="start">
+        <div id="radar-wrapper">
+            <div id="bg"></div>
+            <div id="radar"></div>
+        </div>
 
-
-    <div class="fullscreen-bg">
-        <div class="overlay"></div>
-        <video loop muted="muted" autoplay class="fullscreen-bg__video">
-            <source src="video.mp4" type="video/mp4">
-        </video>
+        <div id="application-wrapper" class="body">
+            <div id="application"></div>
+        </div>
     </div>
 
-
-    <div class="mute">Sound ON</div>
-
-    <div class="menu fadeIn-Out hidden" id="menu" >
-        <button class="menu__button btn-in">Singleplayer</button>
-        <button class="menu__button btn-in">Multiplayer</button>
-        <button class="menu__button btn-in" id="profile" >My Profile</button>
-        <button class="menu__button btn-in">Leaderboard</button>
-        <button class="menu__button btn-up" id="logoutt">Log out</button>
+        <div id="game" class="game"></div>
+        <script src="js/components/blocks/decorations/lampTemplate.js"></script>
+        <script src="js/components/blocks/input/inputTemplate.js"></script>
+        <script src="js/components/views/ratingView/ratingTemplate.js"></script>
+        <script src="js/components/views/menuView/menuTemplate.js"></script>
+        <script src="js/components/views/profileView/profileTemplate.js"></script>
+        <script src="js/components/views/gameView/gameTemplate.js"></script>
+        <script src="js/components/views/loginView/loginTemplate.js"></script>
+        <script src="js/components/views/registerView/registerTemplate.js"></script>
+        <script src="/build/bundle.js"></script>
+        <!--<script src="js/application.js" type="module"></script>-->
     </div>
-
-
-
-
-    <div class="btn-wrapper" id="play_wrap">
-        <button class="menu__button btn-up" id="logout">Log out</button>
-        <button id="play"  class="menu__button btn-up fadeIn-Out">Play</button>
-    </div>
-    <img id="logo" src="images/logo.png">
-
-    <footer>
-        <div>RHA team. All rights reserved. 2018 &copy</div>
-    </footer>
-
 </body>
-<script src="js/network.js"></script>
-<script src="js/generation_html.js"></script>
-<script src="js/menu.js"></script>
-<script src="js/video.js"></script>
-<script src="js/auth.js"></script>
-<!-- убрать после отладки -->
-<!-- <script language=JavaScript>
-    document.oncontextmenu=new Function("return false;")
-</script> -->
-
 </html>

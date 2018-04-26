@@ -1,0 +1,23 @@
+table.scorboard_table
+    thead
+        tr
+            td Nickname
+            td Score
+    tbody
+        each fuck in data
+            tr.scorboard_row
+                td #{Object.keys(fuck)}
+                td #{Object.values(fuck)}
+        tr
+            td ⋮
+        tr.scorboard_row
+            td #{Object.keys(user)}
+            td #{Object.values(user)}
+br
+div.scorboard_pages
+    p Page #{page} of #{Object.values(pages)}
+
+//div.pagination#pagination
+//    a#prevBut(href="#") <
+//    a#nextBut(href="#") >
+//
