@@ -46,6 +46,10 @@ export default class Region {
 		this.globalRegions = regions;
 	}
 
+	renderHex() {
+		this.area.draw();
+	}
+
 	/**
 	 * Draws Region and sets it up
 	 */

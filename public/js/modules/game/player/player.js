@@ -1,4 +1,5 @@
 import PLAYER_STATES from '../config/playerStates.js';
+import {renderScene} from '../helperFuncs/renderScene.js';
 
 /**
  * Class representing generic game Player
@@ -9,13 +10,20 @@ export default class Player {
 	 * @param name
 	 * @param color
 	 */
-	constructor(name, color) {
+	constructor(name, color, canvas,  img) {
 		this.score = 0;
 		this.resources = 0;
+		this.canvas = canvas;
+		this.allRegions = null;
+		this.img = img;
 		this.regions = [];
 		this.status = PLAYER_STATES.DISABLED;
 		this.color = color;
 		this.name = name;
+	}
+
+	setAllRegtions(regions) {
+		this.allRegions = regions;
 	}
 
 	/**
@@ -45,7 +53,8 @@ export default class Player {
 	 */
 	addRegion(newRegion) {
 		newRegion.area.setColor(this.color);
-		newRegion.area.reColor(this.color);
+		renderScene(this.canvas, this.allRegions, this.img);
+		// newRegion.area.reColor(this.color);
 		newRegion.owner = this;
 		this.regions.push(newRegion);
 	}

@@ -12,8 +12,8 @@ export default class BotPlayer extends Player {
 	 * @param name
 	 * @param color
 	 */
-	constructor(name, color) {
-		super(name, color);
+	constructor(name, color, canvas,  img) {
+		super(name, color, canvas,  img);
 
 		this.listeners();
 	}

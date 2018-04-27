@@ -4,6 +4,7 @@ import Region from './components/region.js';
 import GameManager from './gameManager.js';
 import Controller from './controller.js';
 import GameScene from './gameScene.js';
+import bus from '../bus.js';
 
 /**
  * Class representing game
@@ -15,21 +16,29 @@ export default class Game {
 	 * @param game_canvas
 	 * @param change_canvas
 	 */
-	constructor(mode, game_canvas, coordinate, changeBut) {
+	constructor(mode, game_canvas, coordinate, changeBut, img) {
 		//let GameConstructor = null;
+
+		if (Game.__instance) {
+			return Game.__instance;
+		}
+		this.listeners = {};
+		Game.__instance = this;
 
 		//todo:: онлайн и оффлайн режимы
 		this.mode = mode;
 		this.game_canvas = game_canvas;
 		this.coordinate = coordinate;
 		this.game_ctx = this.game_canvas.getContext('2d');
+		this.img = img;
 		this.controller = new Controller(this.game_canvas, changeBut);
+		debugger;
 		this.players = [
-			new MainPlayer('A', 'green'),
-			new BotPlayer('B','blue'),
-			new BotPlayer('C', 'crimson'),
-			new BotPlayer('D', 'silver'),
-			new BotPlayer('E', 'yellow')
+			new MainPlayer('A', 'rgba(0,255,127,0.4)', this.game_canvas, this.img),
+			new BotPlayer('B','rgba(0,0,205,0.4)', this.game_canvas, this.img),
+			new BotPlayer('C', 'rgba(255,69,0,0.4)', this.game_canvas, this.img),
+			new BotPlayer('D', 'rgba(139,125,107,0.4)', this.game_canvas, this.img),
+			new BotPlayer('E', 'rgba(255,165,0,0.4)', this.game_canvas, this.img)
 		];
 
 		this.regions = [];
@@ -37,6 +46,11 @@ export default class Game {
 			this.regions.push(new Region(player.name, player,
 				this.game_canvas, this.coordinate, (arr.length - i) * 1000));
 		});
+		this.players.forEach(player => {
+			player.setAllRegtions(this.regions);
+		});
+
+
 
 
 		this.regions.forEach(temp => {
@@ -44,7 +58,7 @@ export default class Game {
 		});
 
 		this.scene = new GameScene(this.game_canvas, this.players, this.regions);
-		this.manager = new GameManager(this.controller);
+		this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img);
 	}
 
 	/**
@@ -63,6 +77,7 @@ export default class Game {
 		this.controller.stop();
 		this.manager.destroy();
 	}
+
 }
 
 //todo ИНТЕРФЕЙС БЛ*ТЬ

@@ -10,8 +10,8 @@ export default class MainPlayer extends Player {
 	 * @param name
 	 * @param color
 	 */
-	constructor(name, color) {
-		super(name, color);
+	constructor(name, color, canvas,  img) {
+		super(name, color, canvas, img);
 		this.status = PLAYER_STATES.DEFAULT;
 	}
 }
