@@ -15,7 +15,7 @@ export default class Game {
 	 * @param game_canvas
 	 * @param change_canvas
 	 */
-	constructor(mode, game_canvas, coordinate, changeBut) {
+	constructor(mode, game_canvas, coordinate, changeBut, img) {
 		//let GameConstructor = null;
 
 		//todo:: онлайн и оффлайн режимы
@@ -24,12 +24,13 @@ export default class Game {
 		this.coordinate = coordinate;
 		this.game_ctx = this.game_canvas.getContext('2d');
 		this.controller = new Controller(this.game_canvas, changeBut);
+		this.img = img;
 		this.players = [
-			new MainPlayer('A', 'green'),
-			new BotPlayer('B','blue'),
-			new BotPlayer('C', 'crimson'),
-			new BotPlayer('D', 'silver'),
-			new BotPlayer('E', 'yellow')
+			new MainPlayer('A', 'rgba(0,255,127,0.4)', this.game_canvas, this.img),
+			new BotPlayer('B','rgba(0,0,205,0.4)', this.game_canvas, this.img),
+			new BotPlayer('C', 'rgba(255,69,0,0.4)', this.game_canvas, this.img),
+			new BotPlayer('D', 'rgba(139,125,107,0.4)', this.game_canvas, this.img),
+			new BotPlayer('E', 'rgba(255,165,0,0.4)', this.game_canvas, this.img)
 		];
 
 		this.regions = [];
@@ -44,7 +45,7 @@ export default class Game {
 		});
 
 		this.scene = new GameScene(this.game_canvas, this.players, this.regions);
-		this.manager = new GameManager(this.controller);
+		this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img);
 	}
 
 	/**

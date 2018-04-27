@@ -32,7 +32,7 @@ export default class Hexagon {
 					break;
 				}
 			} 
-			this.draw(this.xC, this.yC, this.color);
+			this.draw();
 
 		});
 	}
@@ -50,29 +50,33 @@ export default class Hexagon {
 	getColor() {
 		return this.color;
 	}
+	setStroke(color) {
+		this.strokeColor = color;
+	}
 
-	draw(xC, yC, color) {
+	draw() {
+		// this.game_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.R = 90;
 		this.dR = this.R * 0.866;
 		this.xp = [
-			xC - this.R * this.canvas.width / amountofCoorX,
-			xC - this.R / 2 *  this.canvas.width / amountofCoorX,
-			xC + this.R / 2 *  this.canvas.width / amountofCoorX,
-			xC + this.R * this.canvas.width / amountofCoorX,
-			xC + this.R / 2 * this.canvas.width / amountofCoorX,
-			xC - this.R / 2 * this.canvas.width / amountofCoorX,
-			xC - this.R * this.canvas.width / amountofCoorX
+			this.xC - this.R * this.canvas.width / amountofCoorX,
+			this.xC - this.R / 2 *  this.canvas.width / amountofCoorX,
+			this.xC + this.R / 2 *  this.canvas.width / amountofCoorX,
+			this.xC + this.R * this.canvas.width / amountofCoorX,
+			this.xC + this.R / 2 * this.canvas.width / amountofCoorX,
+			this.xC - this.R / 2 * this.canvas.width / amountofCoorX,
+			this.xC - this.R * this.canvas.width / amountofCoorX
 		];
 		this.yp = [
-			yC,
-			yC + this.dR * this.canvas.height / amountofCoorY,
-			yC + this.dR * this.canvas.height / amountofCoorY,
-			yC,
-			yC - this.dR * this.canvas.height / amountofCoorY,
-			yC - this.dR *this.canvas.height / amountofCoorY,
-			yC
+			this.yC,
+			this.yC + this.dR * this.canvas.height / amountofCoorY,
+			this.yC + this.dR * this.canvas.height / amountofCoorY,
+			this.yC,
+			this.yC - this.dR * this.canvas.height / amountofCoorY,
+			this.yC - this.dR *this.canvas.height / amountofCoorY,
+			this.yC
 		];
 		this.game_ctx.beginPath();
 		this.game_ctx.lineJoin = 'round';
@@ -83,8 +87,8 @@ export default class Hexagon {
 		}
 		this.game_ctx.strokeStyle = this.strokeColor;
 		this.game_ctx.stroke();
-		// this.game_ctx.fillStyle = color;
-		this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
+		this.game_ctx.fillStyle = this.color;
+		// this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
 		this.game_ctx.fill();
 		this.game_ctx.closePath();
 	}
@@ -95,6 +99,7 @@ export default class Hexagon {
 	 * @param width
 	 */
 	reDraw(color, width) {
+		// this.game_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.xp = [
@@ -134,6 +139,7 @@ export default class Hexagon {
 	 * @param color
 	 */
 	reColor (color) {
+		// this.game_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.xp = [
@@ -163,8 +169,9 @@ export default class Hexagon {
 		}
 		this.game_ctx.strokeStyle = 'black';
 		this.game_ctx.stroke();
-		// this.game_ctx.fillStyle = color;
-		this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
+		// this.game_ctx.fillStyle = 'white';
+		this.game_ctx.fillStyle = color;
+		// this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
 		this.game_ctx.fill();
 		this.game_ctx.closePath();
 	}

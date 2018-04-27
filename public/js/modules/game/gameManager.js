@@ -4,6 +4,7 @@ import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 import {timer} from './helperFuncs/timer.js';
 import {battleCalc} from './helperFuncs/battleCalc.js';
+import {renderScene} from './helperFuncs/renderScene.js';
 
 
 /**
@@ -14,8 +15,11 @@ export default class GameManager {
 	 * Creates logic =)
 	 * @param controller
 	 */
-	constructor(controller) {
+	constructor(controller, canvas, regions, img) {
 		this.controller = controller;
+		this.game_canvas = canvas;
+		this.regions = regions;
+		this.img = img;
 		this.timer = document.getElementById('timer');
 		timer(this.timer);
 	}
@@ -28,15 +32,20 @@ export default class GameManager {
 		bus.on('select-region', data => {
 			const region = data.payload;
 			region.selected = true;
-			region.area.reDraw('red', 2);
+			region.area.setStroke('red');
+			renderScene(this.game_canvas, this.regions, this.img);
+			// region.area.reDraw('red', 2);
 		});
 
 		bus.on('change-selection', data => {
 			const regions = data.payload;
 			regions.active.selected = false;
 			regions.new.selected = true;
-			regions.new.area.reDraw('red', 2);
-			regions.active.area.reDraw('black', 2);
+			// regions.new.area.reDraw('red', 2);
+			regions.new.area.setStroke('red');
+			// regions.active.area.reDraw('black', 2);
+			regions.active.area.setStroke('black');
+
 		});
 
 		bus.on('attack', data => {

@@ -53,7 +53,7 @@ export default class GameSection extends Section {
 	render() {
 		bus.on('load-img', () => {
 			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-			this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut);
+			this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut, this.img);
 			this.game.start();
 		});
 

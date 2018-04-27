@@ -34,6 +34,11 @@ export default class Region {
 		this.init();
 	}
 
+	renderHex() {
+		console.log('uuuuuuu  uuuu ');
+		this.area.draw();
+	}
+
 	setColor(color) {
 		this.area.setColor(color);
 	}
