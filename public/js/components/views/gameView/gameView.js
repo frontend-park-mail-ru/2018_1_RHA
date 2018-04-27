@@ -36,7 +36,7 @@ export default class GameSection extends Section {
 		this.img.src = '/map.png';
 		this.img.onload = () => {
 			//let pattern = this.ctx.createPattern(img, 'repeat');
-			this.ctx.drawImage(this.img, 0,0);
+			this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height);
 			bus.emit('load-img', {});
 		};
 
@@ -76,7 +76,7 @@ export default class GameSection extends Section {
 	setWindowResizeHandler() {
 		window.addEventListener('resize', () => {
 			[this.game_canvas.width, this.game_canvas.height] = this.computeCanvasSize();
-			this.ctx.drawImage(this.img, 0,0);
+			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
 			bus.emit('resize-for-draw', {});
 		});
