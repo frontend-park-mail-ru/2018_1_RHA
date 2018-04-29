@@ -53,6 +53,7 @@
     display: inline-block;
     position: relative;
     width: 70%;
+    vertical-align: middle;
 }
 
 

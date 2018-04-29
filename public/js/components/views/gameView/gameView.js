@@ -29,6 +29,7 @@ export default class GameSection extends Section {
 				'id': 'game-canvas'
 			}
 		);
+		this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
