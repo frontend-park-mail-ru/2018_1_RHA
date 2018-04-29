@@ -42,7 +42,9 @@ export default class BotPlayer extends Player {
 				from: attackers[attacker],
 				to: attackers[attacker].neighbour[getRandom(0, attackers[attacker].neighbour.length - 1)]
 			});
-			bus.emit('bot-change-move', 'bot');
+			setTimeout(() => {
+				bus.emit('bot-change-move', 'bot');
+			}, 2500);
 		});
 	}
 }

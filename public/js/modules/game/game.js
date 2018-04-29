@@ -32,7 +32,7 @@ export default class Game {
 		this.game_ctx = this.game_canvas.getContext('2d');
 		this.img = img;
 		this.controller = new Controller(this.game_canvas, changeBut);
-		debugger;
+
 		this.players = [
 			new MainPlayer('A', 'rgba(0,255,127,0.4)', this.game_canvas, this.img),
 			new BotPlayer('B','rgba(0,0,205,0.4)', this.game_canvas, this.img),
@@ -68,6 +68,7 @@ export default class Game {
 		this.controller.start();
 		this.scene.onListeners();
 		this.manager.start();
+		bus.emit('start-game', {});
 	}
 
 	/**

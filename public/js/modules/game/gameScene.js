@@ -3,6 +3,7 @@ import inHex from './math/inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
+import {attackAnimation} from './animation/attackAnimation.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -109,20 +110,14 @@ export default class GameScene {
 		}
 	}
 
-	/**
-	 * @param x
-	 * @param y
-	 * @return {boolean}
-	 */
-	isElementOfChangeCanvas(x, y) {
-		return !!inHex(x, y, this.switcher.arrX, this.switcher.arrY);
-	}
+
 
 	/**
 	 * подписываемся на события кликов мышки
 	 */
 	onListeners() {
 		bus.on('left-click', data => {
+			// attackAnimation();
 			const curPlayer = this.currentPlayer();
 			const coordinates = data.payload;
 			if (curPlayer.status === PLAYER_STATES.DISABLED) {
@@ -221,6 +216,7 @@ export default class GameScene {
 			const regs = data.payload;
 			for (let i = 0; i < this.regions.length; ++i) {
 				if (regs.to === this.regions[i].label) {
+					console.log(regs.from.owner, '     ---------');
 					bus.emit('attack', {
 						from: regs.from,
 						to: this.regions[i]
@@ -247,11 +243,9 @@ export default class GameScene {
 			// console.log(this.players, ' a');
 		});
 
+		bus.on('start-game', () => {
+			//подсветка текущего игрока
+			bus.emit('illum-cur', this.currentPlayer());
+		});
 	}
 }
-
-//todo:: ходит только первый бот
-
-//todo:: бот может сходить в молоко
-
-//todo:: придумать как убирать соседей
