@@ -55,7 +55,11 @@ export default class GameSection extends Section {
 			this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut, this.img);
 			this.game.start();
 		});
-
+		bus.on('gameover', () => {
+			alert('gameover');
+			this.game.destroy();
+			history.go('/singleplayer');
+		});
 		return this.wrapper;
 	}
 

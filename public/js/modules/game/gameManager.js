@@ -56,7 +56,7 @@ export default class GameManager {
 			const from = regions.from;
 			const to = regions.to;
 
-			attackAnimation(to.area.xC, to.area.yC);
+			// attackAnimation(to.area.xC, to.area.yC);
 
 
 			//true если первый, false если второй
@@ -83,7 +83,6 @@ export default class GameManager {
 			}, 1000);
 
 			this.log.innerHTML = '<p>Player ' + from.name + ' attacked ' + to.name + '</p>';
-
 		});
 		bus.on('change-move', (dict) => {
 			this.regions.forEach(region => {
