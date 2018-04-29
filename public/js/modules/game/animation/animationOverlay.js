@@ -54,7 +54,6 @@ export const animationOverlay = (x , y) => {
 		ctx.fill();
 	}, 2500);
 	setTimeout(() => {
-		console.log('a');
 		wrapper.removeChild(wrapper.lastChild);
 	}, 2500);
 };
