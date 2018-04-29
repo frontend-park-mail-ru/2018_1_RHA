@@ -14,6 +14,7 @@ function bake(path, fileName, functionName, jsName)
 }
 
 
+bake('/js/modules/game/animation/', 'attackAnimation.pug', 'generateAttack', 'attackTemplate.js');
 bake('/js/components/views/profileView/', 'profile.pug', 'generateProfile', 'profileTemplate.js');
 bake('/js/components/views/gameView/', 'gameTemplate.pug', 'generateCanvas', 'gameTemplate.js');
 bake('/js/components/views/ratingView/', 'rating.pug', 'generateRating', 'ratingTemplate.js');

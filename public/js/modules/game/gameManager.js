@@ -5,6 +5,7 @@ import BotPlayer from './player/botPlayer.js';
 import {timer} from './helperFuncs/timer.js';
 import {battleCalc} from './helperFuncs/battleCalc.js';
 import {renderScene} from './helperFuncs/renderScene.js';
+import {animationOverlay} from './animation/animationOverlay.js';
 
 
 /**
@@ -42,11 +43,12 @@ export default class GameManager {
 			regions.new.selected = true;
 			regions.new.area.setStroke('red');
 			renderScene(this.canvas, this.regions, this.img);
-			regions.active.area.setStroke('black');
+			regions.active.area.setStroke('white');
 			renderScene(this.canvas, this.regions, this.img);
 		});
 
 		bus.on('attack', data => {
+			animationOverlay(window.innerWidth / 2, this.canvas.height * 0.92);
 			const regions = data.payload;
 			const from = regions.from;
 			const to = regions.to;
@@ -54,22 +56,27 @@ export default class GameManager {
 
 			//true если первый, false если второй
 			const fromWin = battleCalc(from, to);
+			setTimeout(() => {
 
-			if (fromWin) {
-				to.setColor(from.getColor());
-				to.owner.delRegion(to);
+				if (fromWin) {
+					to.setColor(from.getColor());
+					to.owner.delRegion(to);
 
-				if (to.owner.regions.length === 0) {
-					to.owner.setStatus(PLAYER_STATES.DISABLED);
-					bus.emit('delete-from-queue', to.owner);
+					if (to.owner.regions.length === 0) {
+						to.owner.setStatus(PLAYER_STATES.DISABLED);
+						bus.emit('delete-from-queue', to.owner);
 
+					}
+					bus.emit('update-neighbour', {
+						from: from,
+						to: to
+					});
+					from.owner.addRegion(to);
+					to.area.setStroke('white');
+					renderScene(this.canvas, this.regions, this.img);
 				}
-				bus.emit('update-neighbour', {
-					from: from,
-					to: to
-				});
-				from.owner.addRegion(to);
-			}
+			}, 1000);
+
 		});
 		bus.on('change-move', (dict) => {
 			this.regions.forEach(region => {
@@ -81,16 +88,32 @@ export default class GameManager {
 			data.next.setStatus(PLAYER_STATES.DEFAULT);
 			if (data.next instanceof MainPlayer) {
 				//вызываем таймер заного для текущего игрока
+
+				data.next.regions.forEach(region => {
+					region.area.setStroke('white');
+					renderScene(this.canvas, this.regions, this.img);
+				});
 				timer(this.timer);
 				this.controller.start();
 			}
 			else if (data.next instanceof BotPlayer) {
+				data.next.regions.forEach(region => {
+					region.area.setStroke('white');
+					renderScene(this.canvas, this.regions, this.img);
+				});
 				this.controller.stop();
 				bus.emit('bot-move', data.next);
 			}
 			else {
 				this.controller.stop();
 			}
+		});
+		bus.on('illum-cur', data => {
+			const curPlayer = data.payload;
+			curPlayer.regions.forEach(region => {
+				region.area.setStroke('white');
+				renderScene(this.canvas, this.regions, this.img);
+			});
 		});
 	}
 

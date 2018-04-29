@@ -53,18 +53,32 @@ body {
     clear: both;
     float: left;
 }
-
-#application-wrapper {
-    width: 40%;
-    margin: 0;
-    position: relative;
-    display: inline-block;
-    clear: both;
-    float: right;
-    height: 100%;
-    padding: 0;
-
+@media (min-width: 1200px) {
+    #application-wrapper {
+        width: 40%;
+        margin: 0;
+        position: relative;
+        display: inline-block;
+        clear: both;
+        float: right;
+        height: 100%;
+        padding: 0;
+    }
 }
+
+@media (max-width: 1199px) {
+    #application-wrapper {
+        width: 100%;
+        margin: 0;
+        position: relative;
+        display: inline-block;
+        clear: both;
+        float: right;
+        height: 100%;
+        padding: 0;
+    }
+}
+
 
 #application {
     width: 95%;
@@ -117,6 +131,22 @@ p {
     text-align: center;
 }
 
-canvas {
+#game-canvas {
     border:  solid;
 }
+
+.overlay {
+    background-color: rgba(100,100,100,0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.attack-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+

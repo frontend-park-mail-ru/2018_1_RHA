@@ -3,7 +3,6 @@ import Section from '../baseView.js';
 import Game from '../../../modules/game/game.js';
 import bus from '../../../modules/bus.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
-import Input from '../../blocks/input/input.js';
 
 
 /**
@@ -20,7 +19,6 @@ export default class GameSection extends Section {
 		this.wrapper = document.createElement('div');
 		this.wrapper.classList.add('wrapper');
 		console.log(screen.width, ' ', document.documentElement.clientWidth);
-
 
 		this.wrapper.innerHTML += generateCanvas(
 			{

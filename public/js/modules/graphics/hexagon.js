@@ -92,51 +92,9 @@ export default class Hexagon {
 		this.game_ctx.closePath();
 	}
 
-	/**
-	 * Redraws hexagon
-	 * @param color
-	 * @param width
-	 */
-	reDraw(color, width) {
-		const amountofCoorX = 1000;
-		const amountofCoorY = 610;
-		this.xp = [
-			this.xC - this.R * this.canvas.width / amountofCoorX,
-			this.xC - this.R / 2 *  this.canvas.width / amountofCoorX,
-			this.xC + this.R / 2 *  this.canvas.width / amountofCoorX,
-			this.xC + this.R * this.canvas.width / amountofCoorX,
-			this.xC + this.R / 2 * this.canvas.width / amountofCoorX,
-			this.xC - this.R / 2 * this.canvas.width / amountofCoorX,
-			this.xC - this.R * this.canvas.width / amountofCoorX
-		];
-		this.yp = [
-			this.yC,
-			this.yC + this.dR * this.canvas.height / amountofCoorY,
-			this.yC + this.dR * this.canvas.height / amountofCoorY,
-			this.yC,
-			this.yC - this.dR * this.canvas.height / amountofCoorY,
-			this.yC - this.dR *this.canvas.height / amountofCoorY,
-			this.yC
-		];
-		this.game_ctx.beginPath();
-		// this.game_ctx.lineJoin = 'round';
-		this.game_ctx.lineWidth = 2;
-		this.game_ctx.moveTo(this.xp[0], this.yp[0]);
-		for (let i = 1; i < this.xp.length; ++i) {
-			this.game_ctx.lineTo(this.xp[i], this.yp[i]);
-		}
-		this.game_ctx.strokeStyle = color;
 
-		this.strokeColor = color;
-		this.game_ctx.stroke();
-		this.game_ctx.closePath();
-	}
 
-	/**
-	 * Recolors hexagon
-	 * @param color
-	 */
-	reColor (color) {
+	reColor () {
 		const amountofCoorX = 1000;
 		const amountofCoorY = 610;
 		this.xp = [
@@ -164,11 +122,11 @@ export default class Hexagon {
 		for (let i = 1; i < this.xp.length; ++i) {
 			this.game_ctx.lineTo(this.xp[i], this.yp[i]);
 		}
-		this.game_ctx.strokeStyle = 'black';
+		this.game_ctx.strokeStyle = 'rgba(255,255,255,0.8)';
 		this.game_ctx.stroke();
-		this.game_ctx.fillStyle = this.color;
-		// this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
-		this.game_ctx.fill();
+		// this.game_ctx.fillStyle = this.color;
+		// // this.game_ctx.fillStyle = 'rgba(100,150,185,0.4)';
+		// this.game_ctx.fill();
 		this.game_ctx.closePath();
 	}
 
