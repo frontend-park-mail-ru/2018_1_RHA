@@ -31,7 +31,7 @@
     opacity: 0.7;
 }
 
-.chat {
+.log {
     height: 85%;
     width: 15%;
     background-color: orange;
@@ -39,6 +39,7 @@
     float: right;
     position: relative;
     opacity: 0.7;
+    font-size: smaller;
 }
 .control-interface {
     position: relative;

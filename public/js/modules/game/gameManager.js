@@ -6,6 +6,7 @@ import {timer} from './helperFuncs/timer.js';
 import {battleCalc} from './helperFuncs/battleCalc.js';
 import {renderScene} from './helperFuncs/renderScene.js';
 import {animationOverlay} from './animation/animationOverlay.js';
+import {attackAnimation} from './animation/attackAnimation.js';
 
 
 /**
@@ -22,6 +23,7 @@ export default class GameManager {
 		this.canvas = canvas;
 		this.img = img;
 		this.timer = document.getElementById('timer');
+		this.log = document.getElementById('log');
 		timer(this.timer);
 	}
 
@@ -49,9 +51,12 @@ export default class GameManager {
 
 		bus.on('attack', data => {
 			animationOverlay(window.innerWidth / 2, this.canvas.height * 0.92);
+
 			const regions = data.payload;
 			const from = regions.from;
 			const to = regions.to;
+
+			attackAnimation(to.area.xC, to.area.yC);
 
 
 			//true если первый, false если второй
@@ -76,6 +81,8 @@ export default class GameManager {
 					renderScene(this.canvas, this.regions, this.img);
 				}
 			}, 1000);
+
+			this.log.innerHTML = '<p>Player ' + from.name + ' attacked ' + to.name + '</p>';
 
 		});
 		bus.on('change-move', (dict) => {
