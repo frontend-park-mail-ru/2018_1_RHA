@@ -25,7 +25,6 @@ export default class GameManager {
 		this.img = img;
 		this.timer = document.getElementById('timer');
 		this.log = document.getElementById('log');
-		timer(this.timer);
 	}
 
 
@@ -33,6 +32,7 @@ export default class GameManager {
 	 * Starts game logic 8)
 	 */
 	start() {
+		timer(this.timer);
 		this.select_region = (data) => {
 			const region = data.payload;
 			region.selected = true;
