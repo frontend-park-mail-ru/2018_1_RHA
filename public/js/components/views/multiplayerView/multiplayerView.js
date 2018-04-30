@@ -40,4 +40,10 @@ export default class MultiplayerSection extends Section {
 			this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
 		});
 	}
+
+	render() {
+		bus.on('ws-start', () => {
+			this.game.start();
+		});
+	}
 }

@@ -33,6 +33,9 @@ export default class Ws {
 	}
 
 	send(type, payload) {
-		this.ws.send(JSON.stringify({type, payload}));
+		this.ws.send(JSON.stringify({
+			type: type,
+			payload: payload
+		}));
 	}
 }

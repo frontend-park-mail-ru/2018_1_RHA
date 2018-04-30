@@ -1,13 +1,13 @@
 import bus from '../bus.js';
+import {attackAnimation} from './animation/attack/attackAnimation.js';
+import {animationOverlay} from './animation/animationOverlay.js';
+import {moveAnimation} from './animation/move/moveAnimation.js';
+import {renderScene} from './helperFuncs/renderScene.js';
+import {battleCalc} from './helperFuncs/battleCalc.js';
 import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 import {timer} from './helperFuncs/timer.js';
-import {battleCalc} from './helperFuncs/battleCalc.js';
-import {renderScene} from './helperFuncs/renderScene.js';
-import {animationOverlay} from './animation/animationOverlay.js';
-import {attackAnimation} from './animation/attack/attackAnimation.js';
-import {moveAnimation} from './animation/move/moveAnimation.js';
 
 
 /**
@@ -132,12 +132,12 @@ export default class GameManager {
 			renderScene(this.canvas, this.regions, this.img);
 		};
 
-		bus.on('select-region', this.select_region);
 		bus.on('change-selection', this.change_selection);
-		bus.on('attack', this.attack);
+		bus.on('select-region', this.select_region);
 		bus.on('change-move', this.change_move);
-		bus.on('illum-cur', this.illum_cur);
 		bus.on('move-units', this.move_units);
+		bus.on('illum-cur', this.illum_cur);
+		bus.on('attack', this.attack);
 	}
 
 
@@ -145,11 +145,11 @@ export default class GameManager {
 	 * destroys game logic ;)
 	 */
 	destroy() {
-		bus.off('select-region', this.select_region);
 		bus.off('change-selection', this.change_selection);
-		bus.off('attack', this.attack);
+		bus.off('select-region', this.select_region);
 		bus.off('change-move', this.change_move);
-		bus.off('illum-cur', this.illum_cur);
 		bus.off('move-units', this.move_units);
+		bus.off('illum-cur', this.illum_cur);
+		bus.off('attack', this.attack);
 	}
 }
