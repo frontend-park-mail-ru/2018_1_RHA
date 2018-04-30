@@ -1,3 +1,4 @@
+import {animate} from '../animate.js';
 
 export const attackAnimation = (x, y, x2, y2) => {
 	const wrapper = document.getElementsByClassName('wrapper')[0];
@@ -68,14 +69,3 @@ export const attackAnimation = (x, y, x2, y2) => {
 
 
 
-const animate = (draw, duration) => {
-	const start = performance.now();
-	requestAnimationFrame(function animate(time) {
-		let timePassed = time - start;
-		if (timePassed > duration) timePassed = duration;
-		draw(timePassed);
-		if (timePassed < duration) {
-			requestAnimationFrame(animate);
-		}
-	});
-};

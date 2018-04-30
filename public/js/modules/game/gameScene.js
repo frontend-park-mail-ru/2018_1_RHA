@@ -190,7 +190,7 @@ export default class GameScene {
 				//перемещаем юнитов между своими регионами
 				curRegion.gameData.units += activeRegion.gameData.units;
 				activeRegion.gameData.units = 0;
-				bus.emit('change-selection',
+				bus.emit('move-units',
 					{
 						active: this.activeRegion(),
 						new: curRegion

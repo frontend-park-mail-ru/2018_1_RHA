@@ -6,7 +6,8 @@ import {timer} from './helperFuncs/timer.js';
 import {battleCalc} from './helperFuncs/battleCalc.js';
 import {renderScene} from './helperFuncs/renderScene.js';
 import {animationOverlay} from './animation/animationOverlay.js';
-import {attackAnimation} from './animation/attackAnimation.js';
+import {attackAnimation} from './animation/attack/attackAnimation.js';
+import {moveAnimation} from './animation/move/moveAnimation.js';
 
 
 /**
@@ -32,14 +33,13 @@ export default class GameManager {
 	 * Starts game logic 8)
 	 */
 	start() {
-		bus.on('select-region', data => {
+		this.select_region = (data) => {
 			const region = data.payload;
 			region.selected = true;
 			region.area.setStroke('red');
 			renderScene(this.canvas, this.regions, this.img);
-		});
-
-		bus.on('change-selection', data => {
+		};
+		this.change_selection = (data) => {
 			const regions = data.payload;
 			regions.active.selected = false;
 			regions.new.selected = true;
@@ -47,9 +47,8 @@ export default class GameManager {
 			renderScene(this.canvas, this.regions, this.img);
 			regions.active.area.setStroke('white');
 			renderScene(this.canvas, this.regions, this.img);
-		});
-
-		bus.on('attack', data => {
+		};
+		this.attack = (data) => {
 			animationOverlay(window.innerWidth / 2, this.canvas.height * 0.92);
 
 			const regions = data.payload;
@@ -83,8 +82,8 @@ export default class GameManager {
 			}, 1000);
 
 			this.log.innerHTML = '<p>Player ' + from.name + ' attacked ' + to.name + '</p>';
-		});
-		bus.on('change-move', (dict) => {
+		};
+		this.change_move = (dict) => {
 			this.regions.forEach(region => {
 				region.area.setStroke('black');
 			});
@@ -113,14 +112,31 @@ export default class GameManager {
 			else {
 				this.controller.stop();
 			}
-		});
-		bus.on('illum-cur', data => {
+		};
+		this.illum_cur = (data) => {
 			const curPlayer = data.payload;
 			curPlayer.regions.forEach(region => {
 				region.area.setStroke('white');
 				renderScene(this.canvas, this.regions, this.img);
 			});
-		});
+		};
+		this.move_units = (data) => {
+			const regions = data.payload;
+			regions.active.selected = false;
+			regions.new.selected = true;
+			regions.new.area.setStroke('red');
+			renderScene(this.canvas, this.regions, this.img);
+			regions.active.area.setStroke('white');
+			moveAnimation(regions.new.area.xC, regions.new.area.yC);
+			renderScene(this.canvas, this.regions, this.img);
+		};
+
+		bus.on('select-region', this.select_region);
+		bus.on('change-selection', this.change_selection);
+		bus.on('attack', this.attack);
+		bus.on('change-move', this.change_move);
+		bus.on('illum-cur', this.illum_cur);
+		bus.on('move-units', this.move_units);
 	}
 
 
@@ -128,18 +144,11 @@ export default class GameManager {
 	 * destroys game logic ;)
 	 */
 	destroy() {
-		bus.off('select-region', data => {
-			const region = data.payload;
-			region.selected = true;
-			region.area.reDraw('red', 3);
-		});
-
-		bus.off('change-selection', data => {
-			const regions = data.payload;
-			regions.active.selected = false;
-			regions.new.selected = true;
-			regions.new.area.reDraw('red', 3);
-			regions.active.area.reDraw('black', 3);
-		});
+		bus.off('select-region', this.select_region);
+		bus.off('change-selection', this.change_selection);
+		bus.off('attack', this.attack);
+		bus.off('change-move', this.change_move);
+		bus.off('illum-cur', this.illum_cur);
+		bus.off('move-units', this.move_units);
 	}
 }
