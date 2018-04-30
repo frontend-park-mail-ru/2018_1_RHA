@@ -5,16 +5,17 @@ import {animate} from '../animate.js';
 export const moveAnimation = (x, y, x2, y2) => {
 
 	const wrapper = document.getElementsByClassName('wrapper')[0];
-
 	const wrapAnim = document.createElement('div');
-	wrapAnim.classList.add('overlay');
-
-	const canvas = document.createElement('canvas');
-	wrapAnim.appendChild(canvas);
-	canvas.setAttribute('id', 'overlay');
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	wrapAnim.classList.add('attack-animation');
 	wrapper.appendChild(wrapAnim);
+	wrapAnim.innerHTML = generateAttack(
+		{
+			'width': window.innerWidth * 0.7,
+			'height': window.innerWidth * 0.525 * 0.83,
+			'id': 'attack-canvas'
+		}
+	);
+	const canvas = document.getElementById('attack-canvas');
 	const ctx = canvas.getContext('2d');
 	const start = 4.72;
 	const cw = ctx.canvas.width;
@@ -48,7 +49,7 @@ export const moveAnimation = (x, y, x2, y2) => {
 		ctx.strokeStyle = gradientStroke;
 
 		ctx.beginPath();
-		ctx.arc(x, y, cw * 0.02, start, diff/10+start, false);
+		// ctx.arc(x, y, cw * 0.02, start, diff/10+start, false);
 		ctx.stroke();
 		// ctx.fill();
 	}, 1000);
