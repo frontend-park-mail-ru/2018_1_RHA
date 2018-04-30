@@ -24,11 +24,13 @@ export const attackAnimation = (x, y, x2, y2) => {
 	const endX = (x + radius * Math.sin(Math.PI / 4));
 	const endY = (y + radius * Math.sin(Math.PI / 4));
 	let diff;
+	let part;
 	const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
 	const gradientStroke = ctx.createLinearGradient(startX, startY, endX, endY);
 
 	animate(timePassed => {
 		diff = (timePassed).toFixed(2);
+		part = diff / 1000;
 		ctx.clearRect(0, 0, cw, ch);
 		ctx.lineWidth = 10;
 		gradient.addColorStop(0, '#030101');
@@ -51,12 +53,13 @@ export const attackAnimation = (x, y, x2, y2) => {
 		ctx.lineTo(diff/10 + startX, diff/10 + startY);
 		ctx.moveTo(secondX, startY);
 		ctx.lineTo(secondX - diff/10, diff/10 + startY);
-		ctx.stroke();
-		ctx.fill();
 
 		ctx.moveTo(x2, y2);
-		ctx.lineTo(x, y);
+		ctx.lineTo(x2 + (x - x2) * part, y2 + (y - y2) * part);
+
+
 		ctx.stroke();
+		ctx.fill();
 
 		// ctx.arc(600, 100, 50, start, diff/10+start, false);
 
