@@ -56,7 +56,7 @@ export default class GameManager {
 			const from = regions.from;
 			const to = regions.to;
 
-			attackAnimation(to.area.xC, to.area.yC);
+			attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
 
 
 			//true если первый, false если второй

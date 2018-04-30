@@ -1,5 +1,5 @@
 
-export const attackAnimation = (x, y) => {
+export const attackAnimation = (x, y, x2, y2) => {
 	const wrapper = document.getElementsByClassName('wrapper')[0];
 	const wrapAnim = document.createElement('div');
 	wrapAnim.classList.add('attack-animation');
@@ -52,6 +52,10 @@ export const attackAnimation = (x, y) => {
 		ctx.lineTo(secondX - diff/10, diff/10 + startY);
 		ctx.stroke();
 		ctx.fill();
+
+		ctx.moveTo(x2, y2);
+		ctx.lineTo(x, y);
+		ctx.stroke();
 
 		// ctx.arc(600, 100, 50, start, diff/10+start, false);
 
