@@ -127,7 +127,10 @@ export default class GameManager {
 			regions.new.area.setStroke('red');
 			renderScene(this.canvas, this.regions, this.img);
 			regions.active.area.setStroke('white');
-			moveAnimation(regions.new.area.xC, regions.new.area.yC);
+			moveAnimation(
+				regions.new.area.xC, regions.new.area.yC,
+				regions.active.area.xC, regions.active.area.yC
+			);
 			renderScene(this.canvas, this.regions, this.img);
 		};
 

@@ -38,10 +38,9 @@ export default class GameSection extends Section {
 			this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height);
 			bus.emit('load-img', {});
 		};
-
 		bus.on('load-img', () => {
-			this.coordinate = new Coordinate(this.game_canvas);
 			this.setWindowResizeHandler();
+			this.coordinate = new Coordinate(this.game_canvas);
 			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 			this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut, this.img);
 		});
@@ -57,7 +56,10 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-		this.game.start();
+
+		bus.on('load-img', () => {
+			this.game.start();
+		});
 		return this.wrapper;
 	}
 
