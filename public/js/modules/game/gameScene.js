@@ -124,7 +124,6 @@ export default class GameScene {
 	onListeners() {
 		if (this.mode === GameModes.singleplayer) {
 			bus.on('left-click', data => {
-				// attackAnimation();
 				const curPlayer = this.currentPlayer();
 				const coordinates = data.payload;
 				if (curPlayer.status === PLAYER_STATES.DISABLED) {
@@ -134,7 +133,6 @@ export default class GameScene {
 				if (!curRegion) {
 					return;
 				}
-				console.log(curRegion.neighbour);
 				switch (curPlayer.status) {
 					case PLAYER_STATES.DEFAULT:
 						if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
@@ -253,6 +251,79 @@ export default class GameScene {
 			bus.on('start-game', () => {
 				//подсветка текущего игрока
 				bus.emit('illum-cur', this.currentPlayer());
+			});
+		}
+		else {
+			bus.on('left-click', data => {
+				const coordinates = data.payload;
+				const curRegion = this.isRegion(coordinates.x, coordinates.y);
+
+				if (!curRegion) {
+					return;
+				}
+
+				if (!this.players.isTheRegionOfPlayer(curRegion)) {
+					return;
+				}
+
+				aboutRegion(curRegion, this.about_region);
+
+				switch (this.players.status) {
+					case PLAYER_STATES.DEFAULT:
+						this.players.status = PLAYER_STATES.READY;
+						bus.emit('select-region', curRegion);
+						break;
+
+					case PLAYER_STATES.READY:
+						if (curRegion === this.activeRegion()) {
+							this.players.status = PLAYER_STATES.DEFAULT;
+						}
+
+						bus.emit('change-selection',
+							{
+								active: this.activeRegion(),
+								new: curRegion
+							});
+						break;
+				}
+			});
+
+			bus.on('contextmenu', data => {
+				const activeRegion = this.activeRegion();
+				const coordinates = data.payload;
+				if (this.players.status === PLAYER_STATES.DISABLED || this.players.status !== PLAYER_STATES.READY) {
+					return;
+				}
+
+				const curRegion = this.isRegion(coordinates.x, coordinates.y);
+				if (!curRegion) {
+					return;
+				}
+
+				//если не является соседом, то выходим
+				if (this.isNeighbour(activeRegion, curRegion) === false) {
+					return;
+				}
+
+				new Ws().send('from-to', {
+					from: this.activeRegion(),
+					to: curRegion
+				});
+			});
+
+			bus.on('left-click-change', () => {
+				new Ws().send('change-move', {});
+				bus.on('ws-change-move-confirm', (data) => {
+					//TODO получить следующего игрока
+					console.log(data);
+					bus.emit('change-move', {});
+				});
+			});
+
+			bus.on('start-game', (data) => {
+				//TODO получить текущего игрока и заэмитить его
+				console.log(data);
+				bus.emit('illum-cur',{});
 			});
 		}
 	}

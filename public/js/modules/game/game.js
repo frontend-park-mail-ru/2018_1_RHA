@@ -6,6 +6,7 @@ import Controller from './controller.js';
 import GameScene from './gameScene.js';
 import bus from '../bus.js';
 import {GameModes} from './config/modes.js';
+import Ws from '../ws.js';
 
 /**
  * Class representing game
@@ -51,9 +52,18 @@ export default class Game {
 			this.regions.forEach(temp => {
 				temp.setGlobalRegions(this.regions);
 			});
+
+			this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
+			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
+
+		} else {
+			bus.on('ws-set-players', (data) => {
+				//TODO установить игроков
+				this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
+				this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
+				Ws.send('set-players-confirm', true);
+			});
 		}
-		this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
-		this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 	}
 
 	/**
