@@ -1,10 +1,9 @@
-/* eslint-disable indent,no-case-declarations */
+/* eslint-disable indent,no-case-declarations,no-console */
 import inHex from './math/inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
 import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 import Ws from '../ws.js';
-// import {attackAnimation} from './animation/attackAnimation.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
