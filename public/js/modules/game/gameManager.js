@@ -18,7 +18,8 @@ export default class GameManager {
 	 * Creates logic =)
 	 * @param controller
 	 */
-	constructor(controller, canvas, regions, img) {
+	constructor(controller, canvas, regions, img, mode) {
+		this.mode = mode;
 		this.controller = controller;
 		this.regions = regions;
 		this.canvas = canvas;
