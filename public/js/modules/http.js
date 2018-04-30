@@ -81,9 +81,9 @@ class HttpService {
 			mode: 'cors'
 		};
 		//TODO:: на время
-		if (url === 'users/chava') {
-			return fetch('http://localhost:5000/users/chava', req);
-		}
+		// if (url === 'users/chava') {
+		// 	return fetch('http://localhost:5000/users/chava', req);
+		// }
 		return fetch(`${config.serverUrl}${url}`, req);
 	}
 }

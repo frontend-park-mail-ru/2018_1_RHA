@@ -10,7 +10,8 @@ export default class Controller {
 	 * @param game_canvas
 	 * @param change_canvas
 	 */
-	constructor(game_canvas, changeBut) {
+	constructor(game_canvas, changeBut, mode) {
+		this.mode = mode;
 		this.game_canvas = game_canvas;
 		this.changeBut = changeBut;
 		// this.change_canvas = change_canvas;
@@ -45,6 +46,7 @@ export default class Controller {
 	 * Turns controls on
 	 */
 	start() {
+		debugger;
 		this.game_canvas.addEventListener('click', this.onclick);
 
 		this.game_canvas.addEventListener('mousemove', this.mousemove);

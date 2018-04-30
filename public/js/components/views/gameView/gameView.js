@@ -3,6 +3,7 @@ import Section from '../baseView.js';
 import Game from '../../../modules/game/game.js';
 import bus from '../../../modules/bus.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
+import {GameModes} from '../../../modules/game/config/modes.js';
 
 
 /**
@@ -18,7 +19,6 @@ export default class GameSection extends Section {
 		this.parent = document.getElementById('game');
 		this.wrapper = document.createElement('div');
 		this.wrapper.classList.add('wrapper');
-		console.log(screen.width, ' ', document.documentElement.clientWidth);
 
 		this.wrapper.innerHTML += generateCanvas(
 			{
@@ -42,7 +42,7 @@ export default class GameSection extends Section {
 			this.setWindowResizeHandler();
 			this.coordinate = new Coordinate(this.game_canvas);
 			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-			this.game = new Game({}, this.game_canvas, this.coordinate, this.changeBut, this.img);
+			this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
 		});
 
 		bus.on('gameover', () => {
@@ -56,7 +56,6 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-
 		bus.on('load-img', () => {
 			this.game.start();
 		});
