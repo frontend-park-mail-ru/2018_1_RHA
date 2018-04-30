@@ -28,8 +28,8 @@ export default class Coordinate {
 			{
 				name: 'B',
 
-				x: (321 + this.lengthSide * 2) * this.xSize,
-				y: (345 - this.lengthSide * 0.86) * this.ySize,
+				x: (325 + this.lengthSide * 2) * this.xSize,
+				y: (339 - this.lengthSide * 0.86) * this.ySize,
 
 				allowed: true,
 				neighbour: ['A', 'C', 'D', 'E']
@@ -37,21 +37,21 @@ export default class Coordinate {
 			{
 				name: 'C',
 				x: 365 * this.xSize,
-				y: (345 - this.lengthSide * 0.86 * 2) * this.ySize,
+				y: (339 - this.lengthSide * 0.86 * 2) * this.ySize,
 				allowed: true,
 				neighbour: ['A', 'B']
 			},
 			{
 				name: 'D',
-				x: (321 + this.lengthSide * 2) * this.xSize,
+				x: (325 + this.lengthSide * 2) * this.xSize,
 				y: (345 + this.lengthSide * 0.86) * this.ySize,
 				allowed: true,
 				neighbour: ['A', 'B', 'E']
 			},
 			{
 				name: 'E',
-				x: ((321 + this.lengthSide * 2) + 136) * this.xSize,
-				y: 345 * this.ySize,
+				x: ((329 + this.lengthSide * 2) + 136) * this.xSize,
+				y: 343 * this.ySize,
 				allowed: true,
 				neighbour: ['B', 'D']
 			}

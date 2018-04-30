@@ -17,7 +17,7 @@ export default class Controller {
 		// this.change_canvas.getContext('2d').transform(1,0,0,1, screen.width*0.7, 0);
 
 		this.onclick = (event) => {
-			// console.log(event.offsetX, ' ', event.offsetY);
+			console.log(event.offsetX, ' ', event.offsetY);
 			// console.log(event.offsetX * 1000 / this.game_canvas.width);
 			bus.emit('left-click', {x: event.offsetX, y: event.offsetY});
 		};

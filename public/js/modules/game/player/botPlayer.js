@@ -44,7 +44,7 @@ export default class BotPlayer extends Player {
 			});
 			setTimeout(() => {
 				bus.emit('bot-change-move', 'bot');
-			}, 2500);
+			}, 1000);
 		});
 	}
 }

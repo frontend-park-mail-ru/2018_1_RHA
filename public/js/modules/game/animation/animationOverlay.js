@@ -1,6 +1,5 @@
 
 export const animationOverlay = (x , y) => {
-	console.log(x, '  ',y, ' a ');
 
 	const wrapper = document.getElementsByClassName('wrapper')[0];
 
