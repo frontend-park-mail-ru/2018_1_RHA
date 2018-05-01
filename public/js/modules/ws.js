@@ -10,8 +10,7 @@ export default class Ws {
 		this.ws = new WebSocket(address);
 		this.ws.onopen = (event) => {
 			console.log(`WebSocket on address ${address} opened`);
-			console.dir(this.ws);
-
+			bus.emit('connected', {});
 			this.ws.onmessage = this.handleMessage.bind(this);
 
 			this.ws.onclose = () => {
