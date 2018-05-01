@@ -57,11 +57,15 @@ export default class Game {
 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 
 		} else {
-			bus.on('ws-set-players', (data) => {
-				//TODO установить игроков
-				this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
-				this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
-				Ws.send('set-players-confirm', true);
+			this.Ws = new Ws();
+			bus.on('connected', () => {
+				this.Ws.send('JoinGame', {});
+				bus.on('ws-set-players', (data) => {
+					//TODO установить игроков
+					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
+					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
+					Ws.send('set-players-confirm', true);
+				});
 			});
 		}
 	}

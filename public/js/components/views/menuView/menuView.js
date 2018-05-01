@@ -29,7 +29,7 @@ export default class MenuSection extends Section {
 			},
 			{
 				title: 'multiplayer',
-				href: '#'
+				href: '/multiplayer'
 			},
 			{
 				title: 'profile',

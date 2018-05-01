@@ -10,8 +10,7 @@ export default class Ws {
 		this.ws = new WebSocket(address);
 		this.ws.onopen = (event) => {
 			console.log(`WebSocket on address ${address} opened`);
-			console.dir(this.ws);
-
+			bus.emit('connected', {});
 			this.ws.onmessage = this.handleMessage.bind(this);
 
 			this.ws.onclose = () => {
@@ -23,7 +22,7 @@ export default class Ws {
 
 	handleMessage(event) {
 		const messageText = event.data;
-
+		console.log('got message ', messageText);
 		try {
 			const message = JSON.parse(messageText);
 			bus.emit(message.type, message.payload);
@@ -33,8 +32,9 @@ export default class Ws {
 	}
 
 	send(type, payload) {
+		console.log('sent message: type - ', type, ' data - ', payload);
 		this.ws.send(JSON.stringify({
-			type: type,
+			class: type,
 			payload: payload
 		}));
 	}
