@@ -58,7 +58,6 @@ export const moveAnimation = (x, y, x2, y2) => {
 		if ( curLength <= 0.76 * length) {
 			constX = curX;
 			constY = curY;
-			console.log(constX, '  ', constY);
 		}
 		if (curLength >= 0.75 * length) {
 			arrowX = 0.2*(y - y2) + constX;
