@@ -59,7 +59,7 @@ export default class Game {
 		} else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.Ws.send('join', {});
+				this.Ws.send('JoinGame', {});
 				bus.on('ws-set-players', (data) => {
 					//TODO установить игроков
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
