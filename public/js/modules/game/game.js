@@ -21,9 +21,9 @@ export default class Game {
 	constructor(mode, game_canvas, coordinate, changeBut, img) {
 		//let GameConstructor = null;
 
-		if (Game.__instance) {
-			return Game.__instance;
-		}
+		// if (Game.__instance) {
+		// 	return Game.__instance;
+		// }
 		this.listeners = {};
 		Game.__instance = this;
 
@@ -32,7 +32,9 @@ export default class Game {
 		this.coordinate = coordinate;
 		this.game_ctx = this.game_canvas.getContext('2d');
 		this.img = img;
+		this.scene = null;
 		this.controller = new Controller(this.game_canvas, changeBut, this.mode);
+		console.log(this.mode);
 		if (this.mode === GameModes.singleplayer) {
 			this.players = [
 				new MainPlayer('A', 'rgba(0,255,127,0.4)', this.game_canvas, this.img),
@@ -52,11 +54,11 @@ export default class Game {
 			this.regions.forEach(temp => {
 				temp.setGlobalRegions(this.regions);
 			});
-
 			this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
-			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 
+			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 		} else {
+
 			this.Ws = new Ws();
 			bus.on('connected', () => {
 				this.Ws.send('JoinGame$Request', {});

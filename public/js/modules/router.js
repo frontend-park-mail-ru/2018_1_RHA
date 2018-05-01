@@ -46,7 +46,7 @@ export default class Router {
 		console.log('open');
 		const view = this.map[path];
 		let rootForSwitch;
-		if (path === '/singleplayer' ) {
+		if (path === '/singleplayer' || path === '/multiplayer') {
 			console.log('if');
 			rootForSwitch =  this.gameRoot;
 			this.startRoot.hidden = true;

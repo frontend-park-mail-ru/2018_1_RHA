@@ -40,27 +40,28 @@ export default class GameSection extends Section {
 		};
 		bus.on('load-img', () => {
 			this.setWindowResizeHandler();
-			this.coordinate = new Coordinate(this.game_canvas);
-			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-			this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-		});
 
+		});
 		bus.on('gameover', () => {
 			alert('gameover');
 			this.game.destroy();
 			history.go('/singleplayer');
 		});
-	}
 
+	}
 	/**
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
 		bus.on('load-img', () => {
+			this.coordinate = new Coordinate(this.game_canvas);
+			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+			this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
 			this.game.start();
 		});
 		return this.wrapper;
 	}
+
 
 	/**
 	 * @return {boolean}

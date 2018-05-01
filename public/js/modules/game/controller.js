@@ -46,7 +46,6 @@ export default class Controller {
 	 * Turns controls on
 	 */
 	start() {
-		debugger;
 		this.game_canvas.addEventListener('click', this.onclick);
 
 		this.game_canvas.addEventListener('mousemove', this.mousemove);
