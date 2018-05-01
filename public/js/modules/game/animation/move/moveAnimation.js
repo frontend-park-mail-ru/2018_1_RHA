@@ -19,20 +19,24 @@ export const moveAnimation = (x, y, x2, y2) => {
 	const ctx = canvas.getContext('2d');
 	const cw = ctx.canvas.width;
 	const ch = ctx.canvas.height;
-	const radius = cw * 0.03;
-	const startX = (x - radius * Math.sin(Math.PI / 4));
-	console.log(x, '  ', startX);
-	const startY = (y - radius * Math.sin(Math.PI / 4));
-	console.log(y, '    ', startY);
-	const endX = (x + radius * Math.sin(Math.PI / 4));
-	const endY = (y + radius * Math.sin(Math.PI / 4));
+
+	const length = (Math.sqrt((x-x2)*(x-x2) + (y-y2)*(y-y2)));
+	let curLength;
+	let curX;
+	let curY;
+	let arrowX;
+	let arrowY;
+	let arrowX2;
+	let arrowY2;
+	let constX;
+	let constY;
 	let diff;
 	let part;
-	const gradient = ctx.createLinearGradient(startX, startY, endX, endY);
-	const gradientStroke = ctx.createLinearGradient(startX, startY, endX, endY);
+	const gradient = ctx.createLinearGradient(x2, y2, x, y);
+	const gradientStroke = ctx.createLinearGradient(x2, y2, x, y);
 
 	animate(timePassed => {
-		diff = (timePassed).toFixed(2);
+		diff = (timePassed).toFixed(4);
 		part = diff / 1000;
 		ctx.clearRect(0, 0, cw, ch);
 		ctx.lineWidth = 10;
@@ -47,13 +51,29 @@ export const moveAnimation = (x, y, x2, y2) => {
 
 		ctx.fillStyle = gradient;
 		ctx.strokeStyle = gradientStroke;
-		const secondX = 2 * radius * Math.sin(Math.PI / 4) + startX;
-		if ( diff/10 + startX >= secondX) {
-			diff = 100;
+
+		curX = x2 + (x - x2) * part;
+		curY = y2 + (y - y2) * part;
+		curLength = Math.sqrt((curX - x2) * (curX - x2) + (curY - y2) * (curY - y2));
+		if ( curLength <= 0.76 * length) {
+			constX = curX;
+			constY = curY;
+			console.log(constX, '  ', constY);
+		}
+		if (curLength >= 0.75 * length) {
+			arrowX = 0.2*(y - y2) + constX;
+			arrowY = 0.2*(x2 - x) + constY;
+			arrowX2 = -0.2*(y - y2) + constX;
+			arrowY2 = -0.2*(x2 - x) + constY;
+			ctx.moveTo(arrowX, arrowY);
+			ctx.lineTo(arrowX  + (x - arrowX) * part, arrowY  + (y - arrowY) * part);
+			ctx.moveTo(arrowX2, arrowY2);
+			ctx.lineTo(arrowX2 + (x - arrowX2) * part, arrowY2  + (y  - arrowY2) * part);
 		}
 
 		ctx.moveTo(x2, y2);
-		ctx.lineTo(x2 + (x - x2) * part, y2 + (y - y2) * part);
+		ctx.lineTo(curX, curY);
+
 
 
 		ctx.stroke();
