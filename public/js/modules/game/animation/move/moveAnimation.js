@@ -1,7 +1,4 @@
 import {animate} from '../animate.js';
-//TODO вместо крестика должен рисоваться кружок
-//TODO неправильно отсчитываются координаты
-//TODO нарисовать стрелочку
 export const moveAnimation = (x, y, x2, y2) => {
 
 	const wrapper = document.getElementsByClassName('wrapper')[0];
