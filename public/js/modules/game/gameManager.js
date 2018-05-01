@@ -38,6 +38,7 @@ export default class GameManager {
 			const region = data.payload;
 			region.selected = true;
 			region.area.setStroke('red');
+			//todo:: попробовать запускать последовательно
 			renderScene(this.canvas, this.regions, this.img);
 		};
 		this.change_selection = (data) => {
