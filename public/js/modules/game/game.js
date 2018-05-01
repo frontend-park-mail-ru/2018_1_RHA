@@ -59,8 +59,8 @@ export default class Game {
 		} else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.Ws.send('JoinGame', {});
-				bus.on('ws-set-players', (data) => {
+				this.Ws.send('JoinGame$Request', {});
+				bus.on('ws-set-players', (data) => { //initgamerequest
 					//TODO установить игроков
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
@@ -91,4 +91,13 @@ export default class Game {
 }
 
 //todo ИНТЕРФЕЙС БЛ*ТЬ
-//todo при выделении границы говнятся, потому что не стираются старые
+
+/*
+* JoinGame$Request
+* InitGame$Request
+* ClientTurn$Request
+* lovim
+* InitGame$Request
+* FinishGame
+* ServerTurn
+ */

@@ -8,7 +8,6 @@ import {GameModes} from '../../../modules/game/config/modes.js';
 export default class MultiplayerSection extends Section {
 	constructor() {
 		super();
-
 		this.parent = document.getElementById('game');
 		this.wrapper = document.createElement('div');
 		this.wrapper.classList.add('wrapper');
