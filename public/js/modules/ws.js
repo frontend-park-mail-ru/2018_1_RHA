@@ -23,7 +23,7 @@ export default class Ws {
 
 	handleMessage(event) {
 		const messageText = event.data;
-
+		console.log('got message ', messageText);
 		try {
 			const message = JSON.parse(messageText);
 			bus.emit(message.type, message.payload);
@@ -33,6 +33,7 @@ export default class Ws {
 	}
 
 	send(type, payload) {
+		console.log('sent message: type - ', type, ' data - ', payload);
 		this.ws.send(JSON.stringify({
 			type: type,
 			payload: payload
