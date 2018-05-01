@@ -23,7 +23,7 @@ const globalRoot = document.getElementById('body');
 User.auth()
 	.then( () => {
 		new Router(root, globalRoot)
-			.add('/multiplayer', MultiplayerSection)
+			// .add('/multiplayer', MultiplayerSection)
 			.add('/singleplayer', GameSection)
 			.add('/register', RegisterSection)
 			.add('/profile', ProfileSection)
