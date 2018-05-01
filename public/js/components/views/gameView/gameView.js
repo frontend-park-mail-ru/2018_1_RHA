@@ -27,7 +27,6 @@ export default class GameSection extends Section {
 				'id': 'game-canvas'
 			}
 		);
-		// this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
@@ -75,10 +74,20 @@ export default class GameSection extends Section {
 	}
 
 	setWindowResizeHandler() {
+		// let beforeResize = {
+		// 	width: this.game_canvas.width,
+		// 	height: this.game_canvas.height
+		// };
 		window.addEventListener('resize', () => {
 			[this.game_canvas.width, this.game_canvas.height] = this.computeCanvasSize();
 			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
+			// // if (this.game_canvas.height < beforeResize.height) {
+			// 	this.game_canvas.style.marginTop = String(beforeResize.height - this.game_canvas.height) + 'px';
+			// // }
+			// beforeResize.height = this.game_canvas.height;
+			// beforeResize.width = this.game_canvas.width;
+
 			bus.emit('resize-for-draw', {});
 		});
 		return this;

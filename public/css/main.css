@@ -36,7 +36,8 @@ body {
     height: 100%;
     width: 100%;
     /*background-color: magenta;*/
-    /*background-image: url("/map.png");*/
+    background-image: url("/map.png");
+    /*filter: blur(5px);*/
     /*background-repeat: no-repeat;*/
 }
 .start {
@@ -132,7 +133,7 @@ p {
 }
 
 #game-canvas {
-    border:  solid;
+    /*border:  solid;*/
 }
 
 .overlay {
