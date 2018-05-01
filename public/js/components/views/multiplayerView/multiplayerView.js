@@ -21,16 +21,12 @@ export default class MultiplayerSection extends Section {
 			}
 		);
 
-		this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
+		// this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
 		this.img = new Image();
 		this.img.src = '/map.png';
-
-		bus.on('load-img', () => {
-			this.setWindowResizeHandler();
-		});
 	}
 
 	render() {
@@ -40,11 +36,15 @@ export default class MultiplayerSection extends Section {
 				this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height);
 				bus.emit('load-img', {});
 			};
-			this.coordinate = new Coordinate(this.game_canvas);
-			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-			this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
 
-			this.game.start();
+			bus.on('load-img', () => {
+				this.setWindowResizeHandler();
+				this.coordinate = new Coordinate(this.game_canvas);
+				this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+				this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
+				this.game.start();
+			});
+
 		});
 		return this.wrapper;
 	}
@@ -68,3 +68,6 @@ export default class MultiplayerSection extends Section {
 		return this;
 	}
 }
+
+
+
