@@ -61,8 +61,11 @@ export default class Game {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
 				this.Ws.send('JoinGame$Request', {});
-				bus.on('initGame$Request', (data) => {
+				bus.on('InitGame$Request', (data) => {
 					//TODO установить игроков
+					const initData = data.payload;
+					console.log(initData);
+
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 					this.start();

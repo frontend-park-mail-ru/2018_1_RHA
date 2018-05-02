@@ -7,7 +7,12 @@ export default class WebPlayer extends Player {
 	/**
 	 * creates web player
 	 */
-	constructor() {
-		super();
+	constructor(name, color, canvas,  img) {
+		super(name, color, canvas,  img);
+		this.listeners();
+	}
+
+	listeners() {
+
 	}
 }
