@@ -27,9 +27,9 @@ User.auth()
 			.add('/register', RegisterSection)
 			.add('/profile', ProfileSection)
 			.add('/rating', RatingSection)
-			.add('/login', LoginSection)
-			.add('/singleplayer', GameSection)
 			.add('/multiplayer', MultiplayerSection)
+			.add('/singleplayer', GameSection)
+			.add('/login', LoginSection)
 			.start();
 	})
 	.catch();
