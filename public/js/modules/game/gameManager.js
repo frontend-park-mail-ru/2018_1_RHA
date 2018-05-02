@@ -45,10 +45,24 @@ export default class GameManager {
 			const regions = data.payload;
 			regions.active.selected = false;
 			regions.new.selected = true;
-			regions.new.area.setStroke('red');
-			renderScene(this.canvas, this.regions, this.img);
-			regions.active.area.setStroke('white');
-			renderScene(this.canvas, this.regions, this.img);
+			let setNewColor = new Promise((resolve, reject) => {
+				resolve(regions.new.area.setStroke('red'));
+			});
+			let setActiveColor = new Promise((resolve, reject) => {
+				resolve(regions.active.area.setStroke('white'));
+			});
+			setNewColor
+				.then(
+					() => {
+						renderScene(this.canvas, this.regions, this.img);
+					}
+				);
+			setActiveColor
+				.then(
+					() => {
+						renderScene(this.canvas, this.regions, this.img);
+					}
+				);
 		};
 		this.attack = (data) => {
 			animationOverlay(window.innerWidth / 2, this.canvas.height * 0.92);

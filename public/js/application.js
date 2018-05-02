@@ -23,13 +23,13 @@ const globalRoot = document.getElementById('body');
 User.auth()
 	.then( () => {
 		new Router(root, globalRoot)
-			// .add('/multiplayer', MultiplayerSection)
-			.add('/singleplayer', GameSection)
+			.add('/', MenuSection)
 			.add('/register', RegisterSection)
 			.add('/profile', ProfileSection)
 			.add('/rating', RatingSection)
 			.add('/login', LoginSection)
-			.add('/', MenuSection)
+			.add('/singleplayer', GameSection)
+			.add('/multiplayer', MultiplayerSection)
 			.start();
 	})
 	.catch();
