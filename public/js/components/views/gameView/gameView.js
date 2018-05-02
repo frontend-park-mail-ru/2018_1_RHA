@@ -37,7 +37,7 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-		debugger;
+
 		this.img = new Image();
 		this.img.src = '/map.png';
 		this.load = new Promise(resolve => {

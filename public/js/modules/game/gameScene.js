@@ -112,6 +112,7 @@ export default class GameScene {
 	 * Sets regions for playes
 	 */
 	setPlayersRegions() {
+		//todo шняга полная, надо переделать по-хорошему
 		for (let i = 0; i < this.players.length; i++ ) {
 			this.players[i].addRegion(this.regions[i]);
 		}

@@ -29,7 +29,7 @@ export default class MultiplayerSection extends Section {
 	}
 
 	render() {
-		debugger;
+
 		this.img = new Image();
 		this.img.src = '/map.png';
 		this.load = new Promise((resolve, reject) => {

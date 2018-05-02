@@ -57,7 +57,7 @@ export default class Game {
 			this.regions.forEach(temp => {
 				temp.setGlobalRegions(this.regions);
 			});
-			debugger;
+
 			this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 
 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
@@ -105,7 +105,7 @@ export default class Game {
 
 						}
 					});
-					debugger;
+
 					this.players.forEach(player => {
 						player.setAllRegtions(this.regions);
 					});
