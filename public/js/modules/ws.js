@@ -26,7 +26,7 @@ export default class Ws {
 		console.log('got message ', messageText);
 		try {
 			const message = JSON.parse(messageText);
-			bus.emit(message.type, message.payload);
+			bus.emit(message.class, message);
 		} catch (err) {
 			console.error('smth went wront in handleMessage: ', err);
 		}
@@ -40,3 +40,48 @@ export default class Ws {
 		}));
 	}
 }
+
+
+// {
+// 	'class': 'InitGame$Request',
+// 	'first':'aaa',
+// 	'second':'bbb',
+// 	'map':
+// 	[
+// 		{
+// 			'id': 29,
+// 			'owner': 1,
+// 			'units': 2000,
+// 			'neibours': [2, 3],
+// 			'type': 1
+// 		},
+// 		{
+// 		'id': 30,
+// 		'owner': 0,
+// 		'units': 1000,
+// 		'neibours': [1, 3, 4, 5],
+// 		'type': 1
+// 		},
+// 		{
+// 		'id': 31,
+// 			'owner': 0,
+// 			'units': 1000,
+// 			'neibours': [2, 1, 5],
+// 			'type': 1
+// 		},
+// 		{
+// 		'id': 32,
+// 		'owner': 0,
+// 		'units': 1000,
+// 		'neibours': [2, 5],
+// 		'type': 1
+// 		},
+// 		{
+// 			'id': 33,
+// 			'owner': 2,
+// 			'units': 2000,
+// 			'neibours': [2, 3, 4],
+// 			'type': 1
+// 		}
+// 		];
+// }

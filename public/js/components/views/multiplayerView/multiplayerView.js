@@ -42,7 +42,7 @@ export default class MultiplayerSection extends Section {
 					this.coordinate = new Coordinate(this.game_canvas);
 					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 					this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-					this.game.start();
+					// this.game.start();
 
 				}
 			);
