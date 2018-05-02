@@ -58,11 +58,10 @@ export default class Game {
 
 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 		} else {
-
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.Ws.send('JoinGame', {});
-				bus.on('ws-set-players', (data) => {
+				this.Ws.send('JoinGame$Request', {});
+				bus.on('initGame$Request', (data) => {
 					//TODO установить игроков
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);

@@ -6,14 +6,15 @@ export default class Ws {
 		if (Ws.__instance) {
 			return Ws.__instance;
 		}
-		const address = 'ws://localhost:5000/multiplayer/rand';
+		const address = 'ws://rha-backend.herokuapp.com/multiplayer/rand';
 		this.ws = new WebSocket(address);
 		this.ws.onopen = (event) => {
 			console.log(`WebSocket on address ${address} opened`);
 			bus.emit('connected', {});
 			this.ws.onmessage = this.handleMessage.bind(this);
 
-			this.ws.onclose = () => {
+			this.ws.onclose = (e) => {
+				console.log(e);
 				console.log('WebSocket closed');
 			};
 		};
