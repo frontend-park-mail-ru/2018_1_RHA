@@ -7,6 +7,8 @@ import GameScene from './gameScene.js';
 import bus from '../bus.js';
 import {GameModes} from './config/modes.js';
 import Ws from '../ws.js';
+import User from '../userModel.js';
+import WebPlayer from './player/webPlayer.js';
 
 /**
  * Class representing game
@@ -44,6 +46,7 @@ export default class Game {
 				new BotPlayer('E', 'rgba(255,165,0,0.4)', this.game_canvas, this.img)
 			];
 			this.regions = [];
+
 			this.players.forEach( (player, i, arr) => {
 				this.regions.push(new Region(player.name, player,
 					this.game_canvas, this.coordinate, (arr.length - i) * 1000));
@@ -54,6 +57,7 @@ export default class Game {
 			this.regions.forEach(temp => {
 				temp.setGlobalRegions(this.regions);
 			});
+			debugger;
 			this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 
 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
@@ -64,12 +68,55 @@ export default class Game {
 				bus.on('InitGame$Request', (data) => {
 					//TODO установить игроков
 					const initData = data.payload;
+					const username = User.getCurUser().username;
+					let indexPlayer;
+					initData.players.forEach((player, index) => {
+						if (player === username) {
+							indexPlayer = index + 1;
+						}
+					});
+					this.players = [];
+					this.regions = [];
+					this.botPlayer = new BotPlayer('bot', 'rgba(0,0,205,0.4)', this.game_canvas, this.img);
+					initData.map.forEach((obj,i) => {
+						if (obj.owner === indexPlayer) {
+							const player = new MainPlayer(username, 'rgba(0,255,127,0.4)', this.game_canvas, this.img);
+							this.players.push(player);
+							const region = new Region(username, player, this.game_canvas, this.coordinate, obj.units);
+							this.regions.push(region);
+							// player.addRegion(region);
+						}
+						else if (obj.owner === 0) {
+							const region = new Region(String(i), this.botPlayer, this.game_canvas, this.coordinate, 0);
+							this.regions.push(region);
+							// this.botPlayer.addRegion(region);
+						}
+						else {
+							initData.players.forEach((player, i) => {
+								if (obj.owner === i + 1) {
+									console.log('in else');
+									this.webPlayer = new WebPlayer(player, 'rgba(255,69,0,0.4)', this.game_canvas, this.img);
+									this.players.push(this.webPlayer);
+									const region = new Region(player, this.webPlayer, this.game_canvas, this.coordinate, obj.units);
+									this.regions.push(region);
+									// this.webPlayer.addRegion(region);
+								}
+							});
+
+						}
+					});
+					debugger;
+					this.players.forEach(player => {
+						player.setAllRegtions(this.regions);
+					});
+
+					console.log(username);
 					console.log(initData);
 
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 					this.start();
-					Ws.send('set-players-confirm', true);
+					// Ws.send('set-players-confirm', true);
 				});
 			});
 		}

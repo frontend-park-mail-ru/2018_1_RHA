@@ -11,6 +11,7 @@ export default class User {
      */
 	constructor(data) {
 		this.email = data.email;
+		this.username = data.username;
 		this.rating = data.rating;
 	}
 

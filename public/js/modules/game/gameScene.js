@@ -25,6 +25,7 @@ export default class GameScene {
 		this.players = players;
 		this.regions = regions;
 		this.about_region = document.getElementById('about-region');
+		console.log(this.players);
 		this.setPlayersRegions();
 		if (mode === GameModes.multiplayer) {
 			this.ws = new Ws();
@@ -312,7 +313,7 @@ export default class GameScene {
 			});
 
 			bus.on('left-click-change', () => {
-				new Ws().send('change-move', {});
+				// new Ws().send('change-move', {});
 				bus.on('ws-change-move-confirm', (data) => {
 					//TODO получить следующего игрока
 					console.log(data);
@@ -323,7 +324,7 @@ export default class GameScene {
 			bus.on('start-game', (data) => {
 				//TODO получить текущего игрока и заэмитить его
 				console.log(data);
-				bus.emit('illum-cur',{});
+				// bus.emit('illum-cur',{});
 			});
 		}
 	}
