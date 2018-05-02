@@ -30,27 +30,37 @@ export default class GameSection extends Section {
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
-		this.img = new Image();
-		this.img.src = '/map.png';
+
 	}
 	/**
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-		this.img.onload = () => {
-			//let pattern = this.ctx.createPattern(img, 'repeat');
-			this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height);
-
-			bus.emit('load-img', {});
-		};
-
-		bus.on('load-img', () => {
-			this.setWindowResizeHandler();
-			this.coordinate = new Coordinate(this.game_canvas);
-			this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-			this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-			this.game.start();
+		this.img = new Image();
+		this.img.src = '/map.png';
+		this.load = new Promise(resolve => {
+			this.img.onload = () => {
+				resolve(this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height));
+			};
 		});
+		// this.load = new Promise(resolve => {
+		// 	resolve(
+		// 		this.img.onload = () => {
+		// 			this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height);
+		// 		}
+		// 	);
+		// });
+		this.load
+			.then(
+				() => {
+					this.setWindowResizeHandler();
+					this.coordinate = new Coordinate(this.game_canvas);
+					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+					this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
+					this.game.start();
+				}
+			);
+
 		bus.on('gameover', () => {
 			alert('gameover');
 			this.game.destroy();
@@ -74,17 +84,23 @@ export default class GameSection extends Section {
 	}
 
 	setWindowResizeHandler() {
-		// let beforeResize = {
-		// 	width: this.game_canvas.width,
-		// 	height: this.game_canvas.height
-		// };
 		window.addEventListener('resize', () => {
+			let beforeResize = {
+				width: this.game_canvas.width,
+				height: this.game_canvas.height
+			};
 			[this.game_canvas.width, this.game_canvas.height] = this.computeCanvasSize();
 			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
-			// // if (this.game_canvas.height < beforeResize.height) {
-			// 	this.game_canvas.style.marginTop = String(beforeResize.height - this.game_canvas.height) + 'px';
-			// // }
+			let result = window.getComputedStyle(this.game_canvas).marginTop.match(/^[0-9]+/);
+			let mTop = Number(result);
+
+			if (this.game_canvas.height < beforeResize.height) {
+				this.game_canvas.style.marginTop = String(mTop + beforeResize.height - this.game_canvas.height) + 'px';
+			}
+			else {
+				this.game_canvas.style.marginTop = String(mTop + beforeResize.height - this.game_canvas.height) + 'px';
+			}
 			// beforeResize.height = this.game_canvas.height;
 			// beforeResize.width = this.game_canvas.width;
 
