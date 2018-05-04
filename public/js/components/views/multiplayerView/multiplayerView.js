@@ -24,27 +24,27 @@ export default class MultiplayerSection extends Section {
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
-		this.img = new Image();
-		this.img.src = '/map.png';
 	}
 
 	render() {
-		bus.on('ws-start', () => {
+		this.img = new Image();
+		this.img.src = '/map.png';
+		this.load = new Promise(resolve => {
 			this.img.onload = () => {
-				//let pattern = this.ctx.createPattern(img, 'repeat');
-				this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height);
-				bus.emit('load-img', {});
+				resolve(this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height));
 			};
-
-			bus.on('load-img', () => {
-				this.setWindowResizeHandler();
-				this.coordinate = new Coordinate(this.game_canvas);
-				this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-				this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-				this.game.start();
-			});
-
 		});
+		this.load
+			.then(
+				() => {
+					this.setWindowResizeHandler();
+					this.coordinate = new Coordinate(this.game_canvas);
+					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+					this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
+					// this.game.start();
+
+				}
+			);
 		return this.wrapper;
 	}
 

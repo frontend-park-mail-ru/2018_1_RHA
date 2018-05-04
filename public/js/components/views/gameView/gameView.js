@@ -44,13 +44,6 @@ export default class GameSection extends Section {
 				resolve(this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height));
 			};
 		});
-		// this.load = new Promise(resolve => {
-		// 	resolve(
-		// 		this.img.onload = () => {
-		// 			this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height);
-		// 		}
-		// 	);
-		// });
 		this.load
 			.then(
 				() => {
