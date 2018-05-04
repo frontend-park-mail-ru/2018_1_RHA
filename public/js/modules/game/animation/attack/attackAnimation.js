@@ -24,6 +24,7 @@ export const attackAnimation = (x, y, x2, y2) => {
 	y = y + mTop;
 	y2 = y2 + mTop;
 	const radius = cw * 0.03;
+	const lWidth = cw * 0.01;
 	const startX = (x - radius * Math.sin(Math.PI / 4));
 	console.log(x, '  ', startX);
 	const startY = (y - radius * Math.sin(Math.PI / 4));
@@ -39,7 +40,7 @@ export const attackAnimation = (x, y, x2, y2) => {
 		diff = (timePassed).toFixed(2);
 		part = diff / 1000;
 		ctx.clearRect(0, 0, cw, ch);
-		ctx.lineWidth = 10;
+		ctx.lineWidth = lWidth;
 		gradient.addColorStop(0, '#030101');
 		gradient.addColorStop(0.5, '#711615');
 		gradient.addColorStop(1, '#ee2357');

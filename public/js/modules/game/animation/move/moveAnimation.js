@@ -16,6 +16,7 @@ export const moveAnimation = (x, y, x2, y2) => {
 	const ctx = canvas.getContext('2d');
 	const cw = ctx.canvas.width;
 	const ch = window.innerHeight;
+	const lWidth = cw * 0.01;
 	// canvas.style.marginTop = String(100 - 100 * canvas.height /window.innerHeight * 0.83) / 2 + '%';
 	const game_canvas = document.getElementById('game-canvas');
 	let result = window.getComputedStyle(game_canvas).marginTop.match(/^[0-9]+/);
@@ -42,7 +43,7 @@ export const moveAnimation = (x, y, x2, y2) => {
 		diff = (timePassed).toFixed(4);
 		part = diff / 1000;
 		ctx.clearRect(0, 0, cw, ch);
-		ctx.lineWidth = 10;
+		ctx.lineWidth = lWidth;
 		gradient.addColorStop(0, '#030101');
 		gradient.addColorStop(0.5, '#711615');
 		gradient.addColorStop(1, '#ee2357');
