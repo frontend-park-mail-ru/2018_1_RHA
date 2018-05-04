@@ -32,6 +32,8 @@ export default class GameSection extends Section {
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
 
+		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
+
 	}
 	/**
 	 * @return {HTMLDivElement | *}
@@ -87,17 +89,8 @@ export default class GameSection extends Section {
 			[this.game_canvas.width, this.game_canvas.height] = this.computeCanvasSize();
 			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
-			// let result = window.getComputedStyle(this.game_canvas).marginTop.match(/^[0-9]+/);
-			// let mTop = Number(result);
-			// this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) + '%';
-			// if (this.game_canvas.height < beforeResize.height) {
-			// 	this.game_canvas.style.marginTop = String(mTop + beforeResize.height - this.game_canvas.height) + 'px';
-			// }
-			// else {
-			// 	this.game_canvas.style.marginTop = String(mTop + beforeResize.height - this.game_canvas.height) + 'px';
-			// }
-			// beforeResize.height = this.game_canvas.height;
-			// beforeResize.width = this.game_canvas.width;
+
+			this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
 
 			bus.emit('resize-for-draw', {});
 		});

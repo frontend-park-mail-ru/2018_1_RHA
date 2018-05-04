@@ -8,14 +8,20 @@ export const moveAnimation = (x, y, x2, y2) => {
 	wrapAnim.innerHTML = generateAttack(
 		{
 			'width': window.innerWidth * 0.7,
-			'height': window.innerWidth * 0.525 * 0.83,
+			'height': window.innerHeight,
 			'id': 'attack-canvas'
 		}
 	);
 	const canvas = document.getElementById('attack-canvas');
 	const ctx = canvas.getContext('2d');
 	const cw = ctx.canvas.width;
-	const ch = ctx.canvas.height;
+	const ch = window.innerHeight;
+	// canvas.style.marginTop = String(100 - 100 * canvas.height /window.innerHeight * 0.83) / 2 + '%';
+	const game_canvas = document.getElementById('game-canvas');
+	let result = window.getComputedStyle(game_canvas).marginTop.match(/^[0-9]+/);
+	let mTop = Number(result);
+	y = y + mTop;
+	y2 = y2 + mTop;
 
 	const length = (Math.sqrt((x-x2)*(x-x2) + (y-y2)*(y-y2)));
 	let curLength;
