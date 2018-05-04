@@ -1,16 +1,16 @@
-@import "reset.css";
-@import "../js/components/blocks/input/input.css";
-@import "../js/components/blocks/button.css";
-@import "../js/components/blocks/decorations/lamp.css";
-@import "../js/components/blocks/decorations/plank.css";
-@import "../js/components/blocks/decorations/screw.css";
-@import "../js/components/views/ratingView/rating.css";
-@import "../js/components/views/profileView/profile.css";
-@import "../js/components/forms/loadPictureForm/loadPictureForm.css";
-@import "../js/components/views/menuView/menu.css";
-@import "../js/components/views/ViewsBack.css";
-@import "../js/components/radar/radar.css";
-@import "../js/components/views/gameView/gameView.css";
+/*@import "reset.css";*/
+/*@import "../js/components/blocks/input/input.css";*/
+/*@import "../js/components/blocks/button.css";*/
+/*@import "../js/components/blocks/decorations/lamp.css";*/
+/*@import "../js/components/blocks/decorations/plank.css";*/
+/*@import "../js/components/blocks/decorations/screw.css";*/
+/*@import "../js/components/views/ratingView/rating.css";*/
+/*@import "../js/components/views/profileView/profile.css";*/
+/*@import "../js/components/forms/loadPictureForm/loadPictureForm.css";*/
+/*@import "../js/components/views/menuView/menu.css";*/
+/*@import "../js/components/views/ViewsBack.css";*/
+/*@import "../js/components/radar/radar.css";*/
+/*@import "../js/components/views/gameView/gameView.css";*/
 
 .input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease; font-family: armalite, serif;}
 .input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;     font-family: armalite, serif;}
