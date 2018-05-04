@@ -1,6 +1,7 @@
 /**
  * @type {HTMLCollectionOf<Element>}
  */
+
 var radar = document.getElementById( 'radar' ),
 	diameter = Math.min(document.getElementById( 'radar-wrapper' ).offsetHeight,document.getElementById( 'radar-wrapper' ).offsetWidth)-100,
 	radius = diameter / 2,

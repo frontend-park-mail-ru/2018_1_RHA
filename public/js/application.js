@@ -33,4 +33,3 @@ User.auth()
 			.start();
 	})
 	.catch();
-

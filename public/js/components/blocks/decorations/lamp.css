@@ -25,6 +25,12 @@
     animation-iteration-count: initial;
 }
 
+/*@media (max-width: 1025px) {*/
+    /*.red-lamp {*/
+        /*display: none;*/
+    /*}*/
+/*}*/
+
 /*.red-lamp:hover {*/
     /*-webkit-animation: blinkRed 0.5s;*/
     /*-moz-animation: blinkRed 0.5s;*/

@@ -86,7 +86,26 @@ body {
     text-decoration: none;
     color: black;
     height: 100%;
+    font-size: 1.5vw;
     /*padding:16px 18px 14px;*/
+}
+
+@media (max-aspect-ratio: 7/5 ) {
+    #radar-wrapper #radar {
+        display: none;
+    }
+
+    #application-wrapper.body {
+        width: 98%;
+    }
+
+    .planck {
+        width:70% ;
+    }
+
+    .button a {
+        font-size: 3vw;
+    }
 }
 
 
