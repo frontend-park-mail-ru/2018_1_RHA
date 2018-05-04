@@ -11,25 +11,27 @@ export default class MultiplayerSection extends Section {
 		this.parent = document.getElementById('game');
 		this.wrapper = document.createElement('div');
 		this.wrapper.classList.add('wrapper');
+		//todo поменять где надо айдишники
 
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': window.innerWidth * 0.7,
 				'height': window.innerWidth * 0.525 * 0.83,
-				'id': 'game-canvas'
+				'id': 'multiplayer-canvas'
 			}
 		);
 
 		// this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
 		this.parent.appendChild(this.wrapper);
-		this.game_canvas = document.getElementById('game-canvas');
+		this.game_canvas = document.getElementById('multiplayer-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
 	}
 
 	render() {
+
 		this.img = new Image();
 		this.img.src = '/map.png';
-		this.load = new Promise(resolve => {
+		this.load = new Promise((resolve, reject) => {
 			this.img.onload = () => {
 				resolve(this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height));
 			};
@@ -45,6 +47,7 @@ export default class MultiplayerSection extends Section {
 
 				}
 			);
+
 		return this.wrapper;
 	}
 
