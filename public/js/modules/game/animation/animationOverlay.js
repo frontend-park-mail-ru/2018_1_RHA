@@ -3,7 +3,6 @@ import {animate} from './animate.js';
 export const animationOverlay = (x , y) => {
 
 	const wrapper = document.getElementsByClassName('wrapper')[0];
-
 	const wrapAnim = document.createElement('div');
 	wrapAnim.classList.add('overlay');
 
@@ -14,6 +13,13 @@ export const animationOverlay = (x , y) => {
 	canvas.height = window.innerHeight;
 	wrapper.appendChild(wrapAnim);
 	const ctx = canvas.getContext('2d');
+	// canvas.style.marginTop = String(100 - 100 * canvas.height / window.innerHeight * 0.83) / 2 + '%';
+	const game_canvas = document.getElementById('game-canvas');
+	let result = window.getComputedStyle(game_canvas).marginTop.match(/^[0-9]+/);
+	let mTop = Number(result);
+	y = y + mTop;
+
+	//.style.marginTop = String(100 - 100 * canvas.height / window.innerHeight * 0.83) / 2 + '%';
 	const start = 4.72;
 	const cw = ctx.canvas.width;
 	const ch = ctx.canvas.height;
