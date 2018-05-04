@@ -54,31 +54,17 @@ body {
     clear: both;
     float: left;
 }
-@media (min-width: 1200px) {
-    #application-wrapper {
-        width: 40%;
-        margin: 0;
-        position: relative;
-        display: inline-block;
-        clear: both;
-        float: right;
-        height: 100%;
-        padding: 0;
-    }
+#application-wrapper {
+    width: 40%;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    float: right;
+    height: 100%;
+    padding: 0;
 }
 
-@media (max-width: 1199px) {
-    #application-wrapper {
-        width: 100%;
-        margin: 0;
-        position: relative;
-        display: inline-block;
-        clear: both;
-        float: right;
-        height: 100%;
-        padding: 0;
-    }
-}
 
 
 #application {
