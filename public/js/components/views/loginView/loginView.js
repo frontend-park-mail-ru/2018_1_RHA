@@ -3,6 +3,7 @@ import Section from '../baseView.js';
 import LoginForm from '../../forms/loginForm.js';
 import bus from '../../../modules/bus.js';
 import User from '../../../modules/userModel.js';
+let generateLogin = require('./login.pug');
 
 /** Class represents section with Login Form */
 export default class LoginSection extends Section {

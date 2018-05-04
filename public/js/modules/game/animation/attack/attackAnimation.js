@@ -1,4 +1,6 @@
 import {animate} from '../animate.js';
+let generateAttack = require('./attackAnimation.pug');
+
 
 export const attackAnimation = (x, y, x2, y2) => {
 	const wrapper = document.getElementsByClassName('wrapper')[0];
@@ -16,8 +18,6 @@ export const attackAnimation = (x, y, x2, y2) => {
 	const ctx = canvas.getContext('2d');
 	const cw = ctx.canvas.width;
 	const ch = window.innerHeight;
-	// console.log(canvas.height, '  size   ', window.innerHeight * 0.83);
-	// canvas.style.marginTop = String(100 - 100 * canvas.height / window.innerHeight * 0.83) / 2 + '%';
 	const game_canvas = document.getElementById('game-canvas');
 	let result = window.getComputedStyle(game_canvas).marginTop.match(/^[0-9]+/);
 	let mTop = Number(result);
@@ -26,9 +26,7 @@ export const attackAnimation = (x, y, x2, y2) => {
 	const radius = cw * 0.03;
 	const lWidth = cw * 0.01;
 	const startX = (x - radius * Math.sin(Math.PI / 4));
-	console.log(x, '  ', startX);
 	const startY = (y - radius * Math.sin(Math.PI / 4));
-	console.log(y, '    ', startY);
 	const endX = (x + radius * Math.sin(Math.PI / 4));
 	const endY = (y + radius * Math.sin(Math.PI / 4));
 	let diff;
@@ -68,8 +66,6 @@ export const attackAnimation = (x, y, x2, y2) => {
 
 		ctx.stroke();
 		ctx.fill();
-
-		// ctx.arc(600, 100, 50, start, diff/10+start, false);
 
 	}, 1000);
 	setTimeout(() => {

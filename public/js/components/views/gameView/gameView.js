@@ -4,7 +4,7 @@ import Game from '../../../modules/game/game.js';
 import bus from '../../../modules/bus.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
-
+let generateCanvas = require('./gameTemplate.pug');
 
 /**
  * Class representing Section of the game

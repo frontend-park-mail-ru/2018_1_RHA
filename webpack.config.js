@@ -1,15 +1,13 @@
 /* eslint-disable no-undef */
 const path = require('path');
-require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
 	devtool: 'source-map',
 	entry: './src/index.js',
 	output: {
-		// path: path.join(__dirname, 'build'),
-		path: __dirname + '/public/',
+		// path: __dirname + '/public/',
+		path: path.join(__dirname, '/public/dist'),
 		filename: 'bundle.js',
-		// publicPath: '/build/'
 	},
 	module: {
 		rules: [

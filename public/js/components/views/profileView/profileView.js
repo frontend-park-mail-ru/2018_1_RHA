@@ -5,6 +5,7 @@ import bus from '../../../modules/bus.js';
 import User from '../../../modules/userModel.js';
 import Router from '../../../modules/router.js';
 import LoadForm from '../../forms/loadPictureForm/loadPictureForm.js';
+let generateProfile = require('./profile.pug');
 
 /**
  * Class represents Section with Profile data and Form

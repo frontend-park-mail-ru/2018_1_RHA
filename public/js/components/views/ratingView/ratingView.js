@@ -1,11 +1,9 @@
 'use strict';
 import Section from '../baseView.js';
 import UserController from '../../../modules/userController.js';
-import Button from '../../blocks/button.js';
 import bus from '../../../modules/bus.js';
-import Router from '../../../modules/router.js';
 import User from '../../../modules/userModel.js';
-
+let generateRating = require('./rating.pug');
 
 /**
  * Class represents Section with Rating Table

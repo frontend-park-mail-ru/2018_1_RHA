@@ -2,7 +2,7 @@ import Section from '../baseView.js';
 import bus from '../../../modules/bus.js';
 import Router from '../../../modules/router.js';
 import User from '../../../modules/userModel.js';
-
+let generateMenu = require('./menu.pug');
 
 /**
  * Class represents Section with Menu buttons

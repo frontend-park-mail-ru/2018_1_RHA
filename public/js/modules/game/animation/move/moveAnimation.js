@@ -1,4 +1,5 @@
 import {animate} from '../animate.js';
+let generateAttack = require('../attack/attackAnimation.pug');
 export const moveAnimation = (x, y, x2, y2) => {
 
 	const wrapper = document.getElementsByClassName('wrapper')[0];

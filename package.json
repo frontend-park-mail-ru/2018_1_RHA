@@ -26,7 +26,6 @@
     "pug": "^2.0.1",
     "pug-cli": "^1.0.0-alpha6",
     "pug-loader": "^2.4.0",
-    "sealine": "0.0.0",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1"
   },

@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import Block from '../block.js';
+let generateInput = require('./input.pug');
 /** Class representing Input */
 export default class Input extends Block {
 	/**
@@ -9,30 +10,9 @@ export default class Input extends Block {
 	constructor(data) {
 		super();
 
-		// this.InputElement = document.createElement('input');
-		// this.InputElement.type = data.type;
-		// if(data.type === 'submit') {
-		// 	this.InputElement.value = data.value;
-		// 	this.InputElement.classList.add('button');
-		// }
-		// else {
-		// 	this.InputElement.placeholder = data.placeholder;
-		// 	this.InputElement.classList.add('input');
-		// }
-		//
-		// this.InputWrapper = document.createElement('div');
-		// this.InputWrapper.appendChild(this.InputElement);
-		//
+
 		this.status = true; //заглушка
-		//
-		// this.ErrorElement = document.createElement('div');
-		// this.ErrorElement.classList.add('error');
-		// this.lamp = document.createElement('div');
-		// this.lamp.innerHTML = generateLamp();
-		// this.InputWrapper.appendChild(this.lamp);
-		// this.InputWrapper.appendChild(this.ErrorElement);
-		//
-		//
+
 		this.wrapper = document.createElement('div');
 		//TODO здесь надо указать все типы инпутов, которым не нужна лампа
 

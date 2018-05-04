@@ -4,6 +4,7 @@ import RegisterForm from '../../forms/registerForm.js';
 
 import bus from '../../../modules/bus.js';
 import User from '../../../modules/userModel.js';
+let generateRegister = require('./register.pug');
 
 
 
