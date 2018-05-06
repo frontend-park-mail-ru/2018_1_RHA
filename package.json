@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bake": "node pugbaker",
     "quickStart": "node app.js",
-    "start": "webpack && node app.js"
+    "start": "webpack && node app.js",
+    "dev": "webpack -w"
   },
   "author": "",
   "license": "ISC",

@@ -96,7 +96,7 @@ export default class RatingSection extends Section {
 				data => {
 					this.table = document.createElement('div');
 					this.table.innerHTML = generateRating({'data': data[0], 'user': data[1][0],
-					'pages': data[2][0], 'page': page});
+						'pages': data[2][0], 'page': page});
 					this.rating.insertBefore(this.table, this.rating.firstChild);
 				}
 			);

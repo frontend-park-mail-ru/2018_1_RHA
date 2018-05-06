@@ -19,15 +19,20 @@ export default class GameSection extends Section {
 		this.parent = document.getElementById('game');
 		this.wrapper = document.createElement('div');
 		this.wrapper.classList.add('wrapper');
+		let winWidth = window.innerWidth;
+		let winHeight = winWidth * 0.5625;
+		if (winHeight >= window.innerHeight) {
+			winHeight = window.innerHeight;
+		}
 
 		this.wrapper.innerHTML += generateCanvas(
 			{
-				'width': window.innerWidth * 0.7,
-				'height': window.innerWidth * 0.525 * 0.83,
+				'width': winWidth * 0.7,
+				'height':winHeight * 0.85,
 				'id': 'game-canvas'
 			}
 		);
-		this.height_canv = window.innerHeight * 0.83;
+		this.height_canv = window.innerHeight * 0.85;
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
@@ -77,7 +82,7 @@ export default class GameSection extends Section {
 
 	computeCanvasSize() {
 		// const size = (window.innerWidth > window.innerHeight) ? window.innerHeight : window.innerWidth;
-		return [window.innerWidth * 0.7, window.innerWidth * 0.525 * 0.83];
+		return [window.innerWidth * 0.7, window.innerWidth * 0.5625 * 0.85];
 	}
 
 	setWindowResizeHandler() {
@@ -86,11 +91,23 @@ export default class GameSection extends Section {
 				width: this.game_canvas.width,
 				height: this.game_canvas.height
 			};
-			[this.game_canvas.width, this.game_canvas.height] = this.computeCanvasSize();
+			let sizes = this.computeCanvasSize();
+			if (sizes[1] >= window.innerHeight * 0.85) {
+				sizes[1] = window.innerHeight * 0.85;
+			}
+			[this.game_canvas.width, this.game_canvas.height] = sizes;
 			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
-
-			this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
+			let margin = 100 - 100 * this.game_canvas.height / this.height_canv;
+			if (margin <= 0) {
+				margin = 0;
+			}
+			if (this.game_canvas.width !== beforeResize.width) {
+				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
+			}
+			else {
+				this.game_canvas.style.marginTop = '0';
+			}
 
 			bus.emit('resize-for-draw', {});
 		});

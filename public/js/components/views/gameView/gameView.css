@@ -83,3 +83,15 @@
     color: white;
 }
 
+@media (max-height: 640px) {
+    .change {
+        border-width: 25px 0 25px 43.3px;
+        margin-top: 1%;
+    }
+}
+@media (max-height: 360px) {
+    .change {
+        border-width: 25px 0 25px 43.3px;
+        margin-top: 0;
+    }
+}

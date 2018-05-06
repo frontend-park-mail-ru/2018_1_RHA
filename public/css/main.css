@@ -22,6 +22,7 @@
 .input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
 
 
+
 html {
     height: 100%;
     width: 100%;
@@ -32,13 +33,50 @@ body {
     height: 100%;
     width: 100%;
 }
+
+@keyframes animatedBackground {
+    0% {
+    background-position: 0 0
+    }
+    100% {
+    background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
+/* Mozilla Firefox 5.0+ */
+@-moz-keyframes animatedBackground {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
+/* Safari 4.0+, Chrome 4.0+ */
+@-webkit-keyframes animatedBackground {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
+/* Opera 12.0+ */
+@-o-keyframes animatedBackground {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
 #body {
     height: 100%;
     width: 100%;
-    /*background-color: magenta;*/
-    /*background-image: url("/map.png");*/
-    /*filter: blur(5px);*/
-    /*background-repeat: no-repeat;*/
+    background-image: url("/map.png");
+    animation: animatedBackground 60s linear infinite;
+    -moz-animation: animatedBackground 60s linear infinite;
+    -webkit-animation: animatedBackground 60s linear infinite;
+    -o-animation: animatedBackground 60s linear infinite;
 }
 .start {
     height: 100%;
@@ -156,3 +194,6 @@ p {
     top: 0;
 }
 
+@media screen and (orientation:portrait) and (max-device-width: 900px) {
+
+}

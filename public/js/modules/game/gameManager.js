@@ -33,6 +33,7 @@ export default class GameManager {
 	 * Starts game logic 8)
 	 */
 	start() {
+		console.log('manager');
 		timer(this.timer);
 		this.select_region = (data) => {
 			const region = data.payload;
@@ -97,7 +98,7 @@ export default class GameManager {
 				}
 			}, 1000);
 
-			this.log.innerHTML = '<p>Player ' + from.name + ' attacked ' + to.name + '</p>';
+			// this.log.innerHTML = '<p>Player ' + from.name + ' attacked ' + to.name + '</p>';
 		};
 		this.change_move = (dict) => {
 			this.regions.forEach(region => {

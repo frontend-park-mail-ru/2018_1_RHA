@@ -110,9 +110,6 @@ export default class Game {
 						player.setAllRegtions(this.regions);
 					});
 
-					console.log(username);
-					console.log(initData);
-
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 					this.start();
@@ -126,6 +123,7 @@ export default class Game {
 	 * Starts game
 	 */
 	start() {
+		console.log('start');
 		this.controller.start();
 		this.scene.onListeners();
 		this.manager.start();
