@@ -11,7 +11,7 @@ const app = express(); // объект приложения
 
 const root = path.resolve('./public/');
 app.use(express.static(root)); // middleware
-// app.use(fallback('index.html', {root}));
+app.use(fallback('index.html', {root}));
 app.use(bodyparser.json());
 // app.use(fileUpload());
 
