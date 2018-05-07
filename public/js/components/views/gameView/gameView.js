@@ -38,7 +38,8 @@ export default class GameSection extends Section {
 
 		this.wrapper.innerHTML += generateCanvas(
 			{
-				'width': winWidth * 0.7,
+				// 'width': winWidth * 0.7,
+				'width': window.innerWidth * 0.7,
 				'height':winHeight * 0.85,
 				'id': 'game-canvas'
 			}
