@@ -19,28 +19,30 @@ export default class GameSection extends Section {
 		this.parent = document.getElementById('game');
 		this.wrapper = document.createElement('div');
 		this.wrapper.classList.add('wrapper');
-		let winWidth = null;
-		let winHeight = null;
+		this.winWidth = null;
+		this.winHeight = null;
+		this.winWidth = window.innerWidth;
+		this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
 		if (window.innerHeight > window.innerWidth) {
-			winWidth = window.innerHeight;
-			winHeight = winWidth * 0.5625; //соотношение 16:9
-			this.height_canv = window.innerWidth * 0.85;
+			// this.winWidth = window.innerHeight;
+			// this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
+			this.height_canv = window.innerWidth * 0.5625;
 		}
 		else {
-			winWidth = window.innerWidth;
-			winHeight = winWidth * 0.5625; //соотношение 16:9
-			this.height_canv = window.innerHeight * 0.85;
+			// this.winWidth = window.innerWidth;
+			// this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
+			this.height_canv = window.innerHeight * 0.5625;
 		}
 
-		if (winHeight >= window.innerHeight) {
-			winHeight = window.innerHeight;
+		if (this.winHeight >= window.innerHeight) {
+			this.winHeight = window.innerHeight;
 		}
 
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				// 'width': winWidth * 0.7,
 				'width': window.innerWidth * 0.7,
-				'height':winHeight * 0.85,
+				'height':this.winHeight * 0.85,
 				'id': 'game-canvas'
 			}
 		);
@@ -108,8 +110,6 @@ export default class GameSection extends Section {
 			if (sizes[1] >= window.innerHeight * 0.85) {
 				sizes[1] = window.innerHeight * 0.85;
 			}
-			alert(this.game_canvas.height);
-			alert(sizes[1]);
 			[this.game_canvas.width, this.game_canvas.height] = sizes;
 			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
