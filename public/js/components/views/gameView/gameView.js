@@ -26,7 +26,7 @@ export default class GameSection extends Section {
 		if (window.innerHeight > window.innerWidth) {
 			// this.winWidth = window.innerHeight;
 			// this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
-			this.height_canv = this.winWidth * 0.85;
+			this.height_canv = this.winHeight * 0.85;
 		}
 		else {
 			// this.winWidth = window.innerWidth;
