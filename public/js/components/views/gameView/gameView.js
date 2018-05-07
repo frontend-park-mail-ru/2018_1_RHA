@@ -117,7 +117,7 @@ export default class GameSection extends Section {
 			}
 			if (this.game_canvas.width !== this.beforeResize.width) {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
-				alert('a');
+				alert(margin);
 			}
 			else {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
