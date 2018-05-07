@@ -24,16 +24,14 @@ export default class GameSection extends Section {
 		this.winWidth = window.innerWidth;
 		this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
 		if (window.innerHeight > window.innerWidth) {
-			// this.winWidth = window.innerHeight;
-			// this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
-			alert('>');
+
 			this.height_canv = window.innerWidth * 0.85; //максимально возможная высота канваса
+			alert(this.height_canv);
 		}
 		else {
-			alert('<');
-			// this.winWidth = window.innerWidth;
-			// this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
+
 			this.height_canv = window.innerHeight * 0.85;
+			alert(this.height_canv);
 		}
 
 		if (this.winHeight >= window.innerHeight) {
