@@ -108,6 +108,8 @@ export default class GameSection extends Section {
 			if (sizes[1] >= window.innerHeight * 0.85) {
 				sizes[1] = window.innerHeight * 0.85;
 			}
+			alert(this.game_canvas.height);
+			alert(sizes[1]);
 			[this.game_canvas.width, this.game_canvas.height] = sizes;
 			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
@@ -117,13 +119,11 @@ export default class GameSection extends Section {
 			}
 			if (this.game_canvas.width !== this.beforeResize.width) {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
-				alert(margin);
 			}
 			else {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
 				// this.game_canvas.style.marginTop = '0';
 				this.height_canv = window.innerHeight * 0.85;
-				alert('b');
 			}
 			this.beforeResize = {
 				width: this.game_canvas.width,
