@@ -117,11 +117,13 @@ export default class GameSection extends Section {
 			}
 			if (this.game_canvas.width !== this.beforeResize.width) {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
+				alert('a');
 			}
 			else {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
 				// this.game_canvas.style.marginTop = '0';
 				this.height_canv = window.innerHeight * 0.85;
+				alert('b');
 			}
 			this.beforeResize = {
 				width: this.game_canvas.width,
