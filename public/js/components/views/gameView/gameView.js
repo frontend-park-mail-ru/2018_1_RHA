@@ -26,16 +26,20 @@ export default class GameSection extends Section {
 		if (window.innerHeight > window.innerWidth) {
 			// this.winWidth = window.innerHeight;
 			// this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
-			this.height_canv = window.innerWidth * 0.5625;
+			this.height_canv = this.winWidth * 0.85;
 		}
 		else {
 			// this.winWidth = window.innerWidth;
 			// this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
-			this.height_canv = window.innerHeight * 0.5625;
+			this.height_canv = this.winHeight * 0.85;
 		}
+		console.log(this.height_canv); //622
+		console.log(this.winHeight); //731
+		console.log(window.innerHeight); //678
 
 		if (this.winHeight >= window.innerHeight) {
 			this.winHeight = window.innerHeight;
+			this.height_canv = this.winHeight * 0.85;
 		}
 
 		this.wrapper.innerHTML += generateCanvas(
@@ -55,7 +59,7 @@ export default class GameSection extends Section {
 			width: window.innerWidth,
 			height: window.innerHeight
 		};
-		console.log(this.game_canvas.width);
+		console.log(this.game_canvas.height); //576
 		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
 
 	}
