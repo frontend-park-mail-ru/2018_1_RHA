@@ -23,6 +23,7 @@ export default class GameSection extends Section {
 		this.winHeight = null;
 		this.winWidth = window.innerWidth;
 		this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
+		//todo упростить
 		if (window.innerHeight > window.innerWidth) {
 			this.height_canv = window.innerWidth * 0.85; //максимально возможная высота канваса
 		}
@@ -103,13 +104,23 @@ export default class GameSection extends Section {
 
 	listenOrientation() {
 		let mql = window.matchMedia('(orientation: portrait)');
+		if (mql.matches) {
+			const overlayOrientation = document.createElement('div');
+			this.wrapper.appendChild(overlayOrientation);
+			overlayOrientation.classList.add('overlayOrientation');
+			overlayOrientation.innerText = 'Change to the landscape orientation';
+		}
 		mql.addListener(m => {
 			if (m.matches) {
+				const overlayOrientation = document.createElement('div');
+				this.wrapper.appendChild(overlayOrientation);
+				overlayOrientation.classList.add('overlayOrientation');
+				overlayOrientation.innerText = 'Change to the landscape orientation';
 
 			}
 			else {
-				console.log('h_c');
 				this.height_canv = window.innerHeight * 0.85;
+				this.wrapper.removeChild(this.wrapper.lastChild);
 			}
 		});
 	}
@@ -132,7 +143,6 @@ export default class GameSection extends Section {
 			}
 			else {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
-				// this.game_canvas.style.marginTop = '0';
 				this.height_canv = window.innerHeight * 0.85;
 			}
 			this.beforeResize = {
