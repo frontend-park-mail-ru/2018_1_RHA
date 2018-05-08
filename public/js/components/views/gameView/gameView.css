@@ -104,16 +104,19 @@
 @-webkit-keyframes AnimationName {
     0%{background-position:0 45%}
     50%{background-position:100% 56%}
+    70%{color: #CCCCCC}
     100%{background-position:0 45%}
 }
 @-moz-keyframes AnimationName {
     0%{background-position:0 45%}
     50%{background-position:100% 56%}
+    70%{color: #CCCCCC}
     100%{background-position:0 45%}
 }
 @keyframes AnimationName {
     0%{background-position:0 45%}
     50%{background-position:100% 56%}
+    70%{color: #CCCCCC}
     100%{background-position:0 45%}
 }
 
