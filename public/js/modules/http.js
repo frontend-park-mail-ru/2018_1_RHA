@@ -1,4 +1,5 @@
 import config from '../conf/route.js';
+import Loader from './loader/loader.js';
 
 /**
  * Class represents interface for working with HTTP
@@ -14,6 +15,7 @@ class HttpService {
 		return this.request('GET', url)
 			.then (
 				response => {
+					Loader.deleteLoader();
 					if (response.status === 200) {
 						try {
 							callbackfn(null, response.json());
@@ -39,6 +41,7 @@ class HttpService {
 		return this.request('POST', url, body)
 			.then (
 				response => {
+					Loader.deleteLoader();
 					if (response.status < 300) {
 						try {
 							callbackfn(null, response.json());
@@ -80,6 +83,7 @@ class HttpService {
 			credentials: 'include',
 			mode: 'cors'
 		};
+		Loader.animateLoader();
 		//TODO:: на время
 		// if (url === 'users/chava') {
 		// 	return fetch('http://localhost:5000/users/chava', req);
