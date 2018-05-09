@@ -10,7 +10,7 @@ import '../public/js/components/views/profileView/profile.css';
 import '../public/js/components/forms/loadPictureForm/loadPictureForm.css';
 import '../public/js/components/views/menuView/menu.css';
 import '../public/js/components/views/ViewsBack.css';
-import '../public/js/components/radar/radar.css';
+import '../public/js/components/blocks/decorations/radar.css';
 import '../public/js/components/views/gameView/gameView.css';
 import '../public/js/modules/loader/loader.css';
 

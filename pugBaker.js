@@ -20,6 +20,7 @@ bake('/js/components/views/gameView/', 'gameTemplate.pug', 'generateCanvas', 'ga
 bake('/js/components/views/ratingView/', 'rating.pug', 'generateRating', 'ratingTemplate.js');
 bake('/js/components/blocks/decorations/', 'lamp.pug', 'generateLamp', 'lampTemplate.js');
 bake('/js/components/blocks/decorations/', 'screw.pug', 'generateScrew', 'screwTemplate.js');
+bake('/js/components/blocks/decorations/', 'radar.pug', 'generateRadar', 'radarTemplate.js');
 bake('/js/components/blocks/input/', 'input.pug', 'generateInput', 'inputTemplate.js');
 bake('/js/components/views/menuView/', 'menu.pug', 'generateMenu', 'menuTemplate.js');
 bake('/js/components/views/loginView/', 'login.pug', 'generateLogin', 'loginTemplate.js');

@@ -1,0 +1,113 @@
+/*.bg{*/
+    /*background:*/
+            /*radial-gradient(black 15%, transparent 16%) 0 0,*/
+            /*radial-gradient(black 15%, transparent 16%) 8px 8px,*/
+            /*radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,*/
+            /*radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;*/
+    /*background-color:#282828;*/
+    /*background-size:16px 16px;*/
+    /*min-height: 100%;*/
+    /*max-width: 50%;*/
+/*}*/
+
+.screen {
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    border: 2px solid #333;
+    background:
+            linear-gradient(green 2px, transparent 2px),
+            linear-gradient(90deg, green 2px, transparent 2px),
+            linear-gradient(rgba(0,255,0,.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,0,.3) 1px, transparent 1px),
+            rgba(0, 0, 0, 1);
+    background-size:50% 50% , 50%  50% , 10% 10%, 10% 10%;
+    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+.grid {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+            radial-gradient(circle, rgba(50, 0, 0, .5) 0, transparent 50%),
+            radial-gradient(farthest-side circle, transparent 1%, green 5%, transparent 0),
+            radial-gradient(farthest-side circle, transparent 16%, green 20%, transparent 0),
+            radial-gradient(farthest-side circle, transparent 31%, green 35%, transparent 0),
+            radial-gradient(farthest-side circle, transparent 46%, green 50%, transparent 0),
+            radial-gradient(farthest-side circle, transparent 61%, green 65%, transparent 0),
+            radial-gradient(farthest-side circle, transparent 76%, green 80%, transparent 0);
+    background-size: 100%;
+}
+
+@keyframes clockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes blip {
+    from { opacity: 1; }
+    /*70% { opacity: .3; }*/
+    to { opacity: .1; }
+}
+
+.radar, .blip {
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+.radar {
+
+    width: 5px;
+    min-height: 95%;
+    animation-name: clockwise;
+    animation-timing-function: linear;
+    transform-origin: center;
+    background: linear-gradient(70deg, transparent 50%, green), transparent;
+    position: absolute;
+    top: 3%;
+    left: 50%;
+}
+
+.blip {
+    display: block;
+    position: absolute;
+    animation-name: blip;
+    animation-timing-function: ease-out;
+    color: red;
+    font-size: 2em;
+}
+
+.blip:after {
+    content: "✈";
+}
+
+#id1 {
+    left: 51%;
+    top: 28%;
+    animation-delay: .2s;
+    transform: rotate(120deg);
+
+}
+
+#id2 {
+    left: 55%;
+    top: 50%;
+    animation-delay: 1.7s;
+    transform: rotate(310deg);
+}
+
+#id3 {
+    left: 48%;
+    top: 78%;
+    animation-delay: 3.1s;
+    transform: rotate(320deg);
+}
+
+#id4 {
+    left: 26%;
+    top: 48%;
+    animation-delay: 4.6s;
+    transform: rotate(310deg);
+}
