@@ -64,10 +64,10 @@ export default class MenuSection extends Section {
 				e.preventDefault();
 				bus.emit('logout', null);
 			});
-			this.logoutWrapper = document.createElement('div');
+			this.logoutWrapper = this.menu.getElementsByClassName('logout')[0];
 			this.logoutWrapper.classList.add('button');
 			this.logoutWrapper.appendChild(this.logout);
-			this.menu.appendChild(this.logoutWrapper);
+			// this.menu.appendChild(this.logoutWrapper);
 		}
 		else {
 			this.menu.innerHTML = generateMenu({'attrs': this.attrPassive});
