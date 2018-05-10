@@ -82,16 +82,6 @@ body {
     height: 100%;
 }
 
-#radar-wrapper {
-    width: 60%;
-    background-color: #111111;
-    margin: 0;
-    position: absolute;
-    height: 100%;
-    display: inline-block;
-    clear: both;
-    float: left;
-}
 #application-wrapper {
     width: 40%;
     margin: 0;
@@ -107,6 +97,7 @@ body {
 
 #application {
     width: 95%;
+    height: 100%;
     margin-top: 1%;
     margin-left: 3%;
 }
@@ -122,29 +113,13 @@ body {
     display: block;
     margin-top: 10px;
     text-decoration: none;
+    vertical-align: middle;
     color: black;
     height: 100%;
-    font-size: 1.5vw;
+    font-size: 2vw;
     /*padding:16px 18px 14px;*/
 }
 
-@media (max-aspect-ratio: 7/5 ) {
-    #radar-wrapper #radar {
-        display: none;
-    }
-
-    #application-wrapper.body {
-        width: 98%;
-    }
-
-    .planck {
-        width:70% ;
-    }
-
-    .button a {
-        font-size: 3vw;
-    }
-}
 
 
 
@@ -197,4 +172,10 @@ p {
 
 @media screen and (orientation:portrait) and (max-device-width: 900px) {
 
+}
+@media (max-aspect-ratio: 7/5 ) {
+    #application-wrapper.body {
+        width: 98%;
+        opacity: 0.9;
+    }
 }

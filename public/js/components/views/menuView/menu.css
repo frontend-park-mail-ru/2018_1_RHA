@@ -1,8 +1,14 @@
 .div__menu-wrapper {
+    position: relative;
     text-align: center;
     display: inline-block;
     width: 100%;
+    height: 100%;
     margin-right: 35%;
+}
+.menu-wrapp {
+    width: 100%;
+    height: 100%;
 }
 
 .div__menu-btn-wrapper:hover .red-lamp {

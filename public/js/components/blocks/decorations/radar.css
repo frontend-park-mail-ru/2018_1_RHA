@@ -117,3 +117,14 @@
     animation-delay: 4.6s;
     transform: rotate(310deg);
 }
+
+
+
+@media (max-aspect-ratio: 7/5 ) {
+    .screen {
+        position: absolute;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+    }
+}

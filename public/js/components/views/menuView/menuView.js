@@ -72,6 +72,7 @@ export default class MenuSection extends Section {
 		else {
 			this.menu.innerHTML = generateMenu({'attrs': this.attrPassive});
 		}
+		this.menu.classList.add('menu-wrapp');
 		return this.menu;
 	}
 

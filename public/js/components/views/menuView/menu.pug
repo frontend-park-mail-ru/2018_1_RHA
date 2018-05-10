@@ -6,26 +6,24 @@ div.div__menu-wrapper
     div.right-top
         div.screw
             div.screw_bottom
-    div.left-bot
-        div.screw
-            div.screw_bottom
     div.right-bot
         div.screw
             div.screw_bottom
+    div.left-bot
+        div.screw
+            div.screw_bottom
     h2 MENU
-        ul
-            each i in attrs
-                li.li__menu
-                    div.div__menu-btn-wrapper
-                        div.planck
-                            div.left
-                                div.screw
-                                    div.screw_bottom
-                            div.right
-                                div.screw
-                                    div.screw_bottom
-                            div.lamp-box
-                                div.red-lamp
-                            div.button
-                                a(href=i.href) #{i.title}
+    ul
+        each i in attrs
+            div.planck
+                div.screw.left
+                    div.screw_bottom
+                div.lamp-box
+                    div.red-lamp.lamp-position
+                div.screw.right
+                    div.screw_bottom
+                div.button
+                    a(href=i.href) #{i.title}
+        li.li__menu
+                div.div__menu-btn-wrapper
 

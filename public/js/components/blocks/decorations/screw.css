@@ -1,6 +1,5 @@
 .screw {
-    top: 10px;
-    left: 49%;
+    position: relative;
     width: 30px;
     height: 30px;
     border-radius: 50px;
@@ -37,49 +36,66 @@
 
 }
 
-.left-top {
-    position:absolute; /* добавили */
-    left: 0;
-    margin-bottom: 30px;
-    margin-left: 10px;
-}
-
-.right-top {
-    position:absolute; /* добавили */
-    right: 0;
-    margin-bottom: 30px;
-    margin-right: 10px;
-}
-
-.left-bot {
-    position:absolute; /* добавили */
-    bottom:0; /* добавили */
-    left: 0;
-    margin-bottom: 30px;
-    margin-left: 10px;
-}
-
-.right-bot {
-    position:absolute; /* добавили */
-    bottom:0; /* добавили */
-    right: 0;
-    margin-bottom: 30px;
-    margin-right: 10px;
-}
-
 
 .left {
-    position:absolute; /* добавили */
-    left: 0;
-    margin-top: 17px;
-    margin-bottom: 10px;
-    margin-left: 10px;
+    display: inline-block;
+    float: left;
+    margin-top: 15px;
+    margin-left: 2%;
 }
 
 .right {
-    position:absolute; /* добавили */
-    right: 0;
-    margin-top: 17px;
-    margin-bottom: 10px;
-    margin-right: 10px;
+    display: inline-block;
+    float: right;
+    margin-top: 15px;
+    margin-right: 2%;
+}
+
+.left-top {
+    float: left;
+    margin-top: 5%;
+    margin-left: 5%;
+    display: inline-block;
+}
+
+.right-top {
+    float: right;
+    margin-top: 5%;
+    margin-right: 5%;
+    display: inline-block;
+}
+
+.left-bot {
+    float: left;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    display: inline-block;
+}
+
+.right-bot {
+    float: right;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    display: inline-block;
+}
+
+@media(max-width: 1024px) {
+    .left {
+        margin-top: 18px;
+    }
+    .right {
+        margin-top: 18px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 28px;
+        margin-top: 8px;
+    }
+    .screw {
+        width: 25px;
+        height: 25px;
+    }
+
 }
