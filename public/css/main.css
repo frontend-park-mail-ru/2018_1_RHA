@@ -178,4 +178,7 @@ p {
         width: 98%;
         opacity: 0.9;
     }
+    .button a {
+        font-size: 3vw;
+    }
 }

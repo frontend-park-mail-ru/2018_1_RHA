@@ -49,6 +49,25 @@
     }
     .lamp-position {
         margin-top: 20px;
+    }
+}
 
+@media (max-height: 470px) {
+    .red-lamp {
+        width: 20px;
+        height: 20px;
+    }
+    .lamp-position {
+        margin-top: 15px;
+    }
+}
+
+@media (max-height: 375px) {
+    .red-lamp {
+        width: 15px;
+        height: 15px;
+    }
+    .lamp-position {
+        margin-top: 12px;
     }
 }

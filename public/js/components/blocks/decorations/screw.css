@@ -97,5 +97,40 @@
         width: 25px;
         height: 25px;
     }
+}
 
+@media (max-height: 470px) {
+    .left {
+        margin-top: 14px;
+    }
+    .right {
+        margin-top: 14px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 24px;
+        margin-top: 5px;
+    }
+    .screw {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-height: 375px) {
+    .left {
+        margin-top: 10px;
+    }
+    .right {
+        margin-top: 10px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 18px;
+        margin-top: 3px;
+    }
+    .screw {
+        width: 15px;
+        height: 15px;
+    }
 }
