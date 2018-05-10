@@ -15,5 +15,4 @@ import '../public/js/components/views/gameView/gameView.css';
 import '../public/js/modules/loader/loader.css';
 
 // import '../public/js/modules/sketch.js';
-import '../public/js/components/radar/radar.js';
 import '../public/js/application.js';

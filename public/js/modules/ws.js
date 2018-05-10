@@ -6,7 +6,7 @@ export default class Ws {
 		if (Ws.__instance) {
 			return Ws.__instance;
 		}
-		const address = 'ws://localhost:5000/multiplayer/rand';
+		const address = 'wss://localhost:5000/multiplayer/rand';
 		this.ws = new WebSocket(address);
 		this.ws.onopen = (event) => {
 			console.log(`WebSocket on address ${address} opened`);
