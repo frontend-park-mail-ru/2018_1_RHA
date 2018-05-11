@@ -99,7 +99,8 @@
     }
 }
 
-@media (max-height: 470px) {
+
+@media (max-height: 510px) {
     .left {
         margin-top: 14px;
     }
@@ -162,7 +163,6 @@
     .left {
         margin-top: 5px;
     }
-
     .right {
         margin-top: 5px;
     }

@@ -52,7 +52,7 @@
     }
 }
 
-@media (max-height: 470px) {
+@media (max-height: 510px) {
     .red-lamp {
         width: 20px;
         height: 20px;
