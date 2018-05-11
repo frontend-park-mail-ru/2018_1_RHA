@@ -183,10 +183,25 @@ p {
     }
 }
 
+@media (max-height: 640px)  {
+    .button a {
+        margin-top: 15px;
+    }
+}
+@media (max-height: 400px) {
+    .button a {
+        margin-top: 10px;
+    }
+}
+@media (max-height: 320px) {
+    .button a {
+        margin-top: 5px;
+    }
+}
+
 @media (max-width: 375px) {
     .button a {
         font-size: 4vw;
-        margin-top: 20%;
     }
 }
 
