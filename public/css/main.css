@@ -204,5 +204,15 @@ p {
         font-size: 4vw;
     }
 }
+@media (max-height: 358px) {
+    .button a {
+        margin-top: 7px;
+    }
+}
+@media (max-height: 325px) {
+    .button a {
+        margin-top: 5px;
+    }
+}
 
 

@@ -61,6 +61,11 @@
         margin-top: 15px;
     }
 }
+@media (max-height: 400px) {
+    .lamp-position {
+        margin-top: 11px;
+    }
+}
 
 @media (max-height: 375px) {
     .red-lamp {
@@ -69,5 +74,17 @@
     }
     .lamp-position {
         margin-top: 12px;
+    }
+}
+@media (max-height: 358px) {
+    .lamp-position {
+        margin-top: 8px;
+    }
+}
+
+
+@media (max-height: 325px) {
+    .lamp-position {
+        margin-top: 7px;
     }
 }

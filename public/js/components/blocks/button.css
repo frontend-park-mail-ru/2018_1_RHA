@@ -139,6 +139,9 @@
     background-image: -ms-linear-gradient(top, #8a8f95 0%, #7d8289 100%);
     color: #000000;
 }
+.button:hover .red-lamp {
+    background-color: #007bff;
+}
 
 
 @media (max-height: 400px) {

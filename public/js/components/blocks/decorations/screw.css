@@ -117,6 +117,15 @@
     }
 }
 
+@media (max-height: 400px) {
+    .left {
+        margin-top: 9px;
+    }
+    .right {
+        margin-top: 9px;
+    }
+}
+
 @media (max-height: 375px) {
     .left {
         margin-top: 10px;
@@ -132,5 +141,29 @@
     .screw {
         width: 15px;
         height: 15px;
+    }
+}
+@media (max-height: 358px) {
+    .left {
+        margin-top: 6px;
+    }
+    .right {
+        margin-top: 6px;
+    }
+}
+
+@media (max-height: 325px) {
+    .planck {
+        height: 8%;
+    }
+}
+
+@media (max-height: 325px) {
+    .left {
+        margin-top: 5px;
+    }
+
+    .right {
+        margin-top: 5px;
     }
 }

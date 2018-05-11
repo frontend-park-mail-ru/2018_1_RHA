@@ -39,3 +39,14 @@
         width: 70%;
     }
 }
+
+@media (max-height: 358px) {
+    .planck {
+        height: 9%;
+    }
+}
+@media (max-height: 325px) {
+    .planck {
+        height: 8%;
+    }
+}
