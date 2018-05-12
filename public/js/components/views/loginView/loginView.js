@@ -22,6 +22,7 @@ export default class LoginSection extends Section {
 	render() {
 
 		this.login = document.createElement('div');
+		this.login.classList.add('login-wrapper');
 		this.login.innerHTML = generateLogin();
 		this.after = this.login.getElementsByClassName('button')[0];
 
@@ -53,3 +54,6 @@ export default class LoginSection extends Section {
 		});
 	}
 }
+
+
+//todo перевести размер инпутов на пиксели (или нет)

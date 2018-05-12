@@ -61,7 +61,7 @@ export default class LoginForm extends Form {
 			Validator.checkPass(this.Password);
 		});
 
-
+		this.formElement.classList.add('login-form');
 		this.formElement.appendChild(this.Email.render());
 		this.formElement.appendChild(this.Password.render());
 		this.formElement.appendChild(this.InputSubmit.render());

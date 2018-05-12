@@ -1,13 +1,13 @@
-/*.input {*/
-    /*border: solid;*/
-    /*font-size: large;*/
-    /*width: 100%;*/
-    /*margin-bottom: 1%;*/
-/*}*/
+
+.input-wrapper {
+    height: 55px;
+    width: 100%;
+}
 
 .input {
     padding: 5px;
     font-size: large;
+    height: 40%;
     background-color: #ffffff;
     color: #000000;
     border: 7px groove #CCCCCC;

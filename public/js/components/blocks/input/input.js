@@ -14,6 +14,7 @@ export default class Input extends Block {
 		this.status = true; //заглушка
 
 		this.wrapper = document.createElement('div');
+		this.wrapper.classList.add('input-wrapper');
 		//TODO здесь надо указать все типы инпутов, которым не нужна лампа
 
 		let CLASS = 'input';
