@@ -33,25 +33,25 @@ export default class ChangeForm extends Form {
 			type: 'password',
 			placeholder: 'old password',
 			id: 'changeOld'
-		});
+		}, 'change-wrapper');
 
 		this.Password = new Input({
 			type: 'password',
 			placeholder: 'new password',
 			id: 'changeNew'
-		});
+		}, 'change-wrapper');
 
 		this.RepeatPassword = new Input({
 			type: 'password',
 			placeholder: 'repeat password',
 			id: 'changeRepeat'
-		});
+		}, 'change-wrapper');
 
 		this.InputSubmit = new Input({
 			type: 'submit',
 			value: 'Save',
 			id: 'changeSubmit'
-		});
+		}, 'change-wrapper');
 
 		//TODO:: бэк
 		this.OldPassword.setOnInputChange(() => {
@@ -63,6 +63,8 @@ export default class ChangeForm extends Form {
 		this.RepeatPassword.setOnInputChange(() => {
 			Validator.checkConfirm(this.Password, this.RepeatPassword);
 		});
+
+		this.formElement.classList.add('change-form');
 
 		this.formElement.appendChild(this.OldPassword.render());
 		this.formElement.appendChild(this.Password.render());

@@ -29,6 +29,7 @@ export default class ProfileSection extends Section {
 
 		this.attrs = User.getCurUser();
 		this.profileTable = document.createElement('div');
+		this.profileTable.classList.add('profile-div');
 		this.profileTable.innerHTML = generateProfile({'user': this.attrs});
 		this.profileElement.appendChild(this.profileTable);
 		this.profileElement.appendChild(document.createElement('hr'));

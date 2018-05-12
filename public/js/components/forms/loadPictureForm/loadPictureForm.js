@@ -35,20 +35,19 @@ export default class LoadForm extends Form {
 			type: 'file',
 			placeholder: '',
 			id: 'loadImageInput'
-		});
+		}, 'upload-input');
 		this.UploadSubmit = new Input({
 			type: 'submit',
 			value: 'Save picture',
 			id: 'loadImageSubmit'
-		});
+		}, 'upload-submit');
 
 		this.formElement.appendChild(this.UploadInput.render());
 		this.formElement.appendChild(this.UploadSubmit.render());
 
 		this.formElement.setAttribute('enctype', 'multipart/form-data');
 		this.formElement.setAttribute('name', 'form_loadFile');
-		this.formElement.classList.add('form-loadFile');
-
+		this.formElement.classList.add('load-form');
 		return this.formElement;
 	}
 

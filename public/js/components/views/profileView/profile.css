@@ -9,6 +9,8 @@
     border: solid;
     border-color: white;
     display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
 .table__profile {
@@ -29,4 +31,27 @@
 
 .div__avatar-wrapper {
     display: inline-block;
+}
+.profile-div {
+    width: 100%;
+    height: 20%;
+}
+.load-form {
+    width: 100%;
+    height: 19%;
+}
+.change-form {
+    width: 100%;
+    height: 36%;
+}
+.change-wrapper {
+    width: 100%;
+    height: 26%;
+}
+.upload-input {
+    width: 100%;
+}
+.upload-submit {
+    width: 100%;
+    height: 40%;
 }
