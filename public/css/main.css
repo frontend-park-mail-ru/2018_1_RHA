@@ -116,7 +116,7 @@ body {
     vertical-align: middle;
     color: black;
     height: 100%;
-    font-size: 1.5vw;
+    /*font-size: 1.5vw;*/
     /*padding:16px 18px 14px;*/
 }
 
@@ -171,6 +171,10 @@ p {
     top: 0;
 }
 
+.b-button {
+    font-size: large;
+}
+
 
 @media screen and (orientation:portrait) and (max-device-width: 900px) {
 
@@ -180,39 +184,34 @@ p {
         width: 98%;
         opacity: 0.9;
     }
-    .button a {
+    .menu-button {
         font-size: large;
     }
 }
 
 @media (max-height: 640px)  {
-    .button a {
+    .menu-button {
         margin-top: 15px;
     }
 }
 @media (max-height: 400px) {
-    .button a {
+    .menu-button {
         margin-top: 10px;
     }
 }
 @media (max-height: 320px) {
-    .button a {
+    .menu-button {
         margin-top: 5px;
     }
 }
 
-@media (max-width: 375px) {
-    .button a {
-        font-size: 4vw;
-    }
-}
 @media (max-height: 358px) {
-    .button a {
+    .menu-button {
         margin-top: 7px;
     }
 }
 @media (max-height: 325px) {
-    .button a {
+    .menu-button {
         margin-top: 5px;
     }
 }

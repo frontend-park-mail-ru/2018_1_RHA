@@ -6,6 +6,7 @@ import '../public/js/components/blocks/decorations/lamp.css';
 import '../public/js/components/blocks/decorations/plank.css';
 import '../public/js/components/blocks/decorations/screw.css';
 import '../public/js/components/views/loginView/login.css';
+import '../public/js/components/views/registerView/register.css';
 import '../public/js/components/views/ratingView/rating.css';
 import '../public/js/components/views/profileView/profile.css';
 import '../public/js/components/forms/loadPictureForm/loadPictureForm.css';

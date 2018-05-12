@@ -22,31 +22,31 @@ export default class RegisterForm extends Form {
 			type: 'text',
 			placeholder: 'email',
 			id: 'registerEmail'
-		});
+		}, 'reg-input-wrapper');
 
 		this.Name = new Input({
 			type: 'text',
 			placeholder: 'name',
 			id: 'registerName'
-		});
+		}, 'reg-input-wrapper');
 
 		this.Password = new Input({
 			type: 'password',
 			placeholder: 'password',
 			id: 'registerPass'
-		});
+		}, 'reg-input-wrapper');
 
 		this.ConfirmPassword = new Input({
 			type: 'password',
 			placeholder: 'confirm password',
 			id: 'registerPass2'
-		});
+		}, 'reg-input-wrapper');
 
 		this.InputSubmit = new Input({
 			type: 'submit',
 			value: 'Sign Up',
 			id: 'registerSubmit'
-		});
+		}, 'reg-input-wrapper');
 
 
 		this.Email.setOnInputChange(() => {
@@ -62,6 +62,7 @@ export default class RegisterForm extends Form {
 			Validator.checkConfirm(this.Password, this.ConfirmPassword);
 		});
 
+		this.formElement.classList.add('regist-form');
 		this.formElement.appendChild(this.Email.render());
 		this.formElement.appendChild(this.Name.render());
 		this.formElement.appendChild(this.Password.render());

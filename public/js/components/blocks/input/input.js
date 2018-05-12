@@ -7,14 +7,14 @@ export default class Input extends Block {
      * Creates input
      * @param {object} data – contains type, value and placeholder
      */
-	constructor(data) {
+	constructor(data, style) {
 		super();
 
 
 		this.status = true; //заглушка
 
 		this.wrapper = document.createElement('div');
-		this.wrapper.classList.add('input-wrapper');
+		this.wrapper.classList.add(style);
 		//TODO здесь надо указать все типы инпутов, которым не нужна лампа
 
 		let CLASS = 'input';

@@ -39,19 +39,19 @@ export default class LoginForm extends Form {
 			type: 'text',
 			placeholder: 'email',
 			id: 'loginEmail'
-		});
+		}, 'input-wrapper');
 
 		this.Password = new Input({
 			type: 'password',
 			placeholder: 'password',
 			id: 'loginPassword'
-		});
+		}, 'input-wrapper');
 
 		this.InputSubmit = new Input({
 			type: 'submit',
 			value: 'Sign In',
 			id: 'loginSubmit'
-		});
+		}, 'input-wrapper');
 
 		this.Email.setOnInputChange(() => {
 			Validator.checkMail(this.Email);

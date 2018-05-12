@@ -28,6 +28,7 @@ export default class RegisterSection extends Section {
      */
 	render() {
 		this.register = document.createElement('div');
+		this.register.classList.add('regist-wrapper');
 		this.register.innerHTML = generateRegister();
 		this.registerForm = new RegisterForm();
 		this.after = this.register.getElementsByClassName('button')[0];
