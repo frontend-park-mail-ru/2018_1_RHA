@@ -167,3 +167,20 @@
         margin-top: 5px;
     }
 }
+@media (max-height: 285px)  {
+    .left {
+        margin-top: 3px;
+    }
+    .right {
+        margin-top: 3px;
+    }
+    .screw {
+        width: 12px;
+        height: 12px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 15px;
+        margin-top: 2px;
+    }
+}

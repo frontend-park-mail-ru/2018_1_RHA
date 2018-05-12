@@ -149,3 +149,18 @@
         height: 65%;
     }
 }
+@media (max-height: 300px) {
+    .button {
+        height: 50%;
+    }
+}
+@media (max-height: 280px) {
+    .button {
+        height: 47%;
+    }
+}
+@media (max-height: 260px) {
+    .button {
+        height: 45%;
+    }
+}

@@ -88,3 +88,8 @@
         margin-top: 7px;
     }
 }
+@media (max-height: 285px) {
+    .lamp-position {
+        margin-top: 3px;
+    }
+}
