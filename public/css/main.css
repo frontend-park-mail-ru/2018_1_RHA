@@ -77,11 +77,11 @@ a {
 #body {
     height: 100%;
     width: 100%;
-    background-image: url("/map.png");
-    animation: animatedBackground 60s linear infinite;
-    -moz-animation: animatedBackground 60s linear infinite;
-    -webkit-animation: animatedBackground 60s linear infinite;
-    -o-animation: animatedBackground 60s linear infinite;
+    /*background-image: url("/map.png");*/
+    /*animation: animatedBackground 60s linear infinite;*/
+    /*-moz-animation: animatedBackground 60s linear infinite;*/
+    /*-webkit-animation: animatedBackground 60s linear infinite;*/
+    /*-o-animation: animatedBackground 60s linear infinite;*/
 }
 .start {
     height: 100%;
