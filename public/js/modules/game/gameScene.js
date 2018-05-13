@@ -114,7 +114,12 @@ export default class GameScene {
 	setPlayersRegions() {
 		//todo шняга полная, надо переделать по-хорошему
 		for (let i = 0; i < this.players.length; i++ ) {
-			this.players[i].addRegion(this.regions[i]);
+			// this.players[i].addRegion(this.regions[i]);
+			for (let j = 0; j < this.regions.length; ++j) {
+				if (this.regions[j].owner === this.players[i]) {
+					this.players[i].addRegion(this.regions[j]);
+				}
+			}
 		}
 	}
 
