@@ -102,7 +102,6 @@ export default class Game {
 									// this.webPlayer.addRegion(region);
 								}
 							});
-
 						}
 					});
 

@@ -1,5 +1,6 @@
 .avatar {
-    width: 50%;
+    width: 25%;
+    height: 100%;
     border: solid;
     border-color: white;
     float: left;
@@ -16,8 +17,8 @@
 .table__profile {
     text-align: center;
     padding-top: 10%;
-    display: block;
     margin-left: 5%;
+    font-family: armalite sans-serif;
 }
 
 .tr__profile {
@@ -31,6 +32,8 @@
 
 .div__avatar-wrapper {
     display: inline-block;
+    height: 100%;
+    width:100%;
 }
 .profile-div {
     width: 100%;
@@ -54,4 +57,36 @@
 .upload-submit {
     width: 100%;
     height: 40%;
+}
+
+@media (max-height: 480px) {
+    .change-wrapper {
+        width: 50%;
+        height: 47%;
+        display: inline-block;
+    }
+    .change-form {
+        width: 100%;
+        height: 85px;
+    }
+    .load-form {
+        width: 100%;
+        height: 57px;
+    }
+    .upload-input {
+        width: 50%;
+        display: inline-block;
+    }
+    .upload-submit {
+        width: 50%;
+        height: 95%;
+        display: inline-block;
+    }
+    #loadImageSubmit {
+        width: 90%;
+    }
+    #changeSubmit {
+        height: 95%;
+        width: 90%;
+    }
 }
