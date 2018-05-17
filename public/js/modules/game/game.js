@@ -9,6 +9,7 @@ import {GameModes} from './config/modes.js';
 import Ws from '../ws.js';
 import User from '../userModel.js';
 import WebPlayer from './player/webPlayer.js';
+import Help from './help/help';
 
 /**
  * Class representing game
@@ -59,9 +60,10 @@ export default class Game {
 			});
 
 			this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
-
 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
-		} else {
+			this.help = new Help();
+		}
+		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
 				this.Ws.send('JoinGame$Request', {});

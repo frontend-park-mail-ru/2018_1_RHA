@@ -1,0 +1,33 @@
+.div__help {
+    position: absolute;
+    top: 10%;
+    z-index: 10;
+    background-color: gray;
+    width: 100%;
+    height: 50vh;
+    border: solid;
+}
+
+.div__help-text {
+    width: 50%;
+    height: 5em;
+    border: solid;
+    float: left;
+    margin: 0 0 0 25%;
+    height: 100%;
+}
+
+.div__close {
+    width: 1em;
+    height: 2em;
+    right: 5%;
+    top: 5%;
+    margin-right: 1em;
+    float: right;
+    border: solid;
+}
+
+.div__close:hover {
+    border-color: red;
+}
+

@@ -4,6 +4,7 @@ import Game from '../../../modules/game/game.js';
 import bus from '../../../modules/bus.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
+import Help from '../../../modules/game/help/help.js';
 let generateCanvas = require('./gameTemplate.pug');
 
 /**
@@ -15,7 +16,6 @@ export default class GameSection extends Section {
 	 */
 	constructor() {
 		super();
-
 		this.parent = document.getElementById('game');
 		this.wrapper = document.createElement('div');
 		this.wrapper.classList.add('wrapper');
@@ -54,13 +54,12 @@ export default class GameSection extends Section {
 			height: window.innerHeight
 		};
 		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
-
+		this.wrapper.appendChild(new Help().render());
 	}
 	/**
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-
 		this.img = new Image();
 		this.img.src = '/map.png';
 		this.load = new Promise(resolve => {
@@ -76,7 +75,8 @@ export default class GameSection extends Section {
 					this.coordinate = new Coordinate(this.game_canvas);
 					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 					this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-					this.game.start();
+					bus.on('close-help', () => {this.game.start()});
+					// this.game.start();
 				}
 			);
 

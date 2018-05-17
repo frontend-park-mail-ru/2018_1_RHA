@@ -19,7 +19,6 @@ const globalRoot = document.getElementById('body');
 // 			console.log('Service worker error: ' + err);
 // 		});
 // }
-
 User.auth()
 	.then( () => {
 		new Router(root, globalRoot)

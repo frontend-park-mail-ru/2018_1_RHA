@@ -24,25 +24,25 @@ export default class MenuSection extends Section {
 		this.menu = document.createElement('div');
 		this.attrsActive = [
 			{
-				title: 'singleplayer',
+				title: 'Singleplayer',
 				href: '/singleplayer'
 			},
 			{
-				title: 'multiplayer',
+				title: 'Multiplayer',
 				href: '/multiplayer'
 			},
 			{
-				title: 'profile',
+				title: 'Profile',
 				href: '/profile'
 			},
 			{
-				title: 'rating',
+				title: 'Rating',
 				href: '/rating'
 			},
 		];
 		this.attrPassive = [
 			{
-				title: 'singleplayer',
+				title: 'Singleplayer',
 				href: '/singleplayer'
 			},
 			{
