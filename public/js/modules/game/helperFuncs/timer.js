@@ -1,7 +1,6 @@
 import bus from '../../bus.js';
 
 export const timer = (htmlElement) => {
-	console.log('timer');
 	let sec = 30;
 	let isPaused = false;
 	let g = setInterval(() => {

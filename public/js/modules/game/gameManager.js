@@ -33,37 +33,21 @@ export default class GameManager {
 	 * Starts game logic 8)
 	 */
 	start() {
-		console.log('manager');
 		timer(this.timer);
 		this.select_region = (data) => {
+			console.log('select');
 			const region = data.payload;
 			region.selected = true;
 			region.area.setStroke('red');
 			//todo:: попробовать запускать последовательно
 			renderScene(this.canvas, this.regions, this.img);
 		};
-		this.change_selection = (data) => {
-			const regions = data.payload;
-			regions.active.selected = false;
-			regions.new.selected = true;
-			let setNewColor = new Promise((resolve, reject) => {
-				resolve(regions.new.area.setStroke('red'));
-			});
-			let setActiveColor = new Promise((resolve, reject) => {
-				resolve(regions.active.area.setStroke('white'));
-			});
-			setNewColor
-				.then(
-					() => {
-						renderScene(this.canvas, this.regions, this.img);
-					}
-				);
-			setActiveColor
-				.then(
-					() => {
-						renderScene(this.canvas, this.regions, this.img);
-					}
-				);
+		this.remove_selection = (data) => {
+			console.log('remove');
+			const region = data.payload;
+			region.selected = false;
+			region.area.setStroke('white');
+			renderScene(this.canvas, this.regions, this.img);
 		};
 		this.attack = (data) => {
 			animationOverlay(window.innerWidth / 2, this.canvas.height * 0.92);
@@ -151,7 +135,7 @@ export default class GameManager {
 			renderScene(this.canvas, this.regions, this.img);
 		};
 
-		bus.on('change-selection', this.change_selection);
+		bus.on('remove-selection', this.remove_selection);
 		bus.on('select-region', this.select_region);
 		bus.on('change-move', this.change_move);
 		bus.on('move-units', this.move_units);
@@ -164,7 +148,7 @@ export default class GameManager {
 	 * destroys game logic ;)
 	 */
 	destroy() {
-		bus.off('change-selection', this.change_selection);
+		bus.off('remove-selection', this.change_selection);
 		bus.off('select-region', this.select_region);
 		bus.off('change-move', this.change_move);
 		bus.off('move-units', this.move_units);

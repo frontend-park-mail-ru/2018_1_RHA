@@ -25,7 +25,6 @@ export default class GameScene {
 		this.players = players;
 		this.regions = regions;
 		this.about_region = document.getElementById('about-region');
-		console.log(this.players);
 		this.setPlayersRegions();
 		if (mode === GameModes.multiplayer) {
 			this.ws = new Ws();
@@ -154,6 +153,7 @@ export default class GameScene {
 					case PLAYER_STATES.READY:
 						const activeRegion = this.activeRegion();
 						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+							console.log('attack');
 							if (this.isNeighbour(activeRegion, curRegion) === false) {
 								return;
 							}
@@ -166,6 +166,7 @@ export default class GameScene {
 						else {
 							if (curRegion === this.activeRegion()) {
 								curPlayer.status = PLAYER_STATES.DEFAULT;
+								bus.emit('remove-selection', curRegion);
 							} else {
 								//выводим информацию о регионе
 								aboutRegion(curRegion, this.about_region);
@@ -176,43 +177,14 @@ export default class GameScene {
 										active: this.activeRegion(),
 										new: curRegion
 									});
+								bus.emit('remove-selection', this.activeRegion());
+								bus.emit('select-region', curRegion);
 							}
-							bus.emit('change-selection',
-								{
-									active: this.activeRegion(),
-									new: curRegion
-								});
 						}
 						break;
 				}
 			});
 
-			// bus.on('contextmenu', data => {
-			//
-			// 	// const curPlayer = this.currentPlayer();
-			// 	// const activeRegion = this.activeRegion();
-			// 	// const coordinates = data.payload;
-			// 	// if (curPlayer.status === PLAYER_STATES.DISABLED || curPlayer.status !== PLAYER_STATES.READY) {
-			// 	// 	return;
-			// 	// }
-			// 	//
-			// 	// const curRegion = this.isRegion(coordinates.x, coordinates.y);
-			// 	// if (!curRegion) {
-			// 	// 	return;
-			// 	// }
-			//
-			//
-			// 	//если не является регионом игрока
-			// 	if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
-			// 		//если не является соседом, то выходим
-			//
-			// 	} else {
-			// 		//перемещаем юнитов между своими регионами
-			//
-			// 		//выводим информацию о регионе
-			// 		aboutRegion(curRegion, this.about_region);
-			// 	}
-			// });
 
 			bus.on('left-click-change', () => {
 				const curPlayer = this.currentPlayer();
