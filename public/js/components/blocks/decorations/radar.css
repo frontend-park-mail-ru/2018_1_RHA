@@ -26,7 +26,7 @@
             linear-gradient(90deg, green 2px, transparent 2px),
             linear-gradient(rgba(0,255,0,.3) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,255,0,.3) 1px, transparent 1px),
-            rgba(0, 0, 0, 1);
+            rgba(0, 0, 0, 0.4);
     background-size:50% 50% , 50%  50% , 10% 10%, 10% 10%;
     background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
