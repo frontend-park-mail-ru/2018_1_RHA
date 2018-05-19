@@ -152,65 +152,67 @@ export default class GameScene {
 						bus.emit('select-region', curRegion);
 						break;
 					case PLAYER_STATES.READY:
+						const activeRegion = this.activeRegion();
 						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
-							return;
-						}
-
-						//если нажали на выделенный регион
-						if (curRegion === this.activeRegion()) {
-							curPlayer.status = PLAYER_STATES.DEFAULT;
-						}
-
-						//выводим информацию о регионе
-						aboutRegion(curRegion, this.about_region);
-						bus.emit('change-selection',
-							{
-								active: this.activeRegion(),
-								new: curRegion
+							if (this.isNeighbour(activeRegion, curRegion) === false) {
+								return;
+							}
+							bus.emit('attack', {
+								from: activeRegion,
+								to: curRegion
 							});
+						}
+						//если нажали на выделенный регион
+						else {
+							if (curRegion === this.activeRegion()) {
+								curPlayer.status = PLAYER_STATES.DEFAULT;
+							} else {
+								//выводим информацию о регионе
+								aboutRegion(curRegion, this.about_region);
+								curRegion.gameData.units += activeRegion.gameData.units;
+								activeRegion.gameData.units = 0;
+								bus.emit('move-units',
+									{
+										active: this.activeRegion(),
+										new: curRegion
+									});
+							}
+							bus.emit('change-selection',
+								{
+									active: this.activeRegion(),
+									new: curRegion
+								});
+						}
 						break;
 				}
 			});
 
-			bus.on('contextmenu', data => {
-
-				const curPlayer = this.currentPlayer();
-				const activeRegion = this.activeRegion();
-				const coordinates = data.payload;
-				if (curPlayer.status === PLAYER_STATES.DISABLED || curPlayer.status !== PLAYER_STATES.READY) {
-					return;
-				}
-
-				const curRegion = this.isRegion(coordinates.x, coordinates.y);
-				if (!curRegion) {
-					return;
-				}
-
-
-				//если не является регионом игрока
-				if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
-					//если не является соседом, то выходим
-					if (this.isNeighbour(activeRegion, curRegion) === false) {
-						return;
-					}
-
-					bus.emit('attack', {
-						from: this.activeRegion(),
-						to: curRegion
-					});
-				} else {
-					//перемещаем юнитов между своими регионами
-					curRegion.gameData.units += activeRegion.gameData.units;
-					activeRegion.gameData.units = 0;
-					bus.emit('move-units',
-						{
-							active: this.activeRegion(),
-							new: curRegion
-						});
-					//выводим информацию о регионе
-					aboutRegion(curRegion, this.about_region);
-				}
-			});
+			// bus.on('contextmenu', data => {
+			//
+			// 	// const curPlayer = this.currentPlayer();
+			// 	// const activeRegion = this.activeRegion();
+			// 	// const coordinates = data.payload;
+			// 	// if (curPlayer.status === PLAYER_STATES.DISABLED || curPlayer.status !== PLAYER_STATES.READY) {
+			// 	// 	return;
+			// 	// }
+			// 	//
+			// 	// const curRegion = this.isRegion(coordinates.x, coordinates.y);
+			// 	// if (!curRegion) {
+			// 	// 	return;
+			// 	// }
+			//
+			//
+			// 	//если не является регионом игрока
+			// 	if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
+			// 		//если не является соседом, то выходим
+			//
+			// 	} else {
+			// 		//перемещаем юнитов между своими регионами
+			//
+			// 		//выводим информацию о регионе
+			// 		aboutRegion(curRegion, this.about_region);
+			// 	}
+			// });
 
 			bus.on('left-click-change', () => {
 				const curPlayer = this.currentPlayer();
