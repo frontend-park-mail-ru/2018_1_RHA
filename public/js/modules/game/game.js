@@ -128,14 +128,15 @@ export default class Game {
 					let indexPlayer;
 					this.players = [];
 					this.regions = [];
+					const username = User.getCurUser().username;
 					initData.players.forEach((player, index) => {
-						if (player === User.getCurUser().username) {
+						if (player === username) {
 							indexPlayer = index + 1;
-							this.players.push(new MainPlayer(player, 'green', this.game_canvas, this.img));
-							console.log(player, '---', User.getCurUser().username);
-						} else {
-							this.players.push(new WebPlayer(player, 'red', this.game_canvas, this.img));
+							// this.players.push(new MainPlayer(player, 'green', this.game_canvas, this.img));
 						}
+						// else {
+						// 	this.players.push(new WebPlayer(player, 'red', this.game_canvas, this.img));
+						// }
 					});
 
 					const map = initData.map;
@@ -145,12 +146,17 @@ export default class Game {
 
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
-							if (col.owner === 0) {
-								this.regions.push(new Area('def', new BotPlayer(), this.game_canvas, {
+							if (col.owner === indexPlayer) {
+								const player  = new MainPlayer(username, 'green', this.game_canvas, this.img);
+								this.players.push(player);
+								this.regions.push(new Area('def', player, this.game_canvas, {
 									I: rI,
 									J: cI,
 									R: Radius
 								}, col.units));
+							} else if (col.owner === 0) {
+								const region = new Area(String(col.owner), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, this.coordinate, 0);
+								this.regions.push(region);
 							} else {
 								for (let i = 0; i < this.players.length; ++i) {
 									if (this.players[i].name === initData.players[col.owner]) {

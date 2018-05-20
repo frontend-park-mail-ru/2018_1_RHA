@@ -202,7 +202,6 @@ export default class GameScene {
 				const regs = data.payload;
 				for (let i = 0; i < this.regions.length; ++i) {
 					if (regs.to === this.regions[i].label) {
-						console.log(regs.from.owner, '     ---------');
 						bus.emit('attack', {
 							from: regs.from,
 							to: this.regions[i]
