@@ -142,7 +142,7 @@ export default class Game {
 					const map = initData.map;
 
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
-					const Radius = this.game_canvas.width * 0.55 / (2 * map.length - 1);
+					const Radius = 610 / (2 * map.length - 1);
 
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
