@@ -129,17 +129,19 @@ export default class Game {
 					this.players = [];
 					this.regions = [];
 					initData.players.forEach((player, index) => {
-						if (player === User.getCurUser()) {
+						if (player === User.getCurUser().username) {
 							indexPlayer = index + 1;
 							this.players.push(new MainPlayer(player, 'green', this.game_canvas, this.img));
+							console.log(player, '---', User.getCurUser().username);
 						} else {
 							this.players.push(new WebPlayer(player, 'red', this.game_canvas, this.img));
 						}
 					});
+
 					const map = initData.map;
 
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
-					const Radius = 623 / (2 * 5 - 1);
+					const Radius = 623 / (2 * map.length - 1);
 
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
@@ -203,17 +205,3 @@ export default class Game {
 * FinishGame
 * ServerTurn
  */
-
-
-// {
-// 	"class":"InitGame$Request",
-// 	"players":["ccc", "qweqweqew"],
-// 	"map":
-// 	[
-// 		{"owner": 1, "units": 2000, "neibours": [2, 3], "type": 1, "id": 14},
-// 		{"owner": 0, "units": 1000, "neibours": [1, 3, 4, 5], "type": 1, "id": 15},
-// 		{"owner": 0, "units": 1000, "neibours": [2, 1, 5], "type": 1, "id": 16},
-// 		{"owner": 0, "units": 1000, "neibours": [2, 5], "type": 1, "id": 17},
-// 		{"owner": 2, "units": 2000, "neibours": [2, 3, 4], "type": 1, "id": 18}
-// 	]
-// }
