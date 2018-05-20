@@ -142,7 +142,7 @@ export default class Game {
 					const map = initData.map;
 
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
-					const Radius = 623 / (2 * map.length - 1);
+					const Radius = this.game_canvas.width * 0.55 / (2 * map.length - 1);
 
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
@@ -155,19 +155,20 @@ export default class Game {
 									R: Radius
 								}, col.units));
 							} else if (col.owner === 0) {
-								const region = new Area(String(col.owner), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, this.coordinate, 0);
+								const region = new Area(String(col.owner), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
+									I: rI,
+									J: cI,
+									R: Radius
+								}, col.units);
 								this.regions.push(region);
 							} else {
-								for (let i = 0; i < this.players.length; ++i) {
-									if (this.players[i].name === initData.players[col.owner]) {
-										const area = new Area('kafka', this.players[i], this.game_canvas, {
-											I: rI,
-											J: cI,
-											R: Radius
-										}, col.units);
-										this.regions.push(area);
-									}
-								}
+								const webPlayer = new WebPlayer('web', 'red', this.game_canvas, this.img);
+								this.players.push(webPlayer);
+								this.regions.push(new Area('webZone', webPlayer, this.game_canvas, {
+									I: rI,
+									J: cI,
+									R: Radius
+								}, col.units));
 							}
 						});
 					});

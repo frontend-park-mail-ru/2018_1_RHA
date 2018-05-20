@@ -26,7 +26,6 @@ export default class Area {
 		// let sy = this.coordinate.R * 1.05;
 		// let x = this.coordinate.I * sx + 345;
 		// let y = this.coordinate.J * sy * 2 + this.coordinate.I % 2 * sy + this.coordinate.R * 1.5;
-
 		let sx = this.coordinate.R * 3 / 2.0;
 		let sy = this.coordinate.R * Math.sqrt(3.0) / 2;
 		let x = this.coordinate.I * sx;
