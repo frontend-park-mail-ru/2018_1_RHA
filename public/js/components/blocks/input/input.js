@@ -76,8 +76,6 @@ export default class Input extends Block {
 		}
 	}
 
-
-	//TODO: в качестве коллбека можешь передать методы валидатора, тогда ему будут видны поля этого класса
 	/**
      * Defines behaviour on change
      * @param {function} callbackfn – input data change handler

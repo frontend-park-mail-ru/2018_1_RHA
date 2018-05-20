@@ -138,48 +138,6 @@ export default class Game {
 						}
 					});
 
-					// const map = [
-					// 	[
-					// 		{'owner': 1, 'units': 2000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 2, 'units': 2000, 'type': 1}
-					// 	],
-					//
-					// 	[
-					// 		{'owner': 1, 'units': 2000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 2, 'units': 2000, 'type': 1}
-					// 	],
-					//
-					// 	[
-					// 		{'owner': 1, 'units': 2000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 2, 'units': 2000, 'type': 1}
-					// 	],
-					//
-					// 	[
-					// 		{'owner': 1, 'units': 2000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 2, 'units': 2000, 'type': 1}
-					// 	],
-					//
-					// 	[
-					// 		{'owner': 1, 'units': 2000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 0, 'units': 1000, 'type': 1},
-					// 		{'owner': 2, 'units': 2000, 'type': 1}
-					// 	]
-					// ];
-
 					const map = initData.map;
 
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩

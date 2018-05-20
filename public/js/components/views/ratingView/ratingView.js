@@ -38,7 +38,7 @@ export default class RatingSection extends Section {
 			this.page--;
 			this.prevButt.hidden = this.page === 1;
 			this.nextButt.hidden = false;
-			this.load(this.page);
+			this.load(this.page, () => {});
 		});
 		this.nextButt = document.createElement('a');
 
@@ -52,12 +52,9 @@ export default class RatingSection extends Section {
 			if (this.page !== 1) {
 				this.prevButt.hidden = false;
 			}
-			this.load(this.page, (empty) => {
-				if (empty) {
+			this.load(this.page, data => {
+				if (data.pages === this.page) {
 					this.nextButt.hidden = true;
-					this.lastPage = document.createElement('div');
-					this.lastPage.innerText = 'This is the last page';
-					this.rating.insertBefore(this.lastPage, this.rating.firstChild);
 				}
 			});
 		});
@@ -82,21 +79,18 @@ export default class RatingSection extends Section {
 	}
 
 	load(page, callbackfn) {
-		console.log(page);
-
 		UserController.rating( page, (err, users) => {
 			if (err) {
 				console.error(err);
 				callbackfn(true);
 				return;
 			}
-			console.log(err, users);
-
 			users.then(
 				data => {
 					this.table = document.createElement('div');
 					this.table.innerHTML = generateRating({'data': data[0], 'user': data[1][0],
 						'pages': data[2][0], 'page': page});
+					callbackfn(data[2][0]);
 					this.rating.insertBefore(this.table, this.rating.firstChild);
 				}
 			);
