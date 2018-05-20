@@ -245,6 +245,7 @@ export default class GameScene {
 				if (!this.players.isTheRegionOfPlayer(curRegion)) {
 					return;
 				}
+				console.log('multy');
 
 				aboutRegion(curRegion, this.about_region);
 
@@ -255,15 +256,24 @@ export default class GameScene {
 						break;
 
 					case PLAYER_STATES.READY:
-						if (curRegion === this.activeRegion()) {
+						const activeRegion = this.activeRegion();
+						if (curRegion === activeRegion) {
 							this.players.status = PLAYER_STATES.DEFAULT;
+							bus.emit('remove-selection', curRegion);
 						}
-
-						bus.emit('change-selection',
-							{
-								active: this.activeRegion(),
-								new: curRegion
-							});
+						else {
+							//выводим информацию о регионе
+							aboutRegion(curRegion, this.about_region);
+							curRegion.gameData.units += activeRegion.gameData.units;
+							activeRegion.gameData.units = 0;
+							// bus.emit('move-units',
+							// 	{
+							// 		active: activeRegion,
+							// 		new: curRegion
+							// 	});
+							bus.emit('remove-selection', this.activeRegion());
+							bus.emit('select-region', curRegion);
+						}
 						break;
 				}
 			});

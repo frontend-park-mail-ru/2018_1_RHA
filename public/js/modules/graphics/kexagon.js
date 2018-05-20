@@ -1,3 +1,5 @@
+import bus from '../bus';
+
 export default class Kexagon {
 	constructor(name, canvas, x, y, r, color) {
 		this.name = name;
@@ -9,6 +11,14 @@ export default class Kexagon {
 		this.color = color;
 		this.strokeColor = 'black';
 		this.draw();
+		bus.on('new-x-y', data => {
+			const newCoord = data.payload;
+			this.xC = newCoord.x;
+			this.yC = newCoord.y;
+			this.color = newCoord.color;
+			this.draw();
+
+		});
 	}
 
 	setColor(color) {
