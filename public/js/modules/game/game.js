@@ -38,7 +38,6 @@ export default class Game {
 		this.img = img;
 		this.scene = null;
 		this.controller = new Controller(this.game_canvas, changeBut, this.mode);
-		console.log(this.mode);
 		if (this.mode === GameModes.singleplayer) {
 			this.players = [
 				new MainPlayer('A', 'rgba(0,255,127,0.4)', this.game_canvas, this.img),
@@ -219,7 +218,6 @@ export default class Game {
 	 * Starts game
 	 */
 	start() {
-		console.log('start');
 		this.controller.start();
 		this.scene.onListeners();
 		this.manager.start();

@@ -139,6 +139,5 @@ export default class Region {
 				this.neighbour.splice(i, 1);
 			}
 		});
-		console.log(this.name, '  ', this.neighbour);
 	}
 }
