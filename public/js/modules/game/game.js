@@ -63,61 +63,6 @@ export default class Game {
 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 			this.help = new Help();
 		}
-		// else {
-		// 	this.Ws = new Ws();
-		// 	bus.on('connected', () => {
-		// 		this.Ws.send('JoinGame$Request', {});
-		// 		bus.on('InitGame$Request', (data) => {
-		// 			//TODO установить игроков
-		// 			const initData = data.payload;
-		// 			const username = User.getCurUser().username;
-		// 			let indexPlayer;
-		// 			initData.players.forEach((player, index) => {
-		// 				if (player === username) {
-		// 					indexPlayer = index + 1;
-		// 				}
-		// 			});
-		// 			this.players = [];
-		// 			this.regions = [];
-		// 			this.botPlayer = new BotPlayer('bot', 'rgba(0,0,205,0.4)', this.game_canvas, this.img);
-		// 			initData.map.forEach((obj,i) => {
-		// 				if (obj.owner === indexPlayer) {
-		// 					const player = new MainPlayer(username, 'rgba(0,255,127,0.4)', this.game_canvas, this.img);
-		// 					this.players.push(player);
-		// 					const region = new Region(username, player, this.game_canvas, this.coordinate, obj.units);
-		// 					this.regions.push(region);
-		// 					// player.addRegion(region);
-		// 				}
-		// 				else if (obj.owner === 0) {
-		// 					const region = new Region(String(i), this.botPlayer, this.game_canvas, this.coordinate, 0);
-		// 					this.regions.push(region);
-		// 					// this.botPlayer.addRegion(region);
-		// 				}
-		// 				else {
-		// 					initData.players.forEach((player, i) => {
-		// 						if (obj.owner === i + 1) {
-		// 							console.log('in else');
-		// 							this.webPlayer = new WebPlayer(player, 'rgba(255,69,0,0.4)', this.game_canvas, this.img);
-		// 							this.players.push(this.webPlayer);
-		// 							const region = new Region(player, this.webPlayer, this.game_canvas, this.coordinate, obj.units);
-		// 							this.regions.push(region);
-		// 							// this.webPlayer.addRegion(region);
-		// 						}
-		// 					});
-		// 				}
-		// 			});
-		//
-		// 			this.players.forEach(player => {
-		// 				player.setAllRegtions(this.regions);
-		// 			});
-		//
-		// 			this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
-		// 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
-		// 			this.start();
-		// 			// Ws.send('set-players-confirm', true);
-		// 		});
-		// 	});
-		// }
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {

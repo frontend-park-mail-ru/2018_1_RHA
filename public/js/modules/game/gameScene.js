@@ -27,6 +27,7 @@ export default class GameScene {
 		this.about_region = document.getElementById('about-region');
 		this.setPlayersRegions();
 		if (mode === GameModes.multiplayer) {
+			this.setPlayersStatus();
 			this.ws = new Ws();
 		}
 	}
@@ -111,7 +112,6 @@ export default class GameScene {
 	 * Sets regions for playes
 	 */
 	setPlayersRegions() {
-		//todo шняга полная, надо переделать по-хорошему
 		for (let i = 0; i < this.players.length; i++ ) {
 			// this.players[i].addRegion(this.regions[i]);
 			for (let j = 0; j < this.regions.length; ++j) {
@@ -122,12 +122,41 @@ export default class GameScene {
 		}
 	}
 
+	setPlayersStatus() {
+		bus.on('TurnInit$Request', data => {
+			console.log('setPlayersStatus');
+			const user = data.payload.user;
+			console.log('curMpP   -  ', user);
+			for (let i = 0; i < this.players.length; ++i) {
+				if (this.players[i].name === user) {
+					this.players[i].setStatus(PLAYER_STATES.DEFAULT);
+				}
+				else {
+					this.players[i].setStatus(PLAYER_STATES.DISABLED);
+				}
+			}
+		});
+	}
+
+	currentMpPlayer() {
+		bus.on('TurnInit$Request', data => {
+			console.log('currentMpPlayer');
+			const user = data.payload.user;
+			for (let i = 0; i < this.players.length; ++i) {
+				if (this.players[i].name === user) {
+					return this.players[i];
+				}
+			}
+		});
+	}
+
 
 
 	/**
 	 * подписываемся на события кликов мышки
 	 */
 	onListeners() {
+		console.log(this.mode);
 		if (this.mode === GameModes.singleplayer) {
 			bus.on('left-click', data => {
 				const curPlayer = this.currentPlayer();
@@ -237,42 +266,52 @@ export default class GameScene {
 			bus.on('left-click', data => {
 				const coordinates = data.payload;
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
+				const currentPlayer = this.currentMpPlayer();
 
 				if (!curRegion) {
 					return;
 				}
 
-				if (!this.players.isTheRegionOfPlayer(curRegion)) {
+				if (!currentPlayer.isTheRegionOfPlayer(curRegion)) {
 					return;
 				}
-				console.log('multy');
 
 				aboutRegion(curRegion, this.about_region);
 
 				switch (this.players.status) {
 					case PLAYER_STATES.DEFAULT:
+						console.log('default m');
 						this.players.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);
 						break;
 
 					case PLAYER_STATES.READY:
+						console.log('ready m');
 						const activeRegion = this.activeRegion();
-						if (curRegion === activeRegion) {
-							this.players.status = PLAYER_STATES.DEFAULT;
-							bus.emit('remove-selection', curRegion);
+						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+							console.log('attack');
+							if (this.isNeighbour(activeRegion, curRegion) === false) {
+								return;
+							}
+							bus.emit('attack', {
+								from: activeRegion,
+								to: curRegion
+							});
 						}
+						//если нажали на выделенный регион
 						else {
-							//выводим информацию о регионе
-							aboutRegion(curRegion, this.about_region);
-							curRegion.gameData.units += activeRegion.gameData.units;
-							activeRegion.gameData.units = 0;
-							// bus.emit('move-units',
-							// 	{
-							// 		active: activeRegion,
-							// 		new: curRegion
-							// 	});
-							bus.emit('remove-selection', this.activeRegion());
-							bus.emit('select-region', curRegion);
+							if (curRegion === activeRegion) {
+								this.players.status = PLAYER_STATES.DEFAULT;
+								bus.emit('remove-selection', curRegion);
+							}
+							else {
+								//выводим информацию о регионе
+								aboutRegion(curRegion, this.about_region);
+								curRegion.gameData.units += activeRegion.gameData.units;
+								activeRegion.gameData.units = 0;
+								bus.emit('remove-selection', this.activeRegion());
+								bus.emit('select-region', curRegion);
+							}
 						}
 						break;
 				}
@@ -310,11 +349,15 @@ export default class GameScene {
 				});
 			});
 
-			bus.on('start-game', (data) => {
-				//TODO получить текущего игрока и заэмитить его
-				console.log(data);
-				// bus.emit('illum-cur',{});
+			bus.on('start-game', () => {
+				//подсветка текущего игрока
+				bus.emit('illum-cur', this.currentPlayer());
 			});
 		}
 	}
 }
+
+//todo вытащить текущего игркока
+//todo отобрать контролы у неактивных игроков
+//todo сделать ход
+//todo почему то не срабатывает подписка на TurnInit$Request во второй раз ( в фукнции currentMpPlayer )
