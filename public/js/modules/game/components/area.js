@@ -14,15 +14,19 @@ export default class Area {
 	}
 
 	init() {
-		const sx = this.coordinate.R * 3 / 2.0;
-		const sy = this.coordinate.R * 0.866;
-		const x = this.coordinate.I * sx;
-		const y = this.coordinate.J * sy * 2 + this.coordinate.I % 2 * sy;
+		let X = this.coordinate.R * 2 + this.coordinate.R * 2 * this.coordinate.I;
+		let Y = 0;
+		if (this.coordinate.J % 2 === 0) {
+			Y = this.coordinate.R * 2 * 0.866 + this.coordinate.J * this.coordinate.R * 0.866;
+		} else {
+			Y = this.coordinate.R * 0.866 + this.coordinate.J * this.coordinate.R * 0.866;
+		}
+
 		this.area = new Kexagon(
 			this.name,
 			this.canvas,
-			x,
-			y,
+			X,
+			Y,
 			this.coordinate.R,
 			this.color
 		);
