@@ -16,6 +16,7 @@ import '../public/js/components/blocks/decorations/radar.css';
 import '../public/js/components/views/gameView/gameView.css';
 import '../public/js/modules/loader/loader.css';
 import '../public/js/modules/game/help/help.css';
+import '../public/js/components/blocks/inputUpload/inputUpload.css';
 
 // import '../public/js/modules/sketch.js';
 import '../public/js/application.js';
