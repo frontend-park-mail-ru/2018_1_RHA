@@ -134,6 +134,12 @@ export default class GameManager {
 			);
 			renderScene(this.canvas, this.regions, this.img);
 		};
+		this.stop_controller = () => {
+			this.controller.stop();
+		};
+		this.start_controller = () => {
+			this.controller.start();
+		};
 
 		bus.on('remove-selection', this.remove_selection);
 		bus.on('select-region', this.select_region);
@@ -141,6 +147,8 @@ export default class GameManager {
 		bus.on('move-units', this.move_units);
 		bus.on('illum-cur', this.illum_cur);
 		bus.on('attack', this.attack);
+		bus.on('stop-controller', this.stop_controller);
+		bus.on('start-controller', this.start_controller);
 	}
 
 
@@ -154,5 +162,6 @@ export default class GameManager {
 		bus.off('move-units', this.move_units);
 		bus.off('illum-cur', this.illum_cur);
 		bus.off('attack', this.attack);
+		bus.on('stop-controller', this.stop_controller);
 	}
 }
