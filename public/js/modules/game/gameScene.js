@@ -70,6 +70,8 @@ export default class GameScene {
 	isRegion(x, y) {
 		console.log('in isRegion:', x, '-', y);
 		for (let i = 0; i < this.regions.length; ++i) {
+			// console.log(this.regions[i].area.xp, '   ', this.regions[i].area.yp);
+			// ------------------- что такое xp??????? ---------------------------
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
 				console.log('got region ', this.regions[i].area);
 				return this.regions[i];
@@ -119,6 +121,8 @@ export default class GameScene {
 		for (let i = 0; i < this.players.length; i++ ) {
 			// this.players[i].addRegion(this.regions[i]);
 			for (let j = 0; j < this.regions.length; ++j) {
+				console.log('region:  - ', this.regions[j].owner);
+				console.log('pl   -  ', this.players[i]);
 				if (this.regions[j].owner === this.players[i]) {
 					this.players[i].addRegion(this.regions[j]);
 				}
@@ -282,7 +286,8 @@ export default class GameScene {
 				if (!curRegion) {
 					return;
 				}
-				console.log('1');
+				console.log('1  -  ', this.curPlayer );
+				this.curPlayer.showRegion();
 
 				if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
 					return;

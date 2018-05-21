@@ -7,6 +7,7 @@ export default class Area {
 		this.canvas = canvas;
 		this.game_ctx = this.canvas.getContext('2d');
 		this.coordinate = coordinate;
+		this.owner = owner;
 		this.gameData = {
 			units: units
 		};
