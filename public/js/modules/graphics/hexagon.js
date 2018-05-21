@@ -16,7 +16,7 @@ export default class Hexagon {
 		this.name = name;
 		this.canvas = canvas;
 		this.game_ctx = this.canvas.getContext('2d');
-		this.draw(xC, yC, color);
+		// this.draw(xC, yC, color);
 		this.xC = xC;
 		this.yC = yC;
 		this.color = color;

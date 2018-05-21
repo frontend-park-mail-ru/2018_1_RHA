@@ -10,7 +10,7 @@ export default class Kexagon {
 		this.R = r;
 		this.color = color;
 		this.strokeColor = 'black';
-		this.draw();
+		// this.draw();
 		bus.on('new-x-y', data => {
 			const newCoord = data.payload;
 			this.xC = newCoord.x;
