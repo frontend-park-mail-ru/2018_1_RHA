@@ -12,7 +12,11 @@ export default class Area {
 			units: units
 		};
 		this.color = owner.color;
+		this.area = null;
 		this.init();
+	}
+	renderHex() {
+		this.area.draw();
 	}
 
 	init() {

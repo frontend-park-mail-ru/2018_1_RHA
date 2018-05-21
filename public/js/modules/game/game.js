@@ -118,6 +118,9 @@ export default class Game {
 						});
 					});
 
+					this.players.forEach(player => {
+						player.setAllRegtions(this.regions);
+					});
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 					this.start();

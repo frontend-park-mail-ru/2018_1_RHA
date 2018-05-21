@@ -121,8 +121,6 @@ export default class GameScene {
 		for (let i = 0; i < this.players.length; i++ ) {
 			// this.players[i].addRegion(this.regions[i]);
 			for (let j = 0; j < this.regions.length; ++j) {
-				console.log('region:  - ', this.regions[j].owner);
-				console.log('pl   -  ', this.players[i]);
 				if (this.regions[j].owner === this.players[i]) {
 					this.players[i].addRegion(this.regions[j]);
 				}
@@ -281,18 +279,14 @@ export default class GameScene {
 				const coordinates = data.payload;
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
 
-				console.log('0');
 
 				if (!curRegion) {
 					return;
 				}
-				console.log('1  -  ', this.curPlayer );
-				this.curPlayer.showRegion();
 
 				if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
 					return;
 				}
-				console.log('2');
 
 				aboutRegion(curRegion, this.about_region);
 
