@@ -56,6 +56,7 @@ export default class Player {
 		renderScene(this.canvas, this.allRegions, this.img);
 		newRegion.area.reColor(this.color);
 		newRegion.owner = this;
+		console.log('push new region   -   ', newRegion);
 		this.regions.push(newRegion);
 	}
 
@@ -72,6 +73,12 @@ export default class Player {
 		if (this.regions.length === 0) {
 			this.status = PLAYER_STATES.LOSE;
 		}
+	}
+	showRegion() {
+		console.log('KAKASHKA       -       ');
+		this.regions.forEach(region => {
+			console.log(region);
+		});
 	}
 
 	/**
