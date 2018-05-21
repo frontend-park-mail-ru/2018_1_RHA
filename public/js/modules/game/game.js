@@ -78,7 +78,6 @@ export default class Game {
 						if (player === username) {
 							indexPlayer = index + 1;
 						}
-
 					});
 
 					const map = initData.map;
