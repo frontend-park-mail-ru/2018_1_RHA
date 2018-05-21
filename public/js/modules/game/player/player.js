@@ -39,6 +39,7 @@ export default class Player {
 	 * @return {boolean}
 	 */
 	isTheRegionOfPlayer(region) {
+		console.log('in isTheRegionOfPlayer ', region, ' ', this.regions);
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].name === region.name) {
 				return true;

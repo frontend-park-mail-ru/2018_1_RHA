@@ -68,8 +68,10 @@ export default class GameScene {
 	 * @return {Region | null}
 	 */
 	isRegion(x, y) {
+		console.log('in isRegion:', x, '-', y);
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
+				console.log('got region ', this.regions[i].area);
 				return this.regions[i];
 			}
 		}
@@ -271,6 +273,7 @@ export default class GameScene {
 		}
 		else {
 			bus.on('left-click', data => {
+				console.log('in game_scene');
 				const coordinates = data.payload;
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
 
