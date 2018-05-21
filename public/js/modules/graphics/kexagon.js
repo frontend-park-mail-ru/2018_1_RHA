@@ -8,8 +8,8 @@ export default class Kexagon {
 		this.xC = x;
 		this.yC = y;
 		this.R = r;
-		this.color = color;
-		this.strokeColor = 'black';
+		this.color = 'green';
+		this.strokeColor = color;
 		this.draw();
 		bus.on('new-x-y', data => {
 			const newCoord = data.payload;
