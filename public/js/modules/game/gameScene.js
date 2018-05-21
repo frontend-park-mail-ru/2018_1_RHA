@@ -136,27 +136,16 @@ export default class GameScene {
 					if (player.name === user) {
 						player.setStatus(PLAYER_STATES.DEFAULT);
 						this.curPlayer = player;
+						bus.emit('start-controller', {});
 					}
 				});
 			}
 			else {
 				this.players.forEach(player => {
 					if (player.name === User.getCurUser().username) {
-						player.setStatus(PLAYER_STATES.DISABLED);
+						bus.emit('stop-controller', {});
 					}
 				});
-			}
-		});
-	}
-
-	currentMpPlayer() {
-		bus.on('TurnInit$Request', data => {
-			console.log('currentMpPlayer');
-			const user = data.payload.user;
-			for (let i = 0; i < this.players.length; ++i) {
-				if (this.players[i].name === user) {
-					return this.players[i];
-				}
 			}
 		});
 	}
@@ -290,37 +279,35 @@ export default class GameScene {
 
 				aboutRegion(curRegion, this.about_region);
 
-				switch (this.players.status) {
+				switch (this.curPlayer.status) {
 					case PLAYER_STATES.DEFAULT:
 						console.log('default m');
-						this.players.status = PLAYER_STATES.READY;
+						this.curPlayer.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);
 						break;
 
 					case PLAYER_STATES.READY:
 						console.log('ready m');
 						const activeRegion = this.activeRegion();
-						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+						if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
 							console.log('attack');
 							if (this.isNeighbour(activeRegion, curRegion) === false) {
 								return;
 							}
-							bus.emit('attack', {
-								from: activeRegion,
-								to: curRegion
+							this.ws.send('ClientStep', {
+								from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
+								to: [curRegion.coordinate.I, curRegion.coordinate.J]
 							});
 						}
 						//если нажали на выделенный регион
 						else {
 							if (curRegion === activeRegion) {
-								this.players.status = PLAYER_STATES.DEFAULT;
+								this.curPlayer.status = PLAYER_STATES.DEFAULT;
 								bus.emit('remove-selection', curRegion);
 							}
 							else {
 								//выводим информацию о регионе
 								aboutRegion(curRegion, this.about_region);
-								curRegion.gameData.units += activeRegion.gameData.units;
-								activeRegion.gameData.units = 0;
 								bus.emit('remove-selection', this.activeRegion());
 								bus.emit('select-region', curRegion);
 							}
@@ -329,28 +316,6 @@ export default class GameScene {
 				}
 			});
 
-			bus.on('contextmenu', data => {
-				const activeRegion = this.activeRegion();
-				const coordinates = data.payload;
-				if (this.players.status === PLAYER_STATES.DISABLED || this.players.status !== PLAYER_STATES.READY) {
-					return;
-				}
-
-				const curRegion = this.isRegion(coordinates.x, coordinates.y);
-				if (!curRegion) {
-					return;
-				}
-
-				//если не является соседом, то выходим
-				if (this.isNeighbour(activeRegion, curRegion) === false) {
-					return;
-				}
-
-				new Ws().send('from-to', {
-					from: this.activeRegion(),
-					to: curRegion
-				});
-			});
 
 			bus.on('left-click-change', () => {
 				// new Ws().send('change-move', {});
@@ -363,7 +328,8 @@ export default class GameScene {
 
 			bus.on('start-game', () => {
 				//подсветка текущего игрока
-				bus.emit('illum-cur', this.currentPlayer());
+				console.log(this.curPlayer);
+				bus.emit('illum-cur', this.curPlayer);
 			});
 		}
 	}

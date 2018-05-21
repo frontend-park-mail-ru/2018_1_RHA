@@ -1,4 +1,5 @@
 import Player from './player.js';
+import bus from '../../bus.js';
 
 /**
  * Class representing web player
@@ -13,6 +14,8 @@ export default class WebPlayer extends Player {
 	}
 
 	listeners() {
-
+		bus.on('ServerStep', data => {
+			const move = data.payload;
+		});
 	}
 }
