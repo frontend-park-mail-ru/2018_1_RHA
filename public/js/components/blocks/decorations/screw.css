@@ -1,0 +1,186 @@
+.screw {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    background: #adadad; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #adadad 0%, #e1e1e1 51%, #dddddd 68%, #f6f6f6 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#adadad), color-stop(51%,#e1e1e1), color-stop(68%,#dddddd), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #adadad 0%,#e1e1e1 51%,#dddddd 68%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #adadad 0%,#e1e1e1 51%,#dddddd 68%,#f6f6f6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #adadad 0%,#e1e1e1 51%,#dddddd 68%,#f6f6f6 100%); /* IE10+ */
+    background: linear-gradient(135deg, #adadad 0%,#e1e1e1 51%,#dddddd 68%,#f6f6f6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#adadad', endColorstr='#f6f6f6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    -moz-box-shadow: 0px 2px 4px #000;
+    -webkit-box-shadow: 0px 2px 4px #000;
+    box-shadow: 0px 2px 4px #000, -1px -1px 5px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+
+}
+/*тоже болт(тень)*/
+.screw_bottom {
+
+    height: 10px;
+    width: 33px;
+    margin-top: 10px;
+    /*background-image: url('img/nail-head.jpg');*/
+    -moz-box-shadow: inset 0px 1px 8px #222;
+    -webkit-box-shadow: inset 0px 1px 8px #222;
+    box-shadow: inset 0px 1px 8px #222;
+    transform:rotate(150deg);
+    -ms-transform:rotate(150deg);
+    -webkit-transform:rotate(150deg);
+    border-radius: 2px;
+    margin-left:-2px;
+    border-bottom:1px solid rgba(255,255,255,0.3);
+
+}
+
+
+.left {
+    display: inline-block;
+    float: left;
+    margin-top: 15px;
+    margin-left: 2%;
+}
+
+.right {
+    display: inline-block;
+    float: right;
+    margin-top: 15px;
+    margin-right: 2%;
+}
+
+.left-top {
+    float: left;
+    margin-top: 5%;
+    margin-left: 5%;
+    display: inline-block;
+}
+
+.right-top {
+    float: right;
+    margin-top: 5%;
+    margin-right: 5%;
+    display: inline-block;
+}
+
+.left-bot {
+    float: left;
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    display: inline-block;
+}
+
+.right-bot {
+    float: right;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    display: inline-block;
+}
+
+@media(max-width: 1024px) {
+    .left {
+        margin-top: 18px;
+    }
+    .right {
+        margin-top: 18px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 28px;
+        margin-top: 8px;
+    }
+    .screw {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+@media (max-height: 510px) {
+    .left {
+        margin-top: 14px;
+    }
+    .right {
+        margin-top: 14px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 24px;
+        margin-top: 5px;
+    }
+    .screw {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-height: 400px) {
+    .left {
+        margin-top: 9px;
+    }
+    .right {
+        margin-top: 9px;
+    }
+}
+
+@media (max-height: 375px) {
+    .left {
+        margin-top: 10px;
+    }
+    .right {
+        margin-top: 10px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 18px;
+        margin-top: 3px;
+    }
+    .screw {
+        width: 15px;
+        height: 15px;
+    }
+}
+@media (max-height: 358px) {
+    .left {
+        margin-top: 6px;
+    }
+    .right {
+        margin-top: 6px;
+    }
+}
+
+@media (max-height: 325px) {
+    .planck {
+        height: 8%;
+    }
+}
+
+@media (max-height: 325px) {
+    .left {
+        margin-top: 5px;
+    }
+    .right {
+        margin-top: 5px;
+    }
+}
+@media (max-height: 285px)  {
+    .left {
+        margin-top: 3px;
+    }
+    .right {
+        margin-top: 3px;
+    }
+    .screw {
+        width: 12px;
+        height: 12px;
+    }
+    .screw_bottom {
+        height: 8px;
+        width: 15px;
+        margin-top: 2px;
+    }
+}

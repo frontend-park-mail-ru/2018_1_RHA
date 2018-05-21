@@ -5,6 +5,7 @@ import bus from '../../../modules/bus.js';
 import User from '../../../modules/userModel.js';
 import Router from '../../../modules/router.js';
 import LoadForm from '../../forms/loadPictureForm/loadPictureForm.js';
+let generateProfile = require('./profile.pug');
 
 /**
  * Class represents Section with Profile data and Form
@@ -28,6 +29,7 @@ export default class ProfileSection extends Section {
 
 		this.attrs = User.getCurUser();
 		this.profileTable = document.createElement('div');
+		this.profileTable.classList.add('profile-div');
 		this.profileTable.innerHTML = generateProfile({'user': this.attrs});
 		this.profileElement.appendChild(this.profileTable);
 		this.profileElement.appendChild(document.createElement('hr'));
@@ -50,10 +52,12 @@ export default class ProfileSection extends Section {
 		});
 		this.fileForm.setOnSubmit( () => {
 			//TODO:
+			const file = document.getElementById('loadImageInput');
 			const formData = new FormData();
-			//formData.append("avatar", this.fileForm.getData().files[0]);
-			//const avatar = this.fileForm.getData();
-			//const jsonAvatar = JSON.stringify(avatar);
+			const upload = file.files[0];
+
+			formData.append('image', upload);
+
 			bus.emit('user:avatarUpload', formData);
 		});
 		return this.profileElement;

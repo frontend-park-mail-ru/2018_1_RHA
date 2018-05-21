@@ -1,5 +1,6 @@
 
 .scorboard_row {
+    outline: thin solid;
 }
 
 .scorboard_row:hover {
@@ -11,21 +12,39 @@
     border-collapse: separate;
     border-spacing: 6px;
     width: 100%;
+    font-family: armalite, serif;
 }
 
-.page-button {
-    margin: 1% 0 1% 0;
-    display: inline-block;
-    width: 50%;
-    clear: both;
+
+.back-button {
+    margin-left: 20%;
 
 }
 .btn-style {
-    width: 100%;
+    width: 95%;
     padding: 2px;
 
 }
 
 .hidden {
     display: none;
+}
+
+.pagination a {
+    font-size: 10vh;
+    font-weight: bold;
+    color: tomato;
+    cursor: pointer;
+}
+.pagination a:hover {
+    color: orangered;
+}
+.pagination {
+    margin-left: 37%;
+}
+
+.scorboard_pages {
+    /*text-align: center;*/
+    margin-left: 35%;
+    margin-top: 5%;
 }

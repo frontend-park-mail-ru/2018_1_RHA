@@ -1,0 +1,45 @@
+.regist-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.regist-form {
+    width: 100%;
+    height: 272px;
+}
+
+.reg-input-wrapper {
+    height: 55px;
+    width: 100%;
+}
+
+@media (max-height: 530px) {
+    .reg-input-wrapper {
+        height: 45px;
+    }
+    .regist-form {
+        height: 224px;
+    }
+}
+
+
+@media (max-height: 400px) {
+    h2 {
+        font-size: 210%;
+    }
+    .regist-form {
+        height: 217px;
+    }
+}
+
+@media (max-height: 327px) {
+    h2 {
+        font-size: 180%;
+    }
+    .reg-input-wrapper {
+        height: 41px;
+    }
+    .regist-form {
+        height: 200px;
+    }
+}

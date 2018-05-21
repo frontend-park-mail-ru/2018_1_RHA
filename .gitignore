@@ -62,4 +62,7 @@ typings/
 idea/
 idea/workspace.xml
 
+public/dist
+
+
 

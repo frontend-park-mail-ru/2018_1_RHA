@@ -1,33 +1,36 @@
-import Block from './block.js';
+/* eslint-disable no-undef */
+import Block from '../block.js';
+let generateInput = require('./input.pug');
 /** Class representing Input */
 export default class Input extends Block {
 	/**
      * Creates input
      * @param {object} data – contains type, value and placeholder
      */
-	constructor(data) {
+	constructor(data, style) {
 		super();
 
-		this.InputElement = document.createElement('input');
-		this.InputElement.type = data.type;
-		if(data.type === 'submit') {
-			this.InputElement.value = data.value;
-			this.InputElement.classList.add('button');
-		}
-		else {
-			this.InputElement.placeholder = data.placeholder;
-			this.InputElement.classList.add('input');
-		}
-
-		this.InputWrapper = document.createElement('div');
-		this.InputWrapper.appendChild(this.InputElement);
 
 		this.status = true; //заглушка
 
-		this.ErrorElement = document.createElement('div');
-		this.ErrorElement.classList.add('error');
-		this.InputWrapper.appendChild(this.ErrorElement);
+		this.wrapper = document.createElement('div');
+		this.wrapper.classList.add(style);
+		//TODO здесь надо указать все типы инпутов, которым не нужна лампа
 
+		let CLASS = 'input';
+		if (data.type === 'submit') {
+			CLASS = 'button';
+		}
+		this.wrapper.innerHTML += generateInput({
+			type: data.type,
+			placeholder: data.placeholder,
+			value: data.value,
+			id: data.id,
+			error_id: data.id.concat('_error'),
+			CLASS: CLASS
+		});
+		this.ErrorElement = this.wrapper.getElementsByTagName('div')[0];
+		this.InputElement = this.wrapper.getElementsByTagName('input')[0];
 	}
 
 	/**
@@ -35,7 +38,7 @@ export default class Input extends Block {
      * @return {HTMLDivElement | *}
      */
 	render() {
-		return this.InputWrapper;
+		return this.wrapper;
 	}
 
 	/**
@@ -73,14 +76,12 @@ export default class Input extends Block {
 		}
 	}
 
-
-	//TODO: в качестве коллбека можешь передать методы валидатора, тогда ему будут видны поля этого класса
 	/**
      * Defines behaviour on change
      * @param {function} callbackfn – input data change handler
      */
 	setOnInputChange(callbackfn) {
-		this.InputElement.addEventListener('change', (e) => {
+		this.InputElement.addEventListener('change', (event) => {
 			event.preventDefault();
 			callbackfn();
 		});

@@ -6,30 +6,32 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PHub</title>
-    <link rel="stylesheet" href="css/main.css">
+    <!--<link rel="stylesheet" href="css/main.css">-->
+    <link rel="stylesheet" href="./dist/main.css">
 </head>
 <body>
     <div id="body">
-    <div id="start" class="start">
-        <!--<div id="radar-wrapper">-->
-            <!--<div id="bg"></div>-->
-            <!--<div id="radar"></div>-->
-        <!--</div>-->
+        <div id="start" class="start">
+            <div class="sbg">
+            <div class="screen">
+                <div class="grid">
+                    <div class="radar"></div>
+                    <span class="blip" id="id1"></span>
+                    <span class="blip" id="id2"></span>
+                    <span class="blip" id="id3"></span>
+                    <span class="blip" id="id4"></span>
+                </div>
+            </div>
 
-        <div id="application-wrapper" class="body">
-            <div id="application"></div>
+            <div id="application-wrapper" class="body">
+                <div id="application"></div>
+            </div>
+            </div>
         </div>
+        <div id="game" class="game"></div>
+        <script src="js/modules/sketch.js"></script>
+        <script src="./dist/bundle.js"></script>
+        <!--<script src="js/application.js" type="module"></script>-->
     </div>
-
-    <div id="game" class="game"></div>
-
-    <!--<script src="js/modules/sketch.js"></script>-->
-    <!--<script src="js/components/radar/radar.js"></script>-->
-    <script src="js/modules/add-sw.js"></script>
-    <script src="js/components/views/ratingView/ratingTemplate.js"></script>
-    <script src="js/components/views/menuView/menuTemplate.js"></script>
-    <script src="js/components/views/profileView/profileTemplate.js"></script>
-    <script src="js/components/views/gameView/gameTemplate.js"></script>
-    <script src="js/application.js" type="module"></script>
 </body>
 </html>

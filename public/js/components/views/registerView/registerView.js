@@ -1,8 +1,10 @@
-import Section from './baseView.js';
-import RegisterForm from '../forms/registerForm.js';
+/* eslint-disable no-undef */
+import Section from '../baseView.js';
+import RegisterForm from '../../forms/registerForm.js';
 
-import bus from '../../modules/bus.js';
-import User from '../../modules/userModel.js';
+import bus from '../../../modules/bus.js';
+import User from '../../../modules/userModel.js';
+let generateRegister = require('./register.pug');
 
 
 
@@ -14,12 +16,8 @@ export default class RegisterSection extends Section {
      * Creates generic Section and wraps into Parent element
      * @param parent
      */
-	constructor(parent) {
+	constructor() {
 		super();
-		if (parent) {
-			this.register = document.createElement('div');
-			parent.appendChild(this.register);
-		}
 		User.isAuthorized();
 		this.sign();
 	}
@@ -29,30 +27,14 @@ export default class RegisterSection extends Section {
      * @return {HTMLDivElement}
      */
 	render() {
-		this.formHeader = document.createElement('h2');
-		this.formHeader.innerText = 'Sign Up';
-
-		if (!this.parent) {
-			this.register = document.createElement('div');
-		}
-		this.register.id = 'registerSection';
-		this.register.classList.add('form-wrapper');
+		this.register = document.createElement('div');
+		this.register.classList.add('regist-wrapper');
+		this.register.innerHTML = generateRegister();
 		this.registerForm = new RegisterForm();
-
-		this.register.appendChild(this.formHeader);
-		this.register.appendChild(this.registerForm.render());
-
-		this.backWrap = document.createElement('div');
-		this.backLink = document.createElement('a');
-		this.backWrap.classList.add('button');
-		this.backLink.setAttribute('href', '/');
-		this.backLink.innerText = 'Back to menu';
-		this.backWrap.appendChild(this.backLink);
-
-		this.register.appendChild(this.backWrap);
-
+		this.after = this.register.getElementsByClassName('button')[0];
+		this.register.firstChild.insertBefore(this.registerForm.render(), this.after);
 		this.registerForm.setOnSubmit( () => {
-			
+
 			const userData = this.registerForm.getData();
 			console.log(userData);
 			if (userData === null) {
@@ -66,7 +48,6 @@ export default class RegisterSection extends Section {
 			});
 
 		});
-
 		return this.register;
 	}
 

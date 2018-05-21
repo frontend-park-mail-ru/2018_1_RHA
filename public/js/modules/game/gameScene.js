@@ -1,7 +1,11 @@
-/* eslint-disable indent,no-case-declarations */
+/* eslint-disable indent,no-case-declarations,no-console */
 import inHex from './math/inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
+import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
+import Ws from '../ws.js';
+import {GameModes} from './config/modes.js';
+import User from '../userModel.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -13,14 +17,21 @@ export default class GameScene {
 	 * @param players
 	 * @param regions
 	 * @param switcher
+	 * @param mode
 	 */
-	constructor(canvas, players, regions, switcher) {
+	constructor(canvas, players, regions, mode) {
+		this.mode = mode;
 		this.canvas  = canvas;
 		this.game_ctx = canvas.getContext('2d');
 		this.players = players;
 		this.regions = regions;
-		this.switcher = switcher;
+		this.about_region = document.getElementById('about-region');
 		this.setPlayersRegions();
+		if (mode === GameModes.multiplayer) {
+			this.setPlayersStatus();
+			this.curPlayer = null;
+			this.ws = new Ws();
+		}
 	}
 
 	/**
@@ -104,131 +115,259 @@ export default class GameScene {
 	 */
 	setPlayersRegions() {
 		for (let i = 0; i < this.players.length; i++ ) {
-			this.players[i].addRegion(this.regions[i]);
+			// this.players[i].addRegion(this.regions[i]);
+			for (let j = 0; j < this.regions.length; ++j) {
+				if (this.regions[j].owner === this.players[i]) {
+					this.players[i].addRegion(this.regions[j]);
+				}
+			}
 		}
 	}
 
-	/**
-	 * @param x
-	 * @param y
-	 * @return {boolean}
-	 */
-	isElementOfChangeCanvas(x, y) {
-		return !!inHex(x, y, this.switcher.arrX, this.switcher.arrY);
+	setPlayersStatus() {
+		bus.on('TurnInit$Request', data => {
+			const user = data.payload.user;
+			if (user === User.getCurUser().username) {
+				this.players.forEach(player => {
+					if (player.name === user) {
+						player.setStatus(PLAYER_STATES.DEFAULT);
+						this.curPlayer = player;
+					}
+				});
+			}
+			else {
+				this.players.forEach(player => {
+					if (player.name === User.getCurUser().username) {
+						player.setStatus(PLAYER_STATES.DISABLED);
+					}
+				});
+			}
+		});
 	}
+
+	currentMpPlayer() {
+		bus.on('TurnInit$Request', data => {
+			console.log('currentMpPlayer');
+			const user = data.payload.user;
+			for (let i = 0; i < this.players.length; ++i) {
+				if (this.players[i].name === user) {
+					return this.players[i];
+				}
+			}
+		});
+	}
+
+
 
 	/**
 	 * подписываемся на события кликов мышки
 	 */
 	onListeners() {
-		bus.on('left-click', data => {
-			const curPlayer = this.currentPlayer();
-			const coordinates = data.payload;
-			if (curPlayer.status === PLAYER_STATES.DISABLED) {
-				return;
-			}
-			const curRegion = this.isRegion(coordinates.x, coordinates.y);
-			if (!curRegion) {
-				return;
-			}
+		console.log(this.mode);
+		if (this.mode === GameModes.singleplayer) {
+			bus.on('left-click', data => {
+				const curPlayer = this.currentPlayer();
+				const coordinates = data.payload;
+				if (curPlayer.status === PLAYER_STATES.DISABLED) {
+					return;
+				}
+				const curRegion = this.isRegion(coordinates.x, coordinates.y);
+				if (!curRegion) {
+					return;
+				}
+				switch (curPlayer.status) {
+					case PLAYER_STATES.DEFAULT:
+						if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
+							return;
+						}
+						curPlayer.status = PLAYER_STATES.READY;
 
-			switch (curPlayer.status) {
-				case PLAYER_STATES.DEFAULT:
-					if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
-						return;
-					}
-					curPlayer.status = PLAYER_STATES.READY;
-					bus.emit('select-region', curRegion);
-					break;
-				case PLAYER_STATES.READY:
-					if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
-						return;
-					}
+						//выводим информацию о регионе
+						aboutRegion(curRegion, this.about_region);
+						bus.emit('select-region', curRegion);
+						break;
+					case PLAYER_STATES.READY:
+						const activeRegion = this.activeRegion();
+						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+							console.log('attack');
+							if (this.isNeighbour(activeRegion, curRegion) === false) {
+								return;
+							}
+							bus.emit('attack', {
+								from: activeRegion,
+								to: curRegion
+							});
+						}
+						//если нажали на выделенный регион
+						else {
+							if (curRegion === this.activeRegion()) {
+								curPlayer.status = PLAYER_STATES.DEFAULT;
+								bus.emit('remove-selection', curRegion);
+							} else {
+								//выводим информацию о регионе
+								aboutRegion(curRegion, this.about_region);
+								curRegion.gameData.units += activeRegion.gameData.units;
+								activeRegion.gameData.units = 0;
+								bus.emit('move-units',
+									{
+										active: this.activeRegion(),
+										new: curRegion
+									});
+								bus.emit('remove-selection', this.activeRegion());
+								bus.emit('select-region', curRegion);
+							}
+						}
+						break;
+				}
+			});
 
-					//если нажали на выделенный регион
-					if (curRegion === this.activeRegion()) {
-						curPlayer.status = PLAYER_STATES.DEFAULT;
-					}
 
-					bus.emit('change-selection',
-						{
-							active: this.activeRegion(),
-							new: curRegion
+			bus.on('left-click-change', () => {
+				const curPlayer = this.currentPlayer();
+				const nextPlayer = this.nextPlayer();
+				if (curPlayer.status === PLAYER_STATES.DISABLED) {
+					return;
+				}
+				bus.emit('change-move', {
+					current: curPlayer,
+					next: nextPlayer,
+				});
+			});
+
+			bus.on('bot-attack', data => {
+				const regs = data.payload;
+				for (let i = 0; i < this.regions.length; ++i) {
+					if (regs.to === this.regions[i].label) {
+						bus.emit('attack', {
+							from: regs.from,
+							to: this.regions[i]
 						});
-					break;
-			}
-		});
+					}
+				}
+			});
 
-		bus.on('contextmenu', data => {
+			bus.on('bot-change-move', () => {
+				bus.emit('change-move', {
+					current: this.currentPlayer(),
+					next: this.nextPlayer(),
+				});
+			});
 
-			const curPlayer = this.currentPlayer();
-			const activeRegion = this.activeRegion();
-			const coordinates = data.payload;
-			if (curPlayer.status === PLAYER_STATES.DISABLED || curPlayer.status !== PLAYER_STATES.READY) {
-				return;
-			}
-			const curRegion = this.isRegion(coordinates.x, coordinates.y);
-			if (!curRegion) {
-				return;
-			}
-			if (!curPlayer.isTheRegionOfPlayer(curRegion)) {
+			bus.on('delete-from-queue', data => {
+				const player = data.payload;
+				// console.log(this.players, '  b ');
+				this.players.forEach((cur, i) => {
+					if (cur === player) {
+						this.players.splice(i, 1);
+					}
+				});
+				// console.log(this.players, ' a');
+			});
+
+			bus.on('start-game', () => {
+				//подсветка текущего игрока
+				bus.emit('illum-cur', this.currentPlayer());
+			});
+		}
+		else {
+			bus.on('left-click', data => {
+				const coordinates = data.payload;
+				const curRegion = this.isRegion(coordinates.x, coordinates.y);
+
+				console.log('0');
+
+				if (!curRegion) {
+					return;
+				}
+				console.log('1');
+
+				if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
+					return;
+				}
+				console.log('2');
+
+				aboutRegion(curRegion, this.about_region);
+
+				switch (this.players.status) {
+					case PLAYER_STATES.DEFAULT:
+						console.log('default m');
+						this.players.status = PLAYER_STATES.READY;
+						bus.emit('select-region', curRegion);
+						break;
+
+					case PLAYER_STATES.READY:
+						console.log('ready m');
+						const activeRegion = this.activeRegion();
+						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+							console.log('attack');
+							if (this.isNeighbour(activeRegion, curRegion) === false) {
+								return;
+							}
+							bus.emit('attack', {
+								from: activeRegion,
+								to: curRegion
+							});
+						}
+						//если нажали на выделенный регион
+						else {
+							if (curRegion === activeRegion) {
+								this.players.status = PLAYER_STATES.DEFAULT;
+								bus.emit('remove-selection', curRegion);
+							}
+							else {
+								//выводим информацию о регионе
+								aboutRegion(curRegion, this.about_region);
+								curRegion.gameData.units += activeRegion.gameData.units;
+								activeRegion.gameData.units = 0;
+								bus.emit('remove-selection', this.activeRegion());
+								bus.emit('select-region', curRegion);
+							}
+						}
+						break;
+				}
+			});
+
+			bus.on('contextmenu', data => {
+				const activeRegion = this.activeRegion();
+				const coordinates = data.payload;
+				if (this.players.status === PLAYER_STATES.DISABLED || this.players.status !== PLAYER_STATES.READY) {
+					return;
+				}
+
+				const curRegion = this.isRegion(coordinates.x, coordinates.y);
+				if (!curRegion) {
+					return;
+				}
+
+				//если не является соседом, то выходим
 				if (this.isNeighbour(activeRegion, curRegion) === false) {
 					return;
 				}
 
-				bus.emit('attack', {
+				new Ws().send('from-to', {
 					from: this.activeRegion(),
 					to: curRegion
 				});
-			} else {
-				//TODO move units
-			}
-		});
-
-		bus.on('left-click-change', data => {
-			const curPlayer = this.currentPlayer();
-			const nextPlayer = this.nextPlayer();
-			const coordinates = data.payload;
-			//if (coordinates !== 'bot') {
-				if (curPlayer.status === PLAYER_STATES.DISABLED) {
-					return;
-				}
-				if (!this.isElementOfChangeCanvas(coordinates.x, coordinates.y)) {
-					return;
-				}
-			//}
-			bus.emit('change-move', {
-				current: curPlayer,
-				next: nextPlayer,
-				switcher: this.switcher
 			});
-		});
 
-		bus.on('bot-attack', data => {
-			const regs = data.payload;
-			for (let i = 0; i < this.regions.length; ++i) {
-				if (regs.to === this.regions[i].label) {
-					bus.emit('attack', {
-						from: regs.from,
-						to: this.regions[i]
-					});
-				}
-			}
-		});
-
-		bus.on('bot-change-move', data => {
-			bus.emit('change-move', {
-				current: this.currentPlayer(),
-				next: this.nextPlayer(),
-				switcher: this.switcher
+			bus.on('left-click-change', () => {
+				// new Ws().send('change-move', {});
+				bus.on('ws-change-move-confirm', (data) => {
+					//TODO получить следующего игрока
+					console.log(data);
+					bus.emit('change-move', {});
+				});
 			});
-		});
 
+			bus.on('start-game', () => {
+				//подсветка текущего игрока
+				bus.emit('illum-cur', this.currentPlayer());
+			});
+		}
 	}
 }
 
-//todo:: ходит только первый бот
-
-//todo:: бот может сходить в молоко
-
-//todo:: придумать как убирать соседей
+//todo вытащить текущего игркока
+//todo отобрать контролы у неактивных игроков
+//todo сделать ход
+//todo почему то не срабатывает подписка на TurnInit$Request во второй раз ( в фукнции currentMpPlayer )

@@ -1,6 +1,6 @@
 
 const serverUrl = 'https://rha-backend.herokuapp.com/';
-//const serverUrl = 'http://localhost:5000/';
+// const serverUrl = 'http://localhost:5000/';
 
 /**
  * Contains methods' paths of user API
@@ -13,6 +13,7 @@ const userAPIMethods = {
 	user: 'users/info',
 	updateUser: 'users/chpwd',
 	leaderBoard: 'users/rating',
+	updateAvatar: 'users/chava'
 };
 
 // export const route = {

@@ -11,6 +11,7 @@ export default class User {
      */
 	constructor(data) {
 		this.email = data.email;
+		this.username = data.username;
 		this.rating = data.rating;
 	}
 
@@ -132,7 +133,7 @@ export default class User {
 	 */
 	static uploadAvatar(userData) {
 		return new Promise((resolve, reject) => {
-			http.post('http://localhost:3000/avatar', userData, (err, resp) => {
+			http.post(route.userAPIMethods.updateAvatar, userData, (err, resp) => {
 				if (err) {
 					return reject(err);
 				}

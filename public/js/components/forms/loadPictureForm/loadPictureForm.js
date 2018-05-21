@@ -1,5 +1,6 @@
 import Form from '../form.js';
-import Input from '../../blocks/input.js';
+import Input from '../../blocks/input/input.js';
+import InputUpload from '../../blocks/inputUpload/inputUpload.js';
 
 /**
  * Class representing Load form
@@ -33,19 +34,22 @@ export default class LoadForm extends Form {
 	render() {
 		this.UploadInput = new Input({
 			type: 'file',
-			placeholder: ''
-		});
+			placeholder: '',
+			id: 'loadImageInput'
+		}, 'upload-input');
+		// this.UploadInput = new InputUpload();
 		this.UploadSubmit = new Input({
 			type: 'submit',
-			value: 'Save picture'
-		});
+			value: 'Save picture',
+			id: 'loadImageSubmit'
+		}, 'upload-submit');
 
 		this.formElement.appendChild(this.UploadInput.render());
 		this.formElement.appendChild(this.UploadSubmit.render());
 
 		this.formElement.setAttribute('enctype', 'multipart/form-data');
-		this.formElement.classList.add('form__loadFile');
-
+		this.formElement.setAttribute('name', 'form_loadFile');
+		this.formElement.classList.add('load-form');
 		return this.formElement;
 	}
 

@@ -1,7 +1,9 @@
+/* eslint-disable no-undef */
 import Section from '../baseView.js';
 import LoginForm from '../../forms/loginForm.js';
 import bus from '../../../modules/bus.js';
 import User from '../../../modules/userModel.js';
+let generateLogin = require('./login.pug');
 
 /** Class represents section with Login Form */
 export default class LoginSection extends Section {
@@ -17,29 +19,18 @@ export default class LoginSection extends Section {
      * Renders and returns LoginSection DOM element
      * @return {HTMLDivElement | *}
      */
-	render(parent) {
-		this.formHeader = document.createElement('h2');
-		this.formHeader.innerText = 'Sign In';
+	render() {
+
+		this.login = document.createElement('div');
+		this.login.classList.add('login-wrapper');
+		this.login.innerHTML = generateLogin();
+		this.after = this.login.getElementsByClassName('button')[0];
 
 		this.loginForm = new LoginForm();
 
-		this.login = document.createElement('div');
-		if (parent) {
-			parent.appendChild(this.login);
-		}
+		this.login.firstChild.insertBefore(this.loginForm.render(), this.after);
 
-		this.login.classList.add('form-wrapper');
 
-		this.backWrap = document.createElement('div');
-		this.backLink = document.createElement('a');
-		this.backLink.innerText = 'Back to menu';
-		this.backLink.setAttribute('href', '/');
-		this.backWrap.appendChild(this.backLink);
-		this.backWrap.classList.add('button');
-
-		this.login.appendChild(this.formHeader);
-		this.login.appendChild(this.loginForm.render());
-		this.login.appendChild(this.backWrap);
 		this.loginForm.setOnSubmit(() => {
 			const userData = this.loginForm.getData();
 			if (userData === null) {
@@ -63,3 +54,6 @@ export default class LoginSection extends Section {
 		});
 	}
 }
+
+
+//todo перевести размер инпутов на пиксели (или нет)

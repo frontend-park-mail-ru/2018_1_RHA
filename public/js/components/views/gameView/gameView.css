@@ -1,0 +1,134 @@
+/*#change-canvas {*/
+    /*margin-bottom: 20%;*/
+/*}*/
+/*#game-canvas {*/
+    /*margin-bottom: 20%;*/
+/*}*/
+
+.change {
+    z-index: 1000;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 50px 0 50px 86.6px;
+    border-color: transparent transparent transparent red;
+    line-height: 0;
+    /*_border-color: #000000 #000000 #000000 #007bff;*/
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+    float: right;
+}
+.change:hover{
+    border-color: transparent transparent transparent orange;
+}
+
+.info-menu {
+    position: relative;
+    height: 85%;
+    width: 15%;
+    background-color: #7d8289;
+    display: inline-block;
+    float: left;
+    opacity: 0.7;
+}
+
+.log {
+    height: 85%;
+    width: 15%;
+    background-color: orange;
+    display: inline-block;
+    float: right;
+    position: relative;
+    opacity: 0.7;
+    font-size: smaller;
+}
+.control-interface {
+    position: relative;
+    height: 15%;
+    width: 100%;
+    background-color: #007bff;
+    display: inline-block;
+    opacity: 0.7;
+}
+.canvas-wrap {
+    /*top: 0;*/
+    display: inline-block;
+    position: relative;
+    width: 70%;
+    /*vertical-align: middle;*/
+}
+
+
+
+.game {
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+.timer {
+    width: 10%;
+    position: absolute;
+    top: 0;
+    left: 45%;
+    margin-top: 2%;
+    text-align: center;
+    font-family: armalite;
+    font-size: 3vw;
+    color: white;
+}
+.overlayOrientation {
+    position: absolute;
+    top: 0;
+    padding-top: 50%;
+    z-index: 10;
+    font-family: armalite;
+    text-align: center;
+    color: snow;
+    font-size: 8vw;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(123deg, #000000, #181515);
+    background-size: 100% 100%;
+
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0 45%}
+    50%{background-position:100% 56%}
+    70%{color: #CCCCCC}
+    100%{background-position:0 45%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0 45%}
+    50%{background-position:100% 56%}
+    70%{color: #CCCCCC}
+    100%{background-position:0 45%}
+}
+@keyframes AnimationName {
+    0%{background-position:0 45%}
+    50%{background-position:100% 56%}
+    70%{color: #CCCCCC}
+    100%{background-position:0 45%}
+}
+
+@media (max-height: 640px) {
+    .change {
+        border-width: 25px 0 25px 43.3px;
+        margin-top: 1%;
+    }
+}
+@media (max-height: 360px) {
+    .change {
+        border-width: 25px 0 25px 43.3px;
+        margin-top: 0;
+    }
+}

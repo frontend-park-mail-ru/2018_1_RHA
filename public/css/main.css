@@ -1,34 +1,90 @@
-@import "reset.css";
-@import "../js/components/blocks/input.css";
-@import "../js/components/blocks/button.css";
-@import "../js/components/blocks/lamp.css";
-@import "../js/components/blocks/screw.css";
-@import "../js/components/views/ratingView/rating.css";
-@import "../js/components/views/profileView/profile.css";
-@import "../js/components/forms/loadPictureForm/loadPictureForm.css";
-@import "../js/components/views/menuView/menu.css";
-@import "../js/components/views/ViewsBack.css";
+/*@import "reset.css";*/
+/*@import "../js/components/blocks/input/input.css";*/
+/*@import "../js/components/blocks/button.css";*/
+/*@import "../js/components/blocks/decorations/lamp.css";*/
+/*@import "../js/components/blocks/decorations/plank.css";*/
+/*@import "../js/components/blocks/decorations/screw.css";*/
+/*@import "../js/components/views/ratingView/rating.css";*/
+/*@import "../js/components/views/profileView/profile.css";*/
+/*@import "../js/components/forms/loadPictureForm/loadPictureForm.css";*/
+/*@import "../js/components/views/menuView/menu.css";*/
+/*@import "../js/components/views/ViewsBack.css";*/
 /*@import "../js/components/radar/radar.css";*/
+/*@import "../js/components/views/gameView/gameView.css";*/
 
-.input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
-.input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
-.input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
-.input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
-.input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
-.input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
-.input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
-.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+.input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease; font-family: armalite, serif;}
+.input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;     font-family: armalite, serif;}
+.input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
+.input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;    font-family: armalite, serif;}
 
 
-#radar-wrapper {
-    width: 60%;
-    background-color: #111111;
-    margin: 0;
-    position: absolute;
+
+html {
     height: 100%;
-    display: inline-block;
-    clear: both;
-    float: left;
+    width: 100%;
+}
+
+body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+@keyframes animatedBackground {
+    0% {
+    background-position: 0 0
+    }
+    100% {
+    background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
+/* Mozilla Firefox 5.0+ */
+@-moz-keyframes animatedBackground {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
+/* Safari 4.0+, Chrome 4.0+ */
+@-webkit-keyframes animatedBackground {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
+/* Opera 12.0+ */
+@-o-keyframes animatedBackground {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: -600px 600px /* анимируем свойство background-position */
+    }
+}
+#body {
+    height: 100%;
+    width: 100%;
+    /*background-image: url("/map.png");*/
+    /*animation: animatedBackground 60s linear infinite;*/
+    /*-moz-animation: animatedBackground 60s linear infinite;*/
+    /*-webkit-animation: animatedBackground 60s linear infinite;*/
+    /*-o-animation: animatedBackground 60s linear infinite;*/
+}
+.start {
+    height: 100%;
 }
 
 #application-wrapper {
@@ -38,14 +94,16 @@
     display: inline-block;
     clear: both;
     float: right;
-    height: 900px;
+    height: 100%;
     padding: 0;
-
 }
+
+
 
 #application {
     width: 95%;
-    margin-top: 25%;
+    height: 100%;
+    margin-top: 1%;
     margin-left: 3%;
 }
 
@@ -56,23 +114,25 @@
     /*background: #c91919;*/
 /*}*/
 
-.button a {
+.menu-button {
     display: block;
     margin-top: 10px;
     text-decoration: none;
+    vertical-align: middle;
     color: black;
     height: 100%;
+    /*font-size: 1.5vw;*/
+    /*padding:16px 18px 14px;*/
 }
 
 
 
-/*@font-face {*/
-    /*font-family: "armalite";*/
-    /*src: local('armalite');*/
-    /*url("../fonts/armalite.ttf") format('truetype');*/
-    /*font-weight: normal;*/
-    /*font-style: normal;*/
-/*}*/
+
+@font-face {
+    font-family: armalite;
+    src: local(armalite),
+    url(/fonts/armalite.ttf);
+}
 
 
 li {
@@ -82,16 +142,88 @@ li {
 }
 
 h2 {
+    font-family: armalite, serif;
     color: white;
     font-size: 300%;
     margin: 2%;
 }
+p {
+    font-family: armalite, serif;
+}
 
 .form-wrapper {
+    width: 100%;
+    height: 100%;
     text-align: center;
 }
 
-canvas {
-    border: solid;
+#game-canvas {
+    /*border:  solid;*/
 }
+
+.overlay {
+    background-color: rgba(100,100,100,0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.attack-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.b-button {
+    font-size: large;
+}
+
+
+@media screen and (orientation:portrait) and (max-device-width: 900px) {
+
+}
+@media (max-aspect-ratio: 7/5 ) {
+    #application-wrapper.body {
+        width: 98%;
+        opacity: 0.9;
+    }
+    .menu-button {
+        font-size: large;
+    }
+}
+
+@media (max-height: 640px)  {
+    .menu-button {
+        margin-top: 15px;
+    }
+}
+@media (max-height: 400px) {
+    .menu-button {
+        margin-top: 10px;
+    }
+}
+@media (max-height: 320px) {
+    .menu-button {
+        margin-top: 5px;
+    }
+}
+
+@media (max-height: 358px) {
+    .menu-button {
+        margin-top: 7px;
+    }
+}
+@media (max-height: 325px) {
+    .menu-button {
+        margin-top: 5px;
+    }
+}
+@media (max-height: 320px) {
+    .menu-button {
+        margin-top: 0;
+    }
+}
+
 

@@ -10,6 +10,7 @@
     /*min-width: 100%;*/
     height: 100%;
     /*position: relative;*/
+    border: 8px groove #646464;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -27,19 +28,11 @@
 
 /*подложка под меню*/
 .menu{
-    border-width: 5px;
-    border-color: #444;
-    border-style: groove;
+    border: 5px groove #444;
     width: 20%;
     height: 90%;
 }
-/*как подложка под меню и радар можеn/
-.top-part{
-    border-width: 5px;
-    border-color: #444;
-    border-style: groove;
-    display: inline-block;
-}
+
 
 
 

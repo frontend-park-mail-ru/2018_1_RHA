@@ -12,8 +12,8 @@ export default class BotPlayer extends Player {
 	 * @param name
 	 * @param color
 	 */
-	constructor(name, color) {
-		super(name, color);
+	constructor(name, color, canvas,  img) {
+		super(name, color, canvas,  img);
 
 		this.listeners();
 	}
@@ -27,21 +27,24 @@ export default class BotPlayer extends Player {
 			if (nextPLayer.name !== this.name) {
 				return;
 			}
-
+			// debugger;
 			const attackers = [];
 			for (let i = 0; i < this.regions.length; i++) {
+
 				if (this.regions[i].neighbour.length === 0) {
 					continue;
 				}
 				attackers.push(this.regions[i]);
 			}
-			const attacker = getRandom(0, attackers.length);
+			const attacker = getRandom(0, attackers.length - 1);
 			// debugger;
 			bus.emit('bot-attack', {
 				from: attackers[attacker],
-				to: attackers[attacker].neighbour[getRandom(0, attackers[attacker].neighbour.length)]
+				to: attackers[attacker].neighbour[getRandom(0, attackers[attacker].neighbour.length - 1)]
 			});
-			bus.emit('bot-change-move', 'bot');
+			setTimeout(() => {
+				bus.emit('bot-change-move', 'bot');
+			}, 1000);
 		});
 	}
 }
