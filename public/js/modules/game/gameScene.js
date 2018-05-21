@@ -286,7 +286,7 @@ export default class GameScene {
 					case PLAYER_STATES.READY:
 						console.log('ready m');
 						const activeRegion = this.activeRegion();
-						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
+						if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
 							console.log('attack');
 							if (this.isNeighbour(activeRegion, curRegion) === false) {
 								return;
