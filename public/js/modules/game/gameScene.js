@@ -274,13 +274,17 @@ export default class GameScene {
 				const coordinates = data.payload;
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
 
+				console.log('0');
+
 				if (!curRegion) {
 					return;
 				}
+				console.log('1');
 
 				if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
 					return;
 				}
+				console.log('2');
 
 				aboutRegion(curRegion, this.about_region);
 
