@@ -5,6 +5,7 @@ import PLAYER_STATES from './config/playerStates.js';
 import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 import Ws from '../ws.js';
 import {GameModes} from './config/modes.js';
+import User from '../userModel.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -28,6 +29,7 @@ export default class GameScene {
 		this.setPlayersRegions();
 		if (mode === GameModes.multiplayer) {
 			this.setPlayersStatus();
+			this.curPlayer = null;
 			this.ws = new Ws();
 		}
 	}
@@ -124,16 +126,21 @@ export default class GameScene {
 
 	setPlayersStatus() {
 		bus.on('TurnInit$Request', data => {
-			console.log('setPlayersStatus');
 			const user = data.payload.user;
-			console.log('curMpP   -  ', user);
-			for (let i = 0; i < this.players.length; ++i) {
-				if (this.players[i].name === user) {
-					this.players[i].setStatus(PLAYER_STATES.DEFAULT);
-				}
-				else {
-					this.players[i].setStatus(PLAYER_STATES.DISABLED);
-				}
+			if (user === User.getCurUser().username) {
+				this.players.forEach(player => {
+					if (player.name === user) {
+						player.setStatus(PLAYER_STATES.DEFAULT);
+						this.curPlayer = player;
+					}
+				});
+			}
+			else {
+				this.players.forEach(player => {
+					if (player.name === User.getCurUser().username) {
+						player.setStatus(PLAYER_STATES.DISABLED);
+					}
+				});
 			}
 		});
 	}
@@ -266,13 +273,12 @@ export default class GameScene {
 			bus.on('left-click', data => {
 				const coordinates = data.payload;
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
-				const currentPlayer = this.currentMpPlayer();
 
 				if (!curRegion) {
 					return;
 				}
 
-				if (!currentPlayer.isTheRegionOfPlayer(curRegion)) {
+				if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
 					return;
 				}
 
