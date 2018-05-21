@@ -26,7 +26,9 @@ export default class GameScene {
 		this.players = players;
 		this.regions = regions;
 		this.about_region = document.getElementById('about-region');
-		this.setPlayersRegions();
+		// if (mode === GameModes.singleplayer) {
+			this.setPlayersRegions();
+		// }
 		if (mode === GameModes.multiplayer) {
 			this.setPlayersStatus();
 			this.curPlayer = null;
@@ -93,6 +95,30 @@ export default class GameScene {
 		return false;
 	}
 
+	isMatrixNeighbour(active, current) {
+		const x1 = active.coordinate.I;
+		const y1 = active.coordinate.J;
+		const x2 = current.coordinate.I;
+		const y2 = current.coordinate.J;
+		if (x1 === x2 && Math.abs(y1 - y2) === 1) {
+			return true;
+		}
+		else if (Math.abs(x1 - x2) === 1) {
+			if (y1 === y2) {
+				return true;
+			}
+			else {
+				if (x1 % 2 === 0 && y1 - y2 === 1) {
+					return true;
+				}
+				else if (x1 % 2 === 1 && y2 - y1 === 1) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	/**
 	 *
 	 * @return {Region}
@@ -120,7 +146,7 @@ export default class GameScene {
 			// this.players[i].addRegion(this.regions[i]);
 			for (let j = 0; j < this.regions.length; ++j) {
 				if (this.regions[j].owner === this.players[i]) {
-					this.players[i].addRegion(this.regions[j]);
+					this.players[i].addRegion(this.regions[j], this.players[i]);
 				}
 			}
 		}
@@ -270,14 +296,14 @@ export default class GameScene {
 					return;
 				}
 
-				if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
-					return;
-				}
 
 				aboutRegion(curRegion, this.about_region);
 
 				switch (this.curPlayer.status) {
 					case PLAYER_STATES.DEFAULT:
+						if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
+							return;
+						}
 						console.log('default m');
 						this.curPlayer.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);
@@ -286,9 +312,12 @@ export default class GameScene {
 					case PLAYER_STATES.READY:
 						console.log('ready m');
 						const activeRegion = this.activeRegion();
-						if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
-							console.log('attack');
-							if (this.isNeighbour(activeRegion, curRegion) === false) {
+						if (curRegion === activeRegion) {
+							this.curPlayer.status = PLAYER_STATES.DEFAULT;
+							bus.emit('remove-selection', curRegion);
+						}
+						else {
+							if (this.isMatrixNeighbour(activeRegion, curRegion) === false) {
 								return;
 							}
 							this.ws.send('ClientStep', {
@@ -296,19 +325,9 @@ export default class GameScene {
 								to: [curRegion.coordinate.I, curRegion.coordinate.J]
 							});
 						}
-						//если нажали на выделенный регион
-						else {
-							if (curRegion === activeRegion) {
-								this.curPlayer.status = PLAYER_STATES.DEFAULT;
-								bus.emit('remove-selection', curRegion);
-							}
-							else {
-								//выводим информацию о регионе
-								aboutRegion(curRegion, this.about_region);
-								bus.emit('remove-selection', this.activeRegion());
-								bus.emit('select-region', curRegion);
-							}
-						}
+						//выводим информацию о регионе
+						// bus.emit('remove-selection', this.activeRegion());
+						// bus.emit('select-region', curRegion);
 						break;
 				}
 			});

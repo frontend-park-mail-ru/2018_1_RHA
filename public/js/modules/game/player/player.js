@@ -39,11 +39,14 @@ export default class Player {
 	 * @return {boolean}
 	 */
 	isTheRegionOfPlayer(region) {
+		console.log('name:  ', region.name);
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].name === region.name) {
+				console.log('true');
 				return true;
 			}
 		}
+		console.log('false');
 		return false;
 	}
 
@@ -51,11 +54,11 @@ export default class Player {
 	 * Gives the player new region
 	 * @param newRegion
 	 */
-	addRegion(newRegion) {
+	addRegion(newRegion, player) {
 		newRegion.area.setColor(this.color);
 		renderScene(this.canvas, this.allRegions, this.img);
 		newRegion.area.reColor(this.color);
-		newRegion.owner = this;
+		newRegion.owner = player;
 		this.regions.push(newRegion);
 	}
 

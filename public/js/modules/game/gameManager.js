@@ -76,7 +76,7 @@ export default class GameManager {
 						from: from,
 						to: to
 					});
-					from.owner.addRegion(to);
+					from.owner.addRegion(to, from.owner);
 					to.area.setStroke('white');
 					renderScene(this.canvas, this.regions, this.img);
 				}
