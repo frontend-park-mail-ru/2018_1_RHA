@@ -56,7 +56,15 @@ export default class Player {
 	 */
 	addRegion(newRegion, player) {
 		newRegion.area.setColor(this.color);
+		console.log(this.allRegions);
 		renderScene(this.canvas, this.allRegions, this.img);
+		newRegion.area.reColor(this.color);
+		newRegion.owner = player;
+		this.regions.push(newRegion);
+	}
+	addRegionForWeb(newRegion, player, allRegions) {
+		newRegion.area.setColor(this.color);
+		renderScene(this.canvas, allRegions, this.img);
 		newRegion.area.reColor(this.color);
 		newRegion.owner = player;
 		this.regions.push(newRegion);

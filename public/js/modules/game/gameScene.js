@@ -70,8 +70,6 @@ export default class GameScene {
 	 */
 	isRegion(x, y) {
 		for (let i = 0; i < this.regions.length; ++i) {
-			// console.log(this.regions[i].area.xp, '   ', this.regions[i].area.yp);
-			// ------------------- что такое xp??????? ---------------------------
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
 				return this.regions[i];
 			}
@@ -167,10 +165,8 @@ export default class GameScene {
 				}
 				else {
 					bus.emit('stop-controller', {});
-					console.log('else   ---   ');
 					this.players.forEach(player => {
 						if (player.name === user) {
-							console.log('else  uuuuu ---   ', player);
 							resolve(player);
 						}
 					});

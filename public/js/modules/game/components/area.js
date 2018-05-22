@@ -19,6 +19,18 @@ export default class Area {
 		this.area.draw();
 	}
 
+	setColor(color) {
+		this.area.setColor(color);
+	}
+
+	getColor() {
+		return this.area.getColor();
+	}
+
+	setGlobalRegions(regions) {
+		this.globalRegions = regions;
+	}
+
 	init() {
 
 		this.coordinate.R = this.canvas.height / 610 * this.coordinate.R;

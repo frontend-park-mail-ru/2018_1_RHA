@@ -25,33 +25,41 @@ export default class WebPlayer extends Player {
 			const move = data.payload;
 			let from = null;
 			let to = null;
-			const fFrom = move.map[1].coords;
-			const fTo = move.map[2].coords;
 			if (move.type === 'attack') {
-				console.log('0');
-				this.regions.forEach(region => {
-					console.log(region.coordinate.I, '   ', region.coordinate.J);
-					if (region.coordinate.I === fFrom.x
-						&& region.coordinate.J === fFrom.y) {
-						to = region;
-						console.log('1');
+				//если длина 3, значит захватили
+				if (move.map.length === 3) {
+					for (let i = 0; i < this.allRegions.length; ++i) {
+						if (this.allRegions[i].coordinate.I === move.map[1].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[1].coords.y) {
+							to = this.allRegions[i];
+						}
+						if (this.allRegions[i].coordinate.I === move.map[2].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[2].coords.y) {
+							from = this.allRegions[i];
+						}
 					}
-					if (region.coordinate.I === fTo.x
-						&& region.coordinate.J === fTo.y) {
-						from = region;
-						console.log('2');
-					}
-				});
-				console.log('3');
-				// attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
-				if (to.owner === from.owner) {
 					to.setColor(from.getColor());
+					console.log(from.getColor());
 					to.owner.delRegion(to);
-					from.owner.addRegion(to, from.owner);
+					from.owner.addRegionForWeb(to, from.owner, this.allRegions);
 					to.area.setStroke('white');
-					renderScene(this.canvas, this.regions, this.img);
+					renderScene(this.canvas, this.allRegions, this.img);
+				} else if (move.map.length === 2) {
+					for (let i = 0; i < this.allRegions.length; ++i) {
+						if (this.allRegions[i].coordinate.I === move.map[0].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[0].coords.y) {
+							from = this.allRegions[i];
+						}
+						if (this.allRegions[i].coordinate.I === move.map[1].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[1].coords.y) {
+							to = this.allRegions[i];
+						}
+					}
 				}
+				// attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
+
 			}
+
 		});
 	}
 }
