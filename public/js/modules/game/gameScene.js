@@ -320,7 +320,8 @@ export default class GameScene {
 							if (this.isMatrixNeighbour(activeRegion, curRegion) === false) {
 								return;
 							}
-							this.ws.send('ClientStep', {
+							this.ws.send({
+								class: 'ClientStep',
 								from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
 								to: [curRegion.coordinate.I, curRegion.coordinate.J]
 							});
