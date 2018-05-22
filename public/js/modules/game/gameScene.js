@@ -30,7 +30,6 @@ export default class GameScene {
 			this.setPlayersRegions();
 		// }
 		if (mode === GameModes.multiplayer) {
-			this.setPlayersStatus();
 			this.curPlayer = null;
 			this.ws = new Ws();
 		}
@@ -153,24 +152,30 @@ export default class GameScene {
 	}
 
 	setPlayersStatus() {
-		bus.on('TurnInit$Request', data => {
-			const user = data.payload.user;
-			if (user === User.getCurUser().username) {
-				this.players.forEach(player => {
-					if (player.name === user) {
-						player.setStatus(PLAYER_STATES.DEFAULT);
-						this.curPlayer = player;
-						bus.emit('start-controller', {});
-					}
-				});
-			}
-			else {
-				this.players.forEach(player => {
-					if (player.name === User.getCurUser().username) {
-						bus.emit('stop-controller', {});
-					}
-				});
-			}
+		return new Promise(resolve => {
+			bus.on('TurnInit$Request', data => {
+				const user = data.payload.user;
+				if (user === User.getCurUser().username) {
+					this.players.forEach(player => {
+						if (player.name === user) {
+							player.setStatus(PLAYER_STATES.DEFAULT);
+							this.curPlayer = player;
+							bus.emit('start-controller', {});
+							resolve(this.curPlayer);
+						}
+					});
+				}
+				else {
+					bus.emit('stop-controller', {});
+					console.log('else   ---   ');
+					this.players.forEach(player => {
+						if (player.name === user) {
+							console.log('else  uuuuu ---   ', player);
+							resolve(player);
+						}
+					});
+				}
+			});
 		});
 	}
 
@@ -345,8 +350,13 @@ export default class GameScene {
 
 			bus.on('start-game', () => {
 				//подсветка текущего игрока
-				console.log(this.curPlayer);
-				bus.emit('illum-cur', this.curPlayer);
+				this.setPlayersStatus()
+					.then(
+						player => {
+							console.log(player);
+							bus.emit('illum-cur', player);
+						}
+					);
 			});
 		}
 	}

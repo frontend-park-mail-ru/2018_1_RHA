@@ -118,6 +118,7 @@ export default class GameManager {
 			const curPlayer = data.payload;
 			curPlayer.regions.forEach(region => {
 				region.area.setStroke('white');
+				console.log('whiiiite ---  ', region);
 				renderScene(this.canvas, this.regions, this.img);
 			});
 		};
