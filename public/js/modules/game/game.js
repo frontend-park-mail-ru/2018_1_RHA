@@ -66,7 +66,7 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.Ws.send('JoinGame$Request', {});
+				this.Ws.send({class: 'JoinGame$Request'});
 				bus.on('InitGame$Request', (data) => {
 					const initData = data.payload;
 					// узнаем индекс локального игрока + создадим игроков
