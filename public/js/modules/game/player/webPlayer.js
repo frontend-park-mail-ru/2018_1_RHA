@@ -52,6 +52,7 @@ export default class WebPlayer extends Player {
 					renderScene(this.canvas, this.allRegions, this.img);
 
 				} else if (move.map.length === 2) {
+					console.log('lose');
 					for (let i = 0; i < this.allRegions.length; ++i) {
 						if (this.allRegions[i].coordinate.J === move.map[0].coords.x
 							&& this.allRegions[i].coordinate.I === move.map[0].coords.y) {
