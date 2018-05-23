@@ -66,7 +66,7 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.Ws.send('JoinGame$Request', {});
+				this.Ws.send({class: 'JoinGame$Request'});
 				bus.on('InitGame$Request', (data) => {
 					const initData = data.payload;
 					// узнаем индекс локального игрока + создадим игроков
@@ -77,50 +77,47 @@ export default class Game {
 					initData.players.forEach((player, index) => {
 						if (player === username) {
 							indexPlayer = index + 1;
-							// this.players.push(new MainPlayer(player, 'green', this.game_canvas, this.img));
 						}
-						// else {
-						// 	this.players.push(new WebPlayer(player, 'red', this.game_canvas, this.img));
-						// }
 					});
 
 					const map = initData.map;
 
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
 					const Radius = 610 / (2 * map.length - 1);
-
+					const player  = new MainPlayer(username, 'green', this.game_canvas, this.img);
+					this.players.push(player);
+					const webPlayer = new WebPlayer('web', 'red', this.game_canvas, this.img);
+					this.players.push(webPlayer);
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
 							if (col.owner === indexPlayer) {
-								const player  = new MainPlayer(username, 'green', this.game_canvas, this.img);
-								this.players.push(player);
-								this.regions.push(new Area('def', player, this.game_canvas, {
+								const region = new Area(username + String(rI), player, this.game_canvas, {
 									I: rI,
 									J: cI,
 									R: Radius
-								}, col.units));
+								}, col.units);
+								this.regions.push(region);
 							} else if (col.owner === 0) {
-								const region = new Area(String(col.owner), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
+								const region = new Area(String(col.owner) + String(rI) + String(cI) + String(rI), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
 									I: rI,
 									J: cI,
 									R: Radius
 								}, col.units);
 								this.regions.push(region);
 							} else {
-								const webPlayer = new WebPlayer('web', 'red', this.game_canvas, this.img);
-								this.players.push(webPlayer);
-								this.regions.push(new Area('webZone', webPlayer, this.game_canvas, {
+								const region = new Area('web' + String(rI), webPlayer, this.game_canvas, {
 									I: rI,
 									J: cI,
 									R: Radius
-								}, col.units));
+								}, col.units);
+								this.regions.push(region);
 							}
 						});
 					});
-
 					this.players.forEach(player => {
 						player.setAllRegtions(this.regions);
 					});
+
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 					this.start();

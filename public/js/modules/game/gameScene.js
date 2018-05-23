@@ -26,9 +26,10 @@ export default class GameScene {
 		this.players = players;
 		this.regions = regions;
 		this.about_region = document.getElementById('about-region');
-		this.setPlayersRegions();
+		// if (mode === GameModes.singleplayer) {
+			this.setPlayersRegions();
+		// }
 		if (mode === GameModes.multiplayer) {
-			this.setPlayersStatus();
 			this.curPlayer = null;
 			this.ws = new Ws();
 		}
@@ -70,8 +71,6 @@ export default class GameScene {
 	isRegion(x, y) {
 		console.log('in isRegion:', x, '-', y);
 		for (let i = 0; i < this.regions.length; ++i) {
-			// console.log(this.regions[i].area.xp, '   ', this.regions[i].area.yp);
-			// ------------------- что такое xp??????? ---------------------------
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
 				console.log('got region ', this.regions[i].area);
 				return this.regions[i];
@@ -90,6 +89,30 @@ export default class GameScene {
 		for (let i = 0; i < active.neighbour.length; i++) {
 			if (current.label === active.neighbour[i]) {
 				return true;
+			}
+		}
+		return false;
+	}
+
+	isMatrixNeighbour(active, current) {
+		const x1 = active.coordinate.I;
+		const y1 = active.coordinate.J;
+		const x2 = current.coordinate.I;
+		const y2 = current.coordinate.J;
+		if (x1 === x2 && Math.abs(y1 - y2) === 1) {
+			return true;
+		}
+		else if (Math.abs(x1 - x2) === 1) {
+			if (y1 === y2) {
+				return true;
+			}
+			else {
+				if (x1 % 2 === 0 && y1 - y2 === 1) {
+					return true;
+				}
+				else if (x1 % 2 === 1 && y2 - y1 === 1) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -122,31 +145,35 @@ export default class GameScene {
 			// this.players[i].addRegion(this.regions[i]);
 			for (let j = 0; j < this.regions.length; ++j) {
 				if (this.regions[j].owner === this.players[i]) {
-					this.players[i].addRegion(this.regions[j]);
+					this.players[i].addRegion(this.regions[j], this.players[i]);
 				}
 			}
 		}
 	}
 
 	setPlayersStatus() {
-		bus.on('TurnInit$Request', data => {
-			const user = data.payload.user;
-			if (user === User.getCurUser().username) {
-				this.players.forEach(player => {
-					if (player.name === user) {
-						player.setStatus(PLAYER_STATES.DEFAULT);
-						this.curPlayer = player;
-						bus.emit('start-controller', {});
-					}
-				});
-			}
-			else {
-				this.players.forEach(player => {
-					if (player.name === User.getCurUser().username) {
-						bus.emit('stop-controller', {});
-					}
-				});
-			}
+		return new Promise(resolve => {
+			bus.on('TurnInit$Request', data => {
+				const user = data.payload.user;
+				if (user === User.getCurUser().username) {
+					this.players.forEach(player => {
+						if (player.name === user) {
+							player.setStatus(PLAYER_STATES.DEFAULT);
+							this.curPlayer = player;
+							bus.emit('start-controller', {});
+							resolve(this.curPlayer);
+						}
+					});
+				}
+				else {
+					bus.emit('stop-controller', {});
+					this.players.forEach(player => {
+						if (player.name === user) {
+							resolve(player);
+						}
+					});
+				}
+			});
 		});
 	}
 
@@ -273,14 +300,14 @@ export default class GameScene {
 					return;
 				}
 
-				if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
-					return;
-				}
 
 				aboutRegion(curRegion, this.about_region);
 
 				switch (this.curPlayer.status) {
 					case PLAYER_STATES.DEFAULT:
+						if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
+							return;
+						}
 						console.log('default m');
 						this.curPlayer.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);
@@ -289,29 +316,23 @@ export default class GameScene {
 					case PLAYER_STATES.READY:
 						console.log('ready m');
 						const activeRegion = this.activeRegion();
-						if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
-							console.log('attack');
-							if (this.isNeighbour(activeRegion, curRegion) === false) {
+						if (curRegion === activeRegion) {
+							this.curPlayer.status = PLAYER_STATES.DEFAULT;
+							bus.emit('remove-selection', curRegion);
+						}
+						else {
+							if (this.isMatrixNeighbour(activeRegion, curRegion) === false) {
 								return;
 							}
-							this.ws.send('ClientStep', {
+							this.ws.send({
+								class: 'ClientStep',
 								from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
 								to: [curRegion.coordinate.I, curRegion.coordinate.J]
 							});
 						}
-						//если нажали на выделенный регион
-						else {
-							if (curRegion === activeRegion) {
-								this.curPlayer.status = PLAYER_STATES.DEFAULT;
-								bus.emit('remove-selection', curRegion);
-							}
-							else {
-								//выводим информацию о регионе
-								aboutRegion(curRegion, this.about_region);
-								bus.emit('remove-selection', this.activeRegion());
-								bus.emit('select-region', curRegion);
-							}
-						}
+						//выводим информацию о регионе
+						// bus.emit('remove-selection', this.activeRegion());
+						// bus.emit('select-region', curRegion);
 						break;
 				}
 			});
@@ -328,14 +349,16 @@ export default class GameScene {
 
 			bus.on('start-game', () => {
 				//подсветка текущего игрока
-				console.log(this.curPlayer);
-				bus.emit('illum-cur', this.curPlayer);
+				this.setPlayersStatus()
+					.then(
+						player => {
+							console.log(player);
+							bus.emit('illum-cur', player);
+						}
+					);
 			});
 		}
 	}
 }
-
-//todo вытащить текущего игркока
-//todo отобрать контролы у неактивных игроков
 //todo сделать ход
-//todo почему то не срабатывает подписка на TurnInit$Request во второй раз ( в фукнции currentMpPlayer )
+//todo назначить цвета и сделать несколько веб плееров
