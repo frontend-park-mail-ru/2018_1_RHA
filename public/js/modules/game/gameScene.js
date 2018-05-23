@@ -323,8 +323,8 @@ export default class GameScene {
 							}
 							this.ws.send({
 								class: 'ClientStep',
-								from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
-								to: [curRegion.coordinate.I, curRegion.coordinate.J]
+								from: [activeRegion.coordinate.J, activeRegion.coordinate.I],
+								to: [curRegion.coordinate.J, curRegion.coordinate.I]
 							});
 						}
 						//выводим информацию о регионе

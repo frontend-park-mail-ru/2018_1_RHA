@@ -20,6 +20,7 @@ export default class Area {
 	}
 
 	setColor(color) {
+		console.log('area --  ');
 		this.area.setColor(color);
 	}
 
