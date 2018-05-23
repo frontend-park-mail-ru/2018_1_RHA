@@ -62,7 +62,17 @@ export default class WebPlayer extends Player {
 							from = this.allRegions[i];
 						}
 					}
-					attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
+					// console.log('to  -  ', to);
+					// console.log('from  -  ', from);
+					// console.log(to.getColor());
+					// to.setColor(from.getColor());
+					// console.log(to.getColor());
+					// to.owner.delRegion(to);
+					// from.owner.addRegionForWeb(to, from.owner, this.allRegions);
+					// to.area.setStroke('white');
+					//
+					// attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
+					// renderScene(this.canvas, this.allRegions, this.img);
 				}
 
 
@@ -78,5 +88,8 @@ export default class WebPlayer extends Player {
 //todo если элемента 2, то проигрыш
 //todo не перекрашиваются хексы
 //todo возможно я неправильно получаю на фронте регионы по координатам пришедшим с бэка
+//todo cообщения отсылаются теперь в другом формате, посмотри в геймсцене как мы отправляем сообщения на бэк
+//todo насколько я понял координата j это х, i - y, а не наоборот
+
 
 //todo анимацию я сделаю
