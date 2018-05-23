@@ -3,7 +3,8 @@ import bus from '../../bus.js';
 import MainPlayer from './mainPlayer';
 import {renderScene} from '../helperFuncs/renderScene';
 import {attackAnimation} from '../animation/attack/attackAnimation';
-import {moveAnimation} from "../animation/move/moveAnimation";
+import {moveAnimation} from '../animation/move/moveAnimation.js';
+import GameScene from '../gameScene.js';
 
 /**
  * Class representing web player
@@ -29,15 +30,23 @@ export default class WebPlayer extends Player {
 			if (move.type === 'attack') {
 				//если длина 3, значит захватили
 				if (move.map.length === 3) {
+					let flag = 0;
+					let toUpdate = [];
 					console.log('win');
 					for (let i = 0; i < this.allRegions.length; ++i) {
+						if (flag === 2)
+							break;
+
 						if (this.allRegions[i].coordinate.J === move.map[1].coords.x
 							&& this.allRegions[i].coordinate.I === move.map[1].coords.y) {
 							to = this.allRegions[i];
+							toUpdate.push({num: i, units: move.map[1].units});
 						}
+
 						if (this.allRegions[i].coordinate.J === move.map[2].coords.x
 							&& this.allRegions[i].coordinate.I === move.map[2].coords.y) {
 							from = this.allRegions[i];
+							toUpdate.push({num: i, units: move.map[2].units});
 						}
 					}
 					to.setColor(from.getColor());
@@ -46,10 +55,12 @@ export default class WebPlayer extends Player {
 					to.area.setStroke('white');
 
 					attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
+					bus.emit('update-regions', {regions: toUpdate});
 					renderScene(this.canvas, this.allRegions, this.img);
 
 				} else if (move.map.length === 2) {
 					console.log('lose');
+					let toUpdate = [];
 					let flag = 0;
 					for (let i = 0; i < this.allRegions.length; ++i) {
 						if (flag === 2)
@@ -59,31 +70,40 @@ export default class WebPlayer extends Player {
 							&& this.allRegions[i].coordinate.I === move.map[0].coords.y) {
 							to = this.allRegions[i];
 							this.allRegions[i].units = move.map[0].units;
+							toUpdate.push({num: i, units: move.map[0].units});
 						}
 
 						if (this.allRegions[i].coordinate.J === move.map[1].coords.x
 							&& this.allRegions[i].coordinate.I === move.map[1].coords.y) {
 							from = this.allRegions[i];
 							this.allRegions[i].units = move.map[1].units;
+							toUpdate.push({num: i, units: move.map[1].units});
 						}
 					}
 					attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
+					bus.emit('update-regions', {regions: toUpdate});
 				}
 			} else if (move.type === 'move') {
-				console.log('in move');
+				let toUpdate = [];
+				let flag = 0;
 				for (let i = 0; i < this.allRegions.length; ++i) {
-					console.log(this.allRegions[i].J, ' ', this.allRegions[i].I, move.map[0].coords.x, ' ', move.map[0].coords.y);
+					if (flag === 2)
+						break;
+
 					if (this.allRegions[i].coordinate.J === move.map[0].coords.x
 						&& this.allRegions[i].coordinate.I === move.map[0].coords.y) {
 						to = this.allRegions[i];
-
+						this.allRegions[i].units = move.map[0].units;
+						toUpdate.push({num: i, units: move.map[0].units});
 					}
 					if (this.allRegions[i].coordinate.J === move.map[1].coords.x
 						&& this.allRegions[i].coordinate.I === move.map[1].coords.y) {
 						from = this.allRegions[i];
-
+						this.allRegions[i].units = move.map[1].units;
+						toUpdate.push({num: i, units: move.map[1].units});
 					}
 				}
+				bus.emit('update-regions', {regions: toUpdate});
 				moveAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
 			}
 		});

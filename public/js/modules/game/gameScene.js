@@ -6,6 +6,7 @@ import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 import Ws from '../ws.js';
 import {GameModes} from './config/modes.js';
 import User from '../userModel.js';
+import Game from "./game";
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -20,6 +21,7 @@ export default class GameScene {
 	 * @param mode
 	 */
 	constructor(canvas, players, regions, mode) {
+
 		this.mode = mode;
 		this.canvas  = canvas;
 		this.game_ctx = canvas.getContext('2d');
@@ -344,6 +346,13 @@ export default class GameScene {
 					//TODO получить следующего игрока
 					console.log(data);
 					bus.emit('change-move', {});
+				});
+			});
+
+			bus.on('update-regions', (data) => {
+				const regions = data.payload;
+				regions.regions.forEach(reg => {
+					this.regions[reg.num].gameData.units = reg.units;
 				});
 			});
 
