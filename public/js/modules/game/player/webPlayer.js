@@ -39,11 +39,7 @@ export default class WebPlayer extends Player {
 							from = this.allRegions[i];
 						}
 					}
-					console.log('to  -  ', to);
-					console.log('from  -  ', from);
-					console.log(to.getColor());
 					to.setColor(from.getColor());
-					console.log(to.getColor());
 					to.owner.delRegion(to);
 					from.owner.addRegionForWeb(to, from.owner, this.allRegions);
 					to.area.setStroke('white');
@@ -63,22 +59,9 @@ export default class WebPlayer extends Player {
 							from = this.allRegions[i];
 						}
 					}
-					// console.log('to  -  ', to);
-					// console.log('from  -  ', from);
-					// console.log(to.getColor());
-					// to.setColor(from.getColor());
-					// console.log(to.getColor());
-					// to.owner.delRegion(to);
-					// from.owner.addRegionForWeb(to, from.owner, this.allRegions);
-					// to.area.setStroke('white');
-					//
 					attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
-					// renderScene(this.canvas, this.allRegions, this.img);
 				}
-
-
 			}
-
 		});
 	}
 }
@@ -86,11 +69,8 @@ export default class WebPlayer extends Player {
 //todo map[1] - тот на кого напали
 //todo map[2] -тот кто напал
 //todo map[0] - куда отступили войска того, на кого напали
-//todo если элемента 2, то проигрыш
-//todo не перекрашиваются хексы
-//todo возможно я неправильно получаю на фронте регионы по координатам пришедшим с бэка
+//todo если в массиве элемента 2, а не 3, то проигрыш
 //todo cообщения отсылаются теперь в другом формате, посмотри в геймсцене как мы отправляем сообщения на бэк
-//todo насколько я понял координата j это х, i - y, а не наоборот
+//todo насколько я понял координата j это х, i - y, а не наоборот, но только в этом случае. Когда отправляли сообщение из сцены, там почему то наоборот и норм
 
-
-//todo анимацию я сделаю
+//todo тебе необходимо обновить кол-во юнитов у регонов, также по аналогии необходимо сделать перемещение юнитов
