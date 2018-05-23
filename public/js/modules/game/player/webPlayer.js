@@ -72,7 +72,7 @@ export default class WebPlayer extends Player {
 					// from.owner.addRegionForWeb(to, from.owner, this.allRegions);
 					// to.area.setStroke('white');
 					//
-					// attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
+					attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
 					// renderScene(this.canvas, this.allRegions, this.img);
 				}
 

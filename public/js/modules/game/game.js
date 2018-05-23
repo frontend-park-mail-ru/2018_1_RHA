@@ -95,7 +95,7 @@ export default class Game {
 									I: rI,
 									J: cI,
 									R: Radius
-								}, 10000);
+								}, col.units);
 								this.regions.push(region);
 							} else if (col.owner === 0) {
 								const region = new Area(String(col.owner) + String(rI) + String(cI) + String(rI), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
