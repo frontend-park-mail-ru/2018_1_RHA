@@ -37,14 +37,14 @@ export default class WebPlayer extends Player {
 						if (flag === 2)
 							break;
 
-						if (this.allRegions[i].coordinate.J === move.map[1].coords.x
-							&& this.allRegions[i].coordinate.I === move.map[1].coords.y) {
+						if (this.allRegions[i].coordinate.I === move.map[1].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[1].coords.y) {
 							to = this.allRegions[i];
 							toUpdate.push({num: i, units: move.map[1].units});
 						}
 
-						if (this.allRegions[i].coordinate.J === move.map[2].coords.x
-							&& this.allRegions[i].coordinate.I === move.map[2].coords.y) {
+						if (this.allRegions[i].coordinate.I === move.map[2].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[2].coords.y) {
 							from = this.allRegions[i];
 							toUpdate.push({num: i, units: move.map[2].units});
 						}
@@ -66,15 +66,15 @@ export default class WebPlayer extends Player {
 						if (flag === 2)
 							break;
 
-						if (this.allRegions[i].coordinate.J === move.map[0].coords.x
-							&& this.allRegions[i].coordinate.I === move.map[0].coords.y) {
+						if (this.allRegions[i].coordinate.I === move.map[0].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[0].coords.y) {
 							to = this.allRegions[i];
 							this.allRegions[i].units = move.map[0].units;
 							toUpdate.push({num: i, units: move.map[0].units});
 						}
 
-						if (this.allRegions[i].coordinate.J === move.map[1].coords.x
-							&& this.allRegions[i].coordinate.I === move.map[1].coords.y) {
+						if (this.allRegions[i].coordinate.I === move.map[1].coords.x
+							&& this.allRegions[i].coordinate.J === move.map[1].coords.y) {
 							from = this.allRegions[i];
 							this.allRegions[i].units = move.map[1].units;
 							toUpdate.push({num: i, units: move.map[1].units});
@@ -90,14 +90,14 @@ export default class WebPlayer extends Player {
 					if (flag === 2)
 						break;
 
-					if (this.allRegions[i].coordinate.J === move.map[0].coords.x
-						&& this.allRegions[i].coordinate.I === move.map[0].coords.y) {
+					if (this.allRegions[i].coordinate.I === move.map[0].coords.x
+						&& this.allRegions[i].coordinate.J === move.map[0].coords.y) {
 						to = this.allRegions[i];
 						this.allRegions[i].units = move.map[0].units;
 						toUpdate.push({num: i, units: move.map[0].units});
 					}
-					if (this.allRegions[i].coordinate.J === move.map[1].coords.x
-						&& this.allRegions[i].coordinate.I === move.map[1].coords.y) {
+					if (this.allRegions[i].coordinate.I === move.map[1].coords.x
+						&& this.allRegions[i].coordinate.J === move.map[1].coords.y) {
 						from = this.allRegions[i];
 						this.allRegions[i].units = move.map[1].units;
 						toUpdate.push({num: i, units: move.map[1].units});

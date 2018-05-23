@@ -92,22 +92,22 @@ export default class Game {
 						row.forEach((col, cI) => {
 							if (col.owner === indexPlayer) {
 								const region = new Area(username + String(rI), player, this.game_canvas, {
-									I: rI,
-									J: cI,
+									I: cI,
+									J: rI,
 									R: Radius
 								}, col.units);
 								this.regions.push(region);
 							} else if (col.owner === 0) {
 								const region = new Area(String(col.owner) + String(rI) + String(cI) + String(rI), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
-									I: rI,
-									J: cI,
+									I: cI,
+									J: rI,
 									R: Radius
 								}, col.units);
 								this.regions.push(region);
 							} else {
 								const region = new Area('web' + String(rI), webPlayer, this.game_canvas, {
-									I: rI,
-									J: cI,
+									I: cI,
+									J: rI,
 									R: Radius
 								}, col.units);
 								this.regions.push(region);

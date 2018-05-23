@@ -32,6 +32,7 @@ export default class GameScene {
 			this.setPlayersRegions();
 		// }
 		if (mode === GameModes.multiplayer) {
+			this.mainPlayer = null;
 			this.curPlayer = null;
 			this.ws = new Ws();
 		}
@@ -161,9 +162,9 @@ export default class GameScene {
 					this.players.forEach(player => {
 						if (player.name === user) {
 							player.setStatus(PLAYER_STATES.DEFAULT);
-							this.curPlayer = player;
+							this.mainPlayer = player;
 							bus.emit('start-controller', {});
-							resolve(this.curPlayer);
+							resolve(this.mainPlayer);
 						}
 					});
 				}
@@ -171,7 +172,8 @@ export default class GameScene {
 					bus.emit('stop-controller', {});
 					this.players.forEach(player => {
 						if (player.name === user) {
-							resolve(player);
+							this.curPlayer = player;
+							resolve(this.curPlayer);
 						}
 					});
 				}
@@ -288,6 +290,7 @@ export default class GameScene {
 
 			bus.on('start-game', () => {
 				//подсветка текущего игрока
+				console.log(this.currentPlayer());
 				bus.emit('illum-cur', this.currentPlayer());
 			});
 		}
@@ -303,15 +306,15 @@ export default class GameScene {
 				}
 
 
-				aboutRegion(curRegion, this.about_region);
 
-				switch (this.curPlayer.status) {
+				switch (this.mainPlayer.status) {
 					case PLAYER_STATES.DEFAULT:
-						if (!this.curPlayer.isTheRegionOfPlayer(curRegion)) {
+						if (!this.mainPlayer.isTheRegionOfPlayer(curRegion)) {
 							return;
 						}
+						aboutRegion(curRegion, this.about_region);
 						console.log('default m');
-						this.curPlayer.status = PLAYER_STATES.READY;
+						this.mainPlayer.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);
 						break;
 
@@ -319,7 +322,7 @@ export default class GameScene {
 						console.log('ready m');
 						const activeRegion = this.activeRegion();
 						if (curRegion === activeRegion) {
-							this.curPlayer.status = PLAYER_STATES.DEFAULT;
+							this.mainPlayer.status = PLAYER_STATES.DEFAULT;
 							bus.emit('remove-selection', curRegion);
 						}
 						else {
@@ -333,8 +336,8 @@ export default class GameScene {
 							});
 						}
 						//выводим информацию о регионе
-						// bus.emit('remove-selection', this.activeRegion());
-						// bus.emit('select-region', curRegion);
+						bus.emit('remove-selection', this.activeRegion());
+						bus.emit('select-region', curRegion);
 						break;
 				}
 			});
@@ -362,7 +365,7 @@ export default class GameScene {
 					.then(
 						player => {
 							console.log(player);
-							bus.emit('illum-cur', player);
+							bus.emit('illum-cur-m', player);
 						}
 					);
 			});
