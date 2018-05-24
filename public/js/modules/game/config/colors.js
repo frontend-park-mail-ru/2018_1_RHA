@@ -1,7 +1,7 @@
 export const colors = [
 	'blue',
 	'red',
-	'green',
+	'orange',
 	'yellow',
 	'magenta',
 	'brown'
