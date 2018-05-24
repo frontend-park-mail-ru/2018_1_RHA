@@ -128,6 +128,7 @@ export default class GameScene {
 	activeRegion() {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].selected === true) {
+				console.log('active');
 				return this.regions[i];
 			}
 		}
@@ -155,11 +156,13 @@ export default class GameScene {
 	}
 
 	setPlayersStatus() {
-		return new Promise(resolve => {
+		return new Promise((resolve, reject)=> {
 			bus.on('TurnInit$Request', data => {
 				const user = data.payload.user;
 				if (user === User.getCurUser().username) {
 					this.players.forEach(player => {
+						console.log('start   -  ', player.name);
+						console.log('startiche  -  ', user);
 						if (player.name === user) {
 							player.setStatus(PLAYER_STATES.DEFAULT);
 							this.mainPlayer = player;
@@ -173,7 +176,7 @@ export default class GameScene {
 					this.players.forEach(player => {
 						if (player.name === user) {
 							this.curPlayer = player;
-							resolve(this.curPlayer);
+							reject(this.curPlayer);
 						}
 					});
 				}
@@ -296,7 +299,6 @@ export default class GameScene {
 		}
 		else {
 			bus.on('left-click', data => {
-				console.log('in game_scene');
 				const coordinates = data.payload;
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
 
@@ -313,13 +315,12 @@ export default class GameScene {
 							return;
 						}
 						aboutRegion(curRegion, this.about_region);
-						console.log('default m');
+						console.log(curRegion.coordinate.I, ' - ', curRegion.coordinate.J);
 						this.mainPlayer.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);
 						break;
 
 					case PLAYER_STATES.READY:
-						console.log('ready m');
 						const activeRegion = this.activeRegion();
 						if (curRegion === activeRegion) {
 							this.mainPlayer.status = PLAYER_STATES.DEFAULT;
@@ -331,13 +332,16 @@ export default class GameScene {
 							}
 							this.ws.send({
 								class: 'ClientStep',
-								from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
-								to: [curRegion.coordinate.I, curRegion.coordinate.J]
+								// from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
+								// to: [curRegion.coordinate.I, curRegion.coordinate.J]
+								from: [activeRegion.coordinate.J, activeRegion.coordinate.I],
+								to: [curRegion.coordinate.J, curRegion.coordinate.I]
 							});
+							console.log(curRegion.coordinate.I, ' ', curRegion.coordinate.J);
 						}
 						//выводим информацию о регионе
-						bus.emit('remove-selection', this.activeRegion());
-						bus.emit('select-region', curRegion);
+						// bus.emit('remove-selection', this.activeRegion());
+						// bus.emit('select-region', curRegion);
 						break;
 				}
 			});
@@ -345,11 +349,9 @@ export default class GameScene {
 
 			bus.on('left-click-change', () => {
 				// new Ws().send('change-move', {});
-				bus.on('ws-change-move-confirm', (data) => {
-					//TODO получить следующего игрока
-					console.log(data);
-					bus.emit('change-move', {});
-				});
+				// this.ws.send({
+				// 		class: 'ClientStep'
+				// });
 			});
 
 			bus.on('update-regions', (data) => {
@@ -364,7 +366,13 @@ export default class GameScene {
 				this.setPlayersStatus()
 					.then(
 						player => {
-							console.log(player);
+							console.log('uuuuuaaaa    -- ', player);
+							bus.emit('illum-cur-m', player);
+						}
+					)
+					.catch(
+						player => {
+							console.log('eeeeeeaaaa  --  ', player);
 							bus.emit('illum-cur-m', player);
 						}
 					);

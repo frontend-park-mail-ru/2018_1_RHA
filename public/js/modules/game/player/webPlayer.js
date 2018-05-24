@@ -15,10 +15,6 @@ export default class WebPlayer extends Player {
 	 */
 	constructor(name, color, canvas,  img) {
 		super(name, color, canvas,  img);
-		if (WebPlayer.__instance) {
-			return WebPlayer.__instance;
-		}
-		MainPlayer.__instance = this;
 		this.listeners();
 	}
 

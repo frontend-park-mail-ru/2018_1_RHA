@@ -77,6 +77,12 @@ export default class Game {
 					initData.players.forEach((player, index) => {
 						if (player === username) {
 							indexPlayer = index + 1;
+							this.mainPlayer = new MainPlayer(player, 'green', this.game_canvas, this.img);
+							this.players.push(this.mainPlayer);
+						}
+						else {
+							this.webPlayer = new WebPlayer(player, 'red', this.game_canvas, this.img);
+							this.players.push(this.webPlayer);
 						}
 					});
 
@@ -84,14 +90,10 @@ export default class Game {
 
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
 					const Radius = 610 / (2 * map.length - 1);
-					const player  = new MainPlayer(username, 'green', this.game_canvas, this.img);
-					this.players.push(player);
-					const webPlayer = new WebPlayer('web', 'red', this.game_canvas, this.img);
-					this.players.push(webPlayer);
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
 							if (col.owner === indexPlayer) {
-								const region = new Area(username + String(rI), player, this.game_canvas, {
+								const region = new Area(username + String(rI), this.mainPlayer , this.game_canvas, {
 									I: cI,
 									J: rI,
 									R: Radius
@@ -105,7 +107,7 @@ export default class Game {
 								}, col.units);
 								this.regions.push(region);
 							} else {
-								const region = new Area('web' + String(rI), webPlayer, this.game_canvas, {
+								const region = new Area('web' + String(rI), this.webPlayer, this.game_canvas, {
 									I: cI,
 									J: rI,
 									R: Radius
