@@ -1,7 +1,7 @@
 import Player from './player.js';
 import bus from '../../bus.js';
-import {renderScene} from '../helperFuncs/renderScene';
-import {attackAnimation} from '../animation/attack/attackAnimation';
+import {renderScene} from '../helperFuncs/renderScene.js';
+import {attackAnimation} from '../animation/attack/attackAnimation.js';
 import {moveAnimation} from '../animation/move/moveAnimation.js';
 
 /**
