@@ -161,8 +161,6 @@ export default class GameScene {
 				const user = data.payload.user;
 				if (user === User.getCurUser().username) {
 					this.players.forEach(player => {
-						console.log('start   -  ', player.name);
-						console.log('startiche  -  ', user);
 						if (player.name === user) {
 							player.setStatus(PLAYER_STATES.DEFAULT);
 							this.mainPlayer = player;
@@ -240,8 +238,8 @@ export default class GameScene {
 										active: this.activeRegion(),
 										new: curRegion
 									});
-								bus.emit('remove-selection', this.activeRegion());
-								bus.emit('select-region', curRegion);
+								// bus.emit('remove-selection', this.activeRegion());
+								// bus.emit('select-region', curRegion);
 							}
 						}
 						break;
@@ -348,9 +346,8 @@ export default class GameScene {
 
 
 			bus.on('left-click-change', () => {
-				// new Ws().send('change-move', {});
 				// this.ws.send({
-				// 		class: 'ClientStep'
+				// 		class: 'ClientTurn'
 				// });
 			});
 
