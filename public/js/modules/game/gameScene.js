@@ -338,8 +338,8 @@ export default class GameScene {
 							console.log(curRegion.coordinate.I, ' ', curRegion.coordinate.J);
 						}
 						//выводим информацию о регионе
-						bus.emit('remove-selection', this.activeRegion());
-						bus.emit('select-region', curRegion);
+						// bus.emit('remove-selection', this.activeRegion());
+						// bus.emit('select-region', curRegion);
 						break;
 				}
 			});
