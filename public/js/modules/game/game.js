@@ -11,6 +11,7 @@ import User from '../userModel.js';
 import WebPlayer from './player/webPlayer.js';
 import Help from './help/help';
 import Area from './components/area.js';
+import {colors} from './config/colors.js';
 
 /**
  * Class representing game
@@ -77,11 +78,11 @@ export default class Game {
 					initData.players.forEach((player, index) => {
 						if (player === username) {
 							indexPlayer = index + 1;
-							this.mainPlayer = new MainPlayer(player, 'green', this.game_canvas, this.img);
+							this.mainPlayer = new MainPlayer(player, colors[index+1], this.game_canvas, this.img);
 							this.players.push(this.mainPlayer);
 						}
 						else {
-							this.webPlayer = new WebPlayer(player, 'red', this.game_canvas, this.img);
+							this.webPlayer = new WebPlayer(player, colors[index+1], this.game_canvas, this.img);
 							this.players.push(this.webPlayer);
 						}
 					});
