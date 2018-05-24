@@ -1,10 +1,8 @@
 import Player from './player.js';
 import bus from '../../bus.js';
-import MainPlayer from './mainPlayer';
 import {renderScene} from '../helperFuncs/renderScene';
 import {attackAnimation} from '../animation/attack/attackAnimation';
 import {moveAnimation} from '../animation/move/moveAnimation.js';
-import GameScene from '../gameScene.js';
 
 /**
  * Class representing web player
