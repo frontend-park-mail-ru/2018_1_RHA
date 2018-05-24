@@ -33,7 +33,7 @@ export default class Ws {
 	}
 
 	send(payload) {
-		console.log('sent message: type - ', ' data - ', payload);
+		console.log(' data - ', payload);
 		this.ws.send(JSON.stringify(payload));
 	}
 }

@@ -66,7 +66,6 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				console.log('connnnnnn');
 				this.Ws.send({class: 'JoinGame', players: 2});
 				bus.on('InitGame$Request', (data) => {
 					const initData = data.payload;
@@ -89,6 +88,7 @@ export default class Game {
 
 					const map = initData.map;
 
+					//todo переделать радиус
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
 					const Radius = 610 / (2 * map.length - 1);
 					map.forEach((row, rI) => {

@@ -332,16 +332,16 @@ export default class GameScene {
 							}
 							this.ws.send({
 								class: 'ClientStep',
-								// from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
-								// to: [curRegion.coordinate.I, curRegion.coordinate.J]
-								from: [activeRegion.coordinate.J, activeRegion.coordinate.I],
-								to: [curRegion.coordinate.J, curRegion.coordinate.I]
+								from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
+								to: [curRegion.coordinate.I, curRegion.coordinate.J]
+								// from: [activeRegion.coordinate.J, activeRegion.coordinate.I],
+								// to: [curRegion.coordinate.J, curRegion.coordinate.I]
 							});
 							console.log(curRegion.coordinate.I, ' ', curRegion.coordinate.J);
 						}
 						//выводим информацию о регионе
-						// bus.emit('remove-selection', this.activeRegion());
-						// bus.emit('select-region', curRegion);
+						bus.emit('remove-selection', this.activeRegion());
+						bus.emit('select-region', curRegion);
 						break;
 				}
 			});
