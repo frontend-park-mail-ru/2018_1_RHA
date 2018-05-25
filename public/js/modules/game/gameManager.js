@@ -76,7 +76,7 @@ export default class GameManager {
 						from: from,
 						to: to
 					});
-					from.owner.addRegion(to);
+					from.owner.addRegion(to, from.owner);
 					to.area.setStroke('white');
 					renderScene(this.canvas, this.regions, this.img);
 				}
@@ -134,13 +134,29 @@ export default class GameManager {
 			);
 			renderScene(this.canvas, this.regions, this.img);
 		};
+		this.stop_controller = () => {
+			this.controller.stop();
+		};
+		this.start_controller = () => {
+			this.controller.start();
+		};
+		this.illum_cur_m = (data) => {
+			const curPlayer = data.payload;
+			curPlayer.regions.forEach(region => {
+				region.area.setStroke('white');
+				renderScene(this.canvas, this.regions, this.img);
+			});
+		};
 
 		bus.on('remove-selection', this.remove_selection);
 		bus.on('select-region', this.select_region);
 		bus.on('change-move', this.change_move);
 		bus.on('move-units', this.move_units);
 		bus.on('illum-cur', this.illum_cur);
+		bus.on('illum-cur-m', this.illum_cur_m);
 		bus.on('attack', this.attack);
+		bus.on('stop-controller', this.stop_controller);
+		bus.on('start-controller', this.start_controller);
 	}
 
 
@@ -153,6 +169,8 @@ export default class GameManager {
 		bus.off('change-move', this.change_move);
 		bus.off('move-units', this.move_units);
 		bus.off('illum-cur', this.illum_cur);
+		bus.off('illum-cur-m', this.illum_cur_m);
 		bus.off('attack', this.attack);
+		bus.off('stop-controller', this.stop_controller);
 	}
 }

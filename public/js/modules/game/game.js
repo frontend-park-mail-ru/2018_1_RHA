@@ -11,6 +11,7 @@ import User from '../userModel.js';
 import WebPlayer from './player/webPlayer.js';
 import Help from './help/help';
 import Area from './components/area.js';
+import {colors} from './config/colors.js';
 
 /**
  * Class representing game
@@ -66,7 +67,7 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.Ws.send('JoinGame$Request', {});
+				this.Ws.send({class: 'JoinGame', players: 2});
 				bus.on('InitGame$Request', (data) => {
 					const initData = data.payload;
 					// узнаем индекс локального игрока + создадим игроков
@@ -77,45 +78,48 @@ export default class Game {
 					initData.players.forEach((player, index) => {
 						if (player === username) {
 							indexPlayer = index + 1;
-							// this.players.push(new MainPlayer(player, 'green', this.game_canvas, this.img));
+							this.mainPlayer = new MainPlayer(player, colors[index+1], this.game_canvas, this.img);
+							this.players.push(this.mainPlayer);
 						}
-						// else {
-						// 	this.players.push(new WebPlayer(player, 'red', this.game_canvas, this.img));
-						// }
+						else {
+							this.webPlayer = new WebPlayer(player, colors[index+1], this.game_canvas, this.img);
+							this.players.push(this.webPlayer);
+						}
 					});
 
 					const map = initData.map;
 
+					//todo переделать радиус
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
 					const Radius = 610 / (2 * map.length - 1);
-
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
 							if (col.owner === indexPlayer) {
-								const player  = new MainPlayer(username, 'green', this.game_canvas, this.img);
-								this.players.push(player);
-								this.regions.push(new Area('def', player, this.game_canvas, {
-									I: rI,
-									J: cI,
+								const region = new Area(username + String(rI), this.mainPlayer , this.game_canvas, {
+									I: cI,
+									J: rI,
 									R: Radius
-								}, col.units));
+								}, col.units);
+								this.regions.push(region);
 							} else if (col.owner === 0) {
-								const region = new Area(String(col.owner), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
-									I: rI,
-									J: cI,
+								const region = new Area(String(col.owner) + String(rI) + String(cI) + String(rI), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
+									I: cI,
+									J: rI,
 									R: Radius
 								}, col.units);
 								this.regions.push(region);
 							} else {
-								const webPlayer = new WebPlayer('web', 'red', this.game_canvas, this.img);
-								this.players.push(webPlayer);
-								this.regions.push(new Area('webZone', webPlayer, this.game_canvas, {
-									I: rI,
-									J: cI,
+								const region = new Area('web' + String(rI), this.webPlayer, this.game_canvas, {
+									I: cI,
+									J: rI,
 									R: Radius
-								}, col.units));
+								}, col.units);
+								this.regions.push(region);
 							}
 						});
+					});
+					this.players.forEach(player => {
+						player.setAllRegtions(this.regions);
 					});
 
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);

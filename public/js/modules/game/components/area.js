@@ -7,11 +7,29 @@ export default class Area {
 		this.canvas = canvas;
 		this.game_ctx = this.canvas.getContext('2d');
 		this.coordinate = coordinate;
+		this.owner = owner;
 		this.gameData = {
 			units: units
 		};
 		this.color = owner.color;
+		this.area = null;
 		this.init();
+	}
+	renderHex() {
+		this.area.draw();
+	}
+
+	setColor(color) {
+		console.log('area --  ');
+		this.area.setColor(color);
+	}
+
+	getColor() {
+		return this.area.getColor();
+	}
+
+	setGlobalRegions(regions) {
+		this.globalRegions = regions;
 	}
 
 	init() {

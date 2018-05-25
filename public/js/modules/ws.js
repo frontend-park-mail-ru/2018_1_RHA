@@ -32,12 +32,9 @@ export default class Ws {
 		}
 	}
 
-	send(type, payload) {
-		console.log('sent message: type - ', type, ' data - ', payload);
-		this.ws.send(JSON.stringify({
-			class: type,
-			payload: payload
-		}));
+	send(payload) {
+		console.log(' data - ', payload);
+		this.ws.send(JSON.stringify(payload));
 	}
 }
 

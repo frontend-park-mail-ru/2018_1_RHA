@@ -18,8 +18,15 @@ export const attackAnimation = (x, y, x2, y2) => {
 	const ctx = canvas.getContext('2d');
 	const cw = ctx.canvas.width;
 	const ch = window.innerHeight;
-	const game_canvas = document.getElementById('game-canvas');
-	let result = window.getComputedStyle(game_canvas).marginTop.match(/^[0-9]+/);
+	let result;
+	try {
+		const game_canvas = document.getElementById('game-canvas');
+		result = window.getComputedStyle(game_canvas).marginTop.match(/^[0-9]+/);
+	} catch (error) {
+		const game_canvas = document.getElementById('multiplayer-canvas');
+		result = window.getComputedStyle(game_canvas).marginTop.match(/^[0-9]+/);
+	}
+
 	let mTop = Number(result);
 	y = y + mTop;
 	y2 = y2 + mTop;

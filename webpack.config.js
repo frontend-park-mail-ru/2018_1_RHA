@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlagin = require('copy-webpack-plugin');
 module.exports = {
-	devtool: 'source-map',
+	// devtool: 'source-map',
 	entry: './src/index.js',
 	output: {
 		// path: __dirname + '/public/',
@@ -48,6 +49,10 @@ module.exports = {
 			// both options are optional
 			filename: '[name].css',
 			chunkFilename: '[id].css'
-		})
+		}),
+		new CopyWebpackPlagin([{
+			from: path.join(__dirname, 'public', 'sw.js'),
+			to: path.join(__dirname, 'public/dist', 'sw.js')
+		}])
 	]
 };
