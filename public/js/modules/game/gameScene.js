@@ -346,9 +346,10 @@ export default class GameScene {
 
 
 			bus.on('left-click-change', () => {
-				// this.ws.send({
-				// 		class: 'ClientTurn'
-				// });
+				console.log('kaka');
+				this.ws.send({
+						class: 'ClientTurn'
+				});
 			});
 
 			bus.on('update-regions', (data) => {
