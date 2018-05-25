@@ -9,7 +9,8 @@ const cacheList = [
 	'/rating',
 	'/login',
 	'/singleplayer',
-	'/default.jpg'
+	'/default.jpg',
+	'/map.png'
 ];
 
 this.addEventListener('install', (event) =>

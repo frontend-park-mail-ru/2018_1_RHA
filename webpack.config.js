@@ -3,7 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlagin = require('copy-webpack-plugin');
 module.exports = {
-	devtool: 'source-map',
+	// devtool: 'source-map',
 	entry: './src/index.js',
 	output: {
 		// path: __dirname + '/public/',
