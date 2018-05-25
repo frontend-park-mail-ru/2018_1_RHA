@@ -6,7 +6,6 @@ import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 import Ws from '../ws.js';
 import {GameModes} from './config/modes.js';
 import User from '../userModel.js';
-import Game from "./game";
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
