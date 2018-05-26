@@ -6,6 +6,7 @@ import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 import Ws from '../ws.js';
 import {GameModes} from './config/modes.js';
 import User from '../userModel.js';
+import {dUnits} from './config/unitConf.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -16,7 +17,6 @@ export default class GameScene {
 	 * @param canvas
 	 * @param players
 	 * @param regions
-	 * @param switcher
 	 * @param mode
 	 */
 	constructor(canvas, players, regions, mode) {
@@ -74,7 +74,6 @@ export default class GameScene {
 		console.log('in isRegion:', x, '-', y);
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
-				console.log('got region ', this.regions[i].area);
 				return this.regions[i];
 			}
 		}
@@ -207,6 +206,7 @@ export default class GameScene {
 						curPlayer.status = PLAYER_STATES.READY;
 
 						//выводим информацию о регионе
+						console.log('before about region', curRegion);
 						aboutRegion(curRegion, this.about_region);
 						bus.emit('select-region', curRegion);
 						break;
@@ -311,6 +311,7 @@ export default class GameScene {
 						if (!this.mainPlayer.isTheRegionOfPlayer(curRegion)) {
 							return;
 						}
+						console.log('before about region', curRegion);
 						aboutRegion(curRegion, this.about_region);
 						console.log(curRegion.coordinate.I, ' - ', curRegion.coordinate.J);
 						this.mainPlayer.status = PLAYER_STATES.READY;
@@ -343,7 +344,6 @@ export default class GameScene {
 				}
 			});
 
-
 			bus.on('left-click-change', () => {
 				console.log('kaka');
 				this.ws.send({
@@ -373,6 +373,16 @@ export default class GameScene {
 							bus.emit('illum-cur-m', player);
 						}
 					);
+			});
+
+			bus.on('update-units', () => {
+				console.log('in update units');
+				this.regions.forEach((curReg) => {
+					// console.log(curReg, '+', dUnits[String(curReg.area.type)]);
+					if (curReg.area.type !== 0) {
+						curReg.gameData.units += dUnits[curReg.area.type];
+					}
+				});
 			});
 		}
 	}

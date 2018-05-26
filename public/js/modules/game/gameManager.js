@@ -168,12 +168,12 @@ export default class GameManager {
 
 		bus.on('TurnInit$Request', (data) => {
 			const payload = data.payload;
-			console.log('for timer', payload.user, User.getCurUser().username);
+			if (payload.cycle === true) {
+				bus.emit('update-units', {});
+			}
 			if (payload.user === User.getCurUser().username) {
-				console.log('in if');
 				this.reloadTimer();
 			} else {
-				console.log('in else');
 				this.hideTimer();
 			}
 		});
