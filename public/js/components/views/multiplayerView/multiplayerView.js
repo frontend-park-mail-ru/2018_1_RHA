@@ -53,7 +53,7 @@ export default class MultiplayerSection extends Section {
 	render() {
 
 		this.img = new Image();
-		this.img.src = '/map.png';
+		this.img.src = '/default.jpg';
 		this.load = new Promise((resolve, reject) => {
 			this.img.onload = () => {
 				resolve(this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height));
