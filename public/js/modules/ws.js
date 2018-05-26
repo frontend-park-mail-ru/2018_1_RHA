@@ -23,17 +23,17 @@ export default class Ws {
 
 	handleMessage(event) {
 		const messageText = event.data;
-		console.log('got message ', messageText);
+		console.log('Websocket GET ', messageText);
 		try {
 			const message = JSON.parse(messageText);
 			bus.emit(message.class, message);
 		} catch (err) {
-			console.error('smth went wront in handleMessage: ', err);
+			console.error('Websocket error in handle message: ', err);
 		}
 	}
 
 	send(payload) {
-		console.log(' data - ', payload);
+		console.log('Websocket SEND ', payload);
 		this.ws.send(JSON.stringify(payload));
 	}
 }

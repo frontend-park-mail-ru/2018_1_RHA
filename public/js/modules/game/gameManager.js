@@ -8,6 +8,7 @@ import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 import {timer} from './helperFuncs/timer.js';
+import User from "../userModel";
 
 
 /**
@@ -147,6 +148,13 @@ export default class GameManager {
 				renderScene(this.canvas, this.regions, this.img);
 			});
 		};
+		this.hideTimer = () => {
+			this.timer.hidden = true;
+		};
+		this.reloadTimer = () => {
+			timer(this.timer);
+			this.timer.hidden = false;
+		};
 
 		bus.on('remove-selection', this.remove_selection);
 		bus.on('select-region', this.select_region);
@@ -157,6 +165,18 @@ export default class GameManager {
 		bus.on('attack', this.attack);
 		bus.on('stop-controller', this.stop_controller);
 		bus.on('start-controller', this.start_controller);
+
+		bus.on('TurnInit$Request', (data) => {
+			const payload = data.payload;
+			console.log('for timer', payload.user, User.getCurUser().username);
+			if (payload.user === User.getCurUser().username) {
+				console.log('in if');
+				this.reloadTimer();
+			} else {
+				console.log('in else');
+				this.hideTimer();
+			}
+		});
 	}
 
 

@@ -72,7 +72,7 @@ export default class Kexagon {
 		this.img.src = '/forest.png';
 		this.load = new Promise(resolve => {
 			this.img.onload = () => {
-				console.log('in resolve');
+				// console.log('in resolve');
 				this.game_ctx.drawImage(this.img, this.xp, this.yp, 100, 100);
 			};
 		});
