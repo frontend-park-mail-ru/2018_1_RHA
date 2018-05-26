@@ -1,7 +1,7 @@
 import bus from '../bus';
 
 export default class Kexagon {
-	constructor(name, canvas, x, y, r, color) {
+	constructor(name, canvas, x, y, r, color, type) {
 		this.name = name;
 		this.canvas = canvas;
 		this.game_ctx = this.canvas.getContext('2d');
@@ -9,6 +9,7 @@ export default class Kexagon {
 		this.yC = y;
 		this.R = r;
 		this.color = color;
+		this.type = type;
 		this.strokeColor = 'black';
 		// this.draw();
 		bus.on('new-x-y', data => {
@@ -66,7 +67,18 @@ export default class Kexagon {
 		this.game_ctx.stroke();
 		this.game_ctx.fillStyle = this.color;
 		this.game_ctx.fill();
+
+		this.img = new Image();
+		this.img.src = '/forest.png';
+		this.load = new Promise(resolve => {
+			this.img.onload = () => {
+				console.log('in resolve');
+				this.game_ctx.drawImage(this.img, this.xp, this.yp, 100, 100);
+			};
+		});
+
 		this.game_ctx.closePath();
+
 	}
 
 	reColor () {
@@ -98,5 +110,7 @@ export default class Kexagon {
 		this.game_ctx.strokeStyle = 'rgba(255,255,255,0.8)';
 		this.game_ctx.stroke();
 		this.game_ctx.closePath();
+
+		this.game_ctx.drawImage(this.img, this.xp, this.yp, 100, 100);
 	}
 }

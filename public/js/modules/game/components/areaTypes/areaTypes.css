@@ -1,0 +1,12 @@
+.div__hex-background-wrapper {
+    position: fixed;
+    margin-top: -23%;
+    margin-left: 18%;
+    width: 10px;
+    height: 10px;
+}
+
+.img__hex-back {
+    overflow: hidden;
+    position: relative;
+}

@@ -75,7 +75,7 @@ export default class GameSection extends Section {
 					this.coordinate = new Coordinate(this.game_canvas);
 					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 					this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-					bus.on('close-help', () => {this.game.start()});
+					bus.on('close-help', () => {this.game.start();});
 					// this.game.start();
 				}
 			);

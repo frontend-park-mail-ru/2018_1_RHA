@@ -1,17 +1,17 @@
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
+import WebPlayer from './player/webPlayer.js';
+import {GameModes} from './config/modes.js';
 import Region from './components/region.js';
 import GameManager from './gameManager.js';
-import Controller from './controller.js';
-import GameScene from './gameScene.js';
-import bus from '../bus.js';
-import {GameModes} from './config/modes.js';
-import Ws from '../ws.js';
-import User from '../userModel.js';
-import WebPlayer from './player/webPlayer.js';
-import Help from './help/help';
-import Area from './components/area.js';
 import {colors} from './config/colors.js';
+import Controller from './controller.js';
+import Area from './components/area.js';
+import GameScene from './gameScene.js';
+import User from '../userModel.js';
+import Help from './help/help';
+import bus from '../bus.js';
+import Ws from '../ws.js';
 
 /**
  * Class representing game
@@ -95,25 +95,46 @@ export default class Game {
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
 							if (col.owner === indexPlayer) {
-								const region = new Area(username + String(rI), this.mainPlayer , this.game_canvas, {
-									I: cI,
-									J: rI,
-									R: Radius
-								}, col.units);
+								const region = new Area(
+									username + String(rI),
+									this.mainPlayer ,
+									this.game_canvas,
+									{
+										I: cI,
+										J: rI,
+										R: Radius
+									},
+									col.units,
+									col.type
+								);
 								this.regions.push(region);
 							} else if (col.owner === 0) {
-								const region = new Area(String(col.owner) + String(rI) + String(cI) + String(rI), new BotPlayer('bot', 'blue', this.game_canvas, this.img), this.game_canvas, {
-									I: cI,
-									J: rI,
-									R: Radius
-								}, col.units);
+								const region = new Area(
+									String(col.owner) + String(rI) + String(cI) + String(rI),
+									new BotPlayer('bot', 'grey', this.game_canvas, this.img),
+									this.game_canvas,
+									{
+										I: cI,
+										J: rI,
+										R: Radius
+									},
+									col.units,
+									col.type
+								);
 								this.regions.push(region);
 							} else {
-								const region = new Area('web' + String(rI), this.webPlayer, this.game_canvas, {
-									I: cI,
-									J: rI,
-									R: Radius
-								}, col.units);
+								const region = new Area(
+									'web' + String(rI),
+									this.webPlayer,
+									this.game_canvas,
+									{
+										I: cI,
+										J: rI,
+										R: Radius
+									},
+									col.units,
+									col.type
+								);
 								this.regions.push(region);
 							}
 						});

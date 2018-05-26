@@ -12,7 +12,6 @@ export default class Help {
 		this.listeners = {};
 		Help.__instance = this;
 
-		this.parts = ['part0', 'part1', 'part2', 'part3', 'part4'];
 		this.currentPart = 0;
 
 		this.help = document.createElement('div');

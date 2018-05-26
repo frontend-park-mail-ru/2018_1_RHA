@@ -9,12 +9,12 @@
 }
 
 .div__help-text {
-    text-align: center;
+    text-align: left;
     font-size: xx-large;
     overflow: auto;
 
     width: 70%;
-    max-height: 70%;
+    max-height: 90%;
 
     float: left;
     margin: 5% 0 0 15%;
