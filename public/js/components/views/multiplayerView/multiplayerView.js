@@ -46,8 +46,6 @@ export default class MultiplayerSection extends Section {
 			height: window.innerHeight
 		};
 		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
-
-
 	}
 
 	render() {

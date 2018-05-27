@@ -1,4 +1,5 @@
 import bus from '../bus';
+import {typeImages} from '../game/config/typeImages.js';
 
 export default class Kexagon {
 	constructor(name, canvas, x, y, r, color, type) {
@@ -11,14 +12,18 @@ export default class Kexagon {
 		this.color = color;
 		this.type = type;
 		this.strokeColor = 'black';
-		// this.draw();
+		this.img = new Image();
+		this.img.src = typeImages[this.type];
+		this.img.onload = () => {
+			this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
+		};
+		this.draw();
 		bus.on('new-x-y', data => {
 			const newCoord = data.payload;
 			this.xC = newCoord.x;
 			this.yC = newCoord.y;
 			this.color = newCoord.color;
 			this.draw();
-
 		});
 	}
 
@@ -53,7 +58,7 @@ export default class Kexagon {
 			this.yC + this.dR * this.canvas.height / amountofCoorY,
 			this.yC,
 			this.yC - this.dR * this.canvas.height / amountofCoorY,
-			this.yC - this.dR *this.canvas.height / amountofCoorY,
+			this.yC - this.dR * this.canvas.height / amountofCoorY,
 			this.yC
 		];
 		this.game_ctx.beginPath();
@@ -68,18 +73,8 @@ export default class Kexagon {
 		this.game_ctx.fillStyle = this.color;
 		this.game_ctx.fill();
 
-		this.img = new Image();
-		this.img.src = '/forest.png';
-		this.img.onload = () => {
-			console.log(this.img);
-			this.game_ctx.drawImage(this.img, this.xp, this.yp, 100, 100);
-		};
-
-
-
-
+		this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
 		this.game_ctx.closePath();
-
 	}
 
 	reColor () {
@@ -110,14 +105,18 @@ export default class Kexagon {
 		}
 		this.game_ctx.strokeStyle = 'rgba(255,255,255,0.8)';
 		this.game_ctx.stroke();
+		this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
 		this.game_ctx.closePath();
-
-
-		this.img = new Image();
-		this.img.src = '/forest.png';
-		this.img.onload = () => {
-			console.log('in onload');
-			this.game_ctx.drawImage(this.img, this.xp, this.yp, 100, 100);
-		};
 	}
 }
+
+//Different types:
+//0:water(no can simply walk into water(Vice city version))
+//1:grass field(grain or other crops, the simplest terrain)
+//2:sand desert(almost no reinforcements here, defending is harder)
+//3:forest (easy to defend, less reinforcements)
+//4:grass hills (easier to defend, normal reinforcements as well)
+//5:foresty hills ( wery easy to defend, as much reinforcements as in forest)
+//6:sand hills (a bit better then send)
+//7:mountains(the best thing to defend, but no reinforcements)
+//8:city(good thing to defend, and lots of reinforcements too)
