@@ -18,10 +18,10 @@ export default class MultiplayerSection extends Section {
 		this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
 		//todo упростить
 		if (window.innerHeight > window.innerWidth) {
-			this.height_canv = window.innerWidth * 0.85; //максимально возможная высота канваса
+			this.height_canv = window.innerWidth; //максимально возможная высота канваса
 		}
 		else {
-			this.height_canv = window.innerHeight * 0.85;
+			this.height_canv = window.innerHeight;
 		}
 
 		if (this.winHeight >= window.innerHeight) {
@@ -32,7 +32,7 @@ export default class MultiplayerSection extends Section {
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': window.innerWidth * 0.7,
-				'height': window.innerWidth * 0.525 * 0.83,
+				'height': this.winHeight,
 				'id': 'multiplayer-canvas'
 			}
 		);
@@ -51,27 +51,11 @@ export default class MultiplayerSection extends Section {
 	}
 
 	render() {
-
-		this.img = new Image();
-		this.img.src = '/default.jpg';
-		this.load = new Promise((resolve, reject) => {
-			this.img.onload = () => {
-				resolve(this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height));
-			};
-		});
-		this.load
-			.then(
-				() => {
-					this.setWindowResizeHandler();
-					this.listenOrientation();
-					this.coordinate = new Coordinate(this.game_canvas);
-					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-					this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-					// this.game.start();
-
-				}
-			);
-
+		this.setWindowResizeHandler();
+		this.listenOrientation();
+		this.coordinate = new Coordinate(this.game_canvas);
+		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+		this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
 		return this.wrapper;
 	}
 
@@ -81,7 +65,7 @@ export default class MultiplayerSection extends Section {
 
 	computeCanvasSize() {
 		// const size = (window.innerWidth > window.innerHeight) ? window.innerHeight : window.innerWidth;
-		return [window.innerWidth * 0.7, window.innerWidth * 0.525 * 0.83];
+		return [window.innerWidth * 0.7, window.innerWidth * 0.5625];
 	}
 
 	listenOrientation() {
@@ -101,7 +85,7 @@ export default class MultiplayerSection extends Section {
 
 			}
 			else {
-				this.height_canv = window.innerHeight * 0.85;
+				this.height_canv = window.innerHeight;
 				this.wrapper.removeChild(this.wrapper.lastChild);
 			}
 		});
@@ -110,11 +94,10 @@ export default class MultiplayerSection extends Section {
 	setWindowResizeHandler() {
 		window.addEventListener('resize', () => {
 			let sizes = this.computeCanvasSize();
-			if (sizes[1] >= window.innerHeight * 0.85) {
-				sizes[1] = window.innerHeight * 0.85;
+			if (sizes[1] >= window.innerHeight) {
+				sizes[1] = window.innerHeight;
 			}
 			[this.game_canvas.width, this.game_canvas.height] = sizes;
-			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
 			let margin = 100 - 100 * this.game_canvas.height / this.height_canv;
 			if (margin <= 0) {
@@ -125,7 +108,7 @@ export default class MultiplayerSection extends Section {
 			}
 			else {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
-				this.height_canv = window.innerHeight * 0.85;
+				this.height_canv = window.innerHeight;
 			}
 			this.beforeResize = {
 				width: this.game_canvas.width,

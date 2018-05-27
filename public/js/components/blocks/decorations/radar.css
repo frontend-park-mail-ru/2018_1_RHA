@@ -1,11 +1,10 @@
-.sbg{
-    background:
-            radial-gradient(black 15%, transparent 16%) 0 0,
-            radial-gradient(black 15%, transparent 16%) 8px 8px,
-            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-    background-color:#282828;
-    background-size:1% 1%;
+.sbg {
+    background: radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 8px 9px;
+    background-color: #282828;
+    background-size: 1% 1%;
     height: 100%;
     width: 100%;
 }
@@ -21,14 +20,13 @@
     border: 2px solid #333;
     border-color: green;
     border-radius: 10%;
-    background:
-            linear-gradient(green 2px, transparent 2px),
-            linear-gradient(90deg, green 2px, transparent 2px),
-            linear-gradient(rgba(0,255,0,.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,255,0,.3) 1px, transparent 1px),
-            rgba(0, 0, 0, 0.4);
-    background-size:50% 50% , 50%  50% , 10% 10%, 10% 10%;
-    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    background: linear-gradient(green 2px, transparent 2px),
+    linear-gradient(90deg, green 2px, transparent 2px),
+    linear-gradient(rgba(0, 255, 0, .3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, .3) 1px, transparent 1px),
+    rgba(0, 0, 0, 0.4);
+    background-size: 50% 50%, 50% 50%, 10% 10%, 10% 10%;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
 
 .grid {
@@ -36,26 +34,33 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-            radial-gradient(circle, rgba(50, 0, 0, .5) 0, transparent 50%),
-            radial-gradient(farthest-side circle, transparent 1%, green 5%, transparent 0),
-            radial-gradient(farthest-side circle, transparent 16%, green 20%, transparent 0),
-            radial-gradient(farthest-side circle, transparent 31%, green 35%, transparent 0),
-            radial-gradient(farthest-side circle, transparent 46%, green 50%, transparent 0),
-            radial-gradient(farthest-side circle, transparent 61%, green 65%, transparent 0),
-            radial-gradient(farthest-side circle, transparent 76%, green 80%, transparent 0);
+    background: radial-gradient(circle, rgba(50, 0, 0, .5) 0, transparent 50%),
+    radial-gradient(farthest-side circle, transparent 1%, green 5%, transparent 0),
+    radial-gradient(farthest-side circle, transparent 16%, green 20%, transparent 0),
+    radial-gradient(farthest-side circle, transparent 31%, green 35%, transparent 0),
+    radial-gradient(farthest-side circle, transparent 46%, green 50%, transparent 0),
+    radial-gradient(farthest-side circle, transparent 61%, green 65%, transparent 0),
+    radial-gradient(farthest-side circle, transparent 76%, green 80%, transparent 0);
     background-size: 100%;
 }
 
 @keyframes clockwise {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes blip {
-    from { opacity: 1; }
+    from {
+        opacity: 1;
+    }
     /*70% { opacity: .3; }*/
-    to { opacity: .1; }
+    to {
+        opacity: .1;
+    }
 }
 
 .radar, .blip {
@@ -117,8 +122,6 @@
     animation-delay: 4.6s;
     transform: rotate(310deg);
 }
-
-
 
 @media (max-aspect-ratio: 7/5 ) {
     .screen {

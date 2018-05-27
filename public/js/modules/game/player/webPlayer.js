@@ -3,6 +3,7 @@ import bus from '../../bus.js';
 import {renderScene} from '../helperFuncs/renderScene.js';
 import {attackAnimation} from '../animation/attack/attackAnimation.js';
 import {moveAnimation} from '../animation/move/moveAnimation.js';
+import User from '../../userModel.js';
 
 /**
  * Class representing web player
@@ -97,6 +98,11 @@ export default class WebPlayer extends Player {
 						toUpdate.push({num: i, units: move.map[1].units});
 					}
 				}
+				if (from.owner.name === User.getCurUser().username) {
+					bus.emit('remove-selection', from);
+					bus.emit('select-region', to);
+				}
+
 				bus.emit('update-regions', {regions: toUpdate});
 				moveAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
 			}

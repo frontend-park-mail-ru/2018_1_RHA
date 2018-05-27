@@ -36,7 +36,6 @@ export default class GameManager {
 	start() {
 		timer(this.timer);
 		this.select_region = (data) => {
-			console.log('select');
 			const region = data.payload;
 			region.selected = true;
 			region.area.setStroke('red');
@@ -44,7 +43,6 @@ export default class GameManager {
 			renderScene(this.canvas, this.regions, this.img);
 		};
 		this.remove_selection = (data) => {
-			console.log('remove');
 			const region = data.payload;
 			region.selected = false;
 			region.area.setStroke('white');
@@ -142,6 +140,10 @@ export default class GameManager {
 			this.controller.start();
 		};
 		this.illum_cur_m = (data) => {
+			this.regions.forEach(region => {
+				region.area.setStroke('black');
+			});
+			renderScene(this.canvas, this.regions, this.img);
 			const curPlayer = data.payload;
 			curPlayer.regions.forEach(region => {
 				region.area.setStroke('white');

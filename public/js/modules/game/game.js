@@ -91,7 +91,8 @@ export default class Game {
 
 					//todo переделать радиус
 					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
-					const Radius = 610 / (2 * map.length - 1);
+					// const Radius = 270 / map.length;
+					const Radius = 610 / map.length / 2 * 0.95;
 					map.forEach((row, rI) => {
 						row.forEach((col, cI) => {
 							if (col.owner === indexPlayer) {

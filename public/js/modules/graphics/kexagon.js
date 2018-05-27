@@ -76,6 +76,8 @@ export default class Kexagon {
 		};
 
 
+
+
 		this.game_ctx.closePath();
 
 	}
@@ -109,6 +111,7 @@ export default class Kexagon {
 		this.game_ctx.strokeStyle = 'rgba(255,255,255,0.8)';
 		this.game_ctx.stroke();
 		this.game_ctx.closePath();
+
 
 		this.img = new Image();
 		this.img.src = '/forest.png';

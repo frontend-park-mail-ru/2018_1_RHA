@@ -23,13 +23,13 @@ export default class Controller {
 			bus.emit('left-click', {x: event.offsetX, y: event.offsetY});
 		};
 
-		this.mousemove = (event) => {
-			bus.emit('mousemove', {x: event.offsetX, y: event.offsetY});
-		};
-		this.contextmenu = (event) => {
-			event.preventDefault();
-			bus.emit('contextmenu', {x: event.offsetX, y: event.offsetY});
-		};
+		// this.mousemove = (event) => {
+		// 	bus.emit('mousemove', {x: event.offsetX, y: event.offsetY});
+		// };
+		// this.contextmenu = (event) => {
+		// 	event.preventDefault();
+		// 	bus.emit('contextmenu', {x: event.offsetX, y: event.offsetY});
+		// };
 		this.clickChangeBut = (event) => {
 			bus.emit('left-click-change', {});
 		};
@@ -48,9 +48,9 @@ export default class Controller {
 	start() {
 		this.game_canvas.addEventListener('click', this.onclick);
 
-		this.game_canvas.addEventListener('mousemove', this.mousemove);
+		// this.game_canvas.addEventListener('mousemove', this.mousemove);
 
-		this.game_canvas.addEventListener('contextmenu', this.contextmenu);
+		// this.game_canvas.addEventListener('contextmenu', this.contextmenu);
 
 		this.changeBut.addEventListener('click', this.clickChangeBut);
 		//
@@ -65,9 +65,9 @@ export default class Controller {
 	stop() {
 		this.game_canvas.removeEventListener('click', this.onclick);
 
-		this.game_canvas.removeEventListener('mousemove', this.mousemove);
+		// this.game_canvas.removeEventListener('mousemove', this.mousemove);
 
-		this.game_canvas.removeEventListener('contextmenu', this.contextmenu);
+		// this.game_canvas.removeEventListener('contextmenu', this.contextmenu);
 
 		this.changeBut.removeEventListener('click', this.clickChangeBut);
 		//
