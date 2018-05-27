@@ -73,6 +73,8 @@ export default class GameScene {
 	 */
 	isRegion(x, y) {
 		for (let i = 0; i < this.regions.length; ++i) {
+			// console.log('x-  ', this.regions[i].area.xp);
+			// console.log('y-  ', this.regions[i].area.yp);
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
 				console.log('return -- ', this.regions[i]);
 				return this.regions[i];

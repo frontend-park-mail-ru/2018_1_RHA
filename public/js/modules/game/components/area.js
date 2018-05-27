@@ -28,6 +28,7 @@ export default class Area {
 	}
 
 	setColor(color) {
+		this.color = color;
 		this.area.setColor(color);
 	}
 
@@ -64,7 +65,6 @@ export default class Area {
 	}
 
 	resize() {
-		// this.coordinate.R = this.canvas.height / 610 * this.coordinate.R;
 		this.sx = this.coordinate.R * 3 / 2.0;
 		this.sy = this.coordinate.R * Math.sqrt(3.0) / 2;
 		this.xR = this.coordinate.I * this.sx;
