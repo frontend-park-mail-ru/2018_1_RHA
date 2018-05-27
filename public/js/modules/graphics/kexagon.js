@@ -26,19 +26,17 @@ export default class Kexagon {
 		this.color = color;
 		this.type = type;
 		this.strokeColor = 'black';
-
 		this.img = new Image();
 		this.img.src = typeImagess[this.type];
 		this.img.onload = () => {
 			this.game_ctx.drawImage(
 				this.img,
-				this.xC - this.R / 2,
-				this.yC - this.R / 2,
-				this.R * 0.9,
-				this.R * 0.9
+				this.xC - this.R * 1.3 / 2 * this.canvas.width / 1000,
+				this.yC - this.R * 1.6 / 2 * this.canvas.height / 610,
+				this.R * 1.3  * this.canvas.width / 1000,
+				this.R * 1.3  * this.canvas.height / 610
 			);
 		};
-		// this.draw();
 	}
 
 	setColor(color) {
@@ -89,12 +87,11 @@ export default class Kexagon {
 
 		this.game_ctx.drawImage(
 			this.img,
-			this.xC - this.R / 2,
-			this.yC - this.R / 2,
-			this.R * 0.9,
-			this.R * 0.9
+			this.xC - this.R * 1.3 / 2 * this.canvas.width / 1000,
+			this.yC - this.R * 1.6 / 2 * this.canvas.height / 610,
+			this.R * 1.3  * this.canvas.width / 1000,
+			this.R * 1.3  * this.canvas.height / 610
 		);
-
 		this.game_ctx.closePath();
 	}
 
@@ -126,13 +123,6 @@ export default class Kexagon {
 		}
 		this.game_ctx.strokeStyle = 'rgba(255,255,255,0.8)';
 		this.game_ctx.stroke();
-		this.game_ctx.drawImage(
-			this.img,
-			this.xC - this.R / 2,
-			this.yC - this.R / 2,
-			this.R * 0.9,
-			this.R * 0.9
-		);
 		this.game_ctx.closePath();
 	}
 }
