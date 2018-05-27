@@ -115,7 +115,7 @@ export default class MultiplayerSection extends Section {
 				height: this.game_canvas.height
 			};
 
-			bus.emit('resize-for-draw', {});
+			bus.emit('resize-for-draw-m', {});
 		});
 		return this;
 	}
