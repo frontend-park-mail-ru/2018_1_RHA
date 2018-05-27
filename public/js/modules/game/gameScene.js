@@ -72,11 +72,7 @@ export default class GameScene {
 	 * @return {Region | null}
 	 */
 	isRegion(x, y) {
-		console.log('xxxx --- ', this.regions[0].area.xp);
-		console.log('yyyy --- ', this.regions[0].area.yp);
 		for (let i = 0; i < this.regions.length; ++i) {
-			// console.log('x-  ', this.regions[i].area.xp);
-			// console.log('y-  ', this.regions[i].area.yp);
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
 				return this.regions[i];
 			}
@@ -180,7 +176,6 @@ export default class GameScene {
 					});
 				}
 			});
-		// });
 	}
 
 
@@ -214,7 +209,6 @@ export default class GameScene {
 					case PLAYER_STATES.READY:
 						const activeRegion = this.activeRegion();
 						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
-							console.log('attack');
 							if (this.isNeighbour(activeRegion, curRegion) === false) {
 								return;
 							}
@@ -238,8 +232,6 @@ export default class GameScene {
 										active: this.activeRegion(),
 										new: curRegion
 									});
-								// bus.emit('remove-selection', this.activeRegion());
-								// bus.emit('select-region', curRegion);
 							}
 						}
 						break;
@@ -280,18 +272,15 @@ export default class GameScene {
 
 			bus.on('delete-from-queue', data => {
 				const player = data.payload;
-				// console.log(this.players, '  b ');
 				this.players.forEach((cur, i) => {
 					if (cur === player) {
 						this.players.splice(i, 1);
 					}
 				});
-				// console.log(this.players, ' a');
 			});
 
 			bus.on('start-game', () => {
 				//подсветка текущего игрока
-				console.log(this.currentPlayer());
 				bus.emit('illum-cur', this.currentPlayer());
 			});
 		}
@@ -358,7 +347,7 @@ export default class GameScene {
 			// });
 
 			bus.on('update-units', () => {
-				console.log('in update units');
+
 				this.regions.forEach((curReg) => {
 					// console.log(curReg, '+', dUnits[String(curReg.area.type)]);
 					if (curReg.area.type !== 0) {
