@@ -30,7 +30,7 @@ export default class Kexagon {
 		this.img.onload = () => {
 			this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
 		};
-		this.draw();
+		// this.draw();
 		bus.on('new-x-y', data => {
 			const newCoord = data.payload;
 			this.xC = newCoord.x;
