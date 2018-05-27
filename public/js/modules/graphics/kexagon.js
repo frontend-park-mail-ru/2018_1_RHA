@@ -1,4 +1,20 @@
 
+import bus from '../bus';
+import {typeImages} from '../game/config/typeImages.js';
+
+const typeImagess = [
+	'',
+	'/forest.png',
+	'/grass_field.jpg',
+	'/sand.jpg',
+	'/forest.png',
+	'/grass_hills.png',
+	'/forest.png',
+	'/forest.png',
+	'/forest.png'
+];
+
+
 export default class Kexagon {
 	constructor(name, canvas, x, y, r, color, type) {
 		this.name = name;
@@ -10,6 +26,13 @@ export default class Kexagon {
 		this.color = color;
 		this.type = type;
 		this.strokeColor = 'black';
+
+		this.img = new Image();
+		this.img.src = typeImagess[this.type];
+		this.img.onload = () => {
+			this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
+		};
+		// this.draw();
 	}
 
 	setColor(color) {
@@ -43,7 +66,7 @@ export default class Kexagon {
 			this.yC + this.dR * this.canvas.height / amountofCoorY,
 			this.yC,
 			this.yC - this.dR * this.canvas.height / amountofCoorY,
-			this.yC - this.dR *this.canvas.height / amountofCoorY,
+			this.yC - this.dR * this.canvas.height / amountofCoorY,
 			this.yC
 		];
 		this.game_ctx.beginPath();
@@ -58,10 +81,8 @@ export default class Kexagon {
 		this.game_ctx.fillStyle = this.color;
 		this.game_ctx.fill();
 
-
-
+		this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
 		this.game_ctx.closePath();
-
 	}
 
 	reColor () {
@@ -92,8 +113,18 @@ export default class Kexagon {
 		}
 		this.game_ctx.strokeStyle = 'rgba(255,255,255,0.8)';
 		this.game_ctx.stroke();
+		this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
 		this.game_ctx.closePath();
-
-
 	}
 }
+
+//Different types:
+//0:water(no can simply walk into water(Vice city version))
+//1:grass field(grain or other crops, the simplest terrain)
+//2:sand desert(almost no reinforcements here, defending is harder)
+//3:forest (easy to defend, less reinforcements)
+//4:grass hills (easier to defend, normal reinforcements as well)
+//5:foresty hills ( wery easy to defend, as much reinforcements as in forest)
+//6:sand hills (a bit better then send)
+//7:mountains(the best thing to defend, but no reinforcements)
+//8:city(good thing to defend, and lots of reinforcements too)

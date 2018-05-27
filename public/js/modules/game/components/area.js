@@ -1,6 +1,5 @@
 import Kexagon from '../../graphics/kexagon.js';
 import bus from '../../bus.js';
-import AreaType from './areaTypes/areaType.js';
 
 export default class Area {
 	constructor(name, owner, canvas, coordinate, units, type) {
