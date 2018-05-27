@@ -25,10 +25,10 @@ export default class GameSection extends Section {
 		this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
 		//todo упростить
 		if (window.innerHeight > window.innerWidth) {
-			this.height_canv = window.innerWidth * 0.85; //максимально возможная высота канваса
+			this.height_canv = window.innerWidth; //максимально возможная высота канваса
 		}
 		else {
-			this.height_canv = window.innerHeight * 0.85;
+			this.height_canv = window.innerHeight;
 		}
 
 		if (this.winHeight >= window.innerHeight) {
@@ -38,9 +38,8 @@ export default class GameSection extends Section {
 
 		this.wrapper.innerHTML += generateCanvas(
 			{
-				// 'width': winWidth * 0.7,
 				'width': window.innerWidth * 0.7,
-				'height':this.winHeight * 0.85,
+				'height': this.winHeight,
 				'id': 'game-canvas'
 			}
 		);
@@ -60,25 +59,13 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
-		this.img = new Image();
-		this.img.src = '/map.png';
-		this.load = new Promise(resolve => {
-			this.img.onload = () => {
-				resolve(this.ctx.drawImage(this.img, 0,0, this.game_canvas.width, this.game_canvas.height));
-			};
-		});
-		this.load
-			.then(
-				() => {
-					this.setWindowResizeHandler();
-					this.listenOrientation();
-					this.coordinate = new Coordinate(this.game_canvas);
-					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-					this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-					bus.on('close-help', () => {this.game.start();});
-					// this.game.start();
-				}
-			);
+		this.setWindowResizeHandler();
+		this.listenOrientation();
+		this.coordinate = new Coordinate(this.game_canvas);
+		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+		this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
+		bus.on('close-help', () => {this.game.start();});
+		// this.game.start();
 
 		bus.on('gameover', () => {
 			alert('gameover');
@@ -99,7 +86,7 @@ export default class GameSection extends Section {
 
 	computeCanvasSize() {
 		// const size = (window.innerWidth > window.innerHeight) ? window.innerHeight : window.innerWidth;
-		return [window.innerWidth * 0.7, window.innerWidth * 0.5625 * 0.85];
+		return [window.innerWidth * 0.7, window.innerWidth * 0.5625 ];
 	}
 
 	listenOrientation() {
@@ -119,7 +106,7 @@ export default class GameSection extends Section {
 
 			}
 			else {
-				this.height_canv = window.innerHeight * 0.85;
+				this.height_canv = window.innerHeight;
 				this.wrapper.removeChild(this.wrapper.lastChild);
 			}
 		});
@@ -128,11 +115,11 @@ export default class GameSection extends Section {
 	setWindowResizeHandler() {
 		window.addEventListener('resize', () => {
 			let sizes = this.computeCanvasSize();
-			if (sizes[1] >= window.innerHeight * 0.85) {
-				sizes[1] = window.innerHeight * 0.85;
+			if (sizes[1] >= window.innerHeight) {
+				sizes[1] = window.innerHeight;
 			}
 			[this.game_canvas.width, this.game_canvas.height] = sizes;
-			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
+			// this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
 			let margin = 100 - 100 * this.game_canvas.height / this.height_canv;
 			if (margin <= 0) {
@@ -143,7 +130,7 @@ export default class GameSection extends Section {
 			}
 			else {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
-				this.height_canv = window.innerHeight * 0.85;
+				this.height_canv = window.innerHeight;
 			}
 			this.beforeResize = {
 				width: this.game_canvas.width,

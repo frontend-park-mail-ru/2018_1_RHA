@@ -68,14 +68,7 @@ export default class Kexagon {
 		this.game_ctx.fillStyle = this.color;
 		this.game_ctx.fill();
 
-		this.img = new Image();
-		this.img.src = '/forest.png';
-		this.load = new Promise(resolve => {
-			this.img.onload = () => {
-				// console.log('in resolve');
-				this.game_ctx.drawImage(this.img, this.xp, this.yp, 100, 100);
-			};
-		});
+
 
 		this.game_ctx.closePath();
 
@@ -111,6 +104,6 @@ export default class Kexagon {
 		this.game_ctx.stroke();
 		this.game_ctx.closePath();
 
-		this.game_ctx.drawImage(this.img, this.xp, this.yp, 100, 100);
+
 	}
 }

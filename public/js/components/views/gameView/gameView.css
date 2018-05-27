@@ -21,40 +21,57 @@
     border-color: transparent transparent transparent orange;
 }
 
-.info-menu {
-    position: relative;
-    height: 85%;
-    width: 15%;
-    background-color: #7d8289;
-    display: inline-block;
-    float: left;
-    opacity: 0.7;
-}
+/*.info-menu {*/
+    /*position: relative;*/
+    /*height: 85%;*/
+    /*width: 15%;*/
+    /*background-color: #7d8289;*/
+    /*display: inline-block;*/
+    /*float: left;*/
+    /*opacity: 0.7;*/
+/*}*/
 
 .log {
-    height: 85%;
-    width: 15%;
-    background-color: orange;
+    height: 100%;
+    width: 30%;
+    background: #818181; /* Old Browsers */
+    background: -webkit-radial-gradient(top,#818181,#3d3d3d); /*Safari 5.1-6*/
+    background: -o-radial-gradient(top,#818181,#3d3d3d); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(top,#818181,#3d3d3d); /*Fx 3.6-15*/
+    background: radial-gradient(to bottom, #818181, #3d3d3d); /*Standard*/
+    background-repeat: no-repeat;
     display: inline-block;
     float: right;
     position: relative;
     opacity: 0.7;
     font-size: smaller;
 }
-.control-interface {
-    position: relative;
-    height: 15%;
-    width: 100%;
-    background-color: #007bff;
-    display: inline-block;
-    opacity: 0.7;
-}
+/*.control-interface {*/
+    /*position: relative;*/
+    /*height: 15%;*/
+    /*width: 100%;*/
+    /*background-color: #007bff;*/
+    /*display: inline-block;*/
+    /*opacity: 0.7;*/
+/*}*/
 .canvas-wrap {
-    /*top: 0;*/
+    background: radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 8px 9px;
+    background-color: #282828;
+    background-size: 1% 1%;
     display: inline-block;
     position: relative;
     width: 70%;
+    height: 100%;
     /*vertical-align: middle;*/
+}
+.canvas-wrap-attack {
+    display: inline-block;
+    position: relative;
+    width: 70%;
+    height: 100%;
 }
 
 
@@ -99,6 +116,9 @@
     -webkit-animation: AnimationName 8s ease infinite;
     -moz-animation: AnimationName 8s ease infinite;
     animation: AnimationName 8s ease infinite;
+}
+.canvas {
+    border: solid;
 }
 
 @-webkit-keyframes AnimationName {
