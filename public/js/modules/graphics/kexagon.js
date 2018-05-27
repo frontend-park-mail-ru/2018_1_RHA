@@ -1,6 +1,18 @@
 import bus from '../bus';
 import {typeImages} from '../game/config/typeImages.js';
 
+const typeImagess = [
+	'',
+	'/forest.png',
+	'/grass_field.jpg',
+	'/sand.jpg',
+	'/forest.png',
+	'/grass_hills.png',
+	'/forest.png',
+	'/forest.png',
+	'/forest.png'
+];
+
 export default class Kexagon {
 	constructor(name, canvas, x, y, r, color, type) {
 		this.name = name;
@@ -13,7 +25,8 @@ export default class Kexagon {
 		this.type = type;
 		this.strokeColor = 'black';
 		this.img = new Image();
-		this.img.src = typeImages[this.type];
+		this.img.src = typeImagess[this.type];
+		console.log(this.img);
 		this.img.onload = () => {
 			this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
 		};
