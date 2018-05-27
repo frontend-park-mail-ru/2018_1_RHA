@@ -21,6 +21,50 @@
     border-color: transparent transparent transparent orange;
 }
 
+.game-avatar-wrapper {
+    width: 30%;
+    height: 100px;
+    float: left;
+}
+
+.game-avatar {
+    width: 100%;
+}
+
+.user-info {
+    width: 70%;
+    display: inline-block;
+    text-align: center;
+    /*font-size: ;*/
+    margin-top: 10%;
+}
+
+.user-data {
+    padding: 5%;
+    width: 100%;
+}
+
+.game-lamp-box {
+    width: 100%;
+}
+
+.game-li {
+    width: 100%;
+    margin: 5%;
+}
+
+.red-lamp {
+    float: left;
+}
+
+.game-lamp-box {
+    width: 100%;
+}
+
+.game-list {
+    margin-top: 15%;
+}
+
 /*.info-menu {*/
     /*position: relative;*/
     /*height: 85%;*/

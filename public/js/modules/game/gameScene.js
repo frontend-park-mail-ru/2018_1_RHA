@@ -72,11 +72,12 @@ export default class GameScene {
 	 * @return {Region | null}
 	 */
 	isRegion(x, y) {
+		console.log('xxxx --- ', this.regions[0].area.xp);
+		console.log('yyyy --- ', this.regions[0].area.yp);
 		for (let i = 0; i < this.regions.length; ++i) {
 			// console.log('x-  ', this.regions[i].area.xp);
 			// console.log('y-  ', this.regions[i].area.yp);
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
-				console.log('return -- ', this.regions[i]);
 				return this.regions[i];
 			}
 		}

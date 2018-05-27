@@ -1,5 +1,6 @@
-import bus from '../bus';
-import {typeImages} from '../game/config/typeImages.js';
+
+// import bus from '../bus';
+// import {typeImages} from '../game/config/typeImages.js';
 
 const typeImagess = [
 	'',
@@ -13,6 +14,7 @@ const typeImagess = [
 	'/forest.png'
 ];
 
+
 export default class Kexagon {
 	constructor(name, canvas, x, y, r, color, type) {
 		this.name = name;
@@ -24,20 +26,19 @@ export default class Kexagon {
 		this.color = color;
 		this.type = type;
 		this.strokeColor = 'black';
+
 		this.img = new Image();
 		this.img.src = typeImagess[this.type];
-		console.log(this.img);
 		this.img.onload = () => {
-			this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
+			this.game_ctx.drawImage(
+				this.img,
+				this.xC - this.R / 2,
+				this.yC - this.R / 2,
+				this.R * 0.9,
+				this.R * 0.9
+			);
 		};
 		// this.draw();
-		bus.on('new-x-y', data => {
-			const newCoord = data.payload;
-			this.xC = newCoord.x;
-			this.yC = newCoord.y;
-			this.color = newCoord.color;
-			this.draw();
-		});
 	}
 
 	setColor(color) {
@@ -86,7 +87,14 @@ export default class Kexagon {
 		this.game_ctx.fillStyle = this.color;
 		this.game_ctx.fill();
 
-		this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
+		this.game_ctx.drawImage(
+			this.img,
+			this.xC - this.R / 2,
+			this.yC - this.R / 2,
+			this.R * 0.9,
+			this.R * 0.9
+		);
+
 		this.game_ctx.closePath();
 	}
 
@@ -118,7 +126,13 @@ export default class Kexagon {
 		}
 		this.game_ctx.strokeStyle = 'rgba(255,255,255,0.8)';
 		this.game_ctx.stroke();
-		this.game_ctx.drawImage(this.img, this.xC - this.R / 2, this.yC - this.R / 2, this.R * 0.9, this.R * 0.9);
+		this.game_ctx.drawImage(
+			this.img,
+			this.xC - this.R / 2,
+			this.yC - this.R / 2,
+			this.R * 0.9,
+			this.R * 0.9
+		);
 		this.game_ctx.closePath();
 	}
 }

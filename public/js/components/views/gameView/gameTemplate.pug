@@ -1,5 +1,29 @@
 div.canvas-wrap
     canvas(width=width height=height id=id).canvas
 div.log#log
+    div.user-data
+        div.game-avatar-wrapper
+            img.game-avatar(src="https://rha-backend.herokuapp.com/users/gava")#avatar
+        div.user-info
+            p #{username}
+            p ----------
+            p Rating: #{rating}
+        div.game-list
+            div.game-li
+                div.game-lamp-box
+                    div.red-lamp
+                    span.list-name kaka1
+                br
+            div.game-li
+                div.game-lamp-box
+                    div.red-lamp
+                    span.list-name kaka2
+                br
+            div.game-li
+                div.game-lamp-box
+                    div.red-lamp
+                    span.list-name kaka3
+                br
+
     div.change
 div.timer#timer 30

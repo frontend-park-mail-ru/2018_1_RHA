@@ -4,6 +4,7 @@ import bus from '../../../modules/bus.js';
 import Game from '../../../modules/game/game.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
+import User from "../../../modules/userModel";
 let generateCanvas = require('../gameView/gameTemplate.pug');
 
 export default class MultiplayerSection extends Section {
@@ -33,7 +34,9 @@ export default class MultiplayerSection extends Section {
 			{
 				'width': window.innerWidth * 0.7,
 				'height': this.winHeight,
-				'id': 'multiplayer-canvas'
+				'id': 'multiplayer-canvas',
+				'username': User.getCurUser().username,
+				'rating' : User.getCurUser().rating,
 			}
 		);
 
@@ -113,7 +116,7 @@ export default class MultiplayerSection extends Section {
 				height: this.game_canvas.height
 			};
 
-			bus.emit('resize-for-draw', {});
+			bus.emit('resize-for-draw-m', {});
 		});
 		return this;
 	}
