@@ -41,9 +41,22 @@
     color: white;
 }
 
-
 .game-result {
     margin-top: 15%;
     margin-bottom: 15%;
     width: 100%;
+}
+
+
+@media (max-width: 500px) {
+    .close_multiplayer {
+        width: 100%;
+        border-left: none;
+        border-right: none;
+    }
+    .one_more_game {
+        width: 100%;
+        border-left: none;
+        border-right: none;
+    }
 }

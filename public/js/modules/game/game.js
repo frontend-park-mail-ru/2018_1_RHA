@@ -24,7 +24,7 @@ export default class Game {
 	 * @param game_canvas
 	 * @param change_canvas
 	 */
-	constructor(mode, game_canvas, coordinate, changeBut, img) {
+	constructor(mode, game_canvas, coordinate, changeBut, img, players) {
 		//let GameConstructor = null;
 
 		// if (Game.__instance) {
@@ -69,7 +69,7 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.Ws.send({class: 'JoinGame', players: 2});
+				this.Ws.send({class: 'JoinGame', players: players});
 				bus.on('InitGame$Request', (data) => {
 					const initData = data.payload;
 					// узнаем индекс локального игрока + создадим игроков
@@ -176,7 +176,6 @@ export default class Game {
 		this.controller.stop();
 		this.manager.destroy();
 	}
-
 }
 
 //todo ИНТЕРФЕЙС БЛ*ТЬ

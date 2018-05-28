@@ -7,6 +7,7 @@ import Game from '../../../modules/game/game.js';
 import User from '../../../modules/userModel';
 import bus from '../../../modules/bus.js';
 import Section from '../baseView.js';
+import Router from "../../../modules/router";
 
 
 export default class MultiplayerSection extends Section {
@@ -140,8 +141,10 @@ export default class MultiplayerSection extends Section {
 
 	setBusListeners() {
 		bus.on('FinishGame', () => {
-			const finishGameMenu = generateFinishMenu({result: 'You lose'});
-			this.wrapper.innerHTML += finishGameMenu;
+			this.finishGameMenu = generateFinishMenu({
+				result: 'You lose'
+			});
+			this.wrapper.innerHTML += this.finishGameMenu;
 			document.getElementById('close_multiplayer').addEventListener('click', () => {
 				bus.emit('CloseFinishGame');
 			});
@@ -151,7 +154,8 @@ export default class MultiplayerSection extends Section {
 		});
 
 		bus.on('CloseFinishGame', () => {
-			window.history.back();
+			this.wrapper.children[this.wrapper.children.length - 1].remove();
+			new Router().open('/');
 		});
 
 		bus.on('OneMoreGame', () => {
