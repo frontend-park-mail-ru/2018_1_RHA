@@ -17,4 +17,5 @@ import '../public/js/components/views/gameView/gameView.css';
 import '../public/js/modules/loader/loader.css';
 import '../public/js/modules/game/help/help.css';
 import '../public/js/components/blocks/inputUpload/inputUpload.css';
+import '../public/js/components/views/multiplayerView/finishGame.css';
 import '../public/js/application.js';

@@ -34,6 +34,7 @@
     text-align: center;
     /*font-size: ;*/
 }
+
 .font {
     /*font-family: Crystal, Arial;*/
 }
@@ -71,6 +72,7 @@
     background: #3e3e3e;
     border: groove darkgray;
 }
+
 .game-timer {
     background: #000;
     border-radius: 10%;
@@ -81,6 +83,7 @@
     margin-left: 70px;
     margin-right: 70px;
 }
+
 .hex-info {
     height: 15%;
     background: #3e3e3e;
@@ -91,6 +94,7 @@
 
     border: groove darkgray;
 }
+
 .exit-button {
     display: inline-block;
     background: #222222;
@@ -100,11 +104,13 @@
     margin-top: 15px;
     margin-left: 20px;
 }
+
 .row-info {
     width: 100%;
     height: 30%;
     margin-top: 10px;
 }
+
 .field {
     background: #000;
     color: red;
@@ -115,6 +121,7 @@
     padding-top: 5px;
     display: inline-block;
 }
+
 .col-info {
     width: 50%;
     display: inline-block;
@@ -152,6 +159,7 @@
     /*display: inline-block;*/
     /*opacity: 0.7;*/
 /*}*/
+
 .canvas-wrap {
     background: radial-gradient(black 15%, transparent 16%) 0 0,
     radial-gradient(black 15%, transparent 16%) 8px 8px,
@@ -165,14 +173,13 @@
     height: 100%;
     /*vertical-align: middle;*/
 }
+
 .canvas-wrap-attack {
     display: inline-block;
     position: relative;
     width: 70%;
     height: 100%;
 }
-
-
 
 .game {
     height: 100%;
@@ -183,8 +190,6 @@
     height: 100%;
     width: 100%;
 }
-
-
 
 .timer {
     width: 10%;
@@ -197,6 +202,7 @@
     font-size: 3vw;
     color: white;
 }
+
 .overlayOrientation {
     position: absolute;
     top: 0;
@@ -215,6 +221,7 @@
     -moz-animation: AnimationName 8s ease infinite;
     animation: AnimationName 8s ease infinite;
 }
+
 .canvas {
     border: solid;
 }

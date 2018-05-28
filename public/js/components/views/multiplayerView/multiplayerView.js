@@ -4,7 +4,7 @@ import {GameModes} from '../../../modules/game/config/modes.js';
 let generateCanvas = require('../gameView/gameTemplate.pug');
 let generateFinishMenu = require('./finishGameMenu.pug');
 import Game from '../../../modules/game/game.js';
-import User from "../../../modules/userModel";
+import User from '../../../modules/userModel';
 import bus from '../../../modules/bus.js';
 import Section from '../baseView.js';
 
@@ -139,9 +139,9 @@ export default class MultiplayerSection extends Section {
 	}
 
 	setBusListeners() {
-		bus.on('FinishGame', (data) => {
-			const finishGameMenu = generateFinishMenu(data);
-			this.wrapper.appendChild(this.finishGameMenu);
+		bus.on('FinishGame', () => {
+			const finishGameMenu = generateFinishMenu({result: 'You lose'});
+			this.wrapper.innerHTML += finishGameMenu;
 			document.getElementById('close_multiplayer').addEventListener('click', () => {
 				bus.emit('CloseFinishGame');
 			});
