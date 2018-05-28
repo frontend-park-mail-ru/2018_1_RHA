@@ -73,7 +73,7 @@ export default class MultiplayerSection extends Section {
 		this.listenOrientation();
 		this.coordinate = new Coordinate(this.game_canvas);
 		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-		this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
+		this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img, this.wrapper);
 		return this.wrapper;
 	}
 
@@ -142,7 +142,9 @@ export default class MultiplayerSection extends Section {
 	setBusListeners() {
 		bus.on('FinishGame', () => {
 			this.finishGameMenu = generateFinishMenu({
-				result: 'You lose'
+				result: 'You lose',
+				text1: 'Again',
+				text2: 'Close'
 			});
 			this.wrapper.innerHTML += this.finishGameMenu;
 			document.getElementById('close_multiplayer').addEventListener('click', () => {
