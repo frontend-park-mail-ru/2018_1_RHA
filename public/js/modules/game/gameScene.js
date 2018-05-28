@@ -357,6 +357,10 @@ export default class GameScene {
 			});
 		}
 	}
+
+	offListeners() {
+
+	}
 }
 //todo сделать ход
 //todo назначить цвета и сделать несколько веб плееров

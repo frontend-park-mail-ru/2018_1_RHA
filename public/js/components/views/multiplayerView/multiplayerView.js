@@ -1,11 +1,13 @@
 /* eslint-disable no-undef */
-import Section from '../baseView.js';
-import bus from '../../../modules/bus.js';
-import Game from '../../../modules/game/game.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
-import User from "../../../modules/userModel";
 let generateCanvas = require('../gameView/gameTemplate.pug');
+let generateFinishMenu = require('./finishGameMenu.pug');
+import Game from '../../../modules/game/game.js';
+import User from "../../../modules/userModel";
+import bus from '../../../modules/bus.js';
+import Section from '../baseView.js';
+
 
 export default class MultiplayerSection extends Section {
 	constructor() {
@@ -62,6 +64,7 @@ export default class MultiplayerSection extends Section {
 			height: window.innerHeight
 		};
 		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
+		this.setBusListeners();
 	}
 
 	render() {
@@ -133,6 +136,27 @@ export default class MultiplayerSection extends Section {
 			bus.emit('resize-for-draw-m', {});
 		});
 		return this;
+	}
+
+	setBusListeners() {
+		bus.on('FinishGame', (data) => {
+			const finishGameMenu = generateFinishMenu(data);
+			this.wrapper.appendChild(this.finishGameMenu);
+			document.getElementById('close_multiplayer').addEventListener('click', () => {
+				bus.emit('CloseFinishGame');
+			});
+			document.getElementById('one_more_game').addEventListener('click', () => {
+				bus.emit('OneMoreGame');
+			});
+		});
+
+		bus.on('CloseFinishGame', () => {
+			window.history.back();
+		});
+
+		bus.on('OneMoreGame', () => {
+			window.location.reload();
+		});
 	}
 }
 

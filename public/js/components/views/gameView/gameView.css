@@ -43,6 +43,7 @@
     padding-top: 5px;
     width: 100%;
     height: 15%;
+    overflow: hidden;
 }
 
 .game-lamp-box {
@@ -68,6 +69,7 @@
     padding: 5px;
     height: 25%;
     background: #3e3e3e;
+    border: groove darkgray;
 }
 .game-timer {
     background: #000;
@@ -86,6 +88,8 @@
     margin-left: 20px;
     margin-right: 20px;
     padding: 5px;
+
+    border: groove darkgray;
 }
 .exit-button {
     display: inline-block;
