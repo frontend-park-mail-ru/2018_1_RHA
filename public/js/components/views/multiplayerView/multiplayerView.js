@@ -29,16 +29,29 @@ export default class MultiplayerSection extends Section {
 			this.winHeight = window.innerHeight;
 			//this.height_canv = this.winHeight * 0.85;
 		}
+		if (User.getCurUser()) {
+			this.wrapper.innerHTML += generateCanvas(
+				{
+					'width': window.innerWidth * 0.7,
+					'height': this.winHeight,
+					'id': 'multiplayer-canvas',
+					'username': User.getCurUser().username,
+					'rating' : User.getCurUser().rating,
+				}
+			);
+		}
+		else {
+			this.wrapper.innerHTML += generateCanvas(
+				{
+					'width': window.innerWidth * 0.7,
+					'height': this.winHeight,
+					'id': 'multiplayer-canvas',
+					'username': 'rha',
+					'rating' : '42',
+				}
+			);
+		}
 
-		this.wrapper.innerHTML += generateCanvas(
-			{
-				'width': window.innerWidth * 0.7,
-				'height': this.winHeight,
-				'id': 'multiplayer-canvas',
-				'username': User.getCurUser().username,
-				'rating' : User.getCurUser().rating,
-			}
-		);
 
 		// this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
 		this.parent.appendChild(this.wrapper);
@@ -61,7 +74,8 @@ export default class MultiplayerSection extends Section {
 	}
 
 	allowed() {
-		return true;
+		// return true;
+		return User.isAuthorized();
 	}
 
 	computeCanvasSize() {

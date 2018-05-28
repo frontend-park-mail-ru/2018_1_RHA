@@ -12,6 +12,7 @@ import User from '../userModel.js';
 import Help from './help/help';
 import bus from '../bus.js';
 import Ws from '../ws.js';
+import {setUsers} from './helperFuncs/setUsers.js';
 
 /**
  * Class representing game
@@ -143,6 +144,7 @@ export default class Game {
 						player.setAllRegtions(this.regions);
 					});
 
+					setUsers(initData.players);
 					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 					this.start();
