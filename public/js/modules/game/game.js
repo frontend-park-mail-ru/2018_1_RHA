@@ -90,7 +90,7 @@ export default class Game {
 				});
 
 				bus.on('choosen-mode', () => {
-					console.log(this.root);
+					this.root.getElementsByClassName('finish-game-wrapper')[0].remove();
 					this.Ws.send({class: 'JoinGame', players: players});
 					bus.on('InitGame$Request', (data) => {
 						const initData = data.payload;
