@@ -103,10 +103,9 @@
     border-radius: 10%;
     color: red;
     height: 10%;
-    width: 150px;
+    width: 50%;
     margin-top: 20px;
-    margin-left: 70px;
-    margin-right: 70px;
+    margin-left: 25%;
 }
 
 .hex-info {
@@ -273,10 +272,10 @@
 }
 
 @media (max-width: 832px) {
-    .game-timer {
-        margin-right: 65px;
-        margin-left: 65px;
-    }
+    /*.game-timer {*/
+        /*margin-right: 65px;*/
+        /*margin-left: 65px;*/
+    /*}*/
     .game-list {
         margin: 20px 15px 0 15px;
     }
@@ -293,10 +292,10 @@
     }
 }
 @media (max-width: 624px) {
-    .game-timer {
-        margin-right: 60px;
-        margin-left: 60px;
-    }
+    /*.game-timer {*/
+        /*margin-right: 60px;*/
+        /*margin-left: 60px;*/
+    /*}*/
     .game-list {
         margin: 20px 10px 0 10px;
     }
