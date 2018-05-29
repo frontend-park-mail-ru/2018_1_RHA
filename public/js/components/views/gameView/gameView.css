@@ -21,7 +21,7 @@
 }
 
 .exit-button-text {
-    margin-top: 10%;
+    margin-top: 15%;
     font-family: crystal, serif;
     font-size: 1.5em;
     text-align: center;
@@ -57,7 +57,7 @@
     font-family: crystal, serif;
     font-size: 1.5em;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 15%;
 }
 .game-timer {
     text-align: center;
@@ -141,9 +141,9 @@
     background: #000;
     color: red;
     width: 30%;
-    height: 100%;
+    height: 80%;
     font-size: large;
-    padding-left: 35px;
+    padding-left: 20%;
     padding-top: 5px;
     display: inline-block;
 }
@@ -151,6 +151,11 @@
 .col-info {
     width: 50%;
     display: inline-block;
+    float: left;
+    color: white;
+    font-size: 1.5em;
+    height: 100%;
+    padding-top: 1%;
 }
 
 /*.info-menu {*/
@@ -299,6 +304,15 @@
     .game-list {
         margin: 20px 10px 0 10px;
     }
+    .col-info {
+        font-size: 1em;
+    }
+    .exit-button-text {
+        font-size: 1em;
+    }
+    .change-text {
+        font-size: 1em;
+    }
 
     .hex-info {
         margin-left: 10px;
@@ -338,6 +352,13 @@
     }
     .game-timer {
         margin-top: 15px;
+        font-size: 3em;
+    }
+    .exit-button-text {
+        margin-top: 10%;
+    }
+    .change-text {
+        margin-top: 10%;
     }
     .game-list {
         margin-top: 15px;
@@ -396,6 +417,23 @@
     .change {
         margin-top: 5px;
     }
+    .col-info {
+        font-size: 1em;
+    }
+    .change-text {
+        font-size: 1.3em;
+        margin-top: 9%;
+    }
+    .exit-button-text {
+        font-size: 1.3em;
+        margin-top: 9%;
+    }
+    .inner-timer {
+        padding-top: 1%;
+    }
+    .game-timer {
+        font-size: 2.5em;
+    }
 }
 @media (max-height: 378px) {
     .game-list {
@@ -415,6 +453,18 @@
 @media (max-height: 348px) {
     .game-list {
         margin-top: 20px;
+    }
+    .game-timer {
+        font-size: 2em;
+    }
+    .exit-button-text {
+        font-size: 1.2em;
+        margin-top: 7%;
+    }
+    .change-text {
+        font-size: 1.2em;
+        margin-top: 7%;
+
     }
 }
 @media (max-height: 285px) {
