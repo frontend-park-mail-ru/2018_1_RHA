@@ -21,17 +21,15 @@ let generateFinishMenu = require('../../components/views/multiplayerView/finishG
  */
 export default class Game {
 	/**
-	 * Creates game
+	 *
 	 * @param mode
 	 * @param game_canvas
-	 * @param change_canvas
+	 * @param coordinate
+	 * @param changeBut
+	 * @param img
+	 * @param root
 	 */
 	constructor(mode, game_canvas, coordinate, changeBut, img, root) {
-		//let GameConstructor = null;
-
-		// if (Game.__instance) {
-		// 	return Game.__instance;
-		// }
 		this.listeners = {};
 		Game.__instance = this;
 
@@ -72,106 +70,195 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				this.root.innerHTML += generateFinishMenu({
-					result:'Choose mode',
-					text2: '2 players',
-					text1: '3 players'
-				});
+				// this.root.innerHTML += generateFinishMenu({
+				// 	result:'Choose mode',
+				// 	text2: '2 players',
+				// 	text1: '3 players'
+				// });
 
-				let players = 0;
+				// let players = 0;
 
-				document.getElementById('close_multiplayer').addEventListener('click', () => {
-					players = 2;
-					bus.emit('choosen-mode', {});
-				});
-				document.getElementById('one_more_game').addEventListener('click', () => {
-					players = 3;
-					bus.emit('choosen-mode', {});
-				});
+				// document.getElementById('close_multiplayer').addEventListener('click', () => {
+				// 	players = 2;
+				// 	bus.emit('choosen-mode', {});
+				// });
+				// document.getElementById('one_more_game').addEventListener('click', () => {
+				// 	players = 3;
+				// 	bus.emit('choosen-mode', {});
+				// });
 
-				bus.on('choosen-mode', () => {
-					this.root.getElementsByClassName('finish-game-wrapper')[0].remove();
-					this.Ws.send({class: 'JoinGame', players: players});
-					bus.on('InitGame$Request', (data) => {
-						const initData = data.payload;
-						// узнаем индекс локального игрока + создадим игроков
-						let indexPlayer;
-						this.players = [];
-						this.regions = [];
-						const username = User.getCurUser().username;
-						initData.players.forEach((player, index) => {
-							if (player === username) {
-								indexPlayer = index + 1;
-								this.mainPlayer = new MainPlayer(player, colors[index+1], this.game_canvas, this.img);
-								this.players.push(this.mainPlayer);
-							}
-							else {
-								this.webPlayer = new WebPlayer(player, colors[index+1], this.game_canvas, this.img);
-								this.players.push(this.webPlayer);
-							}
-						});
+				// bus.on('choosen-mode', () => {
+				// 	this.root.getElementsByClassName('finish-game-wrapper')[0].remove();
+				// 	this.Ws.send({class: 'JoinGame', players: players});
+				// 	bus.on('InitGame$Request', (data) => {
+				// 		console.log(this); //------------------------------
+				// 		const initData = data.payload;
+				// 		// узнаем индекс локального игрока + создадим игроков
+				// 		let indexPlayer;
+				// 		this.players = [];
+				// 		this.regions = [];
+				// 		const username = User.getCurUser().username;
+				// 		initData.players.forEach((player, index) => {
+				// 			if (player === username) {
+				// 				indexPlayer = index + 1;
+				// 				this.mainPlayer = new MainPlayer(player, colors[index+1], this.game_canvas, this.img);
+				// 				this.players.push(this.mainPlayer);
+				// 			}
+				// 			else {
+				// 				this.webPlayer = new WebPlayer(player, colors[index+1], this.game_canvas, this.img);
+				// 				this.players.push(this.webPlayer);
+				// 			}
+				// 		});
+				//
+				// 		const map = initData.map;
+				// 		//todo переделать радиус
+				// 		// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
+				// 		const Radius = 610 / map.length / 2 * 0.95;
+				// 		map.forEach((row, rI) => {
+				// 			row.forEach((col, cI) => {
+				// 				if (col.owner === indexPlayer) {
+				// 					const region = new Area(
+				// 						username + String(rI),
+				// 						this.mainPlayer ,
+				// 						this.game_canvas,
+				// 						{
+				// 							I: cI,
+				// 							J: rI,
+				// 							R: Radius
+				// 						},
+				// 						col.units,
+				// 						col.type
+				// 					);
+				// 					this.regions.push(region);
+				// 				} else if (col.owner === 0) {
+				// 					const region = new Area(
+				// 						String(col.owner) + String(rI) + String(cI) + String(rI),
+				// 						new BotPlayer('bot', 'grey', this.game_canvas, this.img),
+				// 						this.game_canvas,
+				// 						{
+				// 							I: cI,
+				// 							J: rI,
+				// 							R: Radius
+				// 						},
+				// 						col.units,
+				// 						col.type
+				// 					);
+				// 					this.regions.push(region);
+				// 				} else {
+				// 					const region = new Area(
+				// 						'web' + String(rI),
+				// 						this.webPlayer,
+				// 						this.game_canvas,
+				// 						{
+				// 							I: cI,
+				// 							J: rI,
+				// 							R: Radius
+				// 						},
+				// 						col.units,
+				// 						col.type
+				// 					);
+				// 					this.regions.push(region);
+				// 				}
+				// 			});
+				// 		});
+				//
+				//
+				// 		this.players.forEach(player => {
+				// 			player.setAllRegtions(this.regions);
+				// 		});
+				//
+				// 		setUsers(initData.players);
+				// 		this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
+				// 		this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
+				// 		this.start();
+				// 	});
+				// });
 
-						const map = initData.map;
+				const players = parseInt(prompt('Введите количество игроков'));
 
-						//todo переделать радиус
-						// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
-						const Radius = 610 / map.length / 2 * 0.95;
-						map.forEach((row, rI) => {
-							row.forEach((col, cI) => {
-								if (col.owner === indexPlayer) {
-									const region = new Area(
-										username + String(rI),
-										this.mainPlayer ,
-										this.game_canvas,
-										{
-											I: cI,
-											J: rI,
-											R: Radius
-										},
-										col.units,
-										col.type
-									);
-									this.regions.push(region);
-								} else if (col.owner === 0) {
-									const region = new Area(
-										String(col.owner) + String(rI) + String(cI) + String(rI),
-										new BotPlayer('bot', 'grey', this.game_canvas, this.img),
-										this.game_canvas,
-										{
-											I: cI,
-											J: rI,
-											R: Radius
-										},
-										col.units,
-										col.type
-									);
-									this.regions.push(region);
-								} else {
-									const region = new Area(
-										'web' + String(rI),
-										this.webPlayer,
-										this.game_canvas,
-										{
-											I: cI,
-											J: rI,
-											R: Radius
-										},
-										col.units,
-										col.type
-									);
-									this.regions.push(region);
-								}
-							});
-						});
-						this.players.forEach(player => {
-							player.setAllRegtions(this.regions);
-						});
+				this.Ws.send({class: 'JoinGame', players: players});
 
-						setUsers(initData.players);
-						this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
-						this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
-						this.start();
+				bus.on('InitGame$Request', (data) => {
+					console.log('in init game');
+					const initData = data.payload;
+					// узнаем индекс локального игрока + создадим игроков
+					let indexPlayer;
+					this.players = [];
+					this.regions = [];
+					const username = User.getCurUser().username;
+					initData.players.forEach((player, index) => {
+						if (player === username) {
+							indexPlayer = index + 1;
+							this.mainPlayer = new MainPlayer(player, colors[index+1], this.game_canvas, this.img);
+							this.players.push(this.mainPlayer);
+						}
+						else {
+							this.webPlayer = new WebPlayer(player, colors[index+1], this.game_canvas, this.img);
+							this.players.push(this.webPlayer);
+						}
 					});
+
+					const map = initData.map;
+					//todo переделать радиус
+					// 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
+					const Radius = 610 / map.length / 2 * 0.95;
+					map.forEach((row, rI) => {
+						row.forEach((col, cI) => {
+							if (col.owner === indexPlayer) {
+								const region = new Area(
+									username + String(rI),
+									this.mainPlayer ,
+									this.game_canvas,
+									{
+										I: cI,
+										J: rI,
+										R: Radius
+									},
+									col.units,
+									col.type
+								);
+								this.regions.push(region);
+							} else if (col.owner === 0) {
+								const region = new Area(
+									String(col.owner) + String(rI) + String(cI) + String(rI),
+									new BotPlayer('bot', 'grey', this.game_canvas, this.img),
+									this.game_canvas,
+									{
+										I: cI,
+										J: rI,
+										R: Radius
+									},
+									col.units,
+									col.type
+								);
+								this.regions.push(region);
+							} else {
+								const region = new Area(
+									'web' + String(rI),
+									this.webPlayer,
+									this.game_canvas,
+									{
+										I: cI,
+										J: rI,
+										R: Radius
+									},
+									col.units,
+									col.type
+								);
+								this.regions.push(region);
+							}
+						});
+					});
+
+
+					this.players.forEach(player => {
+						player.setAllRegtions(this.regions);
+					});
+
+					setUsers(initData.players);
+					this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
+					this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
+					this.start();
 				});
 			});
 		}
