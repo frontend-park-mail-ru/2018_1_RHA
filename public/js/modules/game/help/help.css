@@ -4,20 +4,18 @@
     z-index: 10;
     background-color: gray;
     width: 100%;
-    height: 50vh;
+    height: 37vw;
     border: solid;
 }
 
 .div__help-text {
     text-align: left;
-    font-size: xx-large;
-    overflow: auto;
-
-    width: 70%;
+    font-size: 3.2vh;
+    overflow: hidden;
+    width: 100%;
     max-height: 90%;
-
     float: left;
-    margin: 5% 0 0 15%;
+    margin: 3% 0 0 21%;
 }
 
 .div__help-text p {
@@ -26,11 +24,15 @@
 
 .div__close {
     text-align: center;
-    color: green;
-    font-size: xx-large;
-
+    font-size: 5.5vh;
     width: 100%;
-    height: 10%;
+    padding-top: 32%;
+}
+
+.div__close span {
+    border: groove darkgray;
+    border-radius: 8%;
+    padding: 1%;
 }
 
 .div__close:hover {
