@@ -4,10 +4,10 @@ import {GameModes} from '../../../modules/game/config/modes.js';
 let generateCanvas = require('../gameView/gameTemplate.pug');
 let generateFinishMenu = require('./finishGameMenu.pug');
 import Game from '../../../modules/game/game.js';
+import Router from '../../../modules/router.js';
 import User from '../../../modules/userModel';
 import bus from '../../../modules/bus.js';
 import Section from '../baseView.js';
-import Router from "../../../modules/router";
 
 
 export default class MultiplayerSection extends Section {
@@ -56,7 +56,7 @@ export default class MultiplayerSection extends Section {
 		}
 
 
-		// this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
+
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('multiplayer-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
