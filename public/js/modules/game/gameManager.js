@@ -8,7 +8,7 @@ import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 import {timer} from './helperFuncs/timer.js';
-import User from "../userModel";
+import User from '../userModel.js';
 
 
 /**

@@ -10,7 +10,7 @@ export const timer = (htmlElement) => {
 		htmlElement.innerHTML = --sec;
 		if (sec === 0) {
 			clearInterval(g);
-			bus.emit('left-click-change', {});
+			// bus.emit('left-click-change', {}); //TODO вернуть после разработки
 		}
 	}, 1000);
 	bus.on('left-click-change', () => {
