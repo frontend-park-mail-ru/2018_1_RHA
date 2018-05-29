@@ -144,11 +144,18 @@ export default class GameManager {
 				region.area.setStroke('black');
 			});
 			renderScene(this.canvas, this.regions, this.img);
-			const curPlayer = data.payload;
+			const players = data.payload;
+			const curPlayer = players[0];
+			players[1].forEach(player => {
+				const lamp = document.getElementById(player.name);
+				lamp.style.backgroundColor = '#A00';
+			});
 			curPlayer.regions.forEach(region => {
 				region.area.setStroke('white');
 				renderScene(this.canvas, this.regions, this.img);
 			});
+			const lamp = document.getElementById(curPlayer.name);
+			lamp.style.backgroundColor = '#FF0000';
 		};
 		this.hideTimer = () => {
 			this.timer.hidden = true;

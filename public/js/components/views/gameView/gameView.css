@@ -14,11 +14,18 @@
     margin-right: 20px;
     float: right;
     color: white;
+    border-radius: 10px;
 }
 .change:hover{
-    border-color: transparent transparent transparent orange;
+
 }
 
+.exit-button-text {
+    margin-top: 10%;
+    font-family: crystal, serif;
+    font-size: 1.5em;
+    text-align: center;
+}
 .game-avatar-wrapper {
     width: 30%;
     float: left;
@@ -36,7 +43,25 @@
 }
 
 .font {
-    /*font-family: Crystal, Arial;*/
+    font-family: crystal, serif;
+}
+.size {
+    font-size: 2em;
+}
+.list-name {
+    font-family: crystal, serif;
+    font-size: 1.5em;
+    margin-left: 30px
+}
+.change-text {
+    font-family: crystal, serif;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 15px;
+}
+.game-timer {
+    text-align: center;
+    font-size: 4em;
 }
 
 .user-data {
@@ -103,6 +128,8 @@
     width: 44%;
     margin-top: 15px;
     margin-left: 20px;
+    color: white;
+    border-radius: 10px;
 }
 
 .row-info {

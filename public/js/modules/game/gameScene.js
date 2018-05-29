@@ -2,7 +2,7 @@
 import inHex from './math/inHex.js';
 import bus from '../bus.js';
 import PLAYER_STATES from './config/playerStates.js';
-// import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
+import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 import Ws from '../ws.js';
 import {GameModes} from './config/modes.js';
 import User from '../userModel.js';
@@ -162,7 +162,7 @@ export default class GameScene {
 							player.setStatus(PLAYER_STATES.DEFAULT);
 							this.mainPlayer = player;
 							bus.emit('start-controller', {});
-							bus.emit('illum-cur-m', player);
+							bus.emit('illum-cur-m', [player, this.players]);
 						}
 					});
 				}
@@ -171,7 +171,7 @@ export default class GameScene {
 					this.players.forEach(player => {
 						if (player.name === user) {
 							this.curPlayer = player;
-							bus.emit('illum-cur-m', player);
+							bus.emit('illum-cur-m', [player, this.players]);
 						}
 					});
 				}
@@ -203,7 +203,7 @@ export default class GameScene {
 						curPlayer.status = PLAYER_STATES.READY;
 
 						//выводим информацию о регионе
-						// aboutRegion(curRegion, this.about_region);
+						// aboutRegion(curRegion);
 						bus.emit('select-region', curRegion);
 						break;
 					case PLAYER_STATES.READY:
@@ -291,6 +291,11 @@ export default class GameScene {
 
 
 				if (!curRegion) {
+					const acReg = this.activeRegion();
+					if (acReg != null) {
+						this.mainPlayer.status = PLAYER_STATES.DEFAULT;
+						bus.emit('remove-selection', acReg);
+					}
 					return;
 				}
 
@@ -302,7 +307,7 @@ export default class GameScene {
 							return;
 						}
 
-						// aboutRegion(curRegion, this.about_region);
+						aboutRegion(curRegion);
 
 						this.mainPlayer.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);

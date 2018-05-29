@@ -12,7 +12,7 @@ export const setUsers = (users) => {
 		const red_lamp = document.createElement('div');
 		red_lamp.classList.add('red-lamp');
 		red_lamp.classList.add('game-lamp');
-		red_lamp.setAttribute('id', String(i+1));
+		red_lamp.setAttribute('id', users[i]);
 		game_lamp_box.appendChild(red_lamp);
 
 		const list_name = document.createElement('div');
