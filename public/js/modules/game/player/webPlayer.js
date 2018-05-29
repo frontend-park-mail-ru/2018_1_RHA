@@ -4,6 +4,7 @@ import {renderScene} from '../helperFuncs/renderScene.js';
 import {attackAnimation} from '../animation/attack/attackAnimation.js';
 import {moveAnimation} from '../animation/move/moveAnimation.js';
 import User from '../../userModel.js';
+import {aboutRegion} from '../helperFuncs/renderInfoAboutRegion.js';
 
 /**
  * Class representing web player
@@ -75,6 +76,12 @@ export default class WebPlayer extends Player {
 							toUpdate.push({num: i, units: move.map[1].units});
 						}
 					}
+					if (move.map[0].owner === move.map[1].owner) {
+						to.setColor(from.getColor());
+						to.owner.delRegion(to);
+						from.owner.addRegionForWeb(to, from.owner, this.allRegions);
+						to.area.setStroke('white');
+					}
 					attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
 					bus.emit('update-regions', {regions: toUpdate});
 				}
@@ -102,6 +109,7 @@ export default class WebPlayer extends Player {
 					bus.emit('remove-selection', from);
 					bus.emit('select-region', to);
 				}
+				aboutRegion(to);
 
 				bus.emit('update-regions', {regions: toUpdate});
 				moveAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);

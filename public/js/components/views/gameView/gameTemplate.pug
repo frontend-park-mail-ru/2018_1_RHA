@@ -5,16 +5,19 @@ div.log#log
         div.game-avatar-wrapper
             img.game-avatar(src="https://rha-backend.herokuapp.com/users/gava")#avatar
         div.user-info
-            p.font #{username}
-            p.font Rating: #{rating}
+            p.font.size #{username}
+            p.font.size Rating: #{rating}
     div.game-list
-    div.game-timer#timer 30
-    div.hex-info
+    div.game-timer.font
+        div#timer 30
+    div.hex-info#about-region
         div.row-info
-            div.col-info Hex type:
-            div.field
+            div.col-info.font Hex type:
+            div.field.font#type
         div.row-info
-            div.col-info Units:
-            div.field
-    div.exit-button EXIT
-    div.change END TURN
+            div.col-info.font Units:
+            div.field.font#units
+    div.exit-button
+        div.exit-button-text EXIT
+    div.change
+        div.change-text END TURN

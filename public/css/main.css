@@ -134,6 +134,12 @@ a {
     url(/fonts/armalite.ttf);
 }
 
+@font-face {
+    font-family: crystal;
+    src: local(crystal),
+    url(/fonts/crystal.ttf);
+}
+
 
 li {
     margin: 1%;
