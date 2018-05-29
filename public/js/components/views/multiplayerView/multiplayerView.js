@@ -140,9 +140,10 @@ export default class MultiplayerSection extends Section {
 	}
 
 	setBusListeners() {
-		bus.on('FinishGame', () => {
+		bus.on('FinishGameResult', (data) => {
+			const result = data.payload.result;
 			this.finishGameMenu = generateFinishMenu({
-				result: 'You lose',
+				result: result,
 				text1: 'Again',
 				text2: 'Close'
 			});

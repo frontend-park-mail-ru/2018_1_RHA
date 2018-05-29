@@ -161,7 +161,15 @@ export default class Game {
 		}
 
 		bus.on('FinishGame', (data) => {
-			console.log(data);
+			const winnerNum = data.payload.player;
+			let result = null;
+			// console.log('mazafaka', this.players[winnerNum]);
+			if (this.players[winnerNum-1].name === User.getCurUser().username) {
+				result = 'You win!';
+			} else {
+				result = 'You loose!';
+			}
+			bus.emit('FinishGameResult', {result: result});
 			this.destroy();
 		});
 	}
