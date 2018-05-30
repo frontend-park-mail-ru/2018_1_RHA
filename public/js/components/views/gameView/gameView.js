@@ -7,6 +7,7 @@ import Game from '../../../modules/game/game.js';
 import Router from '../../../modules/router.js';
 import bus from '../../../modules/bus.js';
 import Section from '../baseView.js';
+import User from '../../../modules/userModel';
 
 /**
  * Class representing Section of the game
@@ -64,6 +65,17 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
+		const multi_username = document.getElementById('single-username');
+		const multi_rating = document.getElementById('single-rating');
+
+		if (!User.isAuthorized()) {
+			multi_username.innerText = 'RHA';
+			multi_rating.innerText = 'Rating 42';
+		} else {
+			multi_username.innerText = User.getCurUser().username;
+			multi_rating.innerText = User.getCurUser().rating;
+		}
+
 		this.setWindowResizeHandler();
 		this.listenOrientation();
 		this.coordinate = new Coordinate(this.game_canvas);
