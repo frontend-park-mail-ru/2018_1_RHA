@@ -22,8 +22,7 @@
 
 .input:focus {
     outline:none;
-    border-width: 8px;
-    border-color: crimson;
+    border: 8px crimson;
 }
 
 
@@ -33,11 +32,25 @@
 }
 
 .error {
-    transition: opacity 0.5s, visibility 0s, 0.5s;
+    transition: opacity .5s,visibility 0s,.5s;
     color: white;
-    font-size: larger;
-    background-color: crimson;
     position: absolute;
+    margin-top: -10%;
+    background-color: rgba(255,0,0,0.5);
+    padding-top: 2%;
+    margin-left: 2%;
+    padding-bottom: 1%;
+    width: 30%;
+    font-size: 95%;
+}
+
+.hide-error {
+    display: none;
+}
+
+.error_img {
+    width: 13%;
+    float: left;
 }
 
 input[type=file].input__file {

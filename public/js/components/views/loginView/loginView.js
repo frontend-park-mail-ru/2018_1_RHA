@@ -33,7 +33,7 @@ export default class LoginSection extends Section {
 
 		this.loginForm.setOnSubmit(() => {
 			const userData = this.loginForm.getData();
-			if (userData === null) {
+			if (userData === null || !this.loginForm.getStatus()) {
 				this.loginForm.Email.setError('empty fields');
 				return;
 			}

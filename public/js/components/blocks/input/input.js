@@ -29,7 +29,8 @@ export default class Input extends Block {
 			error_id: data.id.concat('_error'),
 			CLASS: CLASS
 		});
-		this.ErrorElement = this.wrapper.getElementsByTagName('div')[0];
+		this.error_id = data.id.concat('_error');
+		this.ErrorElement = this.wrapper.getElementsByTagName('div')[1];
 		this.InputElement = this.wrapper.getElementsByTagName('input')[0];
 	}
 
@@ -68,10 +69,13 @@ export default class Input extends Block {
 		if (error) {
 			this.status = false;
 			this.ErrorElement.innerHTML = error;
+			// this.ErrorElement.removeAttribute('hidden');
+			document.getElementById(this.error_id).removeAttribute('hidden');
 			this.InputElement.classList.add('input__error');
 		} else {
 			this.status = true;
-			this.ErrorElement.style.display = 'none';
+			// this.ErrorElement.setAttribute('hidden', true);
+			document.getElementById(this.error_id).setAttribute('hidden', 'true');
 			this.InputElement.classList.remove('input__error');
 		}
 	}

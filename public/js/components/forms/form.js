@@ -30,6 +30,10 @@ export default class Form extends Block {
 	setOnSubmit() {
 	}
 
+	getStatus() {
+
+	}
+
 	//TODO после сабмита пробежишься по всем инпутам и проверяешь их стейты
 	//TODO если что-то не так, то тогда от компоненты вызываешь setError, который должен разхидить errorElement
 }
