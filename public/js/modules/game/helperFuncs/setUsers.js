@@ -3,6 +3,9 @@ export const setUsers = (users) => {
 	for (let i = 0; i < users.length; ++i) {
 		const game_li = document.createElement('div');
 		game_li.classList.add('game-li');
+		if (i !== 0) {
+			game_li.classList.add('margin-style');
+		}
 		template.appendChild(game_li);
 
 		const game_lamp_box = document.createElement('div');
