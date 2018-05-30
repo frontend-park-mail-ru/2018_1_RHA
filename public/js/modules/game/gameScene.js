@@ -193,6 +193,11 @@ export default class GameScene {
 				}
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
 				if (!curRegion) {
+					const acReg = this.activeRegion();
+					if (acReg != null) {
+						this.mainPlayer.status = PLAYER_STATES.DEFAULT;
+						bus.emit('remove-selection', acReg);
+					}
 					return;
 				}
 				switch (curPlayer.status) {
@@ -203,7 +208,7 @@ export default class GameScene {
 						curPlayer.status = PLAYER_STATES.READY;
 
 						//выводим информацию о регионе
-						// aboutRegion(curRegion);
+						aboutRegion(curRegion);
 						bus.emit('select-region', curRegion);
 						break;
 					case PLAYER_STATES.READY:
@@ -224,7 +229,7 @@ export default class GameScene {
 								bus.emit('remove-selection', curRegion);
 							} else {
 								//выводим информацию о регионе
-								// aboutRegion(curRegion, this.about_region);
+								aboutRegion(curRegion);
 								curRegion.gameData.units += activeRegion.gameData.units;
 								activeRegion.gameData.units = 0;
 								bus.emit('move-units',
