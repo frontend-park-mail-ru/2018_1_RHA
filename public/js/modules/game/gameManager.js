@@ -163,6 +163,7 @@ export default class GameManager {
 		};
 		this.hideTimer = () => {
 			this.timer.hidden = true;
+			bus.emit('stop-timer', {});
 		};
 		this.reloadTimer = () => {
 			timer(this.timer);

@@ -142,12 +142,12 @@
 .field {
     background: #000;
     color: red;
-    width: 30%;
+    width: 50%;
     height: 80%;
     font-size: large;
-    padding-left: 20%;
     padding-top: 5px;
     display: inline-block;
+    text-align: center;
 }
 
 .col-info {
@@ -486,11 +486,11 @@
     }
     .exit-button-text {
         font-size: 1em;
-        margin-top: 25%;
+        /*margin-top: 25%;*/
     }
     .change-text {
         font-size: 1em;
-        margin-top: 25%;
+        /*margin-top: 25%;*/
     }
 
     .hex-info {
