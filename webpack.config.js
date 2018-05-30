@@ -3,6 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlagin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 
 module.exports = {
@@ -46,6 +47,13 @@ module.exports = {
 							plugins: [
 								autoprefixer({
 									browsers:['ie >= 8', 'last 4 version']
+								}),
+								cssnano({
+									preset: ['default', {
+										svgo: {
+											exclude: true,
+										},
+									}]
 								})
 							],
 							sourceMap: true
