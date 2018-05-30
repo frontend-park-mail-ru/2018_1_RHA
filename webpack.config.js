@@ -2,6 +2,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlagin = require('copy-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+
+
 module.exports = {
 	devtool: 'source-map',
 	entry: './src/index.js',
@@ -26,8 +29,28 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader'
+					{
+						loader: 'style-loader'
+					},
+					{
+						loader: 'css-loader',
+						options: {
+							plugins: [
+								MiniCssExtractPlugin
+							]
+						}
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							plugins: [
+								autoprefixer({
+									browsers:['ie >= 8', 'last 4 version']
+								})
+							],
+							sourceMap: true
+						}
+					}
 				]
 			},
 			{
@@ -53,6 +76,9 @@ module.exports = {
 		new CopyWebpackPlagin([{
 			from: path.join(__dirname, 'public', 'sw.js'),
 			to: path.join(__dirname, 'public/dist', 'sw.js')
-		}])
+		}]),
+		// new Autoprefixer({
+		// 	source: path.join(__dirname, 'public/dist', 'main.css')
+		// })
 	]
 };
