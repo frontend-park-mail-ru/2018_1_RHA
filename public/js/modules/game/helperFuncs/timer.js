@@ -8,7 +8,12 @@ export const timer = (htmlElement) => {
 		if (isPaused) {
 			++sec;
 		}
-		htmlElement.innerHTML = --sec;
+		--sec;
+		if (sec >= 10) {
+			htmlElement.innerHTML = '00:' + sec;
+		} else {
+			htmlElement.innerHTML = '00:0' + sec;
+		}
 		if (sec === 0) {
 			clearInterval(g);
 			// bus.emit('left-click-change', {}); //TODO вернуть после разработки
