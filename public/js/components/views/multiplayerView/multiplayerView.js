@@ -32,28 +32,16 @@ export default class MultiplayerSection extends Section {
 			this.winHeight = window.innerHeight;
 			//this.height_canv = this.winHeight * 0.85;
 		}
-		if (User.getCurUser()) {
-			this.wrapper.innerHTML += generateCanvas(
-				{
-					'width': window.innerWidth * 0.7,
-					'height': this.winHeight,
-					'id': 'multiplayer-canvas',
-					'username': User.getCurUser().username,
-					'rating' : User.getCurUser().rating,
-				}
-			);
-		}
-		else {
-			this.wrapper.innerHTML += generateCanvas(
-				{
-					'width': window.innerWidth * 0.7,
-					'height': this.winHeight,
-					'id': 'multiplayer-canvas',
-					'username': 'rha',
-					'rating' : '42',
-				}
-			);
-		}
+
+		this.wrapper.innerHTML += generateCanvas(
+			{
+				'width': window.innerWidth * 0.7,
+				'height': this.winHeight,
+				'id': 'multiplayer-canvas',
+			}
+		);
+
+
 
 		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
 			new Router().open('/');
@@ -71,6 +59,11 @@ export default class MultiplayerSection extends Section {
 	}
 
 	render() {
+		const multi_username = document.getElementById('multi-username');
+		multi_username.innerText = User.getCurUser().username;
+		const multi_rating = document.getElementById('multi-rating');
+		multi_rating.innerText = 'Rating  ' + User.getCurUser().rating;
+
 		this.setWindowResizeHandler();
 		this.listenOrientation();
 		this.coordinate = new Coordinate(this.game_canvas);
