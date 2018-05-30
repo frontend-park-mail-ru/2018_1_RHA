@@ -87,11 +87,15 @@ export default class RegisterForm extends Form {
 	}
 
 
-
 	setOnSubmit(callbackfn) {
 		this.formElement.addEventListener('submit', (ev) => {
 			ev.preventDefault();
 			callbackfn();
 		});
+	}
+
+	getStatus() {
+		return this.Email.getState() && this.Password.getState()
+			&& this.ConfirmPassword.getState() && this.Name.getState();
 	}
 }
