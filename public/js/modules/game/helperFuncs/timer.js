@@ -4,6 +4,7 @@ export const timer = (htmlElement) => {
 	let sec = 30;
 	let isPaused = false;
 	let g = setInterval(() => {
+		console.log(htmlElement);
 		if (isPaused) {
 			++sec;
 		}

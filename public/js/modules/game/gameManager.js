@@ -25,7 +25,11 @@ export default class GameManager {
 		this.regions = regions;
 		this.canvas = canvas;
 		this.img = img;
-		this.timer = document.getElementById('timer');
+		if (this.mode === 2) {
+			this.timer = document.getElementById('timer1');
+		} else {
+			this.timer = document.getElementById('timer');
+		}
 		this.log = document.getElementById('log');
 	}
 

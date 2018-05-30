@@ -1,0 +1,23 @@
+div.canvas-wrap
+    canvas(width=width height=height id=id).canvas
+div.log#log
+    div.user-data
+        div.game-avatar-wrapper
+            img.game-avatar(src="https://rha-backend.herokuapp.com/users/gava")#avatar
+        div.user-info
+            p.font.size #{username}
+            p.font.size Rating  #{rating}
+    div.game-list
+    div.game-timer.font
+        div#timer1.inner-timer 30
+    div.hex-info#about-region
+        div.row-info
+            div.col-info.font Hex type
+            div.field.font#type
+        div.row-info
+            div.col-info.font Units
+            div.field.font#units
+    div.exit-button
+        div.exit-button-text EXIT
+    div.change
+        div.change-text END TURN
