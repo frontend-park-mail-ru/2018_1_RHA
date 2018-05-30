@@ -55,7 +55,9 @@ export default class MultiplayerSection extends Section {
 			);
 		}
 
-
+		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
+			new Router().open('/');
+		});
 
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('multiplayer-canvas');

@@ -28,7 +28,7 @@ User.auth()
 			.add('/profile', ProfileSection)
 			.add('/rating', RatingSection)
 			.add('/multiplayer', MultiplayerSection)
-			.add('/singleplayer', GameSection)
+			.add('/training', GameSection)
 			.add('/login', LoginSection)
 			.start();
 	})

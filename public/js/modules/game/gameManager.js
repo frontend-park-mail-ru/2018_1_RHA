@@ -1,4 +1,3 @@
-import bus from '../bus.js';
 import {attackAnimation} from './animation/attack/attackAnimation.js';
 import {animationOverlay} from './animation/animationOverlay.js';
 import {moveAnimation} from './animation/move/moveAnimation.js';
@@ -9,6 +8,7 @@ import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 import {timer} from './helperFuncs/timer.js';
 import User from '../userModel.js';
+import bus from '../bus.js';
 
 
 /**

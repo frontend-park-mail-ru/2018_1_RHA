@@ -1,11 +1,12 @@
 /* eslint-disable no-undef */
-import Section from '../baseView.js';
-import Game from '../../../modules/game/game.js';
-import bus from '../../../modules/bus.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
 import Help from '../../../modules/game/help/help.js';
 let generateCanvas = require('./gameTemplate.pug');
+import Game from '../../../modules/game/game.js';
+import Router from '../../../modules/router.js';
+import bus from '../../../modules/bus.js';
+import Section from '../baseView.js';
 
 /**
  * Class representing Section of the game
@@ -43,6 +44,10 @@ export default class GameSection extends Section {
 				'id': 'game-canvas'
 			}
 		);
+
+		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
+			new Router().open('/');
+		});
 
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
