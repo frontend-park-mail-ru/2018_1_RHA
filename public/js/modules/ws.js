@@ -33,8 +33,8 @@ export default class Ws {
 	}
 
 	send(payload) {
-		console.log('Websocket SEND ', payload);
 		this.ws.send(JSON.stringify(payload));
+		console.log('Websocket SEND ', payload);
 	}
 }
 
