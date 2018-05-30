@@ -23,6 +23,10 @@ export const timer = (htmlElement) => {
 		//sec = 0;
 		clearInterval(g);
 	});
+	bus.on('stop-timer', () => {
+		//sec = 0;
+		clearInterval(g);
+	});
 	bus.on('attack', () => {
 		isPaused = true;
 		setTimeout(() => {isPaused = false;}, 1000);

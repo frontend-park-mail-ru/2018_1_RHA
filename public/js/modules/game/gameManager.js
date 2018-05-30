@@ -25,11 +25,6 @@ export default class GameManager {
 		this.regions = regions;
 		this.canvas = canvas;
 		this.img = img;
-		if (this.mode === 2) {
-			this.timer = document.getElementById('timer1');
-		} else {
-			this.timer = document.getElementById('timer');
-		}
 		this.log = document.getElementById('log');
 	}
 
@@ -38,6 +33,11 @@ export default class GameManager {
 	 * Starts game logic 8)
 	 */
 	start() {
+		if (this.mode === 2) {
+			this.timer = document.getElementById('timer1');
+		} else {
+			this.timer = document.getElementById('timer');
+		}
 		timer(this.timer);
 		this.select_region = (data) => {
 			const region = data.payload;
@@ -163,6 +163,7 @@ export default class GameManager {
 		};
 		this.hideTimer = () => {
 			this.timer.hidden = true;
+			bus.emit('stop-timer', {});
 		};
 		this.reloadTimer = () => {
 			timer(this.timer);
@@ -197,7 +198,8 @@ export default class GameManager {
 	 * destroys game logic ;)
 	 */
 	destroy() {
-		bus.off('remove-selection', this.change_selection);
+		this.timer = null;
+		bus.off('remove-selection', this.remove_selection);
 		bus.off('select-region', this.select_region);
 		bus.off('change-move', this.change_move);
 		bus.off('move-units', this.move_units);

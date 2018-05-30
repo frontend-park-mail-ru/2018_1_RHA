@@ -38,6 +38,11 @@ export default class GameSection extends Section {
 			//this.height_canv = this.winHeight * 0.85;
 		}
 
+	}
+	/**
+	 * @return {HTMLDivElement | *}
+	 */
+	render() {
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': window.innerWidth * 0.7,
@@ -46,9 +51,6 @@ export default class GameSection extends Section {
 			}
 		);
 
-		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
-			new Router().open('/');
-		});
 
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('game-canvas');
@@ -60,11 +62,6 @@ export default class GameSection extends Section {
 		};
 		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
 		this.wrapper.appendChild(new Help().render());
-	}
-	/**
-	 * @return {HTMLDivElement | *}
-	 */
-	render() {
 		const multi_username = document.getElementById('single-username');
 		const multi_rating = document.getElementById('single-rating');
 
@@ -73,7 +70,7 @@ export default class GameSection extends Section {
 			multi_rating.innerText = 'Rating 42';
 		} else {
 			multi_username.innerText = User.getCurUser().username;
-			multi_rating.innerText = User.getCurUser().rating;
+			multi_rating.innerText = 'Rating  ' +  User.getCurUser().rating;
 		}
 
 		this.setWindowResizeHandler();
@@ -81,6 +78,11 @@ export default class GameSection extends Section {
 		this.coordinate = new Coordinate(this.game_canvas);
 		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 		this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
+		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
+			new Router().open('/');
+			bus.emit('close-game', {});
+			window.location.reload();
+		});
 		bus.on('close-help', () => {this.game.start();});
 		// this.game.start();
 

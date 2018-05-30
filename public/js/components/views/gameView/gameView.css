@@ -59,17 +59,12 @@
     text-align: center;
     margin-top: 15%;
 }
-.game-timer {
-    text-align: center;
-    font-size: 4em;
-}
 
 .user-data {
     padding-left: 20px;
     padding-top: 5px;
     width: 100%;
     height: 15%;
-    overflow: hidden;
 }
 
 .game-lamp-box {
@@ -106,6 +101,8 @@
     width: 50%;
     margin-top: 20px;
     margin-left: 25%;
+    text-align: center;
+    font-size: 3.3em;
 }
 
 .hex-info {
@@ -133,19 +130,24 @@
 
 .row-info {
     width: 100%;
-    height: 30%;
+    height: 30px;
+}
+.top-margin {
+    margin-top: 2px;
+}
+.row-margin {
     margin-top: 10px;
 }
 
 .field {
     background: #000;
     color: red;
-    width: 30%;
+    width: 50%;
     height: 80%;
     font-size: large;
-    padding-left: 20%;
     padding-top: 5px;
     display: inline-block;
+    text-align: center;
 }
 
 .col-info {
@@ -229,7 +231,6 @@
     left: 45%;
     margin-top: 2%;
     text-align: center;
-    font-family: armalite;
     font-size: 3vw;
     color: white;
 }
@@ -247,88 +248,19 @@
     height: 100%;
     background: linear-gradient(123deg, #000000, #181515);
     background-size: 100% 100%;
-    /*animation: AnimationName 8s ease infinite;*/
 }
 
 .canvas {
     border: solid;
 }
 
-
-@keyframes AnimationName {
-    0%{color:#CCCCCC}
-    50%{color:#CCCCCC}
-    70%{color: #CCCCCC}
-    100%{color:#CCCCCC}
+.inner-timer {
+    padding-top: 5%;
 }
 
-@media (max-width: 832px) {
-    /*.game-timer {*/
-        /*margin-right: 65px;*/
-        /*margin-left: 65px;*/
-    /*}*/
-    .game-list {
-        margin: 20px 15px 0 15px;
-    }
-
-    .hex-info {
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-    .exit-button {
-        margin-left: 15px;
-    }
-    .change {
-        margin-right: 15px;
-    }
-}
-@media (max-width: 624px) {
-    /*.game-timer {*/
-        /*margin-right: 60px;*/
-        /*margin-left: 60px;*/
-    /*}*/
-    .game-list {
-        margin: 20px 10px 0 10px;
-    }
-    .col-info {
-        font-size: 1em;
-    }
-    .exit-button-text {
-        font-size: 1em;
-    }
-    .change-text {
-        font-size: 1em;
-    }
-
-    .hex-info {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .exit-button {
-        margin-left: 10px;
-    }
-    .change {
-        margin-right: 10px;
-    }
-}
-@media (max-width: 416px) {
-    .game-timer {
-        margin-right: 60px;
-        margin-left: 60px;
-    }
-    .game-list {
-        margin: 20px 5px 0 5px;
-    }
-
-    .hex-info {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-    .exit-button {
-        margin-left: 5px;
-    }
-    .change {
-        margin-right: 5px;
+@media (max-height: 482px) {
+    .inner-timer {
+        padding-top: 2%;
     }
 }
 @media (max-height: 471px) {
@@ -358,6 +290,9 @@
     .change {
         margin-top: 15px;
     }
+    .game-avatar {
+        height: 70px;
+    }
 }
 @media (max-height: 453px) {
     .game-timer {
@@ -385,9 +320,16 @@
     .game-li {
         margin-top: 0px;
     }
+    .row-info {
+        height: 25px;
+    }
 
 }
 @media (max-height: 417px) {
+    .game-avatar {
+        height: 60px;
+        width: 90%;
+    }
     .game-timer {
         margin-top: 5px;
     }
@@ -414,34 +356,44 @@
         font-size: 1.3em;
         margin-top: 9%;
     }
-    .inner-timer {
-        padding-top: 1%;
-    }
     .game-timer {
         font-size: 2.5em;
+    }
+    .user-info {
+        font-size: 0.8em;
     }
 }
 @media (max-height: 378px) {
     .game-list {
         margin-top: 10px;
     }
+    .row-info {
+        height: 20px;
+    }
+    .field {
+        font-size: 1.1em;
+    }
+
 }
 @media (max-height: 353px) {
     .game-list {
         padding-top: 5px;
     }
-}
-@media (max-height: 348px) {
-    .game-list {
-        margin-top: 15px;
+    .game-timer {
+        font-size: 2em;
+    }
+    .game-lamp {
+        width: 10px;
+        height: 10px;
+    }
+    .game-li {
+        font-size: 0.8em;
     }
 }
+
 @media (max-height: 348px) {
     .game-list {
         margin-top: 20px;
-    }
-    .game-timer {
-        font-size: 2em;
     }
     .exit-button-text {
         font-size: 1.2em;
@@ -450,11 +402,170 @@
     .change-text {
         font-size: 1.2em;
         margin-top: 7%;
-
+    }
+    br {
+        display: none;
+    }
+    .margin-style {
+        margin-top: 1%;
     }
 }
-@media (max-height: 285px) {
+@media (max-height: 310px) {
+    .top-margin {
+        margin-top: 0;
+    }
+    .row-margin {
+        margin-top: 7px;
+    }
+
+}
+@media (max-height: 289px) {
     .game-list {
         margin-top: 25px;
     }
+    .game-timer {
+        margin-top: 2px;
+    }
+    .row-margin {
+        margin-top: 5px;
+    }
+    .list-name {
+        font-size: 1.3em;
+    }
+    .game-list {
+        height: 22%;
+    }
 }
+
+@media (max-width: 832px) {
+    /*.game-timer {*/
+        /*margin-right: 65px;*/
+        /*margin-left: 65px;*/
+    /*}*/
+    .game-list {
+        margin: 20px 15px 0 15px;
+    }
+
+    .hex-info {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .exit-button {
+        margin-left: 15px;
+    }
+    .change {
+        margin-right: 15px;
+    }
+}
+@media (max-width: 705px) {
+    .game-timer {
+        font-size: 2em;
+    }
+    .col-info {
+        font-size: 1.2em;
+    }
+    .exit-button-text {
+        /*margin-top: 22%;*/
+        font-size: 1.3em;
+    }
+    .change-text {
+        /*margin-top: 22%;*/
+        font-size: 1.3em;
+    }
+}
+@media (max-width: 624px) {
+    /*.game-timer {*/
+        /*margin-right: 60px;*/
+        /*margin-left: 60px;*/
+    /*}*/
+    .game-list {
+        margin: 20px 10px 0 10px;
+    }
+    .col-info {
+        font-size: 1em;
+    }
+    .exit-button-text {
+        font-size: 1em;
+        /*margin-top: 25%;*/
+    }
+    .change-text {
+        font-size: 1em;
+        /*margin-top: 25%;*/
+    }
+
+    .hex-info {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .exit-button {
+        margin-left: 10px;
+    }
+    .change {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 583px) {
+    .inner-timer {
+        padding-top: 10%;
+    }
+    .game-timer {
+        font-size: 2em;
+    }
+    .size {
+        font-size: 1.6em;
+    }
+
+}
+@media (max-width: 550px) {
+    .size {
+        font-size: 1.3em;
+    }
+
+}
+@media (max-width: 470px) {
+    .col-info {
+        font-size: 0.9em;
+    }
+    .size {
+        text-align: left;
+    }
+}
+@media (max-width: 450px) {
+    .col-info {
+        font-size: 0.85em;
+    }
+
+}
+@media (max-width: 429px) {
+    .game-timer {
+        font-size: 1.5em;
+    }
+    .col-info {
+        font-size: 0.8em;
+    }
+    .exit-button-text {
+        font-size: 0.8em;
+    }
+    .change-text {
+        font-size: 0.8em;
+    }
+}
+@media (max-width: 416px) {
+    .game-list {
+        margin: 20px 5px 0 5px;
+    }
+
+    .hex-info {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .exit-button {
+        margin-left: 5px;
+    }
+    .change {
+        margin-right: 5px;
+    }
+}
+
+

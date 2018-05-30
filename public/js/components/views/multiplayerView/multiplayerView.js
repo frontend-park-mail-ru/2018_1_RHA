@@ -33,6 +33,10 @@ export default class MultiplayerSection extends Section {
 			//this.height_canv = this.winHeight * 0.85;
 		}
 
+		this.setBusListeners();
+	}
+
+	render() {
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': window.innerWidth * 0.7,
@@ -45,6 +49,7 @@ export default class MultiplayerSection extends Section {
 
 		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
 			new Router().open('/');
+			window.location.reload();
 		});
 
 		this.parent.appendChild(this.wrapper);
@@ -55,10 +60,7 @@ export default class MultiplayerSection extends Section {
 			height: window.innerHeight
 		};
 		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
-		this.setBusListeners();
-	}
 
-	render() {
 		const multi_username = document.getElementById('multi-username');
 		multi_username.innerText = User.getCurUser().username;
 		const multi_rating = document.getElementById('multi-rating');

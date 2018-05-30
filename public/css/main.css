@@ -129,15 +129,15 @@ a {
 
 
 @font-face {
-    font-family: armalite;
-    src: local(armalite),
-    url(/fonts/armalite.ttf);
-}
-
-@font-face {
     font-family: crystal;
     src: local(crystal),
     url(/fonts/crystal.ttf);
+}
+
+@font-face {
+    font-family: armalite;
+    src: local(armalite),
+    url(/fonts/armalite.ttf);
 }
 
 
@@ -148,7 +148,7 @@ li {
 }
 
 h2 {
-    font-family: armalite, serif;
+    font-family: armalite, crystal, serif;
     color: white;
     font-size: 300%;
     margin: 2%;

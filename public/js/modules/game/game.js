@@ -31,7 +31,6 @@ export default class Game {
 	 */
 	constructor(mode, game_canvas, coordinate, changeBut, img, root) {
 		this.listeners = {};
-		Game.__instance = this;
 
 		this.mode = mode;
 		this.game_canvas = game_canvas;
@@ -66,6 +65,9 @@ export default class Game {
 			this.scene = new GameScene(this.game_canvas, this.players, this.regions, this.mode);
 			this.manager = new GameManager(this.controller, this.game_canvas, this.regions, this.img, this.mode);
 			this.help = new Help();
+			bus.on('close-game', () => {
+				this.destroy();
+			});
 		}
 		else {
 			this.Ws = new Ws();
