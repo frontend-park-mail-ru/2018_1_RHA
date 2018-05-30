@@ -4,10 +4,10 @@ import {GameModes} from '../../../modules/game/config/modes.js';
 import Help from '../../../modules/game/help/help.js';
 let generateCanvas = require('./gameTemplate.pug');
 import Game from '../../../modules/game/game.js';
+import User from '../../../modules/userModel.js';
 import Router from '../../../modules/router.js';
 import bus from '../../../modules/bus.js';
 import Section from '../baseView.js';
-import User from '../../../modules/userModel';
 
 /**
  * Class representing Section of the game
@@ -43,11 +43,19 @@ export default class GameSection extends Section {
 	 * @return {HTMLDivElement | *}
 	 */
 	render() {
+		let avatar = null;
+		if (User.getCurUser() !== null) {
+			avatar = 'https://rha-backend.herokuapp.com/users/gava';
+		} else {
+			avatar = '/default_player.svg';
+		}
+
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': window.innerWidth * 0.7,
 				'height': this.winHeight,
-				'id': 'game-canvas'
+				'id': 'game-canvas',
+				'avatar': avatar
 			}
 		);
 
