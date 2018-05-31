@@ -28,6 +28,11 @@ html {
     width: 100%;
 }
 
+html, body {
+    /* Убирает прокрутку по горизонтале, для мобильной версии */
+    overflow-x: hidden;
+}
+
 body {
     height: 100%;
     width: 100%;
