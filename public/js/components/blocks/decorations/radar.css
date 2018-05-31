@@ -17,8 +17,7 @@
     margin-right: 1%;
     height: 97%;
     width: 57%;
-    border: 2px solid #333;
-    border-color: green;
+    border: 2px solid green;
     border-radius: 10%;
     background: linear-gradient(green 2px, transparent 2px),
     linear-gradient(90deg, green 2px, transparent 2px),
@@ -42,6 +41,7 @@
     radial-gradient(farthest-side circle, transparent 61%, green 65%, transparent 0),
     radial-gradient(farthest-side circle, transparent 76%, green 80%, transparent 0);
     background-size: 100%;
+    overflow: hidden;
 }
 
 @keyframes clockwise {
