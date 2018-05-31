@@ -85,4 +85,10 @@ export default class ChangeForm extends Form {
 			callbackfn();
 		});
 	}
+
+	getStatus() {
+		return this.OldPassword.getState() && this.Password.getState()
+			&& this.RepeatPassword.getState();
+	}
+
 }

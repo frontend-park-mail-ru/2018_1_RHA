@@ -36,8 +36,8 @@ export default class RegisterSection extends Section {
 		this.registerForm.setOnSubmit( () => {
 
 			const userData = this.registerForm.getData();
-			console.log(userData);
-			if (userData === null) {
+			console.log(this.registerForm.getStatus());
+			if (userData === null || !this.registerForm.getStatus()) {
 				this.registerForm.Email.setError('Empty fields');
 				return;
 			}
@@ -56,7 +56,6 @@ export default class RegisterSection extends Section {
 	}
 
 	sign() {
-
 		bus.on('signup-error', (error) => {
 			this.registerForm.Email.setError(error.payload);
 		});

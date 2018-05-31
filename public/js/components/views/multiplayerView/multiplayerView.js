@@ -1,10 +1,14 @@
 /* eslint-disable no-undef */
-import Section from '../baseView.js';
-import bus from '../../../modules/bus.js';
-import Game from '../../../modules/game/game.js';
 import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
-let generateCanvas = require('../gameView/gameTemplate.pug');
+let generateCanvas = require('./multiGameCanvas.pug');
+let generateFinishMenu = require('./finishGameMenu.pug');
+import Game from '../../../modules/game/game.js';
+import Router from '../../../modules/router.js';
+import User from '../../../modules/userModel';
+import bus from '../../../modules/bus.js';
+import Section from '../baseView.js';
+
 
 export default class MultiplayerSection extends Section {
 	constructor() {
@@ -18,10 +22,10 @@ export default class MultiplayerSection extends Section {
 		this.winHeight = this.winWidth * 0.5625; //соотношение 16:9
 		//todo упростить
 		if (window.innerHeight > window.innerWidth) {
-			this.height_canv = window.innerWidth * 0.85; //максимально возможная высота канваса
+			this.height_canv = window.innerWidth; //максимально возможная высота канваса
 		}
 		else {
-			this.height_canv = window.innerHeight * 0.85;
+			this.height_canv = window.innerHeight;
 		}
 
 		if (this.winHeight >= window.innerHeight) {
@@ -29,15 +33,25 @@ export default class MultiplayerSection extends Section {
 			//this.height_canv = this.winHeight * 0.85;
 		}
 
+		this.setBusListeners();
+	}
+
+	render() {
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': window.innerWidth * 0.7,
-				'height': window.innerWidth * 0.525 * 0.83,
-				'id': 'multiplayer-canvas'
+				'height': this.winHeight,
+				'id': 'multiplayer-canvas',
 			}
 		);
 
-		// this.wrapper.getElementsByClassName('info-menu')[0].setAttribute('style', window.innerWidth * 0.525 * 0.83);
+
+
+		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
+			new Router().open('/');
+			window.location.reload();
+		});
+
 		this.parent.appendChild(this.wrapper);
 		this.game_canvas = document.getElementById('multiplayer-canvas');
 		this.ctx = this.game_canvas.getContext('2d');
@@ -47,41 +61,27 @@ export default class MultiplayerSection extends Section {
 		};
 		this.game_canvas.style.marginTop = String(100 - 100 * this.game_canvas.height / this.height_canv) / 2 + '%';
 
+		const multi_username = document.getElementById('multi-username');
+		multi_username.innerText = User.getCurUser().username;
+		const multi_rating = document.getElementById('multi-rating');
+		multi_rating.innerText = 'Rating  ' + User.getCurUser().rating;
 
-	}
-
-	render() {
-
-		this.img = new Image();
-		this.img.src = '/map.png';
-		this.load = new Promise((resolve, reject) => {
-			this.img.onload = () => {
-				resolve(this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height));
-			};
-		});
-		this.load
-			.then(
-				() => {
-					this.setWindowResizeHandler();
-					this.listenOrientation();
-					this.coordinate = new Coordinate(this.game_canvas);
-					this.changeBut = this.wrapper.getElementsByClassName('change')[0];
-					this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
-					// this.game.start();
-
-				}
-			);
-
+		this.setWindowResizeHandler();
+		this.listenOrientation();
+		this.coordinate = new Coordinate(this.game_canvas);
+		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
+		this.game = new Game(GameModes.multiplayer, this.game_canvas, this.coordinate, this.changeBut, this.img, this.wrapper);
 		return this.wrapper;
 	}
 
 	allowed() {
-		return true;
+		// return true;
+		return User.isAuthorized();
 	}
 
 	computeCanvasSize() {
 		// const size = (window.innerWidth > window.innerHeight) ? window.innerHeight : window.innerWidth;
-		return [window.innerWidth * 0.7, window.innerWidth * 0.525 * 0.83];
+		return [window.innerWidth * 0.7, window.innerWidth * 0.5625];
 	}
 
 	listenOrientation() {
@@ -101,7 +101,7 @@ export default class MultiplayerSection extends Section {
 
 			}
 			else {
-				this.height_canv = window.innerHeight * 0.85;
+				this.height_canv = window.innerHeight;
 				this.wrapper.removeChild(this.wrapper.lastChild);
 			}
 		});
@@ -110,11 +110,10 @@ export default class MultiplayerSection extends Section {
 	setWindowResizeHandler() {
 		window.addEventListener('resize', () => {
 			let sizes = this.computeCanvasSize();
-			if (sizes[1] >= window.innerHeight * 0.85) {
-				sizes[1] = window.innerHeight * 0.85;
+			if (sizes[1] >= window.innerHeight) {
+				sizes[1] = window.innerHeight;
 			}
 			[this.game_canvas.width, this.game_canvas.height] = sizes;
-			this.ctx.drawImage(this.img, 0, 0, this.game_canvas.width, this.game_canvas.height);
 			this.coordinate.reSize(this.game_canvas);
 			let margin = 100 - 100 * this.game_canvas.height / this.height_canv;
 			if (margin <= 0) {
@@ -125,16 +124,43 @@ export default class MultiplayerSection extends Section {
 			}
 			else {
 				this.game_canvas.style.marginTop = String(margin) / 2 + '%';
-				this.height_canv = window.innerHeight * 0.85;
+				this.height_canv = window.innerHeight;
 			}
 			this.beforeResize = {
 				width: this.game_canvas.width,
 				height: this.game_canvas.height
 			};
 
-			bus.emit('resize-for-draw', {});
+			bus.emit('resize-for-draw-m', {});
 		});
 		return this;
+	}
+
+	setBusListeners() {
+		bus.on('FinishGameResult', (data) => {
+			const result = data.payload.result;
+			this.finishGameMenu = generateFinishMenu({
+				result: result,
+				text1: 'Again',
+				text2: 'Close'
+			});
+			this.wrapper.innerHTML += this.finishGameMenu;
+			document.getElementById('close_multiplayer').addEventListener('click', () => {
+				bus.emit('CloseFinishGame');
+			});
+			document.getElementById('one_more_game').addEventListener('click', () => {
+				bus.emit('OneMoreGame');
+			});
+		});
+
+		bus.on('CloseFinishGame', () => {
+			this.wrapper.children[this.wrapper.children.length - 1].remove();
+			new Router().open('/');
+		});
+
+		bus.on('OneMoreGame', () => {
+			window.location.reload();
+		});
 	}
 }
 

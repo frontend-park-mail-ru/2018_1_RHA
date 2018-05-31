@@ -1,4 +1,3 @@
-import bus from '../bus.js';
 import {attackAnimation} from './animation/attack/attackAnimation.js';
 import {animationOverlay} from './animation/animationOverlay.js';
 import {moveAnimation} from './animation/move/moveAnimation.js';
@@ -8,6 +7,8 @@ import PLAYER_STATES from './config/playerStates.js';
 import MainPlayer from './player/mainPlayer.js';
 import BotPlayer from './player/botPlayer.js';
 import {timer} from './helperFuncs/timer.js';
+import User from '../userModel.js';
+import bus from '../bus.js';
 
 
 /**
@@ -24,7 +25,6 @@ export default class GameManager {
 		this.regions = regions;
 		this.canvas = canvas;
 		this.img = img;
-		this.timer = document.getElementById('timer');
 		this.log = document.getElementById('log');
 	}
 
@@ -33,9 +33,13 @@ export default class GameManager {
 	 * Starts game logic 8)
 	 */
 	start() {
+		if (this.mode === 2) {
+			this.timer = document.getElementById('timer1');
+		} else {
+			this.timer = document.getElementById('timer');
+		}
 		timer(this.timer);
 		this.select_region = (data) => {
-			console.log('select');
 			const region = data.payload;
 			region.selected = true;
 			region.area.setStroke('red');
@@ -43,7 +47,6 @@ export default class GameManager {
 			renderScene(this.canvas, this.regions, this.img);
 		};
 		this.remove_selection = (data) => {
-			console.log('remove');
 			const region = data.payload;
 			region.selected = false;
 			region.area.setStroke('white');
@@ -141,11 +144,30 @@ export default class GameManager {
 			this.controller.start();
 		};
 		this.illum_cur_m = (data) => {
-			const curPlayer = data.payload;
+			this.regions.forEach(region => {
+				region.area.setStroke('black');
+			});
+			renderScene(this.canvas, this.regions, this.img);
+			const players = data.payload;
+			const curPlayer = players[0];
+			players[1].forEach(player => {
+				const lamp = document.getElementById(player.name);
+				lamp.style.backgroundColor = '#A00';
+			});
 			curPlayer.regions.forEach(region => {
 				region.area.setStroke('white');
 				renderScene(this.canvas, this.regions, this.img);
 			});
+			const lamp = document.getElementById(curPlayer.name);
+			lamp.style.backgroundColor = '#FF0000';
+		};
+		this.hideTimer = () => {
+			this.timer.hidden = true;
+			bus.emit('stop-timer', {});
+		};
+		this.reloadTimer = () => {
+			timer(this.timer);
+			this.timer.hidden = false;
 		};
 
 		bus.on('remove-selection', this.remove_selection);
@@ -157,6 +179,18 @@ export default class GameManager {
 		bus.on('attack', this.attack);
 		bus.on('stop-controller', this.stop_controller);
 		bus.on('start-controller', this.start_controller);
+
+		bus.on('TurnInit$Request', (data) => {
+			const payload = data.payload;
+			if (payload.cycle === true) {
+				bus.emit('update-units', {});
+			}
+			if (payload.user === User.getCurUser().username) {
+				this.reloadTimer();
+			} else {
+				this.hideTimer();
+			}
+		});
 	}
 
 
@@ -164,7 +198,8 @@ export default class GameManager {
 	 * destroys game logic ;)
 	 */
 	destroy() {
-		bus.off('remove-selection', this.change_selection);
+		this.timer = null;
+		bus.off('remove-selection', this.remove_selection);
 		bus.off('select-region', this.select_region);
 		bus.off('change-move', this.change_move);
 		bus.off('move-units', this.move_units);

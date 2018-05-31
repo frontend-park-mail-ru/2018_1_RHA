@@ -1,0 +1,62 @@
+.finish-game-wrapper {
+    position: absolute;
+    width: 30%;
+    left: 35%;
+    top: 25%;
+
+    text-align: center;
+    font-size: 100%;
+    font-family: armalite, serif;
+
+    border: groove darkgray;
+    background: -webkit-radial-gradient(top,#818181,#3d3d3d);
+}
+
+.one_more_game {
+    width: 47%;
+    float: left;
+    border: groove darkgray;
+    border-left: none;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    padding-left: 1%;
+}
+.one_more_game:hover {
+    background-color: red;
+    color: white;
+}
+
+
+.close_multiplayer {
+    width: 47%;
+    float: left;
+    border: groove darkgray;
+    border-right: none;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    padding-left: 1%;
+}
+.close_multiplayer:hover {
+    background-color: red;
+    color: white;
+}
+
+.game-result {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    width: 100%;
+}
+
+
+@media (max-width: 500px) {
+    .close_multiplayer {
+        width: 100%;
+        border-left: none;
+        border-right: none;
+    }
+    .one_more_game {
+        width: 100%;
+        border-left: none;
+        border-right: none;
+    }
+}

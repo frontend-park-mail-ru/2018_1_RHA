@@ -5,6 +5,13 @@
     border-color: white;
     float: left;
 }
+.fsize {
+    font-size: 1.5em;
+    font-family: crystal, serif;
+}
+.fmarg {
+    padding-left: 10px;
+}
 
 .div__profile-wrapper {
     border: solid;

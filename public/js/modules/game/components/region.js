@@ -22,6 +22,7 @@ export default class Region {
 		this.coordinate = coordinate;
 		this.owner = owner;
 		this.color = owner.color;
+		this.type = 3;
 		this.gameData = {
 			units: units
 		};

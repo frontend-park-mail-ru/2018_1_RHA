@@ -6,6 +6,7 @@ import {aboutRegion} from './helperFuncs/renderInfoAboutRegion.js';
 import Ws from '../ws.js';
 import {GameModes} from './config/modes.js';
 import User from '../userModel.js';
+import {dUnits} from './config/unitConf.js';
 
 /**
  * Class representing Game Scene (Set of graphical and logical elements)
@@ -16,7 +17,6 @@ export default class GameScene {
 	 * @param canvas
 	 * @param players
 	 * @param regions
-	 * @param switcher
 	 * @param mode
 	 */
 	constructor(canvas, players, regions, mode) {
@@ -33,6 +33,7 @@ export default class GameScene {
 		if (mode === GameModes.multiplayer) {
 			this.mainPlayer = null;
 			this.curPlayer = null;
+			this.setPlayersStatus();
 			this.ws = new Ws();
 		}
 	}
@@ -71,10 +72,8 @@ export default class GameScene {
 	 * @return {Region | null}
 	 */
 	isRegion(x, y) {
-		console.log('in isRegion:', x, '-', y);
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (inHex(x, y, this.regions[i].area.xp, this.regions[i].area.yp)) {
-				console.log('got region ', this.regions[i].area);
 				return this.regions[i];
 			}
 		}
@@ -127,7 +126,6 @@ export default class GameScene {
 	activeRegion() {
 		for (let i = 0; i < this.regions.length; ++i) {
 			if (this.regions[i].selected === true) {
-				console.log('active');
 				return this.regions[i];
 			}
 		}
@@ -155,7 +153,7 @@ export default class GameScene {
 	}
 
 	setPlayersStatus() {
-		return new Promise((resolve, reject)=> {
+		// return new Promise((resolve, reject)=> {
 			bus.on('TurnInit$Request', data => {
 				const user = data.payload.user;
 				if (user === User.getCurUser().username) {
@@ -164,7 +162,7 @@ export default class GameScene {
 							player.setStatus(PLAYER_STATES.DEFAULT);
 							this.mainPlayer = player;
 							bus.emit('start-controller', {});
-							resolve(this.mainPlayer);
+							bus.emit('illum-cur-m', [player, this.players]);
 						}
 					});
 				}
@@ -173,12 +171,11 @@ export default class GameScene {
 					this.players.forEach(player => {
 						if (player.name === user) {
 							this.curPlayer = player;
-							reject(this.curPlayer);
+							bus.emit('illum-cur-m', [player, this.players]);
 						}
 					});
 				}
 			});
-		});
 	}
 
 
@@ -187,7 +184,6 @@ export default class GameScene {
 	 * подписываемся на события кликов мышки
 	 */
 	onListeners() {
-		console.log(this.mode);
 		if (this.mode === GameModes.singleplayer) {
 			bus.on('left-click', data => {
 				const curPlayer = this.currentPlayer();
@@ -197,6 +193,11 @@ export default class GameScene {
 				}
 				const curRegion = this.isRegion(coordinates.x, coordinates.y);
 				if (!curRegion) {
+					const acReg = this.activeRegion();
+					if (acReg != null) {
+						curPlayer.status = PLAYER_STATES.DEFAULT;
+						bus.emit('remove-selection', acReg);
+					}
 					return;
 				}
 				switch (curPlayer.status) {
@@ -207,13 +208,12 @@ export default class GameScene {
 						curPlayer.status = PLAYER_STATES.READY;
 
 						//выводим информацию о регионе
-						aboutRegion(curRegion, this.about_region);
+						aboutRegion(curRegion);
 						bus.emit('select-region', curRegion);
 						break;
 					case PLAYER_STATES.READY:
 						const activeRegion = this.activeRegion();
 						if (!this.currentPlayer().isTheRegionOfPlayer(curRegion)) {
-							console.log('attack');
 							if (this.isNeighbour(activeRegion, curRegion) === false) {
 								return;
 							}
@@ -229,7 +229,7 @@ export default class GameScene {
 								bus.emit('remove-selection', curRegion);
 							} else {
 								//выводим информацию о регионе
-								aboutRegion(curRegion, this.about_region);
+								aboutRegion(curRegion);
 								curRegion.gameData.units += activeRegion.gameData.units;
 								activeRegion.gameData.units = 0;
 								bus.emit('move-units',
@@ -237,8 +237,6 @@ export default class GameScene {
 										active: this.activeRegion(),
 										new: curRegion
 									});
-								// bus.emit('remove-selection', this.activeRegion());
-								// bus.emit('select-region', curRegion);
 							}
 						}
 						break;
@@ -279,18 +277,15 @@ export default class GameScene {
 
 			bus.on('delete-from-queue', data => {
 				const player = data.payload;
-				// console.log(this.players, '  b ');
 				this.players.forEach((cur, i) => {
 					if (cur === player) {
 						this.players.splice(i, 1);
 					}
 				});
-				// console.log(this.players, ' a');
 			});
 
 			bus.on('start-game', () => {
 				//подсветка текущего игрока
-				console.log(this.currentPlayer());
 				bus.emit('illum-cur', this.currentPlayer());
 			});
 		}
@@ -301,6 +296,11 @@ export default class GameScene {
 
 
 				if (!curRegion) {
+					const acReg = this.activeRegion();
+					if (acReg != null) {
+						this.mainPlayer.status = PLAYER_STATES.DEFAULT;
+						bus.emit('remove-selection', acReg);
+					}
 					return;
 				}
 
@@ -311,8 +311,9 @@ export default class GameScene {
 						if (!this.mainPlayer.isTheRegionOfPlayer(curRegion)) {
 							return;
 						}
-						aboutRegion(curRegion, this.about_region);
-						console.log(curRegion.coordinate.I, ' - ', curRegion.coordinate.J);
+
+						aboutRegion(curRegion);
+
 						this.mainPlayer.status = PLAYER_STATES.READY;
 						bus.emit('select-region', curRegion);
 						break;
@@ -331,21 +332,13 @@ export default class GameScene {
 								class: 'ClientStep',
 								from: [activeRegion.coordinate.I, activeRegion.coordinate.J],
 								to: [curRegion.coordinate.I, curRegion.coordinate.J]
-								// from: [activeRegion.coordinate.J, activeRegion.coordinate.I],
-								// to: [curRegion.coordinate.J, curRegion.coordinate.I]
 							});
-							console.log(curRegion.coordinate.I, ' ', curRegion.coordinate.J);
 						}
-						//выводим информацию о регионе
-						// bus.emit('remove-selection', this.activeRegion());
-						// bus.emit('select-region', curRegion);
 						break;
 				}
 			});
 
-
 			bus.on('left-click-change', () => {
-				console.log('kaka');
 				this.ws.send({
 						class: 'ClientTurn'
 				});
@@ -358,23 +351,25 @@ export default class GameScene {
 				});
 			});
 
-			bus.on('start-game', () => {
+			// bus.on('start-game', () => {
 				//подсветка текущего игрока
-				this.setPlayersStatus()
-					.then(
-						player => {
-							console.log('uuuuuaaaa    -- ', player);
-							bus.emit('illum-cur-m', player);
-						}
-					)
-					.catch(
-						player => {
-							console.log('eeeeeeaaaa  --  ', player);
-							bus.emit('illum-cur-m', player);
-						}
-					);
+
+			// });
+
+			bus.on('update-units', () => {
+
+				this.regions.forEach((curReg) => {
+					// console.log(curReg, '+', dUnits[String(curReg.area.type)]);
+					if (curReg.area.type !== 0) {
+						curReg.gameData.units += dUnits[curReg.area.type];
+					}
+				});
 			});
 		}
+	}
+
+	offListeners() {
+
 	}
 }
 //todo сделать ход

@@ -80,4 +80,9 @@ export default class LoginForm extends Form {
 		});
 	}
 
+	getStatus() {
+		return this.Email.getState() &&
+			this.Password.getState();
+	}
+
 }
