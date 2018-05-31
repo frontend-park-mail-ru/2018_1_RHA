@@ -92,3 +92,8 @@
         margin-left: 5%;
     }
 }
+@media (max-height: 290px) {
+    .div__help-text {
+        height: 80%;
+    }
+}
