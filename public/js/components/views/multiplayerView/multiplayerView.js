@@ -156,6 +156,8 @@ export default class MultiplayerSection extends Section {
 		bus.on('CloseFinishGame', () => {
 			this.wrapper.children[this.wrapper.children.length - 1].remove();
 			new Router().open('/');
+			window.location.reload();
+
 		});
 
 		bus.on('OneMoreGame', () => {
