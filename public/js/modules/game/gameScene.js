@@ -195,7 +195,7 @@ export default class GameScene {
 				if (!curRegion) {
 					const acReg = this.activeRegion();
 					if (acReg != null) {
-						this.mainPlayer.status = PLAYER_STATES.DEFAULT;
+						curPlayer.status = PLAYER_STATES.DEFAULT;
 						bus.emit('remove-selection', acReg);
 					}
 					return;
