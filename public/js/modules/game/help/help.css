@@ -3,9 +3,6 @@
     top: 10%;
     z-index: 10;
     background: #818181; /* Old Browsers */
-    background: -webkit-radial-gradient(top,#818181,#3d3d3d); /*Safari 5.1-6*/
-    background: -o-radial-gradient(top,#818181,#3d3d3d); /*Opera 11.1-12*/
-    background: -moz-radial-gradient(top,#818181,#3d3d3d); /*Fx 3.6-15*/
     background: radial-gradient(to bottom, #818181, #3d3d3d); /*Standard*/
     background-repeat: no-repeat;
     width: 100%;
@@ -13,37 +10,84 @@
     border: solid;
 }
 
-.div__help-text {
-    text-align: left;
-    font-size: 3.2vh;
-    overflow: hidden;
-    width: 100%;
-    max-height: 90%;
-    margin: 3% 0 0 21%;
+.help-p {
+    height: 11%;
+    font-family: crystal, serif;
+    color: wheat;
 }
 
-.div__help-text p {
-    line-height: 1.5;
+.div__help-text {
+    position: relative;
+    height: 60%;
 }
+
+
 
 .div__close {
-    text-align: center;
-    font-size: 5.5vh;
-    width: 100%;
-    padding-top: 10px;
+    position: relative;
+    margin-top: 1%;
+    height: 10%;
 }
 
-.div__close span {
-    border: groove darkgray;
-    border-radius: 8%;
-    padding: 1%;
-}
+
 
 .div__close:hover {
-    font-style: revert;
+
+}
+.text-close {
+    width: 10%;
+    border: solid wheat;
+    margin-left: 40%;
+    text-align: center;
+    background: gray;
+    font-family: crystal, serif;
+    color: wheat;
+    padding: 4px;
 }
 
 @media (max-width: 801px) {
+    .div__help-text {
+        height: 70%;
+    }
+}
+@media (max-width: 448px) {
+    .help-p {
+        font-size: 0.9em;
+    }
+}
+@media (max-width: 403px) {
+    .help-p {
+        font-size: 0.8em;
+    }
+}
+@media (max-width: 358px) {
+    .help-p {
+        font-size: 0.75em;
+    }
+    .text-close {
+        font-size: 0.8em;
+    }
+}
+@media (max-width: 336px) {
+    .help-p {
+        font-size: 0.7em;
+    }
+}
+@media (max-width: 336px) {
+    .help-p {
+        font-size: 0.65em;
+    }
+}
+@media (max-width: 291px) {
+    .help-p {
+        font-size: 0.6em;
+    }
+    .text-close {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-height: 324px) {
     .div__help-text {
         margin-left: 5%;
     }
