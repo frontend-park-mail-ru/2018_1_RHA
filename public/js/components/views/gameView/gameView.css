@@ -417,6 +417,13 @@
     .row-margin {
         margin-top: 7px;
     }
+    .list-name {
+        font-size: 1.1em;
+    }
+    .red-lamp {
+        width: 10px;
+        height: 10px;
+    }
 
 }
 @media (max-height: 289px) {
@@ -428,13 +435,6 @@
     }
     .row-margin {
         margin-top: 5px;
-    }
-    .list-name {
-        font-size: 1.1em;
-    }
-    .red-lamp {
-        width: 10px;
-        height: 10px;
     }
     .game-list {
         height: 22%;
