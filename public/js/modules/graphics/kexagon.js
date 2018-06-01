@@ -16,7 +16,7 @@ const typeImagess = [
 
 
 export default class Kexagon {
-	constructor(name, canvas, x, y, r, color, type) {
+	constructor(name, canvas, x, y, r, color, type, units) {
 		this.name = name;
 		this.canvas = canvas;
 		this.game_ctx = this.canvas.getContext('2d');
@@ -25,6 +25,7 @@ export default class Kexagon {
 		this.R = r;
 		this.color = color;
 		this.type = type;
+		this.units = units;
 		this.strokeColor = 'black';
 		this.img = new Image();
 		this.img.src = typeImagess[this.type];
@@ -49,6 +50,10 @@ export default class Kexagon {
 
 	setStroke(color) {
 		this.strokeColor = color;
+	}
+
+	setUnits(units) {
+		this.units = units;
 	}
 
 	draw() {
@@ -92,7 +97,23 @@ export default class Kexagon {
 			this.R * 1.3  * this.canvas.width / 1000,
 			this.R * 1.3  * this.canvas.height / 610
 		);
-		this.game_ctx.closePath();
+
+		if (this.type !== 0) {
+			// this.game_ctx.font = String(this.R * 1.6 / 2 *  this.canvas.height / 610) + 'pt';
+			this.game_ctx.font =
+				String(this.R * 1.6 / 10 *  this.canvas.height / 610) +
+				'pt '+ 'crystal';
+			this.game_ctx.fillStyle = 'white';
+			this.game_ctx.textBaseline = 'center';
+			this.game_ctx.fillText(
+				String(this.units),
+				this.xC - this.R * 0.4 / 2 * this.canvas.width / 1000,
+				this.yC + this.R * 1.6 / 2 *  this.canvas.height / 610,
+				this.R * 2.3  * this.canvas.width / 1000
+			);
+			this.game_ctx.fillStyle = this.color;
+			this.game_ctx.closePath();
+		}
 	}
 
 	reColor () {

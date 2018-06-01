@@ -73,7 +73,7 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				let amountOfPlayers = 3;
+				let amountOfPlayers = 2;
 				this.Ws.send({class: 'JoinGame', players: amountOfPlayers});
 				bus.on('InitGame$Request', (data) => {
 					Loader.deleteLoader();
