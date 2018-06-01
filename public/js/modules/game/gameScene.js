@@ -362,6 +362,7 @@ export default class GameScene {
 				this.regions.forEach((curReg) => {
 					// console.log(curReg, '+', dUnits[String(curReg.area.type)]);
 					if (curReg.area.type !== 0) {
+						curReg.area.units += dUnits[curReg.area.type];
 						curReg.gameData.units += dUnits[curReg.area.type];
 					}
 				});
