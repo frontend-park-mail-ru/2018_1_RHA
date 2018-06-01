@@ -36,6 +36,24 @@
 
 }
 
+@keyframes clockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.screw:hover{
+    animation-name: clockwise ;
+    animation-timing-function: linear;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+
 
 .left {
     display: inline-block;
