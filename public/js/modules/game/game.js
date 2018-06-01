@@ -75,7 +75,6 @@ export default class Game {
 			bus.on('connected', () => {
 				let amountOfPlayers = 3;
 				this.Ws.send({class: 'JoinGame', players: amountOfPlayers});
-				Loader.animateLoader();
 				bus.on('InitGame$Request', (data) => {
 					Loader.deleteLoader();
 					const initData = data.payload;
@@ -93,6 +92,7 @@ export default class Game {
 							this.webPlayer = new WebPlayer(player, colors[index+1], this.game_canvas, this.img);
 							this.players.push(this.webPlayer);}
 					});
+					console.log(this.players);
 
 					const map = initData.map;
 					//todo переделать радиус

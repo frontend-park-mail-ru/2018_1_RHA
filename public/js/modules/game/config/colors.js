@@ -1,8 +1,8 @@
 export const colors = [
 	'grey',
-	'red',
-	'orange',
-	'yellow',
+	'green',
+	'pink',
 	'magenta',
+	'yellow',
 	'brown'
 ];
