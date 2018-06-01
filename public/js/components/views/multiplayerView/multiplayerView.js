@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
 import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
-let generateCanvas = require('./multiGameCanvas.pug');
 let generateFinishMenu = require('./finishGameMenu.pug');
+let generateCanvas = require('./multiGameCanvas.pug');
 import Game from '../../../modules/game/game.js';
 import Router from '../../../modules/router.js';
 import User from '../../../modules/userModel';
 import bus from '../../../modules/bus.js';
+import Ws from '../../../modules/ws.js';
 import Section from '../baseView.js';
 
 
@@ -48,6 +49,7 @@ export default class MultiplayerSection extends Section {
 
 
 		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
+			Ws().send({class: 'Break'});
 			new Router().open('/');
 			window.location.reload();
 		});
@@ -146,6 +148,7 @@ export default class MultiplayerSection extends Section {
 			});
 			this.wrapper.innerHTML += this.finishGameMenu;
 			document.getElementById('close_multiplayer').addEventListener('click', () => {
+				Ws().send({class: 'Break'});
 				bus.emit('CloseFinishGame');
 			});
 			document.getElementById('one_more_game').addEventListener('click', () => {

@@ -8,6 +8,7 @@ import User from '../../../modules/userModel.js';
 import Router from '../../../modules/router.js';
 import bus from '../../../modules/bus.js';
 import Section from '../baseView.js';
+import Ws from "../../../modules/ws";
 
 /**
  * Class representing Section of the game
@@ -87,6 +88,7 @@ export default class GameSection extends Section {
 		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 		this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
 		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
+			Ws().send({class: 'Break'});
 			new Router().open('/');
 			bus.emit('close-game', {});
 			window.location.reload();
