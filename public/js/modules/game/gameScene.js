@@ -347,6 +347,7 @@ export default class GameScene {
 			bus.on('update-regions', (data) => {
 				const regions = data.payload;
 				regions.regions.forEach(reg => {
+					this.regions[reg.num].area.units = reg.units;
 					this.regions[reg.num].gameData.units = reg.units;
 				});
 			});
