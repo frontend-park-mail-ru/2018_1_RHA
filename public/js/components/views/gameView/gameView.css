@@ -430,7 +430,11 @@
         margin-top: 5px;
     }
     .list-name {
-        font-size: 1.3em;
+        font-size: 1.1em;
+    }
+    .red-lamp {
+        width: 10px;
+        height: 10px;
     }
     .game-list {
         height: 22%;

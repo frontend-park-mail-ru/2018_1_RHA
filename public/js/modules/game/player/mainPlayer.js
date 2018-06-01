@@ -15,10 +15,10 @@ export default class MainPlayer extends Player {
 
 	constructor(name, color, canvas,  img) {
 		super(name, color, canvas, img);
-		if (MainPlayer.__instance) {
-			return MainPlayer.__instance;
-		}
-		MainPlayer.__instance = this;
+		// if (MainPlayer.__instance) {
+		// 	return MainPlayer.__instance;
+		// }
+		// MainPlayer.__instance = this;
 		this.status = PLAYER_STATES.DEFAULT;
 	}
 
