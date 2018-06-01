@@ -10,11 +10,15 @@ export default class Validator {
 	static checkMail(emailElem) {
 
 		const email = emailElem.getData();
-		const pattern = /([\w-]+)@([\w-]+)(\.[\w]+)/;
-		if (pattern.test(email) === false) {
-			emailElem.setError('incorrect email');
+		if (email === null) {
+			emailElem.setError('empty field');
 		} else {
-			emailElem.setError(null);
+			const pattern = /([\w-]+)@([\w-]+)(\.[\w]+)/;
+			if (pattern.test(email) === false) {
+				emailElem.setError('incorrect email');
+			} else {
+				emailElem.setError(false);
+			}
 		}
 	}
 
@@ -24,11 +28,15 @@ export default class Validator {
      */
 	static checkName(nameElem) {
 		const name = nameElem.getData();
-		const pattern = /^[a-zA-Z0-9_-]{3,16}$/;
-		if (pattern.test(name)) {
-			nameElem.setError(null);
+		if (name === null) {
+			nameElem.setError('empty field');
 		} else {
-			nameElem.setError('incorrect name');
+			const pattern = /^[a-zA-Z0-9_-]{3,16}$/;
+			if (pattern.test(name)) {
+				nameElem.setError(null);
+			} else {
+				nameElem.setError('incorrect name');
+			}
 		}
 	}
 
@@ -38,10 +46,14 @@ export default class Validator {
      */
 	static checkPass(passElem) {
 		const pass = passElem.getData();
-		if (pass.length < 8) {
-			passElem.setError('too short password');
+		if (pass === null) {
+			passElem.setError('empty field');
 		} else {
-			passElem.setError(null);
+			if (pass.length < 8) {
+				passElem.setError('too short password');
+			} else {
+				passElem.setError(null);
+			}
 		}
 	}
 
@@ -51,10 +63,16 @@ export default class Validator {
      * @param confElem
      */
 	static checkConfirm(passElem, confElem) {
-		if (passElem.getData() !== confElem.getData()) {
-			confElem.setError('passwords do not match');
+		if (passElem.getData() === null) {
+			passElem.setError('empty field');
+		} else if (confElem.getData() === null) {
+			confElem.setError('empty field');
 		} else {
-			confElem.setError(null);
+			if (passElem.getData() !== confElem.getData()) {
+				confElem.setError('passwords do not match');
+			} else {
+				confElem.setError(null);
+			}
 		}
 	}
 }

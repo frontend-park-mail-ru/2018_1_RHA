@@ -15,7 +15,11 @@
     transition: 0.2s;
 }
 
-.planck:hover .red-lamp {
+/*.planck:hover .red-lamp {*/
+    /*background-color: red;*/
+/*}*/
+
+div.button:hover ~ .lamp-box > .red-lamp {
     background-color: red;
 }
 

@@ -4,14 +4,14 @@
 
 const typeImagess = [
 	'',
-	'/field.png',
-	'/desert.png',
-	'/forest.png',
-	'/grass-hill.png',
-	'/desert-hill.png',
-	'/forest-hill.png',
-	'/mount.png',
-	'/city.png'
+	'/img/field.png',
+	'/img/desert.png',
+	'/img/forest.png',
+	'/img/grass-hill.png',
+	'/img/desert-hill.png',
+	'/img/forest-hill.png',
+	'/img/mount.png',
+	'/img/city.png'
 ];
 
 

@@ -47,7 +47,7 @@ export default class GameSection extends Section {
 		if (User.getCurUser() !== null) {
 			avatar = 'https://rha-backend.herokuapp.com/users/gava';
 		} else {
-			avatar = '/default_player.svg';
+			avatar = '/img/default_player.svg';
 		}
 
 		this.wrapper.innerHTML += generateCanvas(

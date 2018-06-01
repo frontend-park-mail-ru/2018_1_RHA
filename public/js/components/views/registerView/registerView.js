@@ -31,23 +31,20 @@ export default class RegisterSection extends Section {
 		this.register.classList.add('regist-wrapper');
 		this.register.innerHTML = generateRegister();
 		this.registerForm = new RegisterForm();
-		this.after = this.register.getElementsByClassName('button')[0];
-		this.register.firstChild.insertBefore(this.registerForm.render(), this.after);
 		this.registerForm.setOnSubmit( () => {
-
 			const userData = this.registerForm.getData();
-			console.log(this.registerForm.getStatus());
 			if (userData === null || !this.registerForm.getStatus()) {
-				this.registerForm.Email.setError('Empty fields');
 				return;
 			}
 			const jsonUserData = JSON.stringify(userData);
 			bus.emit('user:signup', jsonUserData);
 			bus.on('signup-error', (error) => {
+				console.log(error);
 				this.registerForm.Email.setError(error.payload);
 			});
-
 		});
+		this.after = this.register.getElementsByClassName('button')[0];
+		this.register.firstChild.insertBefore(this.registerForm.render(), this.after);
 		return this.register;
 	}
 
@@ -59,6 +56,5 @@ export default class RegisterSection extends Section {
 		bus.on('signup-error', (error) => {
 			this.registerForm.Email.setError(error.payload);
 		});
-
 	}
 }
