@@ -9,6 +9,7 @@ import User from '../../../modules/userModel';
 import bus from '../../../modules/bus.js';
 import Ws from '../../../modules/ws.js';
 import Section from '../baseView.js';
+import Loader from '../../../modules/loader/loader.js';
 
 
 export default class MultiplayerSection extends Section {
@@ -38,6 +39,7 @@ export default class MultiplayerSection extends Section {
 	}
 
 	render() {
+		Loader.animateLoader();
 		this.wrapper.innerHTML += generateCanvas(
 			{
 				'width': window.innerWidth * 0.7,
@@ -49,9 +51,9 @@ export default class MultiplayerSection extends Section {
 
 
 		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
-			Ws().send({class: 'Break'});
 			new Router().open('/');
 			window.location.reload();
+			Ws().send({class: 'Break'});
 		});
 
 		this.parent.appendChild(this.wrapper);
