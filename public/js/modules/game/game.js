@@ -7,6 +7,7 @@ import Region from './components/region.js';
 import GameManager from './gameManager.js';
 import {colors} from './config/colors.js';
 import Controller from './controller.js';
+import Loader from '../loader/loader.js';
 import Area from './components/area.js';
 import GameScene from './gameScene.js';
 import User from '../userModel.js';
@@ -74,7 +75,9 @@ export default class Game {
 			bus.on('connected', () => {
 				let players = 2;
 				this.Ws.send({class: 'JoinGame', players: players});
+				Loader.animateLoader();
 				bus.on('InitGame$Request', (data) => {
+					Loader.deleteLoader();
 					const initData = data.payload;
 					// узнаем индекс локального игрока + создадим игроков
 					let indexPlayer;
