@@ -7,6 +7,7 @@ import Region from './components/region.js';
 import GameManager from './gameManager.js';
 import {colors} from './config/colors.js';
 import Controller from './controller.js';
+import Loader from '../loader/loader.js';
 import Area from './components/area.js';
 import GameScene from './gameScene.js';
 import User from '../userModel.js';
@@ -72,9 +73,10 @@ export default class Game {
 		else {
 			this.Ws = new Ws();
 			bus.on('connected', () => {
-				let players = 2;
-				this.Ws.send({class: 'JoinGame', players: players});
+				let amountOfPlayers = 2;
+				this.Ws.send({class: 'JoinGame', players: amountOfPlayers});
 				bus.on('InitGame$Request', (data) => {
+					Loader.deleteLoader();
 					const initData = data.payload;
 					// узнаем индекс локального игрока + создадим игроков
 					let indexPlayer;
@@ -90,6 +92,7 @@ export default class Game {
 							this.webPlayer = new WebPlayer(player, colors[index+1], this.game_canvas, this.img);
 							this.players.push(this.webPlayer);}
 					});
+					console.log(this.players);
 
 					const map = initData.map;
 					//todo переделать радиус
@@ -164,11 +167,15 @@ export default class Game {
 			bus.on('FinishGame', (data) => {
 				const winnerNum = data.payload.player;
 				let result = null;
-				// console.log('mazafaka', this.players[winnerNum]);
-				if (this.players[winnerNum-1].name === User.getCurUser().username) {
-					result = 'You win!';
+				if (winnerNum === null) {
+					result = 'Your opponent fell off';
 				} else {
-					result = 'You loose!';
+					// console.log('mazafaka', this.players[winnerNum]);
+					if (this.players[winnerNum-1].name === User.getCurUser().username) {
+						result = 'You win!';
+					} else {
+						result = 'You loose!';
+					}
 				}
 				bus.emit('FinishGameResult', {result: result});
 				this.destroy();

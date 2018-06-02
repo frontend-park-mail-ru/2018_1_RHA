@@ -84,6 +84,7 @@ export default class WebPlayer extends Player {
 					}
 					attackAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
 					bus.emit('update-regions', {regions: toUpdate});
+					renderScene(this.canvas, this.allRegions, this.img);
 				}
 			} else if (move.type === 'move') {
 				let toUpdate = [];
@@ -113,6 +114,7 @@ export default class WebPlayer extends Player {
 
 				bus.emit('update-regions', {regions: toUpdate});
 				moveAnimation(to.area.xC, to.area.yC, from.area.xC, from.area.yC);
+				renderScene(this.canvas, this.allRegions, this.img);
 			}
 		});
 	}

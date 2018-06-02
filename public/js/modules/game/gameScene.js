@@ -347,6 +347,7 @@ export default class GameScene {
 			bus.on('update-regions', (data) => {
 				const regions = data.payload;
 				regions.regions.forEach(reg => {
+					this.regions[reg.num].area.units = reg.units;
 					this.regions[reg.num].gameData.units = reg.units;
 				});
 			});
@@ -361,6 +362,7 @@ export default class GameScene {
 				this.regions.forEach((curReg) => {
 					// console.log(curReg, '+', dUnits[String(curReg.area.type)]);
 					if (curReg.area.type !== 0) {
+						curReg.area.units += dUnits[curReg.area.type];
 						curReg.gameData.units += dUnits[curReg.area.type];
 					}
 				});

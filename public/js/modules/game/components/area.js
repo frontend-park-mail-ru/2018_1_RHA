@@ -58,7 +58,8 @@ export default class Area {
 			this.y,
 			this.coordinate.R,
 			this.color,
-			this.type
+			this.type,
+			this.gameData.units
 		);
 	}
 
