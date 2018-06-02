@@ -150,7 +150,7 @@ export default class MultiplayerSection extends Section {
 			});
 			this.wrapper.innerHTML += this.finishGameMenu;
 			document.getElementById('close_multiplayer').addEventListener('click', () => {
-				Ws().send({class: 'Break'});
+				new Ws().send({class: 'Break'});
 				bus.emit('CloseFinishGame');
 			});
 			document.getElementById('one_more_game').addEventListener('click', () => {
