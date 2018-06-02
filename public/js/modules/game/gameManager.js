@@ -82,6 +82,9 @@ export default class GameManager {
 					from.owner.addRegion(to, from.owner);
 					to.area.setStroke('white');
 					renderScene(this.canvas, this.regions, this.img);
+					if (from.owner.regions.length === 5) {
+						bus.emit('FinishSingleResult', 'you win');
+					}
 				}
 			}, 1000);
 

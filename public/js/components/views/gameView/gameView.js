@@ -3,12 +3,14 @@ import Coordinate from '../../../modules/game/config/coordinate.js';
 import {GameModes} from '../../../modules/game/config/modes.js';
 import Help from '../../../modules/game/help/help.js';
 let generateCanvas = require('./gameTemplate.pug');
+let generateFinishMenu = require('../multiplayerView/finishGameMenu.pug');
 import Game from '../../../modules/game/game.js';
 import User from '../../../modules/userModel.js';
 import Router from '../../../modules/router.js';
 import bus from '../../../modules/bus.js';
 import Section from '../baseView.js';
-import Ws from "../../../modules/ws";
+
+
 
 /**
  * Class representing Section of the game
@@ -84,6 +86,7 @@ export default class GameSection extends Section {
 
 		this.setWindowResizeHandler();
 		this.listenOrientation();
+		this.setBusListeners();
 		this.coordinate = new Coordinate(this.game_canvas);
 		this.changeBut = this.wrapper.getElementsByClassName('change')[0];
 		this.game = new Game(GameModes.singleplayer, this.game_canvas, this.coordinate, this.changeBut, this.img);
@@ -97,9 +100,9 @@ export default class GameSection extends Section {
 		// this.game.start();
 
 		bus.on('gameover', () => {
-			alert('gameover');
+			bus.emit('FinishSingleResult', 'gameover');
 			this.game.destroy();
-			history.go('/singleplayer');
+			// history.go('/singleplayer');
 		});
 		return this.wrapper;
 	}
@@ -169,6 +172,33 @@ export default class GameSection extends Section {
 			bus.emit('resize-for-draw', {});
 		});
 		return this;
+	}
+	setBusListeners() {
+		bus.on('FinishSingleResult', (data) => {
+			const result = data.payload;
+			this.finishGameMenu = generateFinishMenu({
+				result: result,
+				text1: 'Again',
+				text2: 'Close'
+			});
+			this.wrapper.innerHTML += this.finishGameMenu;
+			document.getElementById('close_multiplayer').addEventListener('click', () => {
+				bus.emit('CloseSingleGame');
+			});
+			document.getElementById('one_more_game').addEventListener('click', () => {
+				bus.emit('OneMoreSingle');
+			});
+		});
+
+		bus.on('CloseSingleGame', () => {
+			this.wrapper.children[this.wrapper.children.length - 1].remove();
+			new Router().open('/');
+			window.location.reload();
+		});
+
+		bus.on('OneMoreSingle', () => {
+			window.location.reload();
+		});
 	}
 }
 

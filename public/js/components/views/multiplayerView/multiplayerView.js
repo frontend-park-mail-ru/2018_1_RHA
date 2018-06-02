@@ -51,9 +51,9 @@ export default class MultiplayerSection extends Section {
 
 
 		this.wrapper.getElementsByClassName('exit-button')[0].addEventListener('click', () => {
+			Ws().send({class: 'Break'});
 			new Router().open('/');
 			window.location.reload();
-			Ws().send({class: 'Break'});
 		});
 
 		this.parent.appendChild(this.wrapper);
